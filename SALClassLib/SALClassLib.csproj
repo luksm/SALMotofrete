@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{0076F261-C2D5-47E6-A221-3B335C5E0768}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SALClassLib</RootNamespace>
+    <AssemblyName>SALClassLib</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Model\Masterdata\AparelhoMovel.cs" />
+    <Compile Include="Model\Masterdata\Atendente.cs" />
+    <Compile Include="Model\Masterdata\AtividadeEntregador.cs" />
+    <Compile Include="Model\Masterdata\Cliente.cs" />
+    <Compile Include="Model\Masterdata\Contato.cs" />
+    <Compile Include="Model\Masterdata\Endereço.cs" />
+    <Compile Include="Model\Masterdata\Entregador.cs" />
+    <Compile Include="Model\Masterdata\Estado.cs" />
+    <Compile Include="Model\Masterdata\Login.cs" />
+    <Compile Include="Model\Masterdata\Municipio.cs" />
+    <Compile Include="Model\Masterdata\PermissaoAcesso.cs" />
+    <Compile Include="Model\Masterdata\Pessoa.cs" />
+    <Compile Include="Model\Masterdata\PessoaFisica.cs" />
+    <Compile Include="Model\Masterdata\PessoaJuridica.cs" />
+    <Compile Include="Model\OS\Cobranca.cs" />
+    <Compile Include="Model\OS\EnderecoOrdemServico.cs" />
+    <Compile Include="Model\OS\FilaOrdemServico.cs" />
+    <Compile Include="Model\OS\ItemOrdemServico.cs" />
+    <Compile Include="Model\OS\OrdemServico.cs" />
+    <Compile Include="Model\OS\StatusOrdemServico.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
