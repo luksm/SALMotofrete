@@ -3,15 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using SALClassLib.Model.Masterdata;
+using SALClassLib.Masterdata.Model;
 
-namespace SALClassLib.Model.OS
+namespace SALClassLib.OS.Model
 {
     public class EnderecoOrdemServico : Endereco
     {
         private String nomeContato;
 
-        public String NomeContato
+        public virtual String NomeContato
         {
             get { return nomeContato; }
             set { nomeContato = value; }
@@ -19,7 +19,7 @@ namespace SALClassLib.Model.OS
 
         private String telefoneContato;
 
-        public String TelefoneContato
+        public virtual String TelefoneContato
         {
             get { return telefoneContato; }
             set { telefoneContato = value; }

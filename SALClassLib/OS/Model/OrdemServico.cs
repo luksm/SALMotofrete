@@ -3,15 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using SALClassLib.Model.Masterdata;
+using SALClassLib.Masterdata.Model;
 
-namespace SALClassLib.Model.OS
+namespace SALClassLib.OS.Model
 {
     public class OrdemServico
     {
         private ulong id;
 
-        public ulong Id
+        public virtual ulong Id
         {
             get { return id; }
             set { id = value; }
@@ -19,7 +19,7 @@ namespace SALClassLib.Model.OS
 
         private ulong numero;
 
-        public ulong Numero
+        public virtual ulong Numero
         {
             get { return numero; }
             set { numero = value; }
@@ -27,7 +27,7 @@ namespace SALClassLib.Model.OS
 
         private DateTime data;
 
-        public DateTime Data
+        public virtual DateTime Data
         {
             get { return data; }
             set { data = value; }
@@ -35,7 +35,7 @@ namespace SALClassLib.Model.OS
 
         private String observacao;
 
-        public String Observacao
+        public virtual String Observacao
         {
             get { return observacao; }
             set { observacao = value; }
@@ -43,7 +43,7 @@ namespace SALClassLib.Model.OS
 
         private StatusOrdemServico status;
 
-        public StatusOrdemServico Status
+        public virtual StatusOrdemServico Status
         {
             get { return status; }
             set { status = value; }
@@ -51,7 +51,7 @@ namespace SALClassLib.Model.OS
 
         private Cobranca cobranca;
 
-        public Cobranca Cobranca
+        public virtual Cobranca Cobranca
         {
             get { return cobranca; }
             set { cobranca = value; }
@@ -59,7 +59,7 @@ namespace SALClassLib.Model.OS
 
         private ISet<ItemOrdemServico> itens;
 
-        public ISet<ItemOrdemServico> Itens
+        public virtual ISet<ItemOrdemServico> Itens
         {
             get { return itens; }
             set { itens = value; }
@@ -67,7 +67,7 @@ namespace SALClassLib.Model.OS
 
         private ISet<EnderecoOrdemServico> enderecosRetirada;
 
-        public ISet<EnderecoOrdemServico> EnderecoRetirada
+        public virtual ISet<EnderecoOrdemServico> EnderecoRetirada
         {
             get { return enderecosRetirada; }
             set { enderecosRetirada = value; }
@@ -75,7 +75,7 @@ namespace SALClassLib.Model.OS
 
         private ISet<EnderecoOrdemServico> enderecosEntrega;
 
-        public ISet<EnderecoOrdemServico> EnderecosEntrega
+        public virtual ISet<EnderecoOrdemServico> EnderecosEntrega
         {
             get { return enderecosEntrega; }
             set { enderecosEntrega = value; }
@@ -83,12 +83,10 @@ namespace SALClassLib.Model.OS
 
         private Cliente cliente;
 
-        public Cliente Cliente
+        public virtual Cliente Cliente
         {
             get { return cliente; }
             set { cliente = value; }
         }
-        
-
     }
 }

@@ -4,13 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SALClassLib.Model.Masterdata
+namespace SALClassLib.Masterdata.Model
 {
-    public abstract class PessoaJuridica : Pessoa
+    public class PessoaJuridica : Pessoa
     {
         private String nomeFantasia;
 
-        public String NomeFantasia
+        public virtual String NomeFantasia
         {
             get { return nomeFantasia; }
             set { nomeFantasia = value; }
@@ -18,7 +18,7 @@ namespace SALClassLib.Model.Masterdata
 
         private String razaoSocial;
 
-        public String RazaoSocial
+        public virtual String RazaoSocial
         {
             get { return razaoSocial; }
             set { razaoSocial = value; }
@@ -26,7 +26,7 @@ namespace SALClassLib.Model.Masterdata
 
         private String cnpj;
 
-        public String Cnpj
+        public virtual String Cnpj
         {
             get { return cnpj; }
             set { cnpj = value; }
@@ -34,7 +34,7 @@ namespace SALClassLib.Model.Masterdata
 
         private String inscricaoEstadual;
 
-        public String ÌnscricaoEstadual
+        public virtual String InscricaoEstadual
         {
             get { return inscricaoEstadual; }
             set { inscricaoEstadual = value; }
@@ -42,13 +42,19 @@ namespace SALClassLib.Model.Masterdata
 
         private String website;
 
-        public String Website
+        public virtual String Website
         {
             get { return website; }
             set { website = value; }
         }
-        
-        
+
+        private ISet<Contato> contatos;
+
+        public virtual ISet<Contato> Contatos
+        {
+            get { return contatos; }
+            set { contatos = value; }
+        }
         
     }
 }

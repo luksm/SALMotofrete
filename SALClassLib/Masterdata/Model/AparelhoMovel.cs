@@ -4,13 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SALClassLib.Model.Masterdata
+namespace SALClassLib.Masterdata.Model
 {
     public class AparelhoMovel
     {
         private uint id;
 
-        public uint Id
+        public virtual uint Id
         {
             get { return id; }
             set { id = value; }
@@ -18,7 +18,7 @@ namespace SALClassLib.Model.Masterdata
 
         private short tipo;
 
-        public short Tipo
+        public virtual short Tipo
         {
             get { return tipo; }
             set { tipo = value; }
@@ -26,7 +26,7 @@ namespace SALClassLib.Model.Masterdata
 
         private String modelo;
 
-        public String Model
+        public virtual String Modelo
         {
             get { return modelo; }
             set { modelo = value; }
@@ -34,7 +34,7 @@ namespace SALClassLib.Model.Masterdata
 
         private String marca;
 
-        public String Marca
+        public virtual String Marca
         {
             get { return marca; }
             set { marca = value; }
@@ -42,7 +42,7 @@ namespace SALClassLib.Model.Masterdata
 
         private String numeroTelefone;
 
-        public String NumeroTelefone
+        public virtual String NumeroTelefone
         {
             get { return numeroTelefone; }
             set { numeroTelefone = value; }
@@ -50,13 +50,10 @@ namespace SALClassLib.Model.Masterdata
 
         private String observacao;
 
-        public String Observacao
+        public virtual String Observacao
         {
             get { return observacao; }
             set { observacao = value; }
         }
-        
-        
-        
     }
 }

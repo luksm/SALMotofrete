@@ -4,17 +4,24 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SALClassLib.Model.Masterdata
+namespace SALClassLib.Masterdata.Model
 {
-    public abstract class Atendente : PessoaFisica
+    public class Atendente : PessoaFisica
     {
+        private uint id;
+
+        public virtual uint Id
+        {
+            get { return id; }
+            set { id = value; }
+        }
+        
         private short statusExclusao;
 
-        public short StatusExclusao
+        public virtual short StatusExclusao
         {
             get { return statusExclusao; }
             set { statusExclusao = value; }
         }
-        
     }
 }

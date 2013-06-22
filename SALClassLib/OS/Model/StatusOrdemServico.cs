@@ -4,13 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SALClassLib.Model.OS
+namespace SALClassLib.OS.Model
 {
     public class StatusOrdemServico
     {
         private uint id;
 
-        public uint Id
+        public virtual uint Id
         {
             get { return id; }
             set { id = value; }
@@ -18,12 +18,10 @@ namespace SALClassLib.Model.OS
 
         private String descricao;
 
-        public String Descricao
+        public virtual String Descricao
         {
             get { return descricao; }
             set { descricao = value; }
         }
-        
-        
     }
 }

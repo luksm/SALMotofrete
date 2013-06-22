@@ -55,7 +55,7 @@
     <Compile Include="Model\Masterdata\PessoaJuridica.cs" />
     <Compile Include="Model\OS\Cobranca.cs" />
     <Compile Include="Model\OS\EnderecoOrdemServico.cs" />
-    <Compile Include="Model\OS\FilaOrdemServico.cs" />
+    <Compile Include="Model\OS\Fila.cs" />
     <Compile Include="Model\OS\ItemOrdemServico.cs" />
     <Compile Include="Model\OS\OrdemServico.cs" />
     <Compile Include="Model\OS\StatusOrdemServico.cs" />

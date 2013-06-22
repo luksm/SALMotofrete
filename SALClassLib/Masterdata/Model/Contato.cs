@@ -4,13 +4,21 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SALClassLib.Model.Masterdata
+namespace SALClassLib.Masterdata.Model
 {
     public class Contato
     {
+        private uint id;
+
+        public virtual uint Id
+        {
+            get { return id; }
+            set { id = value; }
+        }
+        
         private String nome;
 
-        public String Nome
+        public virtual String Nome
         {
             get { return nome; }
             set { nome = value; }
@@ -18,7 +26,7 @@ namespace SALClassLib.Model.Masterdata
 
         private String telefoneFixo;
 
-        public String TelefoneFixo
+        public virtual String TelefoneFixo
         {
             get { return telefoneFixo; }
             set { telefoneFixo = value; }
@@ -26,7 +34,7 @@ namespace SALClassLib.Model.Masterdata
 
         private String telefoneCelular;
 
-        public String TelefoneCelular
+        public virtual String TelefoneCelular
         {
             get { return telefoneCelular; }
             set { telefoneCelular = value; }
@@ -34,7 +42,7 @@ namespace SALClassLib.Model.Masterdata
 
         private String email;
 
-        public String Email
+        public virtual String Email
         {
             get { return email; }
             set { email = value; }

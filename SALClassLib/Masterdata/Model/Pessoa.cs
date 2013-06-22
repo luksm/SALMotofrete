@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SALClassLib.Model.Masterdata
+namespace SALClassLib.Masterdata.Model
 {
     public class Pessoa
     {
@@ -18,10 +18,18 @@ namespace SALClassLib.Model.Masterdata
 
         private ISet<Endereco> enderecos;
 
-        public ISet<Endereco> Enderecos
+        public virtual ISet<Endereco> Enderecos
         {
             get { return enderecos; }
             set { enderecos = value; }
+        }
+
+        private Login login;
+
+        public virtual Login Login
+        {
+            get { return login; }
+            set { login = value; }
         }
         
     }

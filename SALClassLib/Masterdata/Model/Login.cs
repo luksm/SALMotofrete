@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SALClassLib.Model.Masterdata
+namespace SALClassLib.Masterdata.Model
 {
     public class Login
     {
@@ -34,7 +34,7 @@ namespace SALClassLib.Model.Masterdata
 
         private ISet<PermissaoAcesso> permissoes;
 
-        public ISet<PermissaoAcesso> Permissoes
+        public virtual ISet<PermissaoAcesso> Permissoes
         {
             get { return permissoes; }
             set { permissoes = value; }

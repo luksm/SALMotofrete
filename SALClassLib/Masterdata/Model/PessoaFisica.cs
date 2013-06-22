@@ -4,13 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SALClassLib.Model.Masterdata
+namespace SALClassLib.Masterdata.Model
 {
-    public abstract class PessoaFisica : Pessoa
+    public class PessoaFisica : Pessoa
     {
         private String nome;
 
-        public String Nome
+        public virtual String Nome
         {
             get { return nome; }
             set { nome = value; }
@@ -18,7 +18,7 @@ namespace SALClassLib.Model.Masterdata
 
         private String sobrenome;
 
-        public String Sobrenome
+        public virtual String Sobrenome
         {
             get { return sobrenome; }
             set { sobrenome = value; }
@@ -26,7 +26,7 @@ namespace SALClassLib.Model.Masterdata
 
         private String cpf;
 
-        public String Cpf
+        public virtual String Cpf
         {
             get { return cpf; }
             set { cpf = value; }
@@ -34,7 +34,7 @@ namespace SALClassLib.Model.Masterdata
 
         private String rg;
 
-        public String Rg
+        public virtual String Rg
         {
             get { return rg; }
             set { rg = value; }
@@ -42,7 +42,7 @@ namespace SALClassLib.Model.Masterdata
 
         private String cnh;
 
-        public String Cnh
+        public virtual String Cnh
         {
             get { return cnh; }
             set { cnh = value; }
@@ -50,7 +50,7 @@ namespace SALClassLib.Model.Masterdata
 
         private String foto;
 
-        public String Foto
+        public virtual String Foto
         {
             get { return foto; }
             set { foto = value; }
@@ -58,7 +58,7 @@ namespace SALClassLib.Model.Masterdata
 
         private String telefoneFixo;
 
-        public String TelefoneFixo
+        public virtual String TelefoneFixo
         {
             get { return telefoneFixo; }
             set { telefoneFixo = value; }
@@ -66,7 +66,7 @@ namespace SALClassLib.Model.Masterdata
 
         private String telefoneCelular;
 
-        public String TelefoneCelular
+        public virtual String TelefoneCelular
         {
             get { return telefoneCelular; }
             set { telefoneCelular = value; }
@@ -74,17 +74,10 @@ namespace SALClassLib.Model.Masterdata
 
         private String email;
 
-        public String Email
+        public virtual String Email
         {
             get { return email; }
             set { email = value; }
         }
-        
-        
-        
-        
-        
-        
-        
     }
 }

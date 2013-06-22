@@ -1,12 +1,12 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SALClassLib.Model.Masterdata
+namespace SALClassLib.Masterdata.Model
 {
-    public class PermissaoAcesso
+    public class Municipio
     {
         private uint id;
 
@@ -22,6 +22,14 @@ namespace SALClassLib.Model.Masterdata
         {
             get { return nome; }
             set { nome = value; }
+        }
+
+        private Estado estado;
+
+        public virtual Estado Estado
+        {
+            get { return estado; }
+            set { estado = value; }
         }
         
     }
