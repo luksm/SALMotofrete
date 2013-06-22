@@ -39,26 +39,26 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Model\Masterdata\AparelhoMovel.cs" />
-    <Compile Include="Model\Masterdata\Atendente.cs" />
-    <Compile Include="Model\Masterdata\AtividadeEntregador.cs" />
-    <Compile Include="Model\Masterdata\Cliente.cs" />
-    <Compile Include="Model\Masterdata\Contato.cs" />
-    <Compile Include="Model\Masterdata\Endereço.cs" />
-    <Compile Include="Model\Masterdata\Entregador.cs" />
-    <Compile Include="Model\Masterdata\Estado.cs" />
-    <Compile Include="Model\Masterdata\Login.cs" />
-    <Compile Include="Model\Masterdata\Municipio.cs" />
-    <Compile Include="Model\Masterdata\PermissaoAcesso.cs" />
-    <Compile Include="Model\Masterdata\Pessoa.cs" />
-    <Compile Include="Model\Masterdata\PessoaFisica.cs" />
-    <Compile Include="Model\Masterdata\PessoaJuridica.cs" />
-    <Compile Include="Model\OS\Cobranca.cs" />
-    <Compile Include="Model\OS\EnderecoOrdemServico.cs" />
-    <Compile Include="Model\OS\Fila.cs" />
-    <Compile Include="Model\OS\ItemOrdemServico.cs" />
-    <Compile Include="Model\OS\OrdemServico.cs" />
-    <Compile Include="Model\OS\StatusOrdemServico.cs" />
+    <Compile Include="Masterdata\Model\AparelhoMovel.cs" />
+    <Compile Include="Masterdata\Model\Atendente.cs" />
+    <Compile Include="Masterdata\Model\AtividadeEntregador.cs" />
+    <Compile Include="Masterdata\Model\Cliente.cs" />
+    <Compile Include="Masterdata\Model\Contato.cs" />
+    <Compile Include="Masterdata\Model\Endereço.cs" />
+    <Compile Include="Masterdata\Model\Entregador.cs" />
+    <Compile Include="Masterdata\Model\Estado.cs" />
+    <Compile Include="Masterdata\Model\Login.cs" />
+    <Compile Include="Masterdata\Model\Municipio.cs" />
+    <Compile Include="Masterdata\Model\PermissaoAcesso.cs" />
+    <Compile Include="Masterdata\Model\Pessoa.cs" />
+    <Compile Include="Masterdata\Model\PessoaFisica.cs" />
+    <Compile Include="Masterdata\Model\PessoaJuridica.cs" />
+    <Compile Include="OS\Model\Cobranca.cs" />
+    <Compile Include="OS\Model\EnderecoOrdemServico.cs" />
+    <Compile Include="OS\Model\FilaOrdemServico.cs" />
+    <Compile Include="OS\Model\ItemOrdemServico.cs" />
+    <Compile Include="OS\Model\OrdemServico.cs" />
+    <Compile Include="OS\Model\StatusOrdemServico.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
