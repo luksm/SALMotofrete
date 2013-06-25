@@ -16,9 +16,9 @@ namespace SALClassLib.Masterdata.Model
             set { id = value; }
         }
 
-        private short tipo;
+        private TipoAparelhoMovel tipo;
 
-        public virtual short Tipo
+        public virtual TipoAparelhoMovel Tipo
         {
             get { return tipo; }
             set { tipo = value; }

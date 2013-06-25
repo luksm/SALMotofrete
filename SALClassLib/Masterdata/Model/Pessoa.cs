@@ -8,12 +8,12 @@ namespace SALClassLib.Masterdata.Model
 {
     public class Pessoa
     {
-        private uint id;
+        private uint idPessoa;
 
-        public virtual uint Id
+        public virtual uint IdPessoa
         {
-            get { return id; }
-            set { id = value; }
+            get { return idPessoa; }
+            set { idPessoa = value; }
         }
 
         private ISet<Endereco> enderecos;

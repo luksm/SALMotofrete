@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{0076F261-C2D5-47E6-A221-3B335C5E0768}</ProjectGuid>
+    <ProjectGuid>{DD15586E-2A7B-4286-9687-2AF377E8C280}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>SALClassLib</RootNamespace>
-    <AssemblyName>SALClassLib</AssemblyName>
+    <RootNamespace>Utilitarios</RootNamespace>
+    <AssemblyName>Utilitarios</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -30,9 +30,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Iesi.Collections">
-      <HintPath>C:\NHibernate\Iesi.Collections.dll</HintPath>
-    </Reference>
     <Reference Include="NHibernate">
       <HintPath>C:\NHibernate\NHibernate.dll</HintPath>
     </Reference>
@@ -45,46 +42,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Masterdata\Model\DAO\AparelhoMovelDAO.cs" />
-    <Compile Include="Masterdata\Model\AparelhoMovel.cs" />
-    <Compile Include="Masterdata\Model\Atendente.cs" />
-    <Compile Include="Masterdata\Model\AtividadeEntregador.cs" />
-    <Compile Include="Masterdata\Model\Cliente.cs" />
-    <Compile Include="Masterdata\Model\Contato.cs" />
-    <Compile Include="Masterdata\Model\Endereço.cs" />
-    <Compile Include="Masterdata\Model\Entregador.cs" />
-    <Compile Include="Masterdata\Model\Estado.cs" />
-    <Compile Include="Masterdata\Model\Login.cs" />
-    <Compile Include="Masterdata\Model\Municipio.cs" />
-    <Compile Include="Masterdata\Model\PermissaoAcesso.cs" />
-    <Compile Include="Masterdata\Model\Pessoa.cs" />
-    <Compile Include="Masterdata\Model\PessoaFisica.cs" />
-    <Compile Include="Masterdata\Model\PessoaJuridica.cs" />
-    <Compile Include="Masterdata\Model\TipoAparelhoMovel.cs" />
-    <Compile Include="OS\Model\Cobranca.cs" />
-    <Compile Include="OS\Model\EnderecoOrdemServico.cs" />
-    <Compile Include="OS\Model\FilaOrdemServico.cs" />
-    <Compile Include="OS\Model\ItemOrdemServico.cs" />
-    <Compile Include="OS\Model\OrdemServico.cs" />
-    <Compile Include="OS\Model\StatusOrdemServico.cs" />
+    <Compile Include="DAO\DAO.cs" />
+    <Compile Include="DAO\IDAO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="OS\Model\DAO\Mapeamento\OrdemServico.hbm.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Utilitarios\Utilitarios.csproj">
-      <Project>{dd15586e-2a7b-4286-9687-2af377e8c280}</Project>
-      <Name>Utilitarios</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Masterdata\Model\DAO\Mapeamento\AparelhoMovel.hbm.xml">
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Masterdata\Model\DAO\Mapeamento\TipoAparelhoMovel.hbm.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

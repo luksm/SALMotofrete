@@ -3,6 +3,10 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Express 2012 for Web
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SALClassLib", "SALClassLib\SALClassLib.csproj", "{0076F261-C2D5-47E6-A221-3B335C5E0768}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Utilitarios", "Utilitarios\Utilitarios.csproj", "{DD15586E-2A7B-4286-9687-2AF377E8C280}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SALUnitTest", "SALUnitTest\SALUnitTest.csproj", "{62ABC0E3-ADC0-4400-A9C2-7FCDACB2C3DC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -13,6 +17,14 @@ Global
 		{0076F261-C2D5-47E6-A221-3B335C5E0768}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0076F261-C2D5-47E6-A221-3B335C5E0768}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0076F261-C2D5-47E6-A221-3B335C5E0768}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DD15586E-2A7B-4286-9687-2AF377E8C280}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DD15586E-2A7B-4286-9687-2AF377E8C280}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DD15586E-2A7B-4286-9687-2AF377E8C280}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DD15586E-2A7B-4286-9687-2AF377E8C280}.Release|Any CPU.Build.0 = Release|Any CPU
+		{62ABC0E3-ADC0-4400-A9C2-7FCDACB2C3DC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{62ABC0E3-ADC0-4400-A9C2-7FCDACB2C3DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{62ABC0E3-ADC0-4400-A9C2-7FCDACB2C3DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{62ABC0E3-ADC0-4400-A9C2-7FCDACB2C3DC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

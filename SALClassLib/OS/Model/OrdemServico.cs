@@ -1,20 +1,20 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using SALClassLib.Masterdata.Model;
+using Iesi.Collections.Generic;
 
 namespace SALClassLib.OS.Model
 {
     public class OrdemServico
     {
-        private ulong id;
+        private ulong idOrdemServico;
 
-        public virtual ulong Id
+        public virtual ulong IdOrdemServico
         {
-            get { return id; }
-            set { id = value; }
+            get { return idOrdemServico; }
+            set { idOrdemServico = value; }
         }
 
         private ulong numero;
@@ -67,7 +67,7 @@ namespace SALClassLib.OS.Model
 
         private ISet<EnderecoOrdemServico> enderecosRetirada;
 
-        public virtual ISet<EnderecoOrdemServico> EnderecoRetirada
+        public virtual ISet<EnderecoOrdemServico> EnderecosRetirada
         {
             get { return enderecosRetirada; }
             set { enderecosRetirada = value; }
@@ -87,6 +87,30 @@ namespace SALClassLib.OS.Model
         {
             get { return cliente; }
             set { cliente = value; }
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (obj == null || GetType() != obj.GetType())
+            {
+                return false;
+            }
+
+            OrdemServico os = (OrdemServico)obj;
+
+            if (os.idOrdemServico == this.idOrdemServico) return true;
+
+            return false;
+        }
+
+        public override int GetHashCode()
+        {
+            unchecked
+            {
+                int result;
+                result = 13 * numero.GetHashCode() + data.GetHashCode();
+                return result;
+            }
         }
     }
 }

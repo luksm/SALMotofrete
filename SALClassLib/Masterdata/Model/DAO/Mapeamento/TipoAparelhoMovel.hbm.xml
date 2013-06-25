@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+    namespace="SALClassLib.Masterdata.Model" assembly="SALClassLib">
+  <class name="TipoAparelhoMovel" table="TB_TIPO_APARELHO_MOVEL">
+    <id name="Id">
+      <column name="ID_TIPO_APARELHO_MOVEL" not-null="true"/>
+      <generator class="increment" />
+    </id>
+    <property name="Descricao" column="DESCRICAO" not-null="true" />
+  </class>
+</hibernate-mapping>

@@ -24,7 +24,30 @@ namespace SALClassLib.OS.Model
             get { return telefoneContato; }
             set { telefoneContato = value; }
         }
-        
-        
+
+        public override bool Equals(object obj)
+        {
+            if (obj == null || GetType() != obj.GetType())
+            {
+                return false;
+            }
+
+            EnderecoOrdemServico end = (EnderecoOrdemServico)obj;
+
+            if (end.IdEndereco == this.IdEndereco && end.nomeContato.Equals(this.nomeContato)
+                && end.telefoneContato.Equals(this.telefoneContato)) return true;
+
+            return false;
+        }
+
+        public override int GetHashCode()
+        {
+            unchecked
+            {
+                int result;
+                result = 13 * this.IdEndereco.GetHashCode();
+                return result;
+            }
+        }
     }
 }
