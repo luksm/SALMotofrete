@@ -8,15 +8,7 @@ using SALClassLib.OS.Model;
 namespace SALClassLib.Masterdata.Model
 {
     public class Entregador : PessoaFisica 
-    {
-        private uint id;
-
-        public virtual uint Id
-        {
-            get { return id; }
-            set { id = value; }
-        }
-        
+    {        
         private String placaMoto;
 
         public virtual String PlacaMoto

@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+    namespace="SALClassLib.Masterdata.Model" assembly="SALClassLib">
+  <class name="Estado" table="TB_ESTADO">
+    <id name="Id">
+      <column name="ID_ESTADO" not-null="true"/>
+      <generator class="increment" />
+    </id>
+    <property name="Codigo" column="CODIGO" not-null="true" />
+    <property name="Sigla" column="SIGLA" length="2" not-null="true" />
+    <property name="Nome" column="NOME" length="20" not-null="true" />
+  </class>
+</hibernate-mapping>

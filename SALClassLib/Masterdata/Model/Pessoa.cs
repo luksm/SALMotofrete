@@ -1,5 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Iesi.Collections.Generic;
+using System;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,12 +8,12 @@ namespace SALClassLib.Masterdata.Model
 {
     public class Pessoa
     {
-        private uint idPessoa;
+        private uint id;
 
-        public virtual uint IdPessoa
+        public virtual uint Id
         {
-            get { return idPessoa; }
-            set { idPessoa = value; }
+            get { return id; }
+            set { id = value; }
         }
 
         private ISet<Endereco> enderecos;
@@ -31,6 +31,12 @@ namespace SALClassLib.Masterdata.Model
             get { return login; }
             set { login = value; }
         }
-        
+
+
+        public Pessoa()
+        {
+            enderecos = new HashedSet<Endereco>();
+            Login = new Login();
+        }
     }
 }

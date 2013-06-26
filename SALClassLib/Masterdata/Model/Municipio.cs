@@ -16,6 +16,15 @@ namespace SALClassLib.Masterdata.Model
             set { id = value; }
         }
 
+        private uint codigo;
+
+        public virtual uint Codigo
+        {
+            get { return codigo; }
+            set { codigo = value; }
+        }
+        
+
         private String nome;
 
         public virtual String Nome

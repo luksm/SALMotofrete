@@ -18,9 +18,11 @@ namespace Utilitarios.DAO
             this.sessao = sessao;
         }
 
-        public ISet<T> Listar()
+        public IList<T> Listar()
         {
-            throw new NotImplementedException();
+            ICriteria criteria = sessao.CreateCriteria(typeof(T));
+            criteria.SetMaxResults(1000);
+            return criteria.List<T>();
         }
 
         public T BuscarPeloId(Object id)

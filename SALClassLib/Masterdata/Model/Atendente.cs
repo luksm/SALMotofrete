@@ -7,17 +7,13 @@ using System.Threading.Tasks;
 namespace SALClassLib.Masterdata.Model
 {
     public class Atendente : PessoaFisica
-    {
-        private uint id;
-
-        public virtual uint Id
-        {
-            get { return id; }
-            set { id = value; }
-        }
-        
+    {        
         private short statusExclusao;
 
+        /// <summary>
+        /// 0 - Nao excluido
+        /// 1 - Excluido
+        /// </summary>
         public virtual short StatusExclusao
         {
             get { return statusExclusao; }

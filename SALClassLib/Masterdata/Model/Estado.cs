@@ -8,13 +8,22 @@ namespace SALClassLib.Masterdata.Model
 {
     public class Estado
     {
-        private uint id;
+        private ushort id;
 
-        public virtual uint Id
+        public virtual ushort Id
         {
             get { return id; }
             set { id = value; }
         }
+
+        private ushort codigo;
+
+        public virtual ushort Codigo
+        {
+            get { return codigo; }
+            set { codigo = value; }
+        }
+        
 
         private String sigla;
 

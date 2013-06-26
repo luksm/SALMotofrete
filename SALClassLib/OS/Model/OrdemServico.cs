@@ -9,12 +9,12 @@ namespace SALClassLib.OS.Model
 {
     public class OrdemServico
     {
-        private ulong idOrdemServico;
+        private ulong id;
 
-        public virtual ulong IdOrdemServico
+        public virtual ulong Id
         {
-            get { return idOrdemServico; }
-            set { idOrdemServico = value; }
+            get { return id; }
+            set { id = value; }
         }
 
         private ulong numero;
@@ -98,7 +98,7 @@ namespace SALClassLib.OS.Model
 
             OrdemServico os = (OrdemServico)obj;
 
-            if (os.idOrdemServico == this.idOrdemServico) return true;
+            if (os.id == this.id) return true;
 
             return false;
         }

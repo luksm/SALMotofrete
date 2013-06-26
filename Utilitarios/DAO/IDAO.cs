@@ -8,7 +8,7 @@ namespace Utilitarios.DAO
 {
     public interface IDAO<T>
     {
-        ISet<T> Listar();
+        IList<T> Listar();
         T BuscarPeloId(Object id);
         ulong Incluir(T obj);
         void Alterar(T obj);

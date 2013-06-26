@@ -9,6 +9,14 @@ namespace SALClassLib.OS.Model
 {
     public class EnderecoOrdemServico : Endereco
     {
+        private ulong id;
+
+        public virtual ulong Id
+        {
+            get { return id; }
+            set { id = value; }
+        }
+
         private String nomeContato;
 
         public virtual String NomeContato
@@ -34,7 +42,7 @@ namespace SALClassLib.OS.Model
 
             EnderecoOrdemServico end = (EnderecoOrdemServico)obj;
 
-            if (end.IdEndereco == this.IdEndereco && end.nomeContato.Equals(this.nomeContato)
+            if (end.Id == this.Id && end.nomeContato.Equals(this.nomeContato)
                 && end.telefoneContato.Equals(this.telefoneContato)) return true;
 
             return false;
@@ -45,7 +53,7 @@ namespace SALClassLib.OS.Model
             unchecked
             {
                 int result;
-                result = 13 * this.IdEndereco.GetHashCode();
+                result = 13 * this.Id.GetHashCode();
                 return result;
             }
         }

@@ -51,6 +51,7 @@
     <Compile Include="Masterdata\Model\AtividadeEntregador.cs" />
     <Compile Include="Masterdata\Model\Cliente.cs" />
     <Compile Include="Masterdata\Model\Contato.cs" />
+    <Compile Include="Masterdata\Model\DAO\AtendenteDAO.cs" />
     <Compile Include="Masterdata\Model\Endereço.cs" />
     <Compile Include="Masterdata\Model\Entregador.cs" />
     <Compile Include="Masterdata\Model\Estado.cs" />
@@ -70,7 +71,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="OS\Model\DAO\Mapeamento\OrdemServico.hbm.xml" />
+    <EmbeddedResource Include="OS\Model\DAO\Mapeamento\OrdemServico.hbm.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Utilitarios\Utilitarios.csproj">
@@ -85,6 +88,22 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Masterdata\Model\DAO\Mapeamento\TipoAparelhoMovel.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Masterdata\Model\DAO\Mapeamento\Endereco.hbm.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Masterdata\Model\DAO\Mapeamento\Estado.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Masterdata\Model\DAO\Mapeamento\Municipio.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Masterdata\Model\DAO\Mapeamento\Pessoa.hbm.xml" />
+    <EmbeddedResource Include="Masterdata\Model\DAO\Mapeamento\Contato.hbm.xml" />
+    <Content Include="OS\Model\DAO\Mapeamento\EnderecoOrdemServico.hbm.xml">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

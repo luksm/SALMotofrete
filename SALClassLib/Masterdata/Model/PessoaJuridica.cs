@@ -1,8 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Iesi.Collections.Generic;
 
 namespace SALClassLib.Masterdata.Model
 {
@@ -40,12 +40,12 @@ namespace SALClassLib.Masterdata.Model
             set { inscricaoEstadual = value; }
         }
 
-        private String website;
+        private String webSite;
 
-        public virtual String Website
+        public virtual String WebSite
         {
-            get { return website; }
-            set { website = value; }
+            get { return webSite; }
+            set { webSite = value; }
         }
 
         private ISet<Contato> contatos;
@@ -55,6 +55,10 @@ namespace SALClassLib.Masterdata.Model
             get { return contatos; }
             set { contatos = value; }
         }
-        
+
+        public PessoaJuridica()
+        {
+            contatos = new HashedSet<Contato>();
+        }
     }
 }

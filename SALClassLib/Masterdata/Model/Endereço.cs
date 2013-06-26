@@ -8,12 +8,12 @@ namespace SALClassLib.Masterdata.Model
 {
     public class Endereco
     {
-        private uint idEndereco;
+        private uint id;
 
-        public virtual uint IdEndereco
+        public virtual uint Id
         {
-            get { return idEndereco; }
-            set { idEndereco = value; }
+            get { return id; }
+            set { id = value; }
         }
 
         private String logradouro;

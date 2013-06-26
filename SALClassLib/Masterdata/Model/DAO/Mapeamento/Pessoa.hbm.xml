@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+    namespace="SALClassLib.Masterdata.Model" assembly="SALClassLib">
+  <class name="Pessoa" table="TB_PESSOA">
+    <id name="Id">
+      <column name="ID_PESSOA" not-null="true"/>
+      <generator class="increment" />
+    </id>
+
+    <set name="Enderecos" cascade="all">
+      <key column="ID_PESSOA" not-null="false" />
+      <one-to-many class="Endereco" />
+    </set>
+
+    <joined-subclass name="PessoaFisica" table="TB_PESSOA_FISICA">
+      <key column="ID_PESSOA" />
+      <property name="Nome" column="NOME" length="25" not-null="true" />
+      <property name="Sobrenome" column="SOBRENOME" length="80" not-null="true" />
+      <property name="Cpf" column="CPF" length="11" not-null="true" />
+      <property name="Rg" column="RG" length="12" not-null="true" />
+      <property name="Cnh" column="CNH" length="14" not-null="false" />
+      <property name="TelefoneFixo" column="TELEFONE_FIXO" length="15" not-null="false" />
+      <property name="TelefoneCelular" column="TELEFONE_CELULAR" length="16" not-null="false" />
+      <property name="Email" column="EMAIL" length="80" not-null="false" />
+
+      <joined-subclass name="Atendente" table="TB_ATENDENTE">
+        <key column="ID_PESSOA" />
+        <property name="StatusExclusao" column="STATUS_EXCLUSAO" not-null="true" />
+      </joined-subclass>
+    </joined-subclass>
+
+    <joined-subclass name="PessoaJuridica" table="TB_PESSOA_JURIDICA">
+      <key column="ID_PESSOA" />
+      <property name="NomeFantasia" column="NOME_FANTASIA" length="40" not-null="true" />
+      <property name="RazaoSocial" column="RAZAO_SOCIAL" length="100" not-null="true" />
+      <property name="Cnpj" column="CNPJ" length="14" not-null="true" />
+      <property name="InscricaoEstadual" column="INSCRICAO_ESTADUAL" length="12" not-null="false" />
+      <property name="WebSite" column="WEB_SITE" length="40" not-null="false" />
+      <set name="Contatos" cascade="all">
+        <key column="ID_PESSOA" not-null="false" />
+        <one-to-many class="Contato" />
+      </set>
+    </joined-subclass>
+  </class>
+</hibernate-mapping>

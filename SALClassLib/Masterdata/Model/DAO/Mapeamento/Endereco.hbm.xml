@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+    namespace="SALClassLib.Masterdata.Model" assembly="SALClassLib">
+  <class name="Endereco" table="TB_ENDERECO">
+    <id name="Id">
+      <column name="ID_ENDERECO" not-null="true"/>
+      <generator class="increment" />
+    </id>
+    <property name="Logradouro" column="LOGRADOURO" length="80" not-null="true" />
+    <property name="Bairro" column="BAIRRO" length="20" not-null="true" />
+    <property name="Numero" column="NUMERO" not-null="true" />
+    <property name="Observacao" column="OBSERVACAO" length="2000" not-null="false" />
+    <many-to-one name="Municipio" class="Municipio" column="ID_MUNICIPIO" cascade="none" not-null="true" />
+
+    <joined-subclass name="SALClassLib.OS.Model.EnderecoOrdemServico" table="TB1">
+      <key column="ID_ENDERECO" />
+      <property name="NomeContato" column="NOME_CONTATO" not-null="true" />
+      <property name="TelefoneContato" column="TELEFONE_CONTATO" not-null="true" />
+    </joined-subclass>
+  </class>
+</hibernate-mapping>
