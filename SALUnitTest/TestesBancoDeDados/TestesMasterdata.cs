@@ -200,5 +200,38 @@ namespace SALUnitTest
             Assert.IsTrue(atendentes.Count >= 20);
         }
         #endregion
+
+        #region Cliente
+        [TestMethod]
+        public void Deve_incluir_um_novo_cliente_pessoa_fisica_no_banco_de_dados_e_validar_se_todos_os_campos_foram_incluidos()
+        {
+            ISession session = NHibernateHelper.GetCurrentSession();
+            Cliente cliente = new Cliente();
+            PessoaFisica pf = new PessoaFisica();
+            ClienteDAO dao = new ClienteDAO(session);
+            pf.Nome = "Rafael";
+            pf.Sobrenome = "Silva";
+            pf.Cpf = "41645654856";
+            pf.Rg = "387875432";
+            pf.Foto = "/fotos/atendente/21.jpg";
+            pf.TelefoneFixo = "1126710452";
+            pf.TelefoneCelular = "11994567842";
+            pf.Email = "rafael.silva@emailquente.com.br";
+            cliente.Pessoa = pf;
+            ITransaction tx = session.BeginTransaction();
+            ulong id = dao.Incluir(cliente);
+            tx.Commit();
+            Cliente cliente2 = null;
+            tx = session.BeginTransaction();
+            cliente2 = dao.BuscarPeloId(Convert.ToUInt32(id));
+            tx.Commit();
+            NHibernateHelper.CloseSession(session);
+            PessoaFisica pf2 = (PessoaFisica)cliente2.Pessoa;
+            Assert.IsTrue(pf.Nome.Equals(pf2.Nome) && pf.Sobrenome.Equals(pf2.Sobrenome) &&
+                pf.Cpf.Equals(pf2.Cpf) && pf.Rg.Equals(pf2.Rg) && pf.Foto.Equals(pf2.Foto) &&
+                pf.TelefoneFixo.Equals(pf2.TelefoneFixo) && pf.TelefoneCelular.Equals(pf2.TelefoneCelular) &&
+                pf.Email.Equals(pf2.Email);
+        }
+        #endregion
     }
 }
