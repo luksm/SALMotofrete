@@ -7,6 +7,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Utilitarios", "Utilitarios\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SALUnitTest", "SALUnitTest\SALUnitTest.csproj", "{62ABC0E3-ADC0-4400-A9C2-7FCDACB2C3DC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SALMvc", "SALMvc\SALMvc.csproj", "{C21DA84E-3680-4F60-91BD-82E60A64A8EA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SALMvc.Tests", "SALMvc.Tests\SALMvc.Tests.csproj", "{693AD7D4-9950-481A-A42D-CE6FF3155137}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -25,6 +29,14 @@ Global
 		{62ABC0E3-ADC0-4400-A9C2-7FCDACB2C3DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{62ABC0E3-ADC0-4400-A9C2-7FCDACB2C3DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{62ABC0E3-ADC0-4400-A9C2-7FCDACB2C3DC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C21DA84E-3680-4F60-91BD-82E60A64A8EA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C21DA84E-3680-4F60-91BD-82E60A64A8EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C21DA84E-3680-4F60-91BD-82E60A64A8EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C21DA84E-3680-4F60-91BD-82E60A64A8EA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{693AD7D4-9950-481A-A42D-CE6FF3155137}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{693AD7D4-9950-481A-A42D-CE6FF3155137}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{693AD7D4-9950-481A-A42D-CE6FF3155137}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{693AD7D4-9950-481A-A42D-CE6FF3155137}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
