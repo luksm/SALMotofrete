@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+    namespace="SALClassLib.Masterdata.Model" assembly="SALClassLib">
+  <class name="Cliente" table="TB_CLIENTE">
+    <id name="Id">
+      <column name="ID_CLIENTE" not-null="true"/>
+      <generator class="increment" />
+    </id>
+    <many-to-one name="Pessoa" class="Pessoa" cascade="all" column="ID_PESSOA" not-null="true" unique="true" />
+  </class>
+</hibernate-mapping>

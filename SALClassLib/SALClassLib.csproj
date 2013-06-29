@@ -52,9 +52,12 @@
     <Compile Include="Masterdata\Model\Cliente.cs" />
     <Compile Include="Masterdata\Model\Contato.cs" />
     <Compile Include="Masterdata\Model\DAO\AtendenteDAO.cs" />
+    <Compile Include="Masterdata\Model\DAO\ClienteDAO.cs" />
     <Compile Include="Masterdata\Model\Endereço.cs" />
     <Compile Include="Masterdata\Model\Entregador.cs" />
     <Compile Include="Masterdata\Model\Estado.cs" />
+    <Compile Include="Masterdata\Model\Gerente.cs" />
+    <Compile Include="Masterdata\Model\DAO\GerenteDAO.cs" />
     <Compile Include="Masterdata\Model\Login.cs" />
     <Compile Include="Masterdata\Model\Municipio.cs" />
     <Compile Include="Masterdata\Model\PermissaoAcesso.cs" />
@@ -101,6 +104,7 @@
   <ItemGroup>
     <EmbeddedResource Include="Masterdata\Model\DAO\Mapeamento\Pessoa.hbm.xml" />
     <EmbeddedResource Include="Masterdata\Model\DAO\Mapeamento\Contato.hbm.xml" />
+    <EmbeddedResource Include="Masterdata\Model\DAO\Mapeamento\Cliente.hbm.xml" />
     <Content Include="OS\Model\DAO\Mapeamento\EnderecoOrdemServico.hbm.xml">
       <SubType>Designer</SubType>
     </Content>

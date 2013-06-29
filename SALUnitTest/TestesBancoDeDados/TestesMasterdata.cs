@@ -196,6 +196,27 @@ namespace SALUnitTest
             tx = session.BeginTransaction();
             IList<Atendente> atendentes = dao.Listar();
             tx.Commit();
+
+            /*ClienteDAO cdao = new ClienteDAO(session);
+            tx = session.BeginTransaction();
+            Cliente c = new Cliente();
+            PessoaFisica pf = new PessoaFisica();
+            pf.Cpf = "415654";
+            pf.Rg = "312513";
+            pf.Nome = "abc123";
+            pf.Sobrenome = "hjga";
+            c.Pessoa = pf;
+            ulong id = cdao.Incluir(c);
+            c = cdao.BuscarPeloId(id);
+            PessoaJuridica pj = new PessoaJuridica();
+            pj.NomeFantasia = "fafafafa";
+            pj.RazaoSocial = "sasasasasasa";
+            pj.Cnpj = "91919191";
+            pj.InscricaoEstadual = "12121212";
+            c.Pessoa = pj;
+            cdao.Alterar(c);
+            tx.Commit();*/
+
             NHibernateHelper.CloseSession(session);
             Assert.IsTrue(atendentes.Count >= 20);
         }

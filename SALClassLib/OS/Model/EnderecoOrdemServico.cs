@@ -9,13 +9,6 @@ namespace SALClassLib.OS.Model
 {
     public class EnderecoOrdemServico : Endereco
     {
-        private ulong id;
-
-        public virtual ulong Id
-        {
-            get { return id; }
-            set { id = value; }
-        }
 
         private String nomeContato;
 

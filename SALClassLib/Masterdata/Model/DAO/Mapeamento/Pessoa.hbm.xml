@@ -6,7 +6,7 @@
       <column name="ID_PESSOA" not-null="true"/>
       <generator class="increment" />
     </id>
-
+    
     <set name="Enderecos" cascade="all">
       <key column="ID_PESSOA" not-null="false" />
       <one-to-many class="Endereco" />
@@ -25,10 +25,20 @@
 
       <joined-subclass name="Atendente" table="TB_ATENDENTE">
         <key column="ID_PESSOA" />
-        <property name="StatusExclusao" column="STATUS_EXCLUSAO" not-null="true" />
+      </joined-subclass>
+      
+      <joined-subclass name="Gerente" table="TB_GERENTE">
+        <key column="ID_PESSOA" />
+      </joined-subclass>
+
+      <joined-subclass name="Entregador" table="TB_ENTREGADOR">
+        <key column="ID_PESSOA" />
+        <property name="PlacaMoto" column="PLACA_MOTO" not-null="true" />
+        <property name="ModeloMoto" column="MODELO_MOTO" not-null="true" />
+        <property name="StatusAtividade" column="STATUS_ATIVIDADE" not-null="true" />
       </joined-subclass>
     </joined-subclass>
-
+    
     <joined-subclass name="PessoaJuridica" table="TB_PESSOA_JURIDICA">
       <key column="ID_PESSOA" />
       <property name="NomeFantasia" column="NOME_FANTASIA" length="40" not-null="true" />
