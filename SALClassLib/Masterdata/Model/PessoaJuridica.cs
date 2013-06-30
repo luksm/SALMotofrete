@@ -60,5 +60,26 @@ namespace SALClassLib.Masterdata.Model
         {
             contatos = new HashedSet<Contato>();
         }
+
+        // override object.Equals
+        public override bool Equals(object obj)
+        {
+            if (obj == null || GetType() != obj.GetType())
+            {
+                return false;
+            }
+
+            PessoaJuridica p = (PessoaJuridica)obj;
+            return p.Id == this.Id && p.NomeFantasia.Equals(this.nomeFantasia) && p.RazaoSocial.Equals(this.RazaoSocial)
+                && p.Cnpj.Equals(this.Cnpj);
+        }
+
+        // override object.GetHashCode
+        public override int GetHashCode()
+        {
+            // TODO: write your implementation of GetHashCode() here
+            throw new NotImplementedException();
+            return base.GetHashCode();
+        }
     }
 }

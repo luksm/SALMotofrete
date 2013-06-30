@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+    namespace="SALClassLib.Masterdata.Model" assembly="SALClassLib">
+  <class name="AtividadeEntregador" table="TB_ATIVIDADE_ENTREGADOR">
+    <id name="Id">
+      <column name="ID_ATIVIDADE_ENTREGADOR" not-null="true"/>
+      <generator class="increment" />
+    </id>
+    <property name="StatusAtividade" column="STATUS_ATIVIDADE" not-null="true" />
+    <property name="DataHora" column="DATA_HORA" not-null="true" />
+  </class>
+</hibernate-mapping>

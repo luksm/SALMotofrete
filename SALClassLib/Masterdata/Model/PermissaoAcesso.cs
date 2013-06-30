@@ -23,6 +23,26 @@ namespace SALClassLib.Masterdata.Model
             get { return nome; }
             set { nome = value; }
         }
-        
+
+        // override object.Equals
+        public override bool Equals(object obj)
+        {
+            if (obj == null || GetType() != obj.GetType())
+            {
+                return false;
+            }
+
+            PermissaoAcesso p = (PermissaoAcesso)obj;
+            return p.Id == this.Id && p.Nome.Equals(p.Nome);
+        }
+
+        // override object.GetHashCode
+        public override int GetHashCode()
+        {
+            unchecked
+            {
+                return base.GetHashCode();
+            }
+        }
     }
 }

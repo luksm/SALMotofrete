@@ -55,5 +55,27 @@ namespace SALClassLib.Masterdata.Model
             get { return observacao; }
             set { observacao = value; }
         }
+
+        // override object.Equals
+        public override bool Equals(object obj)
+        {
+            if (obj == null || GetType() != obj.GetType())
+            {
+                return false;
+            }
+
+            AparelhoMovel a = (AparelhoMovel)obj;
+
+            return a.Id == this.Id && a.Tipo.Equals(this.Tipo);
+        }
+
+        // override object.GetHashCode
+        public override int GetHashCode()
+        {
+            unchecked
+            {
+                return base.GetHashCode() * 13;
+            }
+        }
     }
 }

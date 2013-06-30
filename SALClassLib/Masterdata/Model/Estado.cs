@@ -40,5 +40,26 @@ namespace SALClassLib.Masterdata.Model
             get { return nome; }
             set { nome = value; }
         }
+
+        // override object.Equals
+        public override bool Equals(object obj)
+        {
+            if (obj == null || GetType() != obj.GetType())
+            {
+                return false;
+            }
+
+            Estado e = (Estado)obj;
+            return e.Id == this.Id && e.Codigo == this.Codigo && e.Nome.Equals(this.Nome) && e.Sigla.Equals(this.Sigla);
+        }
+
+        // override object.GetHashCode
+        public override int GetHashCode()
+        {
+            unchecked
+            {
+                return base.GetHashCode();
+            }
+        }
     }
 }

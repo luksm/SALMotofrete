@@ -47,6 +47,28 @@ namespace SALClassLib.Masterdata.Model
             get { return email; }
             set { email = value; }
         }
+
+        // override object.Equals
+        public override bool Equals(object obj)
+        {
+            if (obj == null || GetType() != obj.GetType())
+            {
+                return false;
+            }
+
+            Contato c = (Contato)obj;
+
+            return c.Id == this.Id && c.Nome.Equals(this.Nome);
+        }
+
+        // override object.GetHashCode
+        public override int GetHashCode()
+        {
+            unchecked
+            {
+                return base.GetHashCode() * 13;
+            }
+        }
         
     }
 }

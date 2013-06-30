@@ -6,12 +6,13 @@
       <column name="ID_PESSOA" not-null="true"/>
       <generator class="increment" />
     </id>
-    
     <set name="Enderecos" cascade="all">
       <key column="ID_PESSOA" not-null="false" />
       <one-to-many class="Endereco" />
     </set>
-
+    <many-to-one name="Login" column="ID_LOGIN" class="Login" cascade="all" unique="true" />
+    <property name="StatusExclusao" column="STATUS_EXCLUSAO" not-null="true" />
+    
     <joined-subclass name="PessoaFisica" table="TB_PESSOA_FISICA">
       <key column="ID_PESSOA" />
       <property name="Nome" column="NOME" length="25" not-null="true" />
@@ -36,6 +37,11 @@
         <property name="PlacaMoto" column="PLACA_MOTO" not-null="true" />
         <property name="ModeloMoto" column="MODELO_MOTO" not-null="true" />
         <property name="StatusAtividade" column="STATUS_ATIVIDADE" not-null="true" />
+        <many-to-one name="AparelhoMovel" column="ID_APARELHO_MOVEL" not-null="true" cascade="none" unique="true" />
+        <set name="HistoricoAtividade" cascade="none">
+          <key column="ID_ENTREGADOR" />
+          <one-to-many class="AtividadeEntregador" />
+        </set>
       </joined-subclass>
     </joined-subclass>
     

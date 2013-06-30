@@ -8,5 +8,24 @@ namespace SALClassLib.Masterdata.Model
 {
     public class Gerente : PessoaFisica
     {
+        // override object.Equals
+        public override bool Equals(object obj)
+        {
+            if (obj == null || GetType() != obj.GetType())
+            {
+                return false;
+            }
+
+            return base.Equals((PessoaFisica)obj);
+        }
+
+        // override object.GetHashCode
+        public override int GetHashCode()
+        {
+            unchecked
+            {
+                return base.GetHashCode() * 13;
+            }
+        }
     }
 }

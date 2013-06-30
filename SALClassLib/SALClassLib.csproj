@@ -105,6 +105,9 @@
     <EmbeddedResource Include="Masterdata\Model\DAO\Mapeamento\Pessoa.hbm.xml" />
     <EmbeddedResource Include="Masterdata\Model\DAO\Mapeamento\Contato.hbm.xml" />
     <EmbeddedResource Include="Masterdata\Model\DAO\Mapeamento\Cliente.hbm.xml" />
+    <Content Include="Masterdata\Model\DAO\Mapeamento\AtividadeEntregador.hbm.xml" />
+    <Content Include="Masterdata\Model\DAO\Mapeamento\Login.hbm.xml" />
+    <Content Include="Masterdata\Model\DAO\Mapeamento\PermissaoAcesso.hbm.xml" />
     <Content Include="OS\Model\DAO\Mapeamento\EnderecoOrdemServico.hbm.xml">
       <SubType>Designer</SubType>
     </Content>

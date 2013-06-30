@@ -24,5 +24,27 @@ namespace SALClassLib.Masterdata.Model
             set { descricao = value; }
         }
 
+        // override object.Equals
+        public override bool Equals(object obj)
+        {
+
+            if (obj == null || GetType() != obj.GetType())
+            {
+                return false;
+            }
+
+            TipoAparelhoMovel t = (TipoAparelhoMovel)obj;
+
+            return t.Id == this.Id && t.Descricao.Equals(this.Descricao);
+        }
+
+        // override object.GetHashCode
+        public override int GetHashCode()
+        {
+            unchecked
+            {
+                return base.GetHashCode() * 13 * id;
+            }
+        }
     }
 }

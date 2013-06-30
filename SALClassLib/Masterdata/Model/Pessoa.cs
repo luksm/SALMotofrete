@@ -32,11 +32,40 @@ namespace SALClassLib.Masterdata.Model
             set { login = value; }
         }
 
+        private short statusExclusao;
+
+        public short StatusExclusao
+        {
+            get { return statusExclusao; }
+            set { statusExclusao = value; }
+        }
+        
 
         public Pessoa()
         {
             enderecos = new HashedSet<Endereco>();
             Login = new Login();
+        }
+
+        // override object.Equals
+        public override bool Equals(object obj)
+        {
+            if (obj == null || GetType() != obj.GetType())
+            {
+                return false;
+            }
+
+            Pessoa p = (Pessoa)obj;
+            return p.Id == this.Id && p.Login.Equals(this.Login);
+        }
+
+        // override object.GetHashCode
+        public override int GetHashCode()
+        {
+            unchecked
+            {
+                return base.GetHashCode();
+            }
         }
     }
 }

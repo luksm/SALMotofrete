@@ -55,6 +55,27 @@ namespace SALClassLib.Masterdata.Model
             get { return municipio; }
             set { municipio = value; }
         }
-        
+
+        // override object.Equals
+        public override bool Equals(object obj)
+        {
+            if (obj == null || GetType() != obj.GetType())
+            {
+                return false;
+            }
+
+            Endereco e = (Endereco)obj;
+            return e.Id == this.Id && e.Logradouro.Equals(this.Logradouro) && e.Bairro.Equals(this.Bairro)
+                && e.Numero == this.Numero && e.Municipio.Equals(this.Municipio);
+        }
+
+        // override object.GetHashCode
+        public override int GetHashCode()
+        {
+            unchecked
+            {
+                return base.GetHashCode();
+            }
+        }
     }
 }

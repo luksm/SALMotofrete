@@ -7,17 +7,25 @@ using System.Threading.Tasks;
 namespace SALClassLib.Masterdata.Model
 {
     public class Atendente : PessoaFisica
-    {        
-        private short statusExclusao;
-
-        /// <summary>
-        /// 0 - Nao excluido
-        /// 1 - Excluido
-        /// </summary>
-        public virtual short StatusExclusao
+    {
+        // override object.Equals
+        public override bool Equals(object obj)
         {
-            get { return statusExclusao; }
-            set { statusExclusao = value; }
+            if (obj == null || GetType() != obj.GetType())
+            {
+                return false;
+            }
+
+            return base.Equals((PessoaFisica) obj);
+        }
+
+        // override object.GetHashCode
+        public override int GetHashCode()
+        {
+            unchecked
+            {
+                return base.GetHashCode() * 13;
+            }
         }
     }
 }

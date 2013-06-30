@@ -31,5 +31,27 @@ namespace SALClassLib.Masterdata.Model
             get { return dataHora; }
             set { dataHora = value; }
         }
+
+        // override object.Equals
+        public override bool Equals(object obj)
+        {
+            if (obj == null || GetType() != obj.GetType())
+            {
+                return false;
+            }
+
+            AtividadeEntregador a = (AtividadeEntregador)obj;
+
+            return a.Id == this.Id && a.StatusAtividade == this.StatusAtividade && a.DataHora.Equals(this.DataHora);
+        }
+
+        // override object.GetHashCode
+        public override int GetHashCode()
+        {
+            unchecked
+            {
+                return base.GetHashCode() * 13;
+            }
+        }
     }
 }
