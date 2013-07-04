@@ -1,8 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Iesi.Collections.Generic;
 
 namespace SALClassLib.Masterdata.Model
 {
@@ -38,6 +38,11 @@ namespace SALClassLib.Masterdata.Model
         {
             get { return permissoes; }
             set { permissoes = value; }
+        }
+
+        public Login()
+        {
+            permissoes = new HashedSet<PermissaoAcesso>();
         }
 
         // override object.Equals

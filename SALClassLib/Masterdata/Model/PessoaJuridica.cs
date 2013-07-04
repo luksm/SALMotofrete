@@ -77,9 +77,10 @@ namespace SALClassLib.Masterdata.Model
         // override object.GetHashCode
         public override int GetHashCode()
         {
-            // TODO: write your implementation of GetHashCode() here
-            throw new NotImplementedException();
-            return base.GetHashCode();
+            unchecked
+            {
+                return base.GetHashCode() * 13;
+            }
         }
     }
 }

@@ -19,6 +19,19 @@ namespace SALMvc
             WebApiConfig.Register(GlobalConfiguration.Configuration);
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
+
+            MapearRotas(RouteTable.Routes);
+        }
+
+        private void MapearRotas(RouteCollection rotas)
+        {
+            rotas.MapRoute("Index",
+                "{controller}/{action}",
+                new { controller = "AparelhoMovel", action = "Index" });
+
+            rotas.MapRoute("Create",
+                "{controller}/{action}",
+                new { controller = "AparelhoMovel", action = "Create" });
         }
     }
 }

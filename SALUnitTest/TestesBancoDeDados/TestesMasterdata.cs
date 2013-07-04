@@ -23,6 +23,8 @@ namespace SALUnitTest
             session.SaveOrUpdate(tipoAparelhoMovel);
             tipoAparelhoMovel = new TipoAparelhoMovel() { Descricao = "Celular" };
             session.SaveOrUpdate(tipoAparelhoMovel);
+            PermissaoAcesso permissao = new PermissaoAcesso() { Nome = "Permissao de Teste" };
+            session.SaveOrUpdate(permissao);
             tx.Commit();
             NHibernateHelper.CloseSession(session);
         }
@@ -44,6 +46,9 @@ namespace SALUnitTest
             atendente.TelefoneCelular = "11994567842";
             atendente.Email = "rafael.silva@emailquente.com.br";
             atendente.StatusExclusao = 0;
+            atendente.Login.Permissoes.Add(session.Get<PermissaoAcesso>(Convert.ToUInt32(1)));
+            atendente.Login.Usuario = "abc";
+            atendente.Login.Senha = "123";
             ITransaction tx = session.BeginTransaction();
             ulong id = dao.Incluir(atendente);
             tx.Commit();
@@ -78,11 +83,13 @@ namespace SALUnitTest
             atendente.StatusExclusao = 0;
             Endereco e = new Endereco();
             e.Logradouro = "rua abc";
-            e.Municipio = new Municipio();
-            e.Municipio.Id = 1;
+            e.Municipio = session.Get<Municipio>(Convert.ToUInt32(1));
             e.Numero = 13;
             e.Bairro = "asas";
             atendente.Enderecos.Add(e);
+            atendente.Login.Permissoes.Add(session.Get<PermissaoAcesso>(Convert.ToUInt32(1)));
+            atendente.Login.Usuario = "abc";
+            atendente.Login.Senha = "123";
             ITransaction tx = session.BeginTransaction();
             ulong id = dao.Incluir(atendente);
             tx.Commit();
@@ -100,12 +107,13 @@ namespace SALUnitTest
             atendente.StatusExclusao = 1;
             e = new Endereco();
             e.Logradouro = "rua alterado";
-            e.Municipio = new Municipio();
-            e.Municipio.Id = 1;
             e.Numero = 412;
             e.Bairro = "aterado";
+            e.Municipio = session.Get<Municipio>(Convert.ToUInt32(1));
             atendente.Enderecos.Clear();
             atendente.Enderecos.Add(e);
+            atendente.Login.Usuario = "xxx";
+            atendente.Login.Senha = "xxx";
             tx = session.BeginTransaction();
             dao.Alterar(atendente);
             tx.Commit();
@@ -119,7 +127,8 @@ namespace SALUnitTest
                 atendente.Cpf.Equals(atendente2.Cpf) && atendente.Rg.Equals(atendente2.Rg) &&
                 atendente.Cnh.Equals(atendente2.Cnh) && atendente.Foto.Equals(atendente2.Foto) &&
                 atendente.TelefoneFixo.Equals(atendente2.TelefoneFixo) && atendente.TelefoneCelular.Equals(atendente2.TelefoneCelular) &&
-                atendente.Email.Equals(atendente2.Email) && atendente.StatusExclusao == atendente2.StatusExclusao);
+                atendente.Email.Equals(atendente2.Email) && atendente.StatusExclusao == atendente2.StatusExclusao &&
+                atendente.Login.Equals(atendente2.Login));
         }
 
         [TestMethod]
@@ -143,8 +152,11 @@ namespace SALUnitTest
             e.Municipio = new Municipio();
             e.Municipio.Id = 1;
             e.Numero = 13;
+            e.Municipio = session.Get<Municipio>(Convert.ToUInt32(1));
             e.Bairro = "asas";
             atendente.Enderecos.Add(e);
+            atendente.Login.Usuario = "xxx";
+            atendente.Login.Senha = "xxx";
             ITransaction tx = session.BeginTransaction();
             ulong id = dao.Incluir(atendente);
             tx.Commit();
@@ -188,8 +200,11 @@ namespace SALUnitTest
                 e.Municipio = new Municipio();
                 e.Municipio.Id = 1;
                 e.Numero = 13;
+                e.Municipio = session.Get<Municipio>(Convert.ToUInt32(1));
                 e.Bairro = "asas";
                 atendente.Enderecos.Add(e);
+                atendente.Login.Usuario = "xxx";
+                atendente.Login.Senha = "xxx";
                 dao.Incluir(atendente);
             }
             tx.Commit();
@@ -239,6 +254,8 @@ namespace SALUnitTest
             pf.TelefoneCelular = "11994567842";
             pf.Email = "rafael.silva@emailquente.com.br";
             cliente.Pessoa = pf;
+            cliente.Pessoa.Login.Usuario = "abc";
+            cliente.Pessoa.Login.Senha = "123";
             ITransaction tx = session.BeginTransaction();
             ulong id = dao.Incluir(cliente);
             tx.Commit();
@@ -251,7 +268,7 @@ namespace SALUnitTest
             Assert.IsTrue(pf.Nome.Equals(pf2.Nome) && pf.Sobrenome.Equals(pf2.Sobrenome) &&
                 pf.Cpf.Equals(pf2.Cpf) && pf.Rg.Equals(pf2.Rg) && pf.Foto.Equals(pf2.Foto) &&
                 pf.TelefoneFixo.Equals(pf2.TelefoneFixo) && pf.TelefoneCelular.Equals(pf2.TelefoneCelular) &&
-                pf.Email.Equals(pf2.Email);
+                pf.Email.Equals(pf2.Email));
         }
         #endregion
     }

@@ -8,9 +8,9 @@
     </id>
     <property name="Usuario" column="USUARIO" not-null="true" />
     <property name="Senha" column="SENHA" not-null="true" />
-    <set name="Permissoes" cascade="none">
+    <set name="Permissoes" table="TB_LOGIN_PERMISSAO" cascade="none">
       <key column="ID_LOGIN" />
-      <one-to-many class="PermissaoAcesso" />
+      <many-to-many class="PermissaoAcesso" column ="ID_PERMISSAO_ACESSO" />
     </set>
   </class>
 </hibernate-mapping>

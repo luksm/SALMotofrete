@@ -42,7 +42,7 @@ namespace SALClassLib.Masterdata.Model
 
             AtividadeEntregador a = (AtividadeEntregador)obj;
 
-            return a.Id == this.Id && a.StatusAtividade == this.StatusAtividade && a.DataHora.Equals(this.DataHora);
+            return a.Id == this.Id && a.DataHora.Equals(this.DataHora);
         }
 
         // override object.GetHashCode

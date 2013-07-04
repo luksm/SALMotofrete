@@ -37,6 +37,7 @@
       <HintPath>C:\NHibernate\NHibernate.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -53,6 +54,8 @@
     <Compile Include="Masterdata\Model\Contato.cs" />
     <Compile Include="Masterdata\Model\DAO\AtendenteDAO.cs" />
     <Compile Include="Masterdata\Model\DAO\ClienteDAO.cs" />
+    <Compile Include="Masterdata\Model\DAO\EntregadorDAO.cs" />
+    <Compile Include="Masterdata\Model\DAO\TipoAparelhoMovelDAO.cs" />
     <Compile Include="Masterdata\Model\Endereço.cs" />
     <Compile Include="Masterdata\Model\Entregador.cs" />
     <Compile Include="Masterdata\Model\Estado.cs" />
@@ -105,12 +108,9 @@
     <EmbeddedResource Include="Masterdata\Model\DAO\Mapeamento\Pessoa.hbm.xml" />
     <EmbeddedResource Include="Masterdata\Model\DAO\Mapeamento\Contato.hbm.xml" />
     <EmbeddedResource Include="Masterdata\Model\DAO\Mapeamento\Cliente.hbm.xml" />
-    <Content Include="Masterdata\Model\DAO\Mapeamento\AtividadeEntregador.hbm.xml" />
-    <Content Include="Masterdata\Model\DAO\Mapeamento\Login.hbm.xml" />
-    <Content Include="Masterdata\Model\DAO\Mapeamento\PermissaoAcesso.hbm.xml" />
-    <Content Include="OS\Model\DAO\Mapeamento\EnderecoOrdemServico.hbm.xml">
-      <SubType>Designer</SubType>
-    </Content>
+    <EmbeddedResource Include="Masterdata\Model\DAO\Mapeamento\AtividadeEntregador.hbm.xml" />
+    <EmbeddedResource Include="Masterdata\Model\DAO\Mapeamento\Login.hbm.xml" />
+    <EmbeddedResource Include="Masterdata\Model\DAO\Mapeamento\PermissaoAcesso.hbm.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

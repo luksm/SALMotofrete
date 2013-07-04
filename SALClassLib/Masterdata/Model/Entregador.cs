@@ -25,14 +25,6 @@ namespace SALClassLib.Masterdata.Model
             set { modeloMoto = value; }
         }
 
-        private short statusExclusao;
-
-        public virtual short StatusExclusao
-        {
-            get { return statusExclusao; }
-            set { statusExclusao = value; }
-        }
-
         private short statusAtividade;
 
         public virtual short StatusAtividade
@@ -75,7 +67,7 @@ namespace SALClassLib.Masterdata.Model
 
             Entregador e = (Entregador)obj;
 
-            return e.Id == this.Id && e.ModeloMoto == this.ModeloMoto && e.PlacaMoto == this.PlacaMoto
+            return e.Id == this.Id && e.PlacaMoto == this.PlacaMoto
                 && base.Equals((PessoaFisica)e);
         }
 

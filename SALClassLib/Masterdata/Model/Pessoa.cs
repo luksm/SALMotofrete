@@ -34,7 +34,7 @@ namespace SALClassLib.Masterdata.Model
 
         private short statusExclusao;
 
-        public short StatusExclusao
+        public virtual short StatusExclusao
         {
             get { return statusExclusao; }
             set { statusExclusao = value; }

@@ -41,6 +41,11 @@ namespace SALClassLib.Masterdata.Model
             set { estado = value; }
         }
 
+        public Municipio()
+        {
+            estado = new Estado();
+        }
+
         // override object.Equals
         public override bool Equals(object obj)
         {

@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 
 namespace SALClassLib.Masterdata.Model
 {
-    public class AparelhoMovel
+    public partial class AparelhoMovel
     {
         private uint id;
 
@@ -15,6 +17,7 @@ namespace SALClassLib.Masterdata.Model
             get { return id; }
             set { id = value; }
         }
+        
 
         private TipoAparelhoMovel tipo;
 
@@ -26,6 +29,8 @@ namespace SALClassLib.Masterdata.Model
 
         private String modelo;
 
+        [DisplayName("Modelo 123abc")]
+        [MaxLength(25)]
         public virtual String Modelo
         {
             get { return modelo; }

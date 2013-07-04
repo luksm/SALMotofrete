@@ -7,7 +7,7 @@ using NHibernate;
 
 namespace Utilitarios.DAO
 {
-    public abstract class DAO<T> : IDAO<T>
+    public class DAO<T> : IDAO<T>
     {
         private ISession sessao;
 
