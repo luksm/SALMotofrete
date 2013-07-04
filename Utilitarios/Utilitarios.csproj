@@ -46,6 +46,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BO\BO.cs" />
+    <Compile Include="BO\NHibernateHelper.cs" />
     <Compile Include="DAO\DAO.cs" />
     <Compile Include="DAO\IDAO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

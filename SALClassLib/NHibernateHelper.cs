@@ -6,7 +6,7 @@ using NHibernate;
 using NHibernate.Cfg;
 using NHibernate.Tool.hbm2ddl;
 
-namespace SALMvc
+namespace SALClassLib
 {
     public sealed class NHibernateHelper
     {

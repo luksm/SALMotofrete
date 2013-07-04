@@ -1,6 +1,6 @@
 ﻿using NHibernate;
 using SALClassLib.Masterdata.Model;
-using SALClassLib.Masterdata.Model.DAO;
+using SALClassLib.Masterdata.Model.BO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,12 +30,9 @@ namespace SALMvc.Controllers
         [HttpPost]
         public ActionResult Create(AparelhoMovel aparelhoMovel)
         {
-            ISession sessao = NHibernateHelper.GetCurrentSession();
-            AparelhoMovelDAO dao = new AparelhoMovelDAO(sessao);
-            ITransaction tx = sessao.BeginTransaction();
-            dao.Incluir(aparelhoMovel);
-            tx.Commit();
-            NHibernateHelper.CloseSession(sessao);
+            AparelhoMovelBO bo = new AparelhoMovelBO();
+            bo.Incluir(aparelhoMovel);
+            bo.Dispose();
             return View("Index");
         }
     }

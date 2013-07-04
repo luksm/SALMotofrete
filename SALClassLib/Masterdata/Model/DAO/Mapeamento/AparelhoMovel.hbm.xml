@@ -6,7 +6,7 @@
       <column name="ID_APARELHO_MOVEL" not-null="true"/>
       <generator class="increment" />
     </id>
-    <many-to-one class="TipoAparelhoMovel" column="TIPO" cascade="none" name="Tipo" not-null="true" />
+    <many-to-one class="TipoAparelhoMovel" column="TIPO" cascade="none" name="Tipo" not-null="false" />
     <property name="Modelo" column="MODELO" length="25" not-null="false" />
     <property name="Marca" column="MARCA" length="25" not-null="false" />
     <property name="NumeroTelefone" column="NUMERO_TELEFONE" length="30" not-null="false" />

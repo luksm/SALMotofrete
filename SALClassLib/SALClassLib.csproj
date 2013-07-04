@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Masterdata\Model\BO\AparelhoMovelBO.cs" />
     <Compile Include="Masterdata\Model\DAO\AparelhoMovelDAO.cs" />
     <Compile Include="Masterdata\Model\AparelhoMovel.cs" />
     <Compile Include="Masterdata\Model\Atendente.cs" />
@@ -68,6 +69,7 @@
     <Compile Include="Masterdata\Model\PessoaFisica.cs" />
     <Compile Include="Masterdata\Model\PessoaJuridica.cs" />
     <Compile Include="Masterdata\Model\TipoAparelhoMovel.cs" />
+    <Compile Include="NHibernateHelper.cs" />
     <Compile Include="OS\Model\Cobranca.cs" />
     <Compile Include="OS\Model\EnderecoOrdemServico.cs" />
     <Compile Include="OS\Model\FilaOrdemServico.cs" />
@@ -111,6 +113,11 @@
     <EmbeddedResource Include="Masterdata\Model\DAO\Mapeamento\AtividadeEntregador.hbm.xml" />
     <EmbeddedResource Include="Masterdata\Model\DAO\Mapeamento\Login.hbm.xml" />
     <EmbeddedResource Include="Masterdata\Model\DAO\Mapeamento\PermissaoAcesso.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="hibernate.cfg.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

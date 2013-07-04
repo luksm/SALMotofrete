@@ -11,7 +11,7 @@ namespace Utilitarios.DAO
     {
         private ISession sessao;
 
-        protected ISession Sessao { get { return sessao; } }
+        public ISession Sessao { get { return sessao; } }
 
         public DAO(ISession sessao)
         {
