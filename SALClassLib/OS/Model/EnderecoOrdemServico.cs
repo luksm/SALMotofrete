@@ -7,7 +7,7 @@ using SALClassLib.Masterdata.Model;
 
 namespace SALClassLib.OS.Model
 {
-    public class EnderecoOrdemServico : Endereco
+    public class EnderecoEntrega : Endereco
     {
 
         private String nomeContato;

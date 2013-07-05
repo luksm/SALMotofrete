@@ -49,6 +49,8 @@
     <Compile Include="Masterdata\Model\BO\AparelhoMovelBO.cs" />
     <Compile Include="Masterdata\Model\BO\AtendenteBO.cs" />
     <Compile Include="Masterdata\Model\BO\ClienteBO.cs" />
+    <Compile Include="Masterdata\Model\BO\EntregadorBO.cs" />
+    <Compile Include="Masterdata\Model\BO\GerenteBO.cs" />
     <Compile Include="Masterdata\Model\BO\TipoAparelhoMovelBO.cs" />
     <Compile Include="Masterdata\Model\DAO\AparelhoMovelDAO.cs" />
     <Compile Include="Masterdata\Model\AparelhoMovel.cs" />
@@ -121,6 +123,9 @@
     <Content Include="hibernate.cfg.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="OS\Model\BO\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

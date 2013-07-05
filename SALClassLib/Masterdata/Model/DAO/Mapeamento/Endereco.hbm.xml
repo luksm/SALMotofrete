@@ -12,10 +12,11 @@
     <property name="Observacao" column="OBSERVACAO" length="2000" not-null="false" />
     <many-to-one name="Municipio" class="Municipio" column="ID_MUNICIPIO" cascade="none" not-null="true" />
 
-    <!--<joined-subclass name="SALClassLib.OS.Model.EnderecoOrdemServico" table="TB1">
+    <joined-subclass name="SALClassLib.OS.Model.EnderecoOrdemServico" table="TB_ENDERECO_OS_ENTREGA">
       <key column="ID_ENDERECO" />
       <property name="NomeContato" column="NOME_CONTATO" not-null="true" />
       <property name="TelefoneContato" column="TELEFONE_CONTATO" not-null="true" />
-    </joined-subclass>-->
+      
+    </joined-subclass>
   </class>
 </hibernate-mapping>
