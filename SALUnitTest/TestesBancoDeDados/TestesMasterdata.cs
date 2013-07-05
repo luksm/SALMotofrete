@@ -70,6 +70,7 @@ namespace SALUnitTest
             ISession session = NHibernateHelper.GetCurrentSession();
             Atendente atendente = new Atendente();
             AtendenteDAO dao = new AtendenteDAO(session);
+
             //inclui o atendente
             atendente.Nome = "Rafael";
             atendente.Sobrenome = "Silva";
@@ -93,6 +94,7 @@ namespace SALUnitTest
             ITransaction tx = session.BeginTransaction();
             ulong id = dao.Incluir(atendente);
             tx.Commit();
+
             //altera o atendente
             atendente.Id = Convert.ToUInt32(id);
             atendente.Nome = "Alterado";
@@ -117,6 +119,7 @@ namespace SALUnitTest
             tx = session.BeginTransaction();
             dao.Alterar(atendente);
             tx.Commit();
+
             //consulta para ver se os dados foram alterados
             Atendente atendente2 = null;
             tx = session.BeginTransaction();
@@ -234,6 +237,194 @@ namespace SALUnitTest
 
             NHibernateHelper.CloseSession(session);
             Assert.IsTrue(atendentes.Count >= 20);
+        }
+        #endregion
+
+        #region Gerente
+        [TestMethod]
+        public void Deve_incluir_um_novo_gerente_no_banco_de_dados_e_validar_se_todos_os_campos_foram_incluidos()
+        {
+            ISession session = NHibernateHelper.GetCurrentSession();
+            Gerente gerente = new Gerente();
+            GerenteDAO dao = new GerenteDAO(session);
+            gerente.Nome = "Rafael";
+            gerente.Sobrenome = "Silva";
+            gerente.Cpf = "41645654856";
+            gerente.Rg = "387875432";
+            gerente.Cnh = "192094318";
+            gerente.Foto = "/fotos/gerente/21.jpg";
+            gerente.TelefoneFixo = "1126710452";
+            gerente.TelefoneCelular = "11994567842";
+            gerente.Email = "rafael.silva@emailquente.com.br";
+            gerente.Login.Permissoes.Add(session.Get<PermissaoAcesso>(Convert.ToUInt32(1)));
+            gerente.Login.Usuario = "abc";
+            gerente.Login.Senha = "123";
+            ITransaction tx = session.BeginTransaction();
+            ulong id = dao.Incluir(gerente);
+            tx.Commit();
+            Gerente gerente2 = null;
+            tx = session.BeginTransaction();
+            gerente2 = dao.BuscarPeloId(Convert.ToUInt32(id));
+            tx.Commit();
+            NHibernateHelper.CloseSession(session);
+            Assert.IsTrue(gerente.Nome.Equals(gerente2.Nome) && gerente.Sobrenome.Equals(gerente2.Sobrenome) &&
+                gerente.Cpf.Equals(gerente2.Cpf) && gerente.Rg.Equals(gerente2.Rg) &&
+                gerente.Cnh.Equals(gerente2.Cnh) && gerente.Foto.Equals(gerente2.Foto) &&
+                gerente.TelefoneFixo.Equals(gerente2.TelefoneFixo) && gerente.TelefoneCelular.Equals(gerente2.TelefoneCelular) &&
+                gerente.Email.Equals(gerente2.Email) && gerente.StatusExclusao == gerente2.StatusExclusao);
+        }
+
+        [TestMethod]
+        public void Deve_incluir_um_novo_gerente_no_banco_de_dados_depois_alterar_os_dados_e_verificar_se_foram_alterados()
+        {
+            ISession session = NHibernateHelper.GetCurrentSession();
+            Gerente gerente = new Gerente();
+            GerenteDAO dao = new GerenteDAO(session);
+
+            //inclui o gerente
+            gerente.Nome = "Rafael";
+            gerente.Sobrenome = "Silva";
+            gerente.Cpf = "41645654856";
+            gerente.Rg = "387875432";
+            gerente.Cnh = "192094318";
+            gerente.Foto = "/fotos/gerente/21.jpg";
+            gerente.TelefoneFixo = "1126710452";
+            gerente.TelefoneCelular = "11994567842";
+            gerente.Email = "rafael.silva@emailquente.com.br";
+            Endereco e = new Endereco();
+            e.Logradouro = "rua abc";
+            e.Municipio = session.Get<Municipio>(Convert.ToUInt32(1));
+            e.Numero = 13;
+            e.Bairro = "asas";
+            gerente.Enderecos.Add(e);
+            gerente.Login.Permissoes.Add(session.Get<PermissaoAcesso>(Convert.ToUInt32(1)));
+            gerente.Login.Usuario = "abc";
+            gerente.Login.Senha = "123";
+            ITransaction tx = session.BeginTransaction();
+            ulong id = dao.Incluir(gerente);
+            tx.Commit();
+
+            //altera o gerente
+            gerente.Id = Convert.ToUInt32(id);
+            gerente.Nome = "Alterado";
+            gerente.Sobrenome = "Alterado";
+            gerente.Cpf = "0000000000";
+            gerente.Rg = "0000000000";
+            gerente.Cnh = "00000000";
+            gerente.Foto = "xxxxxxxxxxxxxx";
+            gerente.TelefoneFixo = "00000000000";
+            gerente.TelefoneCelular = "000000000000";
+            gerente.Email = "xxxxxxxxxxxxxxxx";
+            e = new Endereco();
+            e.Logradouro = "rua alterado";
+            e.Numero = 412;
+            e.Bairro = "aterado";
+            e.Municipio = session.Get<Municipio>(Convert.ToUInt32(1));
+            gerente.Enderecos.Clear();
+            gerente.Enderecos.Add(e);
+            gerente.Login.Usuario = "xxx";
+            gerente.Login.Senha = "xxx";
+            tx = session.BeginTransaction();
+            dao.Alterar(gerente);
+            tx.Commit();
+
+            //consulta para ver se os dados foram alterados
+            Gerente gerente2 = null;
+            tx = session.BeginTransaction();
+            gerente2 = dao.BuscarPeloId(Convert.ToUInt32(id));
+            tx.Commit();
+            NHibernateHelper.CloseSession(session);
+            Assert.IsTrue(gerente.Nome.Equals(gerente2.Nome) && gerente.Sobrenome.Equals(gerente2.Sobrenome) &&
+                gerente.Cpf.Equals(gerente2.Cpf) && gerente.Rg.Equals(gerente2.Rg) &&
+                gerente.Cnh.Equals(gerente2.Cnh) && gerente.Foto.Equals(gerente2.Foto) &&
+                gerente.TelefoneFixo.Equals(gerente2.TelefoneFixo) && gerente.TelefoneCelular.Equals(gerente2.TelefoneCelular) &&
+                gerente.Email.Equals(gerente2.Email) && gerente.StatusExclusao == gerente2.StatusExclusao &&
+                gerente.Login.Equals(gerente2.Login));
+        }
+
+        [TestMethod]
+        public void Deve_incluir_um_novo_gerente_no_banco_de_dados_e_excluir_o_gerente_incluido()
+        {
+            ISession session = NHibernateHelper.GetCurrentSession();
+            Gerente gerente = new Gerente();
+            GerenteDAO dao = new GerenteDAO(session);
+            gerente.Nome = "Rafael";
+            gerente.Sobrenome = "Silva";
+            gerente.Cpf = "41645654856";
+            gerente.Rg = "387875432";
+            gerente.Cnh = "192094318";
+            gerente.Foto = "/fotos/gerente/21.jpg";
+            gerente.TelefoneFixo = "1126710452";
+            gerente.TelefoneCelular = "11994567842";
+            gerente.Email = "rafael.silva@emailquente.com.br";
+            gerente.StatusExclusao = 0;
+            Endereco e = new Endereco();
+            e.Logradouro = "rua abc";
+            e.Municipio = new Municipio();
+            e.Municipio.Id = 1;
+            e.Numero = 13;
+            e.Municipio = session.Get<Municipio>(Convert.ToUInt32(1));
+            e.Bairro = "asas";
+            gerente.Enderecos.Add(e);
+            gerente.Login.Usuario = "xxx";
+            gerente.Login.Senha = "xxx";
+            ITransaction tx = session.BeginTransaction();
+            ulong id = dao.Incluir(gerente);
+            tx.Commit();
+
+            //para consultar o endereco
+            tx = session.BeginTransaction();
+            gerente = dao.BuscarPeloId(Convert.ToUInt32(id));
+            tx.Commit();
+            tx = session.BeginTransaction();
+            dao.Excluir(gerente);
+            tx.Commit();
+            Gerente gerente2 = null;
+            tx = session.BeginTransaction();
+            gerente2 = dao.BuscarPeloId(Convert.ToUInt32(id));
+            tx.Commit();
+            NHibernateHelper.CloseSession(session);
+            Assert.IsNull(gerente2);
+        }
+
+        [TestMethod]
+        public void Deve_incluir_varios_gerentes_e_listar_todos_os_gerentes()
+        {
+            ISession session = NHibernateHelper.GetCurrentSession();
+            Gerente gerente = null;
+            GerenteDAO dao = new GerenteDAO(session);
+            ITransaction tx = session.BeginTransaction();
+            for (int i = 0; i < 20; i++)
+            {
+                gerente = new Gerente();
+                gerente.Nome = "Rafael";
+                gerente.Sobrenome = "Silva";
+                gerente.Cpf = "41645654856";
+                gerente.Rg = "387875432";
+                gerente.Cnh = "192094318";
+                gerente.Foto = "/fotos/gerente/21.jpg";
+                gerente.TelefoneFixo = "1126710452";
+                gerente.TelefoneCelular = "11994567842";
+                gerente.Email = "rafael.silva@emailquente.com.br";
+                gerente.StatusExclusao = 0;
+                Endereco e = new Endereco();
+                e.Logradouro = "rua abc";
+                e.Municipio = new Municipio();
+                e.Municipio.Id = 1;
+                e.Numero = 13;
+                e.Municipio = session.Get<Municipio>(Convert.ToUInt32(1));
+                e.Bairro = "asas";
+                gerente.Enderecos.Add(e);
+                gerente.Login.Usuario = "xxx";
+                gerente.Login.Senha = "xxx";
+                dao.Incluir(gerente);
+            }
+            tx.Commit();
+            tx = session.BeginTransaction();
+            IList<Gerente> gerentes = dao.Listar();
+            tx.Commit();
+            NHibernateHelper.CloseSession(session);
+            Assert.IsTrue(gerentes.Count >= 20);
         }
         #endregion
 
