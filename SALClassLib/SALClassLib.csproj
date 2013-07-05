@@ -47,6 +47,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Masterdata\Model\BO\AparelhoMovelBO.cs" />
+    <Compile Include="Masterdata\Model\BO\AtendenteBO.cs" />
+    <Compile Include="Masterdata\Model\BO\ClienteBO.cs" />
+    <Compile Include="Masterdata\Model\BO\TipoAparelhoMovelBO.cs" />
     <Compile Include="Masterdata\Model\DAO\AparelhoMovelDAO.cs" />
     <Compile Include="Masterdata\Model\AparelhoMovel.cs" />
     <Compile Include="Masterdata\Model\Atendente.cs" />

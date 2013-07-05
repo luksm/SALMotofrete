@@ -29,7 +29,7 @@ namespace SALClassLib.Masterdata.Model
 
         private String modelo;
 
-        [DisplayName("Modelo 123abc")]
+        [DisplayName("Modelo")]
         [MaxLength(25)]
         public virtual String Modelo
         {

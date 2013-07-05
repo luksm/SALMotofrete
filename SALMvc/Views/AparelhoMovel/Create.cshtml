@@ -19,10 +19,18 @@
     @using (Html.BeginForm()) {
         @Html.AntiForgeryToken()
         @Html.ValidationSummary(true)
-    
+ 
         <fieldset>
             <legend>AparelhoMovel</legend>
-    
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Tipo)
+            </div>
+            <div class="editor-field">
+                @Html.DropDownListFor(model => model.Tipo.Id, (IEnumerable<SelectListItem>) ViewBag.TipoAparelhoMovel);
+                @Html.ValidationMessageFor(model => model.Tipo)
+            </div>
+
             <div class="editor-label">
                 @Html.LabelFor(model => model.Modelo)
             </div>

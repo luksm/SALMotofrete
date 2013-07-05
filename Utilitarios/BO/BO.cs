@@ -10,9 +10,9 @@ namespace Utilitarios.BO
 {
     public abstract class BO<T> : IDisposable
     {
-        private DAO<T> dao;
+        private DAO<T> dao = null;
 
-        public DAO<T> Dao
+        protected DAO<T> Dao
         {
             get { return dao; }
             set { dao = value; }

@@ -4,20 +4,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Utilitarios.DAO;
 
 namespace SALClassLib.Masterdata.Model.DAO
 {
-    public class TipoAparelhoMovelDAO
+    public class TipoAparelhoMovelDAO : DAO<TipoAparelhoMovel>
     {
-        private ISession sessao = null;
         public TipoAparelhoMovelDAO(ISession sessao)
+            :base(sessao)
         {
-            this.sessao = sessao;
-        }
 
-        public IList<TipoAparelhoMovel> Listar()
-        {
-            return sessao.CreateQuery("from TipoAparelhoMovel").List<TipoAparelhoMovel>();
         }
     }
 }

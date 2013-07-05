@@ -24,6 +24,18 @@ namespace SALMvc.Controllers
 
         public ActionResult Create()
         {
+            TipoAparelhoMovelBO bo = new TipoAparelhoMovelBO();
+            IList<TipoAparelhoMovel> tipos = bo.Listar();
+            bo.Dispose();
+            bo = null;
+            var listaTipos = new List<SelectListItem>();
+            foreach (var tipo in tipos)
+            {
+                listaTipos.Add(
+                    new SelectListItem() { Text = tipo.Descricao, Value = tipo.Id.ToString() }
+                );
+            }
+            ViewBag.TipoAparelhoMovel = listaTipos;
             return View();
         }
 
