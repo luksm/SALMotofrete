@@ -65,20 +65,20 @@ namespace SALClassLib.OS.Model
             set { itens = value; }
         }
 
-        private ISet<EnderecoOrdemServico> enderecosRetirada;
+        private EnderecoRetirada enderecoRetirada;
 
-        public virtual ISet<EnderecoOrdemServico> EnderecosRetirada
+        public virtual EnderecoRetirada EnderecoRetirada
         {
-            get { return enderecosRetirada; }
-            set { enderecosRetirada = value; }
+            get { return enderecoRetirada; }
+            set { enderecoRetirada = value; }
         }
 
-        private ISet<EnderecoOrdemServico> enderecosEntrega;
+        private EnderecoEntrega enderecoEntrega;
 
-        public virtual ISet<EnderecoOrdemServico> EnderecosEntrega
+        public virtual EnderecoEntrega EnderecoEntrega
         {
-            get { return enderecosEntrega; }
-            set { enderecosEntrega = value; }
+            get { return enderecoEntrega; }
+            set { enderecoEntrega = value; }
         }
 
         private Cliente cliente;

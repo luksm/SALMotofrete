@@ -9,18 +9,9 @@
     <property name="Numero" column="NUMERO" not-null="true" />
     <property name="Data" column="DATA_CADASTRO" not-null="true" />
     <property name="Observacao" column="OBSERVACAO" not-null="false" />
-    <set name="EnderecosRetirada" table="TB_ENDERECOS_OS_RETIRADA" cascade="all">
-      <key column="ID_ORDEM_SERVICO" />
-      <one-to-many class="EnderecoOrdemServico" />
-    </set>
-    <set name="EnderecosEntrega" table="TB_ENDERECOS_OS_ENTREGA" cascade="all">
-      <key column="ID_ORDEM_SERVICO" />
-      <one-to-many class="EnderecoOrdemServico" />
-      <composite-element class="EnderecoOrdemServico">
-        <property name="NomeContato" column="NOME_CONTATO" length="50" not-null="true" />
-        <property name="TelefoneContato" column="TELEFONE_CONTATO" length="15" not-null="true" />
-        <property name="Observacao" column="OBSERVACAO" not-null="false" />
-      </composite-element>
-    </set>
+    <many-to-one name="EnderecoRetirada" class="EnderecoRetirada" column="ID_ENDERECO_OS_RETIRADA" cascade="all" not-null="true" unique="true"  />
+    <many-to-one name="EnderecoEntrega" class="EnderecoEntrega" column="ID_ENDERECO_OS_ENTREGA" cascade="all" not-null="true" unique="true"  />
+    <many-to-one name="Cobranca" class="Cobranca" column="ID_COBRANCA" cascade="all" not-null="true" unique="true" />
+    
   </class>
 </hibernate-mapping>

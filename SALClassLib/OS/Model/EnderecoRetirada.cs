@@ -7,7 +7,7 @@ using SALClassLib.Masterdata.Model;
 
 namespace SALClassLib.OS.Model
 {
-    public class EnderecoEntrega : Endereco
+    public class EnderecoRetirada : Endereco
     {
 
         private String nomeContato;
@@ -33,7 +33,7 @@ namespace SALClassLib.OS.Model
                 return false;
             }
 
-            EnderecoOrdemServico end = (EnderecoOrdemServico)obj;
+            EnderecoRetirada end = (EnderecoRetirada)obj;
 
             if (end.Id == this.Id && end.nomeContato.Equals(this.nomeContato)
                 && end.telefoneContato.Equals(this.telefoneContato)) return true;

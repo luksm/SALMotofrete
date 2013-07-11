@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+    namespace="SALClassLib.OS.Model" assembly="SALClassLib">
+  <class name="Cobranca" table="TB_OS_COBRANCA">
+    <id name="Id">
+      <column name="ID_OS_COBRANCA" not-null="true"/>
+      <generator class="increment" />
+    </id>
+    <property name="Valor" column="VALOR" not-null="true" />
+  </class>
+</hibernate-mapping>

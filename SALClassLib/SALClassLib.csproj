@@ -76,7 +76,9 @@
     <Compile Include="Masterdata\Model\TipoAparelhoMovel.cs" />
     <Compile Include="NHibernateHelper.cs" />
     <Compile Include="OS\Model\Cobranca.cs" />
-    <Compile Include="OS\Model\EnderecoOrdemServico.cs" />
+    <Compile Include="OS\Model\DAO\OrdemServicoDAO.cs" />
+    <Compile Include="OS\Model\EnderecoEntrega.cs" />
+    <Compile Include="OS\Model\EnderecoRetirada.cs" />
     <Compile Include="OS\Model\FilaOrdemServico.cs" />
     <Compile Include="OS\Model\ItemOrdemServico.cs" />
     <Compile Include="OS\Model\OrdemServico.cs" />
@@ -123,6 +125,10 @@
     <Content Include="hibernate.cfg.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="OS\Model\DAO\Mapeamento\ItemOrdemServico.hbm.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <EmbeddedResource Include="OS\Model\DAO\Mapeamento\Cobranca.hbm.xml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="OS\Model\BO\" />
