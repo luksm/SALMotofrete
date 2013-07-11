@@ -247,18 +247,18 @@ namespace SALUnitTest
             ISession session = NHibernateHelper.GetCurrentSession();
             Gerente gerente = new Gerente();
             GerenteDAO dao = new GerenteDAO(session);
-            gerente.Nome = "Rafael";
-            gerente.Sobrenome = "Silva";
-            gerente.Cpf = "41645654856";
-            gerente.Rg = "387875432";
-            gerente.Cnh = "192094318";
+            gerente.Nome = "João";
+            gerente.Sobrenome = "Pé de Feijão";
+            gerente.Cpf = "42756765967";
+            gerente.Rg = "498986543";
+            gerente.Cnh = "192083314";
             gerente.Foto = "/fotos/gerente/21.jpg";
-            gerente.TelefoneFixo = "1126710452";
-            gerente.TelefoneCelular = "11994567842";
-            gerente.Email = "rafael.silva@emailquente.com.br";
+            gerente.TelefoneFixo = "1144715552";
+            gerente.TelefoneCelular = "11993267322";
+            gerente.Email = "joao.feijao@emailfrio.com.br";
             gerente.Login.Permissoes.Add(session.Get<PermissaoAcesso>(Convert.ToUInt32(1)));
-            gerente.Login.Usuario = "abc";
-            gerente.Login.Senha = "123";
+            gerente.Login.Usuario = "abcd";
+            gerente.Login.Senha = "1234";
             ITransaction tx = session.BeginTransaction();
             ulong id = dao.Incluir(gerente);
             tx.Commit();
@@ -271,7 +271,7 @@ namespace SALUnitTest
                 gerente.Cpf.Equals(gerente2.Cpf) && gerente.Rg.Equals(gerente2.Rg) &&
                 gerente.Cnh.Equals(gerente2.Cnh) && gerente.Foto.Equals(gerente2.Foto) &&
                 gerente.TelefoneFixo.Equals(gerente2.TelefoneFixo) && gerente.TelefoneCelular.Equals(gerente2.TelefoneCelular) &&
-                gerente.Email.Equals(gerente2.Email) && gerente.StatusExclusao == gerente2.StatusExclusao);
+                gerente.Email.Equals(gerente2.Email));
         }
 
         [TestMethod]
@@ -282,24 +282,24 @@ namespace SALUnitTest
             GerenteDAO dao = new GerenteDAO(session);
 
             //inclui o gerente
-            gerente.Nome = "Rafael";
-            gerente.Sobrenome = "Silva";
-            gerente.Cpf = "41645654856";
-            gerente.Rg = "387875432";
-            gerente.Cnh = "192094318";
+            gerente.Nome = "João";
+            gerente.Sobrenome = "Pé de Feijão";
+            gerente.Cpf = "42756765967";
+            gerente.Rg = "498986543";
+            gerente.Cnh = "192083314";
             gerente.Foto = "/fotos/gerente/21.jpg";
-            gerente.TelefoneFixo = "1126710452";
-            gerente.TelefoneCelular = "11994567842";
-            gerente.Email = "rafael.silva@emailquente.com.br";
+            gerente.TelefoneFixo = "1144715552";
+            gerente.TelefoneCelular = "11993267322";
+            gerente.Email = "joao.feijao@emailfrio.com.br";
             Endereco e = new Endereco();
-            e.Logradouro = "rua abc";
+            e.Logradouro = "rua abcd";
             e.Municipio = session.Get<Municipio>(Convert.ToUInt32(1));
             e.Numero = 13;
             e.Bairro = "asas";
             gerente.Enderecos.Add(e);
             gerente.Login.Permissoes.Add(session.Get<PermissaoAcesso>(Convert.ToUInt32(1)));
-            gerente.Login.Usuario = "abc";
-            gerente.Login.Senha = "123";
+            gerente.Login.Usuario = "abcd";
+            gerente.Login.Senha = "1234";
             ITransaction tx = session.BeginTransaction();
             ulong id = dao.Incluir(gerente);
             tx.Commit();
@@ -338,8 +338,7 @@ namespace SALUnitTest
                 gerente.Cpf.Equals(gerente2.Cpf) && gerente.Rg.Equals(gerente2.Rg) &&
                 gerente.Cnh.Equals(gerente2.Cnh) && gerente.Foto.Equals(gerente2.Foto) &&
                 gerente.TelefoneFixo.Equals(gerente2.TelefoneFixo) && gerente.TelefoneCelular.Equals(gerente2.TelefoneCelular) &&
-                gerente.Email.Equals(gerente2.Email) && gerente.StatusExclusao == gerente2.StatusExclusao &&
-                gerente.Login.Equals(gerente2.Login));
+                gerente.Email.Equals(gerente2.Email) && gerente.Login.Equals(gerente2.Login));
         }
 
         [TestMethod]
@@ -348,18 +347,18 @@ namespace SALUnitTest
             ISession session = NHibernateHelper.GetCurrentSession();
             Gerente gerente = new Gerente();
             GerenteDAO dao = new GerenteDAO(session);
-            gerente.Nome = "Rafael";
-            gerente.Sobrenome = "Silva";
-            gerente.Cpf = "41645654856";
-            gerente.Rg = "387875432";
-            gerente.Cnh = "192094318";
+            gerente.Nome = "João";
+            gerente.Sobrenome = "Pé de Feijão";
+            gerente.Cpf = "42756765967";
+            gerente.Rg = "498986543";
+            gerente.Cnh = "192083314";
             gerente.Foto = "/fotos/gerente/21.jpg";
-            gerente.TelefoneFixo = "1126710452";
-            gerente.TelefoneCelular = "11994567842";
-            gerente.Email = "rafael.silva@emailquente.com.br";
+            gerente.TelefoneFixo = "1144715552";
+            gerente.TelefoneCelular = "11993267322";
+            gerente.Email = "joao.feijao@emailfrio.com.br";
             gerente.StatusExclusao = 0;
             Endereco e = new Endereco();
-            e.Logradouro = "rua abc";
+            e.Logradouro = "rua abcd";
             e.Municipio = new Municipio();
             e.Municipio.Id = 1;
             e.Numero = 13;
@@ -397,18 +396,18 @@ namespace SALUnitTest
             for (int i = 0; i < 20; i++)
             {
                 gerente = new Gerente();
-                gerente.Nome = "Rafael";
-                gerente.Sobrenome = "Silva";
-                gerente.Cpf = "41645654856";
-                gerente.Rg = "387875432";
-                gerente.Cnh = "192094318";
+                gerente.Nome = "João";
+                gerente.Sobrenome = "Pé de Feijão";
+                gerente.Cpf = "42756765967";
+                gerente.Rg = "498986543";
+                gerente.Cnh = "192083314";
                 gerente.Foto = "/fotos/gerente/21.jpg";
-                gerente.TelefoneFixo = "1126710452";
-                gerente.TelefoneCelular = "11994567842";
-                gerente.Email = "rafael.silva@emailquente.com.br";
+                gerente.TelefoneFixo = "1144715552";
+                gerente.TelefoneCelular = "11993267322";
+                gerente.Email = "joao.feijao@emailfrio.com.br";
                 gerente.StatusExclusao = 0;
                 Endereco e = new Endereco();
-                e.Logradouro = "rua abc";
+                e.Logradouro = "rua abcd";
                 e.Municipio = new Municipio();
                 e.Municipio.Id = 1;
                 e.Numero = 13;
@@ -428,14 +427,223 @@ namespace SALUnitTest
         }
         #endregion
 
+        #region Entregador
+        [TestMethod]
+        public void Deve_incluir_um_novo_entregador_no_banco_de_dados_e_validar_se_todos_os_campos_foram_incluidos()
+        {
+            ISession session = NHibernateHelper.GetCurrentSession();
+            Entregador entregador = new Entregador();
+            EntregadorDAO dao = new EntregadorDAO(session);
+            entregador.Nome = "Pedro";
+            entregador.Sobrenome = "Pedroca";
+            entregador.Cpf = "52756755922";
+            entregador.Rg = "398386321";
+            entregador.Cnh = "122481319";
+            entregador.Foto = "/fotos/entregador/23.jpg";
+            entregador.TelefoneFixo = "1143916739";
+            entregador.TelefoneCelular = "11987614572";
+            entregador.Email = "pedro.pedroca@emailmorno.com.br";
+            entregador.PlacaMoto = "ABC1234";
+            entregador.ModeloMoto = "CB-300";
+            entregador.StatusExclusao = 0;
+            entregador.StatusAtividade = 1;
+            entregador.Login.Permissoes.Add(session.Get<PermissaoAcesso>(Convert.ToUInt32(1)));
+            entregador.Login.Usuario = "entreg";
+            entregador.Login.Senha = "1234";
+            ITransaction tx = session.BeginTransaction();
+            ulong id = dao.Incluir(entregador);
+            tx.Commit();
+            Entregador entregador2 = null;
+            tx = session.BeginTransaction();
+            entregador2 = dao.BuscarPeloId(Convert.ToUInt32(id));
+            tx.Commit();
+            NHibernateHelper.CloseSession(session);
+            Assert.IsTrue(entregador.Nome.Equals(entregador2.Nome) && entregador.Sobrenome.Equals(entregador2.Sobrenome) &&
+                entregador.Cpf.Equals(entregador2.Cpf) && entregador.Rg.Equals(entregador2.Rg) &&
+                entregador.Cnh.Equals(entregador2.Cnh) && entregador.Foto.Equals(entregador2.Foto) &&
+                entregador.TelefoneFixo.Equals(entregador2.TelefoneFixo) && entregador.TelefoneCelular.Equals(entregador2.TelefoneCelular) &&
+                entregador.Email.Equals(entregador2.Email) && entregador.StatusExclusao == entregador2.StatusExclusao &&
+                entregador.StatusAtividade == entregador2.StatusAtividade && entregador.PlacaMoto == entregador2.PlacaMoto &&
+                entregador.ModeloMoto == entregador2.ModeloMoto);
+        }
+
+        [TestMethod]
+        public void Deve_incluir_um_novo_entregador_no_banco_de_dados_depois_alterar_os_dados_e_verificar_se_foram_alterados()
+        {
+            ISession session = NHibernateHelper.GetCurrentSession();
+            Entregador entregador = new Entregador();
+            EntregadorDAO dao = new EntregadorDAO(session);
+
+            //inclui o entregador
+            entregador.Nome = "Pedro";
+            entregador.Sobrenome = "Pedroca";
+            entregador.Cpf = "52756755922";
+            entregador.Rg = "398386321";
+            entregador.Cnh = "122481319";
+            entregador.Foto = "/fotos/entregador/23.jpg";
+            entregador.TelefoneFixo = "1143916739";
+            entregador.TelefoneCelular = "11987614572";
+            entregador.Email = "pedro.pedroca@emailmorno.com.br";
+            entregador.PlacaMoto = "ABC1234";
+            entregador.ModeloMoto = "CB-300";
+            entregador.StatusExclusao = 0;
+            entregador.StatusAtividade = 1;
+            Endereco e = new Endereco();
+            e.Logradouro = "rua abcd";
+            e.Municipio = session.Get<Municipio>(Convert.ToUInt32(1));
+            e.Numero = 13;
+            e.Bairro = "asas";
+            entregador.Enderecos.Add(e);
+            entregador.Login.Permissoes.Add(session.Get<PermissaoAcesso>(Convert.ToUInt32(1)));
+            entregador.Login.Usuario = "entreg";
+            entregador.Login.Senha = "1234";
+            ITransaction tx = session.BeginTransaction();
+            ulong id = dao.Incluir(entregador);
+            tx.Commit();
+
+            //altera o entregador
+            entregador.Id = Convert.ToUInt32(id);
+            entregador.Nome = "yyyyyyyy";
+            entregador.Sobrenome = "yyyyyyyyyyyyyyyyyyy";
+            entregador.Cpf = "000000000";
+            entregador.Rg = "1111111111";
+            entregador.Cnh = "22222222222";
+            entregador.Foto = "/fotos/entregador/00.jpg";
+            entregador.TelefoneFixo = "4444444444";
+            entregador.TelefoneCelular = "5555555555";
+            entregador.Email = "teste@teste.com.br";
+            entregador.PlacaMoto = "AAA0000";
+            entregador.ModeloMoto = "CB-400";
+            entregador.StatusExclusao = 1;
+            entregador.StatusAtividade = 2;
+            e = new Endereco();
+            e.Logradouro = "rua alterado";
+            e.Numero = 412;
+            e.Bairro = "aterado";
+            e.Municipio = session.Get<Municipio>(Convert.ToUInt32(1));
+            entregador.Enderecos.Clear();
+            entregador.Enderecos.Add(e);
+            entregador.Login.Usuario = "xxx";
+            entregador.Login.Senha = "xxx";
+            tx = session.BeginTransaction();
+            dao.Alterar(entregador);
+            tx.Commit();
+
+            //consulta para ver se os dados foram alterados
+            Entregador entregador2 = null;
+            tx = session.BeginTransaction();
+            entregador2 = dao.BuscarPeloId(Convert.ToUInt32(id));
+            tx.Commit();
+            NHibernateHelper.CloseSession(session);
+            Assert.IsTrue(entregador.Nome.Equals(entregador2.Nome) && entregador.Sobrenome.Equals(entregador2.Sobrenome) &&
+                entregador.Cpf.Equals(entregador2.Cpf) && entregador.Rg.Equals(entregador2.Rg) &&
+                entregador.Cnh.Equals(entregador2.Cnh) && entregador.Foto.Equals(entregador2.Foto) &&
+                entregador.TelefoneFixo.Equals(entregador2.TelefoneFixo) && entregador.TelefoneCelular.Equals(entregador2.TelefoneCelular) &&
+                entregador.Email.Equals(entregador2.Email) && entregador.StatusExclusao == entregador2.StatusExclusao &&
+                entregador.StatusAtividade == entregador2.StatusAtividade && entregador.PlacaMoto == entregador2.PlacaMoto &&
+                entregador.ModeloMoto == entregador2.ModeloMoto && entregador.Login.Equals(entregador2.Login));
+        }
+
+        [TestMethod]
+        public void Deve_incluir_um_novo_entregador_no_banco_de_dados_e_excluir_o_entregador_incluido()
+        {
+            ISession session = NHibernateHelper.GetCurrentSession();
+            Entregador entregador = new Entregador();
+            EntregadorDAO dao = new EntregadorDAO(session);
+            entregador.Nome = "Pedro";
+            entregador.Sobrenome = "Pedroca";
+            entregador.Cpf = "52756755922";
+            entregador.Rg = "398386321";
+            entregador.Cnh = "122481319";
+            entregador.Foto = "/fotos/entregador/23.jpg";
+            entregador.TelefoneFixo = "1143916739";
+            entregador.TelefoneCelular = "11987614572";
+            entregador.Email = "pedro.pedroca@emailmorno.com.br";
+            entregador.PlacaMoto = "ABC1234";
+            entregador.ModeloMoto = "CB-300";
+            entregador.StatusExclusao = 0;
+            entregador.StatusAtividade = 1;
+            Endereco e = new Endereco();
+            e.Logradouro = "rua abcd";
+            e.Municipio = new Municipio();
+            e.Municipio.Id = 1;
+            e.Numero = 13;
+            e.Municipio = session.Get<Municipio>(Convert.ToUInt32(1));
+            e.Bairro = "asas";
+            entregador.Enderecos.Add(e);
+            entregador.Login.Usuario = "xxx";
+            entregador.Login.Senha = "xxx";
+            ITransaction tx = session.BeginTransaction();
+            ulong id = dao.Incluir(entregador);
+            tx.Commit();
+
+            //para consultar o endereco
+            tx = session.BeginTransaction();
+            entregador = dao.BuscarPeloId(Convert.ToUInt32(id));
+            tx.Commit();
+            tx = session.BeginTransaction();
+            dao.Excluir(entregador);
+            tx.Commit();
+            Entregador entregador2 = null;
+            tx = session.BeginTransaction();
+            entregador2 = dao.BuscarPeloId(Convert.ToUInt32(id));
+            tx.Commit();
+            NHibernateHelper.CloseSession(session);
+            Assert.IsNull(entregador2);
+        }
+
+        [TestMethod]
+        public void Deve_incluir_varios_entregadors_e_listar_todos_os_entregadors()
+        {
+            ISession session = NHibernateHelper.GetCurrentSession();
+            Entregador entregador = null;
+            EntregadorDAO dao = new EntregadorDAO(session);
+            ITransaction tx = session.BeginTransaction();
+            for (int i = 0; i < 20; i++)
+            {
+                entregador = new Entregador();
+                entregador.Nome = "Pedro";
+                entregador.Sobrenome = "Pedroca";
+                entregador.Cpf = "52756755922";
+                entregador.Rg = "398386321";
+                entregador.Cnh = "122481319";
+                entregador.Foto = "/fotos/entregador/23.jpg";
+                entregador.TelefoneFixo = "1143916739";
+                entregador.TelefoneCelular = "11987614572";
+                entregador.Email = "pedro.pedroca@emailmorno.com.br";
+                entregador.PlacaMoto = "ABC1234";
+                entregador.ModeloMoto = "CB-300";
+                entregador.StatusExclusao = 0;
+                entregador.StatusAtividade = 1;
+                Endereco e = new Endereco();
+                e.Logradouro = "rua abcd";
+                e.Municipio = new Municipio();
+                e.Municipio.Id = 1;
+                e.Numero = 13;
+                e.Municipio = session.Get<Municipio>(Convert.ToUInt32(1));
+                e.Bairro = "asas";
+                entregador.Enderecos.Add(e);
+                entregador.Login.Usuario = "xxx";
+                entregador.Login.Senha = "xxx";
+                dao.Incluir(entregador);
+            }
+            tx.Commit();
+            tx = session.BeginTransaction();
+            IList<Entregador> entregadors = dao.Listar();
+            tx.Commit();
+            NHibernateHelper.CloseSession(session);
+            Assert.IsTrue(entregadors.Count >= 20);
+        }
+        #endregion
+
         #region Cliente
         [TestMethod]
         public void Deve_incluir_um_novo_cliente_pessoa_fisica_no_banco_de_dados_e_validar_se_todos_os_campos_foram_incluidos()
         {
             ISession session = NHibernateHelper.GetCurrentSession();
             Cliente cliente = new Cliente();
-            PessoaFisica pf = new PessoaFisica();
             ClienteDAO dao = new ClienteDAO(session);
+            PessoaFisica pf = new PessoaFisica();
             pf.Nome = "Rafael";
             pf.Sobrenome = "Silva";
             pf.Cpf = "41645654856";
