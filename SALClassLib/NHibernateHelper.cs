@@ -32,7 +32,10 @@ namespace SALClassLib
 
         public static void CloseSession(ISession session)
         {
-            session.Close();
+            if (session.IsOpen)
+            {
+                session.Close();
+            }
         }
 
         public static void CloseSessionFactory()

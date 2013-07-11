@@ -14,10 +14,13 @@ namespace SALMvc.Controllers
         //
         // GET: /AparelhoMovel/
 
-        List<AparelhoMovel> lista = new List<AparelhoMovel>();
+        IList<AparelhoMovel> lista = new List<AparelhoMovel>();
 
         public ActionResult Index()
         {
+            AparelhoMovelBO bo = new AparelhoMovelBO();
+            lista = bo.Listar();
+            bo.Dispose();
             return View(lista);
         }
 
@@ -55,13 +58,13 @@ namespace SALMvc.Controllers
             return View("Index");
         }
 
-        public ActionResult Edit(int Id)
+        public ActionResult Edit(uint Id)
         {
             AparelhoMovelBO bo = new AparelhoMovelBO();
             AparelhoMovel am = new AparelhoMovel();
             am = bo.BuscarPeloId(Id);
             bo.Dispose();
-            return View();
+            return View(am);
         }
 
 
