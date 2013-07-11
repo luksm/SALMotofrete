@@ -18,7 +18,6 @@ namespace SALMvc.Controllers
 
         public ActionResult Index()
         {
-            lista.Add(new AparelhoMovel() { Marca = "marca teste", Modelo = "teste modelo" });
             return View(lista);
         }
 
@@ -43,8 +42,43 @@ namespace SALMvc.Controllers
         public ActionResult Create(AparelhoMovel aparelhoMovel)
         {
             AparelhoMovelBO bo = new AparelhoMovelBO();
-            bo.Incluir(aparelhoMovel);
+            try
+            {
+                bo.Incluir(aparelhoMovel);
+                bo.Dispose();
+                TempData["flash"] = "Seu cadastro foi realisado com sucesso.";
+            }
+            catch
+            {
+                TempData["flash"] = "Ocorreu um problema, tente novamente.";
+            }
+            return View("Index");
+        }
+
+        public ActionResult Edit(int Id)
+        {
+            AparelhoMovelBO bo = new AparelhoMovelBO();
+            AparelhoMovel am = new AparelhoMovel();
+            am = bo.BuscarPeloId(Id);
             bo.Dispose();
+            return View();
+        }
+
+
+        [HttpPost]
+        public ActionResult Edit(AparelhoMovel aparelhoMovel)
+        {
+            AparelhoMovelBO bo = new AparelhoMovelBO();
+            try
+            {
+                bo.Alterar(aparelhoMovel);
+                bo.Dispose();
+                TempData["flash"] = "Seu cadastro foi editado com sucesso.";
+            }
+            catch
+            {
+                TempData["flash"] = "Ocorreu um problema, tente novamente.";
+            }
             return View("Index");
         }
     }

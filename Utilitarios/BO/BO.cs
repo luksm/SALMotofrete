@@ -18,7 +18,11 @@ namespace Utilitarios.BO
             set { dao = value; }
         }
         
-
+        /// <summary>
+        /// Inclui um novo registro do objeto
+        /// </summary>
+        /// <param name="obj">Objeto a ser salvo na base</param>
+        /// <returns>Id do objeto incluido</returns>
         public ulong Incluir(T obj)
         {
             ITransaction tx = dao.Sessao.BeginTransaction();
@@ -27,6 +31,10 @@ namespace Utilitarios.BO
             return id;
         }
 
+        /// <summary>
+        /// Retona uma lista de objetos
+        /// </summary>
+        /// <returns>List de objetos</returns>
         public IList<T> Listar()
         {
             ITransaction tx = dao.Sessao.BeginTransaction();
@@ -34,7 +42,11 @@ namespace Utilitarios.BO
             tx.Commit();
             return lista;
         }
-
+        /// <summary>
+        /// Busca registros pelo # do Id
+        /// </summary>
+        /// <param name="id"># do id do registro desejado</param>
+        /// <returns>Object com o id desejado ou NULL</returns>
         public T BuscarPeloId(Object id)
         {
             ITransaction tx = dao.Sessao.BeginTransaction();
@@ -42,14 +54,20 @@ namespace Utilitarios.BO
             tx.Commit();
             return obj;
         }
-
+        /// <summary>
+        /// Altera o registro do objeto
+        /// </summary>
+        /// <param name="obj">Objeto com os dados a serem alterados</param>
         public void Alterar(T obj)
         {
             ITransaction tx = dao.Sessao.BeginTransaction();
             dao.Alterar(obj);
             tx.Commit();
         }
-
+        /// <summary>
+        /// Remove o registro do objeto
+        /// </summary>
+        /// <param name="obj">Objeto a ser removido</param>
         public void Excluir(T obj)
         {
             ITransaction tx = dao.Sessao.BeginTransaction();
