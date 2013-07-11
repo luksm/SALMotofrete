@@ -16,11 +16,16 @@ namespace SALMvc.Controllers
 
         IList<AparelhoMovel> lista = new List<AparelhoMovel>();
 
-        public ActionResult Index()
+        public void Listar()
         {
             AparelhoMovelBO bo = new AparelhoMovelBO();
             lista = bo.Listar();
             bo.Dispose();
+        }
+
+        public ActionResult Index()
+        {
+            Listar();
             return View(lista);
         }
 
@@ -60,6 +65,18 @@ namespace SALMvc.Controllers
 
         public ActionResult Edit(uint Id)
         {
+            TipoAparelhoMovelBO bo2 = new TipoAparelhoMovelBO();
+            IList<TipoAparelhoMovel> tipos = bo2.Listar();
+            bo2.Dispose();
+            bo2 = null;
+            var listaTipos = new List<SelectListItem>();
+            foreach (var tipo in tipos)
+            {
+                listaTipos.Add(
+                    new SelectListItem() { Text = tipo.Descricao, Value = tipo.Id.ToString() }
+                );
+            }
+            ViewBag.TipoAparelhoMovel = listaTipos;
             AparelhoMovelBO bo = new AparelhoMovelBO();
             AparelhoMovel am = new AparelhoMovel();
             am = bo.BuscarPeloId(Id);
@@ -82,7 +99,8 @@ namespace SALMvc.Controllers
             {
                 TempData["flash"] = "Ocorreu um problema, tente novamente.";
             }
-            return View("Index");
+            Listar();
+            return View("Index", lista);
         }
     }
 }

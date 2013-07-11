@@ -12,6 +12,8 @@
     <many-to-one name="EnderecoRetirada" class="EnderecoRetirada" column="ID_ENDERECO_OS_RETIRADA" cascade="all" not-null="true" unique="true"  />
     <many-to-one name="EnderecoEntrega" class="EnderecoEntrega" column="ID_ENDERECO_OS_ENTREGA" cascade="all" not-null="true" unique="true"  />
     <many-to-one name="Cobranca" class="Cobranca" column="ID_COBRANCA" cascade="all" not-null="true" unique="true" />
-    
+    <!--<set name="Itens" cascade="all">
+      <key column="ID_ORDEM_SERVICO" />
+    </set>-->
   </class>
 </hibernate-mapping>

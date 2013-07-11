@@ -21,7 +21,7 @@ namespace Utilitarios.DAO
         public IList<T> Listar()
         {
             ICriteria criteria = sessao.CreateCriteria(typeof(T));
-            criteria.SetMaxResults(10000);
+            criteria.SetMaxResults(1000);
             return criteria.List<T>();
         }
 

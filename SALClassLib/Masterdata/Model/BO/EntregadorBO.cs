@@ -30,6 +30,13 @@ namespace SALClassLib.Masterdata.Model.BO
         {
             NHibernateHelper.CloseSession(sessao);
         }
+
+        public override void Excluir(Entregador obj)
+        {
+            if (obj == null) return;
+            obj.StatusExclusao = 1;
+            this.Alterar(obj);
+        }
     }
         
 }

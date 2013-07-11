@@ -27,7 +27,7 @@
                 @Html.LabelFor(model => model.Tipo)
             </div>
             <div class="editor-field">
-                @Html.DropDownListFor(model => model.Tipo.Id, (IEnumerable<SelectListItem>) ViewBag.TipoAparelhoMovel);
+                @Html.DropDownListFor(model => model.Tipo.Id, (IEnumerable<SelectListItem>) ViewBag.TipoAparelhoMovel)
                 @Html.ValidationMessageFor(model => model.Tipo)
             </div>
 
