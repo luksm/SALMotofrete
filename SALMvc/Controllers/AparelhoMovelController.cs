@@ -60,7 +60,28 @@ namespace SALMvc.Controllers
             {
                 TempData["flash"] = "Ocorreu um problema, tente novamente.";
             }
-            return View("Index");
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult Details(uint Id)
+        {
+            TipoAparelhoMovelBO bo2 = new TipoAparelhoMovelBO();
+            IList<TipoAparelhoMovel> tipos = bo2.Listar();
+            bo2.Dispose();
+            bo2 = null;
+            var listaTipos = new List<SelectListItem>();
+            foreach (var tipo in tipos)
+            {
+                listaTipos.Add(
+                    new SelectListItem() { Text = tipo.Descricao, Value = tipo.Id.ToString() }
+                );
+            }
+            ViewBag.TipoAparelhoMovel = listaTipos;
+            AparelhoMovelBO bo = new AparelhoMovelBO();
+            AparelhoMovel am = new AparelhoMovel();
+            am = bo.BuscarPeloId(Id);
+            bo.Dispose();
+            return View(am);
         }
 
         public ActionResult Edit(uint Id)

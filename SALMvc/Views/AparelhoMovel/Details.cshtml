@@ -1,0 +1,37 @@
+﻿@model SALClassLib.Masterdata.Model.AparelhoMovel
+
+<fieldset>
+    <legend>AparelhoMovel</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Modelo)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Modelo)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Marca)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Marca)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.NumeroTelefone)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.NumeroTelefone)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Observacao)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Observacao)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
