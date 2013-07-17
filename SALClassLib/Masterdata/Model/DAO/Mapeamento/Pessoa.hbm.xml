@@ -10,7 +10,8 @@
       <key column="ID_PESSOA" not-null="false" />
       <one-to-many class="Endereco" />
     </set>
-    <many-to-one name="Login" column="ID_LOGIN" class="Login" cascade="all" unique="true" />
+    <property name="Usuario" column="USUARIO" length="40" not-null="true" />
+    <property name="Senha" column="SENHA" length="20" not-null="true" />
     <property name="StatusExclusao" column="STATUS_EXCLUSAO" not-null="true" />
     
     <joined-subclass name="PessoaFisica" table="TB_PESSOA_FISICA">
@@ -20,6 +21,7 @@
       <property name="Cpf" column="CPF" length="11" not-null="true" />
       <property name="Rg" column="RG" length="12" not-null="true" />
       <property name="Cnh" column="CNH" length="14" not-null="false" />
+      <property name="Foto" column="FOTO" length="500" not-null="false" />
       <property name="TelefoneFixo" column="TELEFONE_FIXO" length="15" not-null="false" />
       <property name="TelefoneCelular" column="TELEFONE_CELULAR" length="16" not-null="false" />
       <property name="Email" column="EMAIL" length="80" not-null="false" />
@@ -41,6 +43,10 @@
         <set name="HistoricoAtividade" cascade="none">
           <key column="ID_ENTREGADOR" />
           <one-to-many class="AtividadeEntregador" />
+        </set>
+        <set name="Fila" cascade="none">
+          <key column="ID_ENTREGADOR" />
+          <one-to-many class="SALClassLib.OS.Model.FilaOrdemServico" />
         </set>
       </joined-subclass>
     </joined-subclass>

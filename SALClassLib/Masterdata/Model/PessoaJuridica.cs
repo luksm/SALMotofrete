@@ -70,8 +70,7 @@ namespace SALClassLib.Masterdata.Model
             }
 
             PessoaJuridica p = (PessoaJuridica)obj;
-            return p.Id == this.Id && p.NomeFantasia.Equals(this.nomeFantasia) && p.RazaoSocial.Equals(this.RazaoSocial)
-                && p.Cnpj.Equals(this.Cnpj);
+            return p.Id == this.Id;
         }
 
         // override object.GetHashCode

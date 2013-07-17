@@ -12,8 +12,11 @@
     <many-to-one name="EnderecoRetirada" class="EnderecoRetirada" column="ID_ENDERECO_OS_RETIRADA" cascade="all" not-null="true" unique="true"  />
     <many-to-one name="EnderecoEntrega" class="EnderecoEntrega" column="ID_ENDERECO_OS_ENTREGA" cascade="all" not-null="true" unique="true"  />
     <many-to-one name="Cobranca" class="Cobranca" column="ID_COBRANCA" cascade="all" not-null="true" unique="true" />
-    <!--<set name="Itens" cascade="all">
+    <many-to-one name="Status" class="StatusOrdemServico" column="ID_OS_STATUS" cascade="none" not-null="true" />
+    <many-to-one name="Cliente" class="SALClassLib.Masterdata.Model.Cliente" column="ID_CLIENTE" cascade="none" not-null="true" />
+    <set name="Itens" cascade="all">
       <key column="ID_ORDEM_SERVICO" />
-    </set>-->
+      <one-to-many class="ItemOrdemServico" />
+    </set>
   </class>
 </hibernate-mapping>

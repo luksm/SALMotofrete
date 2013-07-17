@@ -1,4 +1,4 @@
-﻿@model IEnumerable<SALClassLib.Masterdata.Model.AparelhoMovel>
+﻿@model IEnumerable<SALClassLib.Masterdata.Model.Entregador>
 
 @{
     Layout = null;
@@ -18,19 +18,19 @@
     <table border="1">
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Tipo)
+                @Html.DisplayNameFor(model => model.Nome)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Modelo)
+                @Html.DisplayNameFor(model => model.Sobrenome)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Marca)
+                @Html.DisplayNameFor(model => model.Cpf)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.NumeroTelefone)
+                @Html.DisplayNameFor(model => model.Rg)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Observacao)
+                @Html.DisplayNameFor(model => model.Cnh)
             </th>
             <th></th>
         </tr>
@@ -38,19 +38,19 @@
     @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Tipo.Descricao)
+                @Html.DisplayFor(modelItem => item.Nome)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Modelo)
+                @Html.DisplayFor(modelItem => item.Sobrenome)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Marca)
+                @Html.DisplayFor(modelItem => item.Cpf)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.NumeroTelefone)
+                @Html.DisplayFor(modelItem => item.Rg)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Observacao)
+                @Html.DisplayFor(modelItem => item.Cnh)
             </td>
             <td>
                 @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |

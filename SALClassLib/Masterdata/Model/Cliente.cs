@@ -42,18 +42,7 @@ namespace SALClassLib.Masterdata.Model
             }
 
             Cliente c = (Cliente)obj;
-
-            if (c.Pessoa is PessoaFisica && this.Pessoa is PessoaFisica)
-            {
-                PessoaFisica pf = (PessoaFisica)c.Pessoa;
-                return c.Id == this.Id && pf.Equals((PessoaFisica)this.Pessoa);
-            }
-            else if (c.Pessoa is PessoaJuridica && this.Pessoa is PessoaJuridica)
-            {
-                PessoaJuridica pj = (PessoaJuridica)c.Pessoa;
-                return c.Id == this.Id && pj.Equals((PessoaJuridica)this.Pessoa);
-            }
-            return false;
+            return c.Id == this.id;
         }
 
         // override object.GetHashCode

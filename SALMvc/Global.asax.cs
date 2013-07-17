@@ -25,13 +25,8 @@ namespace SALMvc
 
         private void MapearRotas(RouteCollection rotas)
         {
-            rotas.MapRoute("Index",
-                "{controller}/{action}",
-                new { controller = "AparelhoMovel", action = "Index" });
-
-            rotas.MapRoute("Create",
-                "{controller}/{action}",
-                new { controller = "AparelhoMovel", action = "Create" });
+            rotas.MapRoute("Controllers",
+                "{controller}/{action}");
         }
     }
 }

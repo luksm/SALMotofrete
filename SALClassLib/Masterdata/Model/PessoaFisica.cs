@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -55,6 +56,7 @@ namespace SALClassLib.Masterdata.Model
             get { return foto; }
             set { foto = value; }
         }
+        
 
         private String telefoneFixo;
 
@@ -89,8 +91,7 @@ namespace SALClassLib.Masterdata.Model
             }
 
             PessoaFisica p = (PessoaFisica)obj;
-            return p.Id == this.Id && p.Nome.Equals(this.Nome) && p.Sobrenome.Equals(this.Sobrenome)
-                && p.Rg.Equals(this.Rg) && p.Cpf.Equals(this.Cpf);
+            return p.Id == this.Id;
         }
 
         // override object.GetHashCode

@@ -37,6 +37,22 @@ namespace SALClassLib.Masterdata.Model.BO
             obj.StatusExclusao = 1;
             this.Alterar(obj);
         }
+
+        public override ulong Incluir(Entregador obj)
+        {
+            obj.StatusExclusao = 0;
+            return base.Incluir(obj);
+        }
+
+        public IList<Entregador> ListarAtivos()
+        {
+            IList<Entregador> lista;
+            ITransaction tx = Dao.Sessao.BeginTransaction();
+            IQuery query = Dao.Sessao.CreateQuery("from Entregador where StatusExclusao = 0");
+            lista = query.List<Entregador>();
+            tx.Commit();
+            return lista;
+        }
     }
         
 }

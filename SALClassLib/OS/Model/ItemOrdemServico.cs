@@ -8,6 +8,14 @@ namespace SALClassLib.OS.Model
 {
     public class ItemOrdemServico
     {
+        private ulong id;
+
+        public virtual ulong Id
+        {
+            get { return id; }
+            set { id = value; }
+        }
+
         private String descricao;
 
         public virtual String Descricao

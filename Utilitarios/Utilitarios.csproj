@@ -47,8 +47,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BO\BO.cs" />
+    <Compile Include="BO\BOException.cs" />
     <Compile Include="BO\NHibernateHelper.cs" />
     <Compile Include="DAO\DAO.cs" />
+    <Compile Include="DAO\DAOException.cs" />
     <Compile Include="DAO\IDAO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

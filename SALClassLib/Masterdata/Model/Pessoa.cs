@@ -24,13 +24,22 @@ namespace SALClassLib.Masterdata.Model
             set { enderecos = value; }
         }
 
-        private Login login;
+        private String usuario;
 
-        public virtual Login Login
+        public virtual String Usuario
         {
-            get { return login; }
-            set { login = value; }
+            get { return usuario; }
+            set { usuario = value; }
         }
+
+        private String senha;
+
+        public virtual String Senha
+        {
+            get { return senha; }
+            set { senha = value; }
+        }
+        
 
         private short statusExclusao;
 
@@ -44,7 +53,6 @@ namespace SALClassLib.Masterdata.Model
         public Pessoa()
         {
             enderecos = new HashedSet<Endereco>();
-            Login = new Login();
         }
 
         // override object.Equals
@@ -56,7 +64,7 @@ namespace SALClassLib.Masterdata.Model
             }
 
             Pessoa p = (Pessoa)obj;
-            return p.Id == this.Id && p.Login.Equals(this.Login);
+            return p.Id == this.Id;
         }
 
         // override object.GetHashCode
