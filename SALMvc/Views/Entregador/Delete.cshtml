@@ -1,17 +1,10 @@
 ﻿@model SALClassLib.Masterdata.Model.Entregador
 
 @{
-    Layout = null;
+    Layout = "~/Views/Shared/_Utopia.cshtml";
+    Html.RenderPartial("~/Views/Shared/_FlashPartial.cshtml");
 }
 
-<!DOCTYPE html>
-
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Delete</title>
-</head>
-<body>
     <h3>Tem certeza que deseja excluir este entregador?</h3>
     <fieldset>
         <legend>Entregador</legend>
@@ -80,5 +73,3 @@
         </p>
     }
 
-</body>
-</html>

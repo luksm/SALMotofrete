@@ -1,20 +1,9 @@
 ﻿@model SALClassLib.Masterdata.Model.Entregador
 
 @{
-    Layout = null;
+    Layout = "~/Views/Shared/_Utopia.cshtml";
+    Html.RenderPartial("~/Views/Shared/_FlashPartial.cshtml");
 }
-
-<!DOCTYPE html>
-
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Create</title>
-</head>
-<body>
-    <script src="~/Scripts/jquery-1.8.2.min.js"></script>
-    <script src="~/Scripts/jquery.validate.min.js"></script>
-    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
     
     @using (Html.BeginForm("Create", "Entregador", FormMethod.Post, new { enctype = "multipart/form-data" }))
     {
@@ -120,5 +109,3 @@
     <div>
         @Html.ActionLink("Back to List", "Index")
     </div>
-</body>
-</html>

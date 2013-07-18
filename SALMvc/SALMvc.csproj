@@ -129,6 +129,14 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Content Include="Assets\css\bootstrap-responsive.css" />
+    <Content Include="Assets\css\bootstrap-responsive.min.css" />
+    <Content Include="Assets\css\bootstrap.css" />
+    <Content Include="Assets\css\bootstrap.min.css" />
+    <Content Include="Assets\img\glyphicons-halflings-white.png" />
+    <Content Include="Assets\img\glyphicons-halflings.png" />
+    <Content Include="Assets\js\bootstrap.js" />
+    <Content Include="Assets\js\bootstrap.min.js" />
     <Content Include="Global.asax" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -167,7 +175,7 @@
     <Content Include="Views\AparelhoMovel\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\_Shared\utopia.cshtml" />
+    <Content Include="Views\Shared\_Utopia.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Atendente\Create.cshtml" />
@@ -185,7 +193,7 @@
     <Content Include="Views\AparelhoMovel\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\_Shared\flash.cshtml" />
+    <Content Include="Views\Shared\_FlashPartial.cshtml" />
     <Content Include="Views\Entregador\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>

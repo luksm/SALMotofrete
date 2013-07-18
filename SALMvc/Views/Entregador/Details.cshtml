@@ -1,17 +1,10 @@
 ﻿@model SALClassLib.Masterdata.Model.Entregador
 
 @{
-    Layout = null;
+    Layout = "~/Views/Shared/_Utopia.cshtml";
+    Html.RenderPartial("~/Views/Shared/_FlashPartial.cshtml");
 }
 
-<!DOCTYPE html>
-
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Details</title>
-</head>
-<body>
     <fieldset>
         <legend>Entregador</legend>
     
@@ -89,5 +82,4 @@
         @Html.ActionLink("Edit", "Edit", new { id=Model.Id }) |
         @Html.ActionLink("Back to List", "Index")
     </p>
-</body>
-</html>
+
