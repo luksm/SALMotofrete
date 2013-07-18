@@ -13,7 +13,6 @@ namespace SALMvc.Controllers
     {
         //
         // GET: /AparelhoMovel/
-
         IList<AparelhoMovel> lista = new List<AparelhoMovel>();
 
         public void Listar()
@@ -23,12 +22,16 @@ namespace SALMvc.Controllers
             bo.Dispose();
         }
 
+        //
+        // GET: /AparelhoMovel/
         public ActionResult Index()
         {
             Listar();
             return View(lista);
         }
 
+        //
+        // GET: /AparelhoMovel/Create
         public ActionResult Create()
         {
             TipoAparelhoMovelBO bo = new TipoAparelhoMovelBO();
@@ -46,6 +49,8 @@ namespace SALMvc.Controllers
             return View();
         }
 
+        //
+        // POST: /AparelhoMovel/Create
         [HttpPost]
         public ActionResult Create(AparelhoMovel aparelhoMovel)
         {
@@ -63,6 +68,8 @@ namespace SALMvc.Controllers
             return RedirectToAction("Index");
         }
 
+        //
+        // GET: /AparelhoMovel/Details/#
         public ActionResult Details(uint Id)
         {
             TipoAparelhoMovelBO bo2 = new TipoAparelhoMovelBO();
@@ -84,6 +91,8 @@ namespace SALMvc.Controllers
             return View(am);
         }
 
+        //
+        // GET: /AparelhoMovel/Edit/#
         public ActionResult Edit(uint Id)
         {
             TipoAparelhoMovelBO bo2 = new TipoAparelhoMovelBO();
@@ -105,7 +114,8 @@ namespace SALMvc.Controllers
             return View(am);
         }
 
-
+        //
+        // POST: /AparelhoMovel/Edit/#
         [HttpPost]
         public ActionResult Edit(AparelhoMovel aparelhoMovel)
         {
@@ -122,6 +132,27 @@ namespace SALMvc.Controllers
             }
             Listar();
             return View("Index", lista);
+        }
+
+        //
+        // GET: /AparelhoMovel/Delete/#
+        public ActionResult Delete(uint Id)
+        {
+            AparelhoMovelBO bo = new AparelhoMovelBO();
+            try
+            {
+                AparelhoMovel am = new AparelhoMovel();
+                am = bo.BuscarPeloId(Id);
+                String modelo = am.Modelo;
+                bo.Excluir(am);
+                bo.Dispose();
+                TempData["flash"] = "O aparelho movel \"" + modelo + " \" excluido com sucesso.";
+            }
+            catch
+            {
+                TempData["flash"] = "Ocorreu um problema, tente novamente.";
+            }
+            return RedirectToAction("Index");
         }
     }
 }
