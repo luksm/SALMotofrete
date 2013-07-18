@@ -1,0 +1,22 @@
+﻿@{
+    var flash = TempData["Flash"];
+}
+@if (flash != null)
+{
+<p>@flash</p> 
+}
+
+@{
+    var em = TempData["ErrorMessage"];
+}
+@if (em != null)
+{
+<p>@em</p> 
+}
+@{
+    var st = TempData["ErrorStackTrace"];
+}
+@if (st != null)
+{
+<p>@st</p> 
+}
