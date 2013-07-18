@@ -1,0 +1,93 @@
+﻿@model SALClassLib.Masterdata.Model.Entregador
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Details</title>
+</head>
+<body>
+    <fieldset>
+        <legend>Entregador</legend>
+    
+        <div class="display-label">
+             @Html.DisplayNameFor(model => model.PlacaMoto)
+        </div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.PlacaMoto)
+        </div>
+    
+        <div class="display-label">
+             @Html.DisplayNameFor(model => model.ModeloMoto)
+        </div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.ModeloMoto)
+        </div>
+    
+        <div class="display-label">
+             @Html.DisplayNameFor(model => model.StatusAtividade)
+        </div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.StatusAtividade)
+        </div>
+    
+        <div class="display-label">
+             @Html.DisplayNameFor(model => model.Nome)
+        </div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.Nome)
+        </div>
+    
+        <div class="display-label">
+             @Html.DisplayNameFor(model => model.Sobrenome)
+        </div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.Sobrenome)
+        </div>
+    
+        <div class="display-label">
+             @Html.DisplayNameFor(model => model.Cpf)
+        </div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.Cpf)
+        </div>
+    
+        <div class="display-label">
+             @Html.DisplayNameFor(model => model.Rg)
+        </div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.Rg)
+        </div>
+    
+        <div class="display-label">
+             @Html.DisplayNameFor(model => model.Cnh)
+        </div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.Cnh)
+        </div>
+    
+        <div class="display-label">
+             @Html.DisplayNameFor(model => model.Usuario)
+        </div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.Usuario)
+        </div>
+    
+        <div class="display-label">
+             @Html.DisplayNameFor(model => model.Foto)
+        </div>
+        <div class="display-field">
+            <img src="@ViewBag.Foto" width="400" height="310" />
+        </div>
+    </fieldset>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id=Model.Id }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+</body>
+</html>

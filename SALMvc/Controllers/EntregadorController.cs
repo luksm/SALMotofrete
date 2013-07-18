@@ -43,7 +43,8 @@ namespace SALMvc.Controllers
                 listaAparelhos.Add(new SelectListItem()
                 {
                     Text = e.AparelhoMovel.Id + " (" + e.AparelhoMovel.Modelo + " " + e.AparelhoMovel.Marca + ")",
-                    Value = e.AparelhoMovel.Id.ToString()
+                    Value = e.AparelhoMovel.Id.ToString(),
+                    Selected = true
                 });
             }
             ViewBag.AparelhoMovel = listaAparelhos;
@@ -198,6 +199,32 @@ namespace SALMvc.Controllers
             }
             Listar();
             return View("Index", lista);
+        }
+
+        public ActionResult Details(uint id)
+        {
+            EntregadorBO bo = new EntregadorBO();
+            Entregador entregador = null;
+            try
+            {
+                entregador = bo.BuscarPeloId(id);
+                if (System.IO.File.Exists(entregador.Foto))
+                {
+                    System.IO.FileInfo info = new System.IO.FileInfo(entregador.Foto);
+                    ViewBag.Foto = "/Uploads/FotosEntregadores/" + info.Name;
+                }
+            }
+            catch (Exception)
+            {
+                Listar();
+                return View("Index", lista);
+            }
+            finally
+            {
+                if (bo != null)
+                    bo.Dispose();
+            }
+            return View(entregador);
         }
     }
 }
