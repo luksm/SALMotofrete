@@ -119,6 +119,7 @@
     <Compile Include="Controllers\AparelhoMovelController.cs" />
     <Compile Include="Controllers\AtendenteController.cs" />
     <Compile Include="Controllers\EntregadorController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -176,6 +177,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Entregador\Delete.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Home\Index.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
