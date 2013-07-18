@@ -1,14 +1,15 @@
 ﻿@model SALClassLib.Masterdata.Model.Atendente
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Cadastro de Atendente";
     Layout = "~/Views/Shared/_Utopia.cshtml";
     Html.RenderPartial("~/Views/Shared/_FlashPartial.cshtml");
 }
 
-<h2>Create</h2>
+<h2>Cadastro de Atendente</h2>
 
-@using (Html.BeginForm()) {
+@using (Html.BeginForm("Create", "Atendente", FormMethod.Post, new { enctype = "multipart/form-data" } ))
+{
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
 
@@ -59,8 +60,7 @@
             @Html.LabelFor(model => model.Foto)
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.Foto)
-            @Html.ValidationMessageFor(model => model.Foto)
+            <input type="file" name="Foto" />
         </div>
 
         <div class="editor-label">

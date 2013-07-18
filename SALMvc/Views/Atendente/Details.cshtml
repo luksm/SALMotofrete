@@ -80,6 +80,17 @@
     <div class="display-field">
         @Html.DisplayFor(model => model.StatusExclusao)
     </div>
+
+    <div class="display-label">
+            @Html.DisplayNameFor(model => model.Usuario)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Usuario)
+    </div>
+    
+    <div class="display-field">
+        <img src="@ViewBag.Foto" />
+    </div>
 </fieldset>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id=Model.Id }) |
