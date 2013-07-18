@@ -35,6 +35,7 @@ namespace SALClassLib.Masterdata.Model.BO
         {
             if (obj == null) return;
             obj.StatusExclusao = 1;
+            obj.AparelhoMovel = null;
             this.Alterar(obj);
         }
 

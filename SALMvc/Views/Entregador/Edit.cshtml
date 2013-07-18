@@ -97,13 +97,13 @@
             </div>
     
             <div class="editor-label">
-                @Html.LabelFor(model => model.Senha)
+                @Html.LabelFor(model => model.AparelhoMovel)
             </div>
             <div class="editor-field">
-                @Html.PasswordFor(model => model.Senha)
-                @Html.ValidationMessageFor(model => model.Senha)
+                @Html.DropDownListFor(model => model.AparelhoMovel.Id, (IEnumerable<SelectListItem>)ViewBag.AparelhoMovel)
+                @Html.ValidationMessageFor(model => model.AparelhoMovel)
             </div>
-
+            @Html.HiddenFor(model => model.Senha)
             
             <p>
                 <input type="submit" value="Save" />

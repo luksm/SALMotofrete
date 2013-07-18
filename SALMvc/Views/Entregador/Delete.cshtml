@@ -12,7 +12,7 @@
     <title>Delete</title>
 </head>
 <body>
-    <h3>Are you sure you want to delete this?</h3>
+    <h3>Tem certeza que deseja excluir este entregador?</h3>
     <fieldset>
         <legend>Entregador</legend>
     
@@ -69,9 +69,8 @@
              @Html.DisplayNameFor(model => model.Foto)
         </div>
         <div class="display-field">
-            @Html.DisplayFor(model => model.Foto)
+            <img src="@ViewBag.Foto" width="400" height="310" />
         </div>
-    
     </fieldset>
     @using (Html.BeginForm()) {
         @Html.AntiForgeryToken()

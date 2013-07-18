@@ -20,7 +20,7 @@ namespace SALMvc.Controllers
             bo.Dispose();
         }
 
-        public void PreencherBagAparelhoMovel()
+        public void PreencherBagDropDownLists(Entregador e = null)
         {
             AparelhoMovelBO bo = new AparelhoMovelBO();
             IList<AparelhoMovel> aparelhos = bo.ListarDisponiveis();
@@ -37,6 +37,15 @@ namespace SALMvc.Controllers
                     }
                 );
             }
+            //adiciona no dropdownlist de aparelho movel tambem o aparelho movel atual do entregador
+            if (e != null)
+            {
+                listaAparelhos.Add(new SelectListItem()
+                {
+                    Text = e.AparelhoMovel.Id + " (" + e.AparelhoMovel.Modelo + " " + e.AparelhoMovel.Marca + ")",
+                    Value = e.AparelhoMovel.Id.ToString()
+                });
+            }
             ViewBag.AparelhoMovel = listaAparelhos;
         }
         //
@@ -50,14 +59,14 @@ namespace SALMvc.Controllers
 
         public ActionResult Create()
         {
-            PreencherBagAparelhoMovel();
+            PreencherBagDropDownLists();
             return View();
         }
 
         [HttpPost]
         public ActionResult Create(Entregador entregador)
         {
-            PreencherBagAparelhoMovel();
+            PreencherBagDropDownLists();
 
             if (!ModelState.IsValid)
             {
@@ -98,17 +107,19 @@ namespace SALMvc.Controllers
 
         public ActionResult Edit(uint id)
         {
-            PreencherBagAparelhoMovel();
             EntregadorBO bo = new EntregadorBO();
             Entregador entregador = new Entregador();
             entregador = bo.BuscarPeloId(id);
             bo.Dispose();
+            PreencherBagDropDownLists(entregador);
             return View(entregador);
         }
 
         [HttpPost]
         public ActionResult Edit(Entregador entregador)
         {
+            PreencherBagDropDownLists(entregador);
+            
             EntregadorBO bo = new EntregadorBO();
             try
             {
@@ -139,13 +150,18 @@ namespace SALMvc.Controllers
             return View("Index", lista);
         }
 
-        public ActionResult Delete(int id)
+        public ActionResult Delete(uint id)
         {
             EntregadorBO bo = new EntregadorBO();
             Entregador entregador = null;
             try
             {
                 entregador = bo.BuscarPeloId(id);
+                if (System.IO.File.Exists(entregador.Foto))
+                {
+                    System.IO.FileInfo info = new System.IO.FileInfo(entregador.Foto);
+                    ViewBag.Foto = "/Uploads/FotosEntregadores/" + info.Name;
+                }
             }
             catch (Exception)
             {
@@ -166,6 +182,8 @@ namespace SALMvc.Controllers
             EntregadorBO bo = new EntregadorBO();
             try
             {
+                entregador = bo.BuscarPeloId(entregador.Id);
+                if (System.IO.File.Exists(entregador.Foto)) System.IO.File.Delete(entregador.Foto);
                 bo.Excluir(entregador);
             }
             catch (Exception)
