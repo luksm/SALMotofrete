@@ -35,7 +35,7 @@ namespace SALClassLib.Masterdata.Model
 
             TipoAparelhoMovel t = (TipoAparelhoMovel)obj;
 
-            return t.Id == this.Id && t.Descricao.Equals(this.Descricao);
+            return t.Id == this.Id;
         }
 
         // override object.GetHashCode

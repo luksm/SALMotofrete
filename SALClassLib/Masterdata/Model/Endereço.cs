@@ -65,8 +65,7 @@ namespace SALClassLib.Masterdata.Model
             }
 
             Endereco e = (Endereco)obj;
-            return e.Id == this.Id && e.Logradouro.Equals(this.Logradouro) && e.Bairro.Equals(this.Bairro)
-                && e.Numero == this.Numero && e.Municipio.Equals(this.Municipio);
+            return e.Id == this.Id;
         }
 
         // override object.GetHashCode

@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
+using Iesi.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -67,8 +67,7 @@ namespace SALClassLib.Masterdata.Model
 
             Entregador e = (Entregador)obj;
 
-            return e.Id == this.Id && e.PlacaMoto == this.PlacaMoto
-                && base.Equals((PessoaFisica)e);
+            return e.Id == this.Id;
         }
 
         // override object.GetHashCode

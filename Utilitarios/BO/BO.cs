@@ -75,7 +75,7 @@ namespace Utilitarios.BO
             tx.Commit();
         }
 
-        public void Dispose()
+        public virtual void Dispose()
         {
             throw new NotImplementedException();
         }

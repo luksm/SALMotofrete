@@ -50,7 +50,7 @@ namespace SALClassLib.Masterdata.Model
             }
 
             Estado e = (Estado)obj;
-            return e.Id == this.Id && e.Codigo == this.Codigo && e.Nome.Equals(this.Nome) && e.Sigla.Equals(this.Sigla);
+            return e.Id == this.Id;
         }
 
         // override object.GetHashCode

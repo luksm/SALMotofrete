@@ -1,0 +1,124 @@
+﻿@model SALClassLib.Masterdata.Model.Entregador
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Create</title>
+</head>
+<body>
+    <script src="~/Scripts/jquery-1.8.2.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    
+    @using (Html.BeginForm("Create", "Entregador", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+    
+        <fieldset>
+            <legend>Entregador</legend>
+    
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Nome)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.Nome)
+                @Html.ValidationMessageFor(model => model.Nome)
+            </div>
+    
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Sobrenome)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.Sobrenome)
+                @Html.ValidationMessageFor(model => model.Sobrenome)
+            </div>
+    
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Cpf)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.Cpf)
+                @Html.ValidationMessageFor(model => model.Cpf)
+            </div>
+    
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Rg)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.Rg)
+                @Html.ValidationMessageFor(model => model.Rg)
+            </div>
+    
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Cnh)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.Cnh)
+                @Html.ValidationMessageFor(model => model.Cnh)
+            </div>
+    
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Foto)
+            </div>
+            <div class="editor-field">
+                <input type="file" name="Foto" />
+            </div>
+            
+            <div class="editor-label">
+                @Html.LabelFor(model => model.PlacaMoto)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.PlacaMoto)
+                @Html.ValidationMessageFor(model => model.PlacaMoto)
+            </div>
+    
+            <div class="editor-label">
+                @Html.LabelFor(model => model.ModeloMoto)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.ModeloMoto)
+                @Html.ValidationMessageFor(model => model.ModeloMoto)
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Usuario)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.Usuario)
+                @Html.ValidationMessageFor(model => model.Usuario)
+            </div>
+    
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Senha)
+            </div>
+            <div class="editor-field">
+                @Html.PasswordFor(model => model.Senha)
+                @Html.ValidationMessageFor(model => model.Senha)
+            </div>
+    
+            <div class="editor-label">
+                @Html.LabelFor(model => model.AparelhoMovel)
+            </div>
+            <div class="editor-field">
+                @Html.DropDownListFor(model => model.AparelhoMovel.Id, (IEnumerable<SelectListItem>)ViewBag.AparelhoMovel)
+                @Html.ValidationMessageFor(model => model.AparelhoMovel)
+            </div>
+
+            <p>
+                <input type="submit" value="Create" />
+            </p>
+        </fieldset>
+    }
+    
+    <div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>
+</body>
+</html>

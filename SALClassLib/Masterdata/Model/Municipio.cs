@@ -55,7 +55,7 @@ namespace SALClassLib.Masterdata.Model
             }
 
             Municipio m = (Municipio)obj;
-            return m.Id == this.Id && m.Nome.Equals(this.Nome) && m.Codigo == this.Codigo && m.Estado.Equals(this.Estado);
+            return m.Id == this.Id;
         }
 
         // override object.GetHashCode

@@ -58,7 +58,7 @@ namespace SALClassLib.Masterdata.Model
 
             Contato c = (Contato)obj;
 
-            return c.Id == this.Id && c.Nome.Equals(this.Nome);
+            return c.Id == this.Id;
         }
 
         // override object.GetHashCode
