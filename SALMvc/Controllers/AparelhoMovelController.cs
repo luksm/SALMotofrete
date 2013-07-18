@@ -11,10 +11,10 @@ namespace SALMvc.Controllers
 {
     public class AparelhoMovelController : Controller
     {
-        //
-        // GET: /AparelhoMovel/
         IList<AparelhoMovel> lista = new List<AparelhoMovel>();
 
+        //
+        // GET: /AparelhoMovel/
         public void Listar()
         {
             AparelhoMovelBO bo = new AparelhoMovelBO();
@@ -54,6 +54,12 @@ namespace SALMvc.Controllers
         [HttpPost]
         public ActionResult Create(AparelhoMovel aparelhoMovel)
         {
+
+            if (!ModelState.IsValid)
+            {
+                return View(aparelhoMovel);
+            }
+
             AparelhoMovelBO bo = new AparelhoMovelBO();
             try
             {
@@ -119,6 +125,12 @@ namespace SALMvc.Controllers
         [HttpPost]
         public ActionResult Edit(AparelhoMovel aparelhoMovel)
         {
+
+            if (!ModelState.IsValid)
+            {
+                return View(aparelhoMovel);
+            }
+
             AparelhoMovelBO bo = new AparelhoMovelBO();
             try
             {
