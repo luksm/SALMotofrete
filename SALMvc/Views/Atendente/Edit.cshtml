@@ -2,13 +2,14 @@
 
 @{
     ViewBag.Title = "Edição de Atendente";
-    Layout = "~/Views/_Shared/utopia.cshtml";
+    Layout = "~/Views/Shared/_Utopia.cshtml";
     Html.RenderPartial("~/Views/Shared/_FlashPartial.cshtml");
 }
 
 <h2>Edit</h2>
 
 @using (Html.BeginForm("Edit", "Atendente", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
 
