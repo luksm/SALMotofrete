@@ -1,0 +1,109 @@
+﻿@model SALClassLib.Masterdata.Model.Gerente
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Utopia.cshtml";
+    Html.RenderPartial("~/Views/Shared/_FlashPartial.cshtml");
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Gerente</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Nome)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Nome)
+            @Html.ValidationMessageFor(model => model.Nome)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Sobrenome)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Sobrenome)
+            @Html.ValidationMessageFor(model => model.Sobrenome)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Cpf)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Cpf)
+            @Html.ValidationMessageFor(model => model.Cpf)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Rg)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Rg)
+            @Html.ValidationMessageFor(model => model.Rg)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Foto)
+        </div>
+        <div class="editor-field">
+            <input type="file" name="Foto" />
+            @Html.HiddenFor(model => model.Foto)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.TelefoneFixo)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.TelefoneFixo)
+            @Html.ValidationMessageFor(model => model.TelefoneFixo)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.TelefoneCelular)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.TelefoneCelular)
+            @Html.ValidationMessageFor(model => model.TelefoneCelular)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Email)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Email)
+            @Html.ValidationMessageFor(model => model.Email)
+        </div>
+
+        @Html.HiddenFor(model => model.Id)
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Usuario)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Usuario)
+            @Html.ValidationMessageFor(model => model.Usuario)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Senha)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Senha)
+            @Html.ValidationMessageFor(model => model.Senha)
+        </div>
+
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+

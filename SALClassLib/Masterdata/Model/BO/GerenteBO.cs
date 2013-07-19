@@ -37,5 +37,15 @@ namespace SALClassLib.Masterdata.Model.BO
             obj.StatusExclusao = 1;
             this.Alterar(obj);
         }
+
+        public IList<Gerente> ListarAtivos()
+        {
+            IList<Gerente> lista;
+            ITransaction tx = Dao.Sessao.BeginTransaction();
+            IQuery query = Dao.Sessao.CreateQuery("from Gerente where StatusExclusao = 0");
+            lista = query.List<Gerente>();
+            tx.Commit();
+            return lista;
+        }
     }
 }

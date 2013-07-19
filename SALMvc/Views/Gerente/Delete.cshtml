@@ -1,0 +1,78 @@
+﻿@model SALClassLib.Masterdata.Model.Gerente
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Utopia.cshtml";
+    Html.RenderPartial("~/Views/Shared/_FlashPartial.cshtml");
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<fieldset>
+    <legend>Gerente</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Nome)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Nome)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Sobrenome)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Sobrenome)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Cpf)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Cpf)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Rg)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Rg)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.TelefoneFixo)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.TelefoneFixo)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.TelefoneCelular)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.TelefoneCelular)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Email)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Email)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Usuario)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Usuario)
+    </div>
+</fieldset>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    <p>
+        <input type="submit" value="Delete" /> |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+}
