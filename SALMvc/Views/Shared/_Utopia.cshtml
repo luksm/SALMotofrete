@@ -2,21 +2,64 @@
 
 <html>
 <head>
-    <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title</title>
-    <link href="~/Assets/css/bootstrap-responsive.css" rel="stylesheet" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    
+    <!-- Le styles -->
     <link href="~/Assets/css/bootstrap-responsive.min.css" rel="stylesheet" />
-    <link href="~/Assets/css/bootstrap.css" rel="stylesheet" />
     <link href="~/Assets/css/bootstrap.min.css" rel="stylesheet" />
-    <script src="~/Assets/js/bootstrap.min.js"></script>
 </head>
-<body>
-    <h1>SAL</h1>
-    <div>
+<body data-spy="scroll" data-target=".bs-docs-sidebar">
+    <!-- Header
+    ================================================== -->
+    <div class="container">
+      <div class="row">
+        <div class="span12"  style="text-align: center">
+          <a href="#" style="text-decoration: none; color: #000000;">
+            <h1><big><big>SAL</big></big></h1>
+          </a>
+        </div>
+      </div>
+      <div class="row">
+        <div class="span12"  style="text-align: right">
+          <a href="#" style="text-decoration: none; color: #000000;">
+            User (user@sal.com)
+          </a> | 
+          <a href="#" style="text-decoration: none; color: #000000;">
+            Sair
+          </a>
+        </div>
+      </div>
+    </div>
+    <hr>
+
+    <div class="container-fluid">
         @RenderBody()
     </div>
-    <script src="~/Scripts/jquery-1.8.2.min.js"></script>
-    <script src="~/Scripts/jquery.validate.min.js"></script>
-    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
+    <script src="~/Assets/js/application.js"></script>
+    <script src="~/Assets/js/bootstrap-affix.js"></script>
+    <script src="~/Assets/js/bootstrap-alert.js"></script>
+    <script src="~/Assets/js/bootstrap-button.js"></script>
+    <script src="~/Assets/js/bootstrap-carousel.js"></script>
+    <script src="~/Assets/js/bootstrap-collapse.js"></script>
+    <script src="~/Assets/js/bootstrap-dropdown.js"></script>
+    <script src="~/Assets/js/bootstrap-modal.js"></script>
+    <script src="~/Assets/js/bootstrap-popover.js"></script>
+    <script src="~/Assets/js/bootstrap-scrollspy.js"></script>
+    <script src="~/Assets/js/bootstrap-tab.js"></script>
+    <script src="~/Assets/js/bootstrap-tooltip.js"></script>
+    <script src="~/Assets/js/bootstrap-transition.js"></script>
+    <script src="~/Assets/js/bootstrap-typeahead.js"></script>
+    <script src="~/Assets/js/bootstrap.min.js"></script>
+    <script src="~/Assets/js/gmaps.js"></script>
+    <script src="~/Assets/js/jquery.js"></script>
+    <script src="~/Assets/js/prettify.js"></script>
 </body>
 </html>
