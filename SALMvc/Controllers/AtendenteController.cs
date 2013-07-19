@@ -18,7 +18,7 @@ namespace SALMvc.Controllers
         public void Listar()
         {
             AtendenteBO bo = new AtendenteBO();
-            lista = bo.Listar();
+            lista = bo.ListarAtivos();
             bo.Dispose();
         }
 
@@ -51,8 +51,8 @@ namespace SALMvc.Controllers
 
             AtendenteBO bo = new AtendenteBO();
 
-            try
-            {
+            //try
+            //{
                 ulong id = bo.Incluir(atendente);
                 if (!Request.Files["Foto"].FileName.Equals(""))
                 {
@@ -62,7 +62,7 @@ namespace SALMvc.Controllers
                     bo.Alterar(atendente);
                 }
                 TempData["flash"] = "Seu cadastro foi realisado com sucesso.";
-            }
+            /*}
             catch (BOException ex)
             {
                 ModelState.AddModelError("", ex.Message);
@@ -72,10 +72,10 @@ namespace SALMvc.Controllers
                 ModelState.AddModelError("", "Ocorreu um problema, tente novamente." + ex.Message);
             }
             finally
-            {
+            { */
                 if (bo != null)
                     bo.Dispose();
-            }
+            //}
 
             return RedirectToAction("Index");
         }

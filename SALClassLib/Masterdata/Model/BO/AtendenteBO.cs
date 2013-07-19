@@ -37,5 +37,19 @@ namespace SALClassLib.Masterdata.Model.BO
             obj.StatusExclusao = 1;
             this.Alterar(obj);
         }
+        /// <summary>
+        /// Retorna todos os Atendentes com StatusExclusão zerado
+        /// </summary>
+        /// <returns>Ilist Listagem de atendentes</returns>
+        public IList<Atendente> ListarAtivos()
+        {
+            IList<Atendente> lista;
+            ITransaction tx = Dao.Sessao.BeginTransaction();
+            IQuery query = Dao.Sessao.CreateQuery("from Atendente where StatusExclusao = 0");
+            lista = query.List<Atendente>();
+            tx.Commit();
+            return lista;
+        }
+
     }
 }
