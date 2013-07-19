@@ -118,6 +118,7 @@
   <ItemGroup>
     <Compile Include="Controllers\AparelhoMovelController.cs" />
     <Compile Include="Controllers\AtendenteController.cs" />
+    <Compile Include="Controllers\ClienteController.cs" />
     <Compile Include="Controllers\EntregadorController.cs" />
     <Compile Include="Controllers\GerenteController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -130,13 +131,28 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Content Include="Assets\css\bootstrap-responsive.css" />
     <Content Include="Assets\css\bootstrap-responsive.min.css" />
-    <Content Include="Assets\css\bootstrap.css" />
     <Content Include="Assets\css\bootstrap.min.css" />
     <Content Include="Assets\img\glyphicons-halflings-white.png" />
     <Content Include="Assets\img\glyphicons-halflings.png" />
+    <Content Include="Assets\js\application.js" />
+    <Content Include="Assets\js\bootstrap-affix.js" />
+    <Content Include="Assets\js\bootstrap-alert.js" />
+    <Content Include="Assets\js\bootstrap-button.js" />
+    <Content Include="Assets\js\bootstrap-carousel.js" />
+    <Content Include="Assets\js\bootstrap-collapse.js" />
+    <Content Include="Assets\js\bootstrap-dropdown.js" />
+    <Content Include="Assets\js\bootstrap-modal.js" />
+    <Content Include="Assets\js\bootstrap-popover.js" />
+    <Content Include="Assets\js\bootstrap-scrollspy.js" />
+    <Content Include="Assets\js\bootstrap-tab.js" />
+    <Content Include="Assets\js\bootstrap-tooltip.js" />
+    <Content Include="Assets\js\bootstrap-transition.js" />
+    <Content Include="Assets\js\bootstrap-typeahead.js" />
     <Content Include="Assets\js\bootstrap.min.js" />
+    <Content Include="Assets\js\gmaps.js" />
+    <Content Include="Assets\js\jquery.js" />
+    <Content Include="Assets\js\prettify.js" />
     <Content Include="Global.asax" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -223,6 +239,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Gerente\Details.cshtml" />
+    <Content Include="Views\Cliente\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Cliente\CreatePF.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

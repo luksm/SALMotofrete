@@ -14,7 +14,16 @@ namespace SALClassLib.Masterdata.Model.DAO
             : base(sessao)
         {
 
+        }
 
+        public IList<Cliente> ListarAtivos()
+        {
+            IList<Cliente> lista;
+            ITransaction tx = Sessao.BeginTransaction();
+            IQuery query = Sessao.CreateQuery("from Cliente where Pessoa.StatusExclusao = 0");
+            lista = query.List<Cliente>();
+            tx.Commit();
+            return lista;
         }
     }
 }

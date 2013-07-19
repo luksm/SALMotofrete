@@ -25,6 +25,30 @@ namespace SALClassLib.Masterdata.Model
             set { pessoa = value; }
         }
 
+        public virtual PessoaFisica PessoaFisica
+        {
+            get
+            {
+                if (pessoa is PessoaFisica)
+                    return (PessoaFisica)pessoa;
+                else
+                    return null;
+            }
+            set { pessoa = value; }
+        }
+
+        public virtual PessoaJuridica PessoaJuridica
+        {
+            get
+            {
+                if (pessoa is PessoaJuridica)
+                    return (PessoaJuridica)pessoa;
+                else
+                    return null;
+            }
+            set { pessoa = value; }
+        }
+
         private ISet<OrdemServico> ordensServico;
 
         public virtual ISet<OrdemServico> OrdensServico

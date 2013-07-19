@@ -65,6 +65,7 @@
     <Compile Include="Masterdata\Model\Contato.cs" />
     <Compile Include="Masterdata\Model\DAO\AtendenteDAO.cs" />
     <Compile Include="Masterdata\Model\DAO\ClienteDAO.cs" />
+    <Compile Include="Masterdata\Model\DAO\EnderecoDAO.cs" />
     <Compile Include="Masterdata\Model\DAO\EntregadorDAO.cs" />
     <Compile Include="Masterdata\Model\DAO\TipoAparelhoMovelDAO.cs" />
     <Compile Include="Masterdata\Model\Endereço.cs" />
