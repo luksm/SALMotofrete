@@ -38,5 +38,12 @@ namespace SALClassLib.Masterdata.Model.BO
             obj.Pessoa.StatusExclusao = 1;
             this.Alterar(obj);
         }
+
+        public IList<Cliente> ListarAtivos()
+        {
+            return ListarAtivos();
+        }
+
+        
     }
 }

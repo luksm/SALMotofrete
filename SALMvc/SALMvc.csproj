@@ -118,6 +118,7 @@
   <ItemGroup>
     <Compile Include="Controllers\AparelhoMovelController.cs" />
     <Compile Include="Controllers\AtendenteController.cs" />
+    <Compile Include="Controllers\ClienteController.cs" />
     <Compile Include="Controllers\EntregadorController.cs" />
     <Compile Include="Controllers\GerenteController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -223,6 +224,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Gerente\Details.cshtml" />
+    <Content Include="Views\Cliente\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Cliente\CreatePF.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

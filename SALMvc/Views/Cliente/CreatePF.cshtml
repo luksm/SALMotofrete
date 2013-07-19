@@ -1,0 +1,82 @@
+﻿@model SALClassLib.Masterdata.Model.Cliente
+
+@{
+    ViewBag.Title = "CreatePF";
+    Layout = "~/Views/_Shared/utopia.cshtml";
+}
+
+<h2>CreatePF</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Cliente</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PessoaFisica.Nome)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PessoaFisica.Nome)
+            @Html.ValidationMessageFor(model => model.PessoaFisica.Nome)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PessoaFisica.Sobrenome)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PessoaFisica.Sobrenome)
+            @Html.ValidationMessageFor(model => model.PessoaFisica.Sobrenome)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PessoaFisica.Cpf)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PessoaFisica.Cpf)
+            @Html.ValidationMessageFor(model => model.PessoaFisica.Cpf)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PessoaFisica.Rg)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PessoaFisica.Rg)
+            @Html.ValidationMessageFor(model => model.PessoaFisica.Rg)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PessoaFisica.TelefoneFixo)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PessoaFisica.TelefoneFixo)
+            @Html.ValidationMessageFor(model => model.PessoaFisica.TelefoneFixo)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PessoaFisica.TelefoneCelular)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PessoaFisica.TelefoneCelular)
+            @Html.ValidationMessageFor(model => model.PessoaFisica.TelefoneCelular)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PessoaFisica.Email)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PessoaFisica.Email)
+            @Html.ValidationMessageFor(model => model.PessoaFisica.Email)
+        </div>
+
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
