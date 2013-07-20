@@ -35,8 +35,22 @@
     </div>
     <hr>
 
+    <!-- Content
+    ================================================== -->
     <div class="container-fluid">
-        @RenderBody()
+      <div class="row-fluid">
+        <div class="span2">
+          <ul class="nav nav-pills nav-stacked">
+            <li>@Html.ActionLink("Gerente", "Index", "Gerente")</li>
+            <li>@Html.ActionLink("Entregador", "Index", "Entregador")</li>
+            <li>@Html.ActionLink("Aparelho Móvel", "Index", "AparelhoMovel")</li>
+            <li>@Html.ActionLink("Atendente", "Index", "Atendente")</li>
+          </ul>
+        </div>
+        <div class="span10">
+            @RenderBody()
+        </div>
+      </div>
     </div>
 
     <!-- Le javascript

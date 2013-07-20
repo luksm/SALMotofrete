@@ -1,11 +1,17 @@
 ﻿@model IEnumerable<SALClassLib.Masterdata.Model.Cliente>
 
 @{
-    ViewBag.Title = "Index";
-    Layout = "~/Views/_Shared/utopia.cshtml";
+    ViewBag.Title = "Listagem de Clientes";
+    Layout = "~/Views/Shared/_Utopia.cshtml";
+    Html.RenderPartial("~/Views/Shared/_FlashPartial.cshtml");
 }
 
-<h2>Index</h2>
+<div class="row" style="border-bottom: 1px solid black;">
+    <h2>
+        Entregadores
+        <a href="@Url.Action("Create", "Cliente")" class="btn btn-primary pull-right" type="button"><i class="icon-user icon-white"> </i>  Novo Cliente</a>
+    </h2>
+</div>
 
 <p>
     @Html.ActionLink("Nova Pessoa Fisica", "CreatePF")
@@ -13,7 +19,7 @@
 <p>
     @Html.ActionLink("Nova Pessoa Juridica", "CreatePF")
 </p>
-<table>
+    <table class="table table-hover table-striped">
     <tr>
         <th>Nome</th>
         <th>Sobrenome</th>
