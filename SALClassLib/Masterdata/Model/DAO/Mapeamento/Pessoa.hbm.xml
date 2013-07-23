@@ -6,12 +6,12 @@
       <column name="ID_PESSOA" not-null="true"/>
       <generator class="increment" />
     </id>
-    <set name="Enderecos" cascade="all">
+    <set name="Enderecos" cascade="all" fetch="join" inverse="true">
       <key column="ID_PESSOA" not-null="false" />
       <one-to-many class="Endereco" />
     </set>
-    <property name="Usuario" column="USUARIO" length="40" not-null="true" />
-    <property name="Senha" column="SENHA" length="20" not-null="true" />
+    <property name="Usuario" column="USUARIO" length="40" not-null="false" />
+    <property name="Senha" column="SENHA" length="20" not-null="false" />
     <property name="StatusExclusao" column="STATUS_EXCLUSAO" not-null="true" />
     
     <joined-subclass name="PessoaFisica" table="TB_PESSOA_FISICA">

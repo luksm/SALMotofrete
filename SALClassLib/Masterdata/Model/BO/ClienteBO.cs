@@ -41,9 +41,7 @@ namespace SALClassLib.Masterdata.Model.BO
 
         public IList<Cliente> ListarAtivos()
         {
-            return ListarAtivos();
+            return dao.ListarAtivos();
         }
-
-        
     }
 }

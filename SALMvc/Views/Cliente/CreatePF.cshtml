@@ -2,10 +2,11 @@
 
 @{
     ViewBag.Title = "CreatePF";
-    Layout = "~/Views/_Shared/utopia.cshtml";
+    Layout = "~/Views/Shared/_Utopia.cshtml";
 }
 
 <h2>CreatePF</h2>
+
 
 @using (Html.BeginForm())
 {
@@ -70,7 +71,7 @@
             @Html.EditorFor(model => model.PessoaFisica.Email)
             @Html.ValidationMessageFor(model => model.PessoaFisica.Email)
         </div>
-
+        
         <p>
             <input type="submit" value="Create" />
         </p>

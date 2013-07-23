@@ -54,8 +54,11 @@
     <Compile Include="Masterdata\Model\BO\AparelhoMovelBO.cs" />
     <Compile Include="Masterdata\Model\BO\AtendenteBO.cs" />
     <Compile Include="Masterdata\Model\BO\ClienteBO.cs" />
+    <Compile Include="Masterdata\Model\BO\EnderecoBO.cs" />
     <Compile Include="Masterdata\Model\BO\EntregadorBO.cs" />
+    <Compile Include="Masterdata\Model\BO\EstadoBO.cs" />
     <Compile Include="Masterdata\Model\BO\GerenteBO.cs" />
+    <Compile Include="Masterdata\Model\BO\MunicipioBO.cs" />
     <Compile Include="Masterdata\Model\BO\TipoAparelhoMovelBO.cs" />
     <Compile Include="Masterdata\Model\DAO\AparelhoMovelDAO.cs" />
     <Compile Include="Masterdata\Model\AparelhoMovel.cs" />
@@ -67,6 +70,8 @@
     <Compile Include="Masterdata\Model\DAO\ClienteDAO.cs" />
     <Compile Include="Masterdata\Model\DAO\EnderecoDAO.cs" />
     <Compile Include="Masterdata\Model\DAO\EntregadorDAO.cs" />
+    <Compile Include="Masterdata\Model\DAO\EstadoDAO.cs" />
+    <Compile Include="Masterdata\Model\DAO\MunicipioDAO.cs" />
     <Compile Include="Masterdata\Model\DAO\TipoAparelhoMovelDAO.cs" />
     <Compile Include="Masterdata\Model\Endereço.cs" />
     <Compile Include="Masterdata\Model\Entregador.cs" />

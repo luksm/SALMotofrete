@@ -72,7 +72,7 @@ namespace SALClassLib.Masterdata.Model
         {
             unchecked
             {
-                return base.GetHashCode();
+                return base.GetHashCode() * 13;
             }
         }
     }

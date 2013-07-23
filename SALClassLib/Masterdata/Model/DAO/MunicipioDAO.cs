@@ -8,22 +8,23 @@ using Utilitarios.DAO;
 
 namespace SALClassLib.Masterdata.Model.DAO
 {
-    public class ClienteDAO : DAO<Cliente>
+    public class MunicipioDAO : DAO<Municipio>
     {
-        public ClienteDAO(ISession sessao)
+        public MunicipioDAO(ISession sessao)
             : base(sessao)
         {
 
         }
 
-        public IList<Cliente> ListarAtivos()
+        public IList<Municipio> ListarPeloEstado(Estado estado)
         {
-            IList<Cliente> lista;
             ITransaction tx = Sessao.BeginTransaction();
-            IQuery query = Sessao.CreateQuery("from Cliente as cli inner join fetch cli.Pessoa pes where pes.StatusExclusao = 0");
-            lista = query.List<Cliente>();
+            IQuery query = Sessao.CreateQuery("from Municipio join Estado where Estado.Id=?");
+            query.SetInt32(0, estado.Id);
+            IList<Municipio> lista = query.List<Municipio>();
             tx.Commit();
             return lista;
         }
     }
+        
 }

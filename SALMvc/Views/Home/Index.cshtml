@@ -3,3 +3,13 @@
     Layout = "~/Views/Shared/_Utopia.cshtml";
     Html.RenderPartial("~/Views/Shared/_FlashPartial.cshtml");
 }
+
+<h2>Index</h2>
+
+<ul>
+    <li>@Html.ActionLink("Gerente", "Index", "Gerente")</li>
+    <li>@Html.ActionLink("Entregador", "Index", "Entregador")</li>
+    <li>@Html.ActionLink("Aparelho Móvel", "Index", "AparelhoMovel")</li>
+    <li>@Html.ActionLink("Atendente", "Index", "Atendente")</li>
+    <li>@Html.ActionLink("Cliente", "Index", "Cliente")</li>
+</ul>

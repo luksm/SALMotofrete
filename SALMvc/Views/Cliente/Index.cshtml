@@ -31,7 +31,11 @@
 
 @foreach (var item in Model) {
     <tr>
-
+        <td>@item.PessoaFisica.Nome</td>
+        <td>@item.PessoaFisica.Sobrenome</td>
+        <td>@item.PessoaFisica.Cpf</td>
+        <td>@item.PessoaFisica.Rg</td>
+        <td>@item.PessoaFisica.Email</td>
         <td>
             <a href="@Url.Action("Edit", "Cliente", new { id=item.Id })" class="btn btn-small btn-info"><i class="icon-pencil icon-white"> </i>  Editar</a>
             <a href="@Url.Action("Details", "Cliente", new { id=item.Id })" class="btn btn-small btn-info"><i class="icon-info-sign icon-white"> </i>  Detalhes</a>

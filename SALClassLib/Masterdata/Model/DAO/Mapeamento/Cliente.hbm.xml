@@ -6,6 +6,6 @@
       <column name="ID_CLIENTE" not-null="true"/>
       <generator class="increment" />
     </id>
-    <many-to-one name="Pessoa" class="Pessoa" cascade="all" column="ID_PESSOA" not-null="true" unique="true" />
+    <many-to-one name="Pessoa" class="Pessoa" cascade="all" fetch="join" column="ID_PESSOA" not-null="true" unique="true" />
   </class>
 </hibernate-mapping>

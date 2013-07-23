@@ -56,6 +56,15 @@ namespace SALClassLib.Masterdata.Model
             set { municipio = value; }
         }
 
+        private Pessoa pessoa;
+
+        public virtual Pessoa Pessoa
+        {
+            get { return pessoa; }
+            set { pessoa = value; }
+        }
+        
+
         // override object.Equals
         public override bool Equals(object obj)
         {

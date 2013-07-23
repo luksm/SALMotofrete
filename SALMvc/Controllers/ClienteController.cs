@@ -1,4 +1,5 @@
-﻿using SALClassLib.Masterdata.Model;
+﻿using NHibernate;
+using SALClassLib.Masterdata.Model;
 using SALClassLib.Masterdata.Model.BO;
 using System;
 using System.Collections.Generic;
@@ -12,19 +13,58 @@ namespace SALMvc.Controllers
     public class ClienteController : Controller
     {
         IList<Cliente> lista = null;
+        IList<Endereco> listaEnderecos = null;
 
-        public void Listar()
+        private void Listar()
         {
             ClienteBO bo = new ClienteBO();
             lista = bo.ListarAtivos();
             bo.Dispose();
         }
 
-        public void ListarEnderecos()
+        private void ListarEnderecos(Cliente c)
         {
-            ClienteBO bo = new ClienteBO();
-            lista = bo.Listar();
+            EnderecoBO bo = new EnderecoBO();
+            listaEnderecos = bo.ListarEnderecosDoCliente(c);
             bo.Dispose();
+            if (listaEnderecos == null) listaEnderecos = new List<Endereco>();
+        }
+
+        private void PreencherBagDropDownLists()
+        {
+            EstadoBO boe = new EstadoBO();
+            IList<Estado> estados = boe.Listar();
+            boe.Dispose();
+            boe = null;
+            var listaEstados = new List<SelectListItem>();
+            foreach (var item in estados)
+            {
+                listaEstados.Add(
+                    new SelectListItem()
+                    {
+                        Text = item.Sigla,
+                        Value = item.Id.ToString()
+                    }
+                );
+            }
+            ViewBag.Estados = listaEstados;
+
+            MunicipioBO bom = new MunicipioBO();
+            IList<Municipio> municipios = bom.Listar();
+            bom.Dispose();
+            bom = null;
+            var listaMunicipios = new List<SelectListItem>();
+            foreach (var item in municipios)
+            {
+                listaMunicipios.Add(
+                    new SelectListItem()
+                    {
+                        Text = item.Nome,
+                        Value = item.Id.ToString()
+                    }
+                );
+            }
+            ViewBag.Municipios = listaMunicipios;
         }
 
         //
@@ -61,8 +101,81 @@ namespace SALMvc.Controllers
             {
                 bo = new ClienteBO();
                 bo.Incluir(cliente);
-                TempData["flash"] = "Seu cadastro foi realizado com sucesso.";
-                return View("Enderecos");
+                Session["cliente"] = cliente;
+                return RedirectToAction("Enderecos");
+            }
+            catch (BOException ex)
+            {
+                ModelState.AddModelError("", ex.Message);
+            }
+            /*catch (Exception ex)
+            {
+                ModelState.AddModelError("", "Ocorreu um problema, tente novamente.");
+            }*/
+            finally
+            {
+                if (bo != null)
+                    bo.Dispose();
+            }
+            return View(cliente);
+        }
+
+        //
+        // GET: /Cliente/Enderecos/#
+
+        public ActionResult Enderecos()
+        {
+            try
+            {
+                Cliente c = (Cliente) Session["cliente"];
+                if (c == null) return RedirectToAction("Index");
+                ListarEnderecos(c);
+                return View(listaEnderecos);
+            }
+            catch (BOException ex)
+            {
+                TempData["flash"] = ex.Message;
+            }
+            /*catch (Exception ex)
+            {
+                TempData["flash"] = "Ocorreu um erro inesperado. Tente novamente.";
+            }*/
+
+            return RedirectToAction("Index");
+        }
+
+        //
+        // GET: /Cliente/CreateEndereco
+
+        public ActionResult CreateEndereco()
+        {
+            PreencherBagDropDownLists();
+            return View();
+        }
+
+        //
+        // POST: /Cliente/CreateEndereco
+
+        [HttpPost]
+        public ActionResult CreateEndereco(Endereco endereco)
+        {
+            PreencherBagDropDownLists();
+
+            if (!ModelState.IsValid)
+            {
+                return View(endereco);
+            }
+
+            ClienteBO bo = new ClienteBO();
+
+            try
+            {
+                Cliente c = (Cliente)Session["cliente"];
+                endereco.Pessoa = c.Pessoa;
+                c.Pessoa.Enderecos.Add(endereco);
+                bo.Alterar(c);
+                Session["cliente"] = c;
+                return RedirectToAction("Enderecos");
             }
             catch (BOException ex)
             {
@@ -77,7 +190,7 @@ namespace SALMvc.Controllers
                 if (bo != null)
                     bo.Dispose();
             }
-            return View(cliente);
+            return View(endereco);
         }
 
         //
