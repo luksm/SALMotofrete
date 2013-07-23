@@ -34,9 +34,9 @@
                 <td>@Html.DisplayFor(modelItem => item.Rg)</td>
                 <td>@Html.DisplayFor(modelItem => item.Cnh)</td>
                 <td class="actions">
-                    @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-                    @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-                    @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+                    <a href="@Url.Action("Edit", "Entregador", new { id=item.Id })" class="btn btn-small btn-info"><i class="icon-pencil icon-white"> </i>  Editar</a>
+                    <a href="@Url.Action("Details", "Entregador", new { id=item.Id })" class="btn btn-small btn-info"><i class="icon-info-sign icon-white"> </i>  Detalhes</a>
+                    <a href="@Url.Action("Delete", "Entregador", new { id=item.Id })" class="btn btn-small btn-info"><i class="icon-remove-circle icon-white"> </i>  Excluir</a>
                 </td>
             </tr>
 }
