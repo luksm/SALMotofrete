@@ -1,111 +1,114 @@
 ﻿@model SALClassLib.Masterdata.Model.Entregador
 
 @{
+    ViewBag.Title = "Cadastro de Entregadores";
     Layout = "~/Views/Shared/_Utopia.cshtml";
     Html.RenderPartial("~/Views/Shared/_FlashPartial.cshtml");
 }
-    
-    @using (Html.BeginForm("Create", "Entregador", FormMethod.Post, new { enctype = "multipart/form-data" }))
+
+<div class="row header">
+    <h2>Cadastro de Entregadores</h2>
+</div>
+
+<div class="row">
+    <div class="span4 offset4">
+    @using (Html.BeginForm("Create", "Entregador", FormMethod.Post, new { @class = "form-horizontal",  enctype = "multipart/form-data" }))
     {
         @Html.AntiForgeryToken()
         @Html.ValidationSummary(true)
-    
-        <fieldset>
-            <legend>Entregador</legend>
-    
-            <div class="editor-label">
-                @Html.LabelFor(model => model.Nome)
-            </div>
-            <div class="editor-field">
+
+        <div class="control-group">
+            @Html.LabelFor(model => model.Nome,  new { @class = "control-label" })
+            <div class="controls">
                 @Html.EditorFor(model => model.Nome)
                 @Html.ValidationMessageFor(model => model.Nome)
             </div>
-    
-            <div class="editor-label">
-                @Html.LabelFor(model => model.Sobrenome)
-            </div>
-            <div class="editor-field">
+        </div>
+
+        <div class="control-group">
+            @Html.LabelFor(model => model.Sobrenome,  new { @class = "control-label" })
+            <div class="controls">
                 @Html.EditorFor(model => model.Sobrenome)
                 @Html.ValidationMessageFor(model => model.Sobrenome)
             </div>
-    
-            <div class="editor-label">
-                @Html.LabelFor(model => model.Cpf)
-            </div>
-            <div class="editor-field">
+        </div>
+
+        <div class="control-group">
+            @Html.LabelFor(model => model.Cpf,  new { @class = "control-label" })
+            <div class="controls">
                 @Html.EditorFor(model => model.Cpf)
                 @Html.ValidationMessageFor(model => model.Cpf)
             </div>
-    
-            <div class="editor-label">
-                @Html.LabelFor(model => model.Rg)
-            </div>
-            <div class="editor-field">
+        </div>
+
+        <div class="control-group">
+            @Html.LabelFor(model => model.Rg,  new { @class = "control-label" })
+            <div class="controls">
                 @Html.EditorFor(model => model.Rg)
                 @Html.ValidationMessageFor(model => model.Rg)
             </div>
-    
-            <div class="editor-label">
-                @Html.LabelFor(model => model.Cnh)
-            </div>
-            <div class="editor-field">
+        </div>
+
+        <div class="control-group">
+            @Html.LabelFor(model => model.Cnh,  new { @class = "control-label" })
+            <div class="controls">
                 @Html.EditorFor(model => model.Cnh)
                 @Html.ValidationMessageFor(model => model.Cnh)
             </div>
-    
-            <div class="editor-label">
-                @Html.LabelFor(model => model.Foto)
-            </div>
-            <div class="editor-field">
+        </div>
+
+        <div class="control-group">
+            @Html.LabelFor(model => model.Foto,  new { @class = "control-label" })
+            <div class="controls">
                 <input type="file" name="Foto" />
             </div>
-            
-            <div class="editor-label">
-                @Html.LabelFor(model => model.PlacaMoto)
-            </div>
-            <div class="editor-field">
+        </div>
+
+        <div class="control-group">
+            @Html.LabelFor(model => model.PlacaMoto,  new { @class = "control-label" })
+            <div class="controls">
                 @Html.EditorFor(model => model.PlacaMoto)
                 @Html.ValidationMessageFor(model => model.PlacaMoto)
             </div>
-    
-            <div class="editor-label">
-                @Html.LabelFor(model => model.ModeloMoto)
-            </div>
-            <div class="editor-field">
+        </div>
+
+        <div class="control-group">
+            @Html.LabelFor(model => model.ModeloMoto,  new { @class = "control-label" })
+            <div class="controls">
                 @Html.EditorFor(model => model.ModeloMoto)
                 @Html.ValidationMessageFor(model => model.ModeloMoto)
             </div>
+        </div>
 
-            <div class="editor-label">
-                @Html.LabelFor(model => model.Usuario)
-            </div>
-            <div class="editor-field">
+        <div class="control-group">
+            @Html.LabelFor(model => model.Usuario,  new { @class = "control-label" })
+            <div class="controls">
                 @Html.EditorFor(model => model.Usuario)
                 @Html.ValidationMessageFor(model => model.Usuario)
             </div>
-    
-            <div class="editor-label">
-                @Html.LabelFor(model => model.Senha)
-            </div>
-            <div class="editor-field">
+        </div>
+
+        <div class="control-group">
+            @Html.LabelFor(model => model.Senha,  new { @class = "control-label" })
+            <div class="controls">
                 @Html.PasswordFor(model => model.Senha)
                 @Html.ValidationMessageFor(model => model.Senha)
             </div>
-    
-            <div class="editor-label">
-                @Html.LabelFor(model => model.AparelhoMovel)
-            </div>
-            <div class="editor-field">
+        </div>
+
+        <div class="control-group">
+            @Html.LabelFor(model => model.AparelhoMovel,  new { @class = "control-label" })
+            <div class="controls">
                 @Html.DropDownListFor(model => model.AparelhoMovel.Id, (IEnumerable<SelectListItem>)ViewBag.AparelhoMovel)
                 @Html.ValidationMessageFor(model => model.AparelhoMovel)
             </div>
-
-            <p>
-                <input type="submit" value="Create" />
-            </p>
-        </fieldset>
+        </div>
+            
+        <p class="actions">
+            <input class="btn btn-success" type="submit" value="Cadastrar" />
+            <input class="btn btn-warning" type="reset" value="Limpar" />
+            <a class="btn btn-danger" href="@Url.Action("Index", "Entregador")">Cancelar</a>
+        </p>    
     }
-    
-    <div>
-        @Html.ActionLink("Back to List", "Index")
     </div>
+</div>

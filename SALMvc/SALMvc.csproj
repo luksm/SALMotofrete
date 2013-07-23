@@ -42,6 +42,8 @@
     <Reference Include="Iesi.Collections, Version=1.0.1.0, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>C:\NHibernate\Iesi.Collections.dll</HintPath>
+    <Reference Include="log4net">
+      <HintPath>..\packages\log4net.2.0.0\lib\net40-full\log4net.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="MySql.Data, Version=6.7.4.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
@@ -134,6 +136,8 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Content Include="Assets\css\bootstrap-responsive.min.css" />
     <Content Include="Assets\css\bootstrap.min.css" />
+    <Content Include="Assets\css\application.css" />
+    <Content Include="Assets\fonts\olivier_demo.svg" />
     <Content Include="Assets\img\glyphicons-halflings-white.png" />
     <Content Include="Assets\img\glyphicons-halflings.png" />
     <Content Include="Assets\js\application.js" />
@@ -250,6 +254,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Cliente\CreateEndereco.cshtml" />
+    <Content Include="Assets\fonts\olivier_demo.eot" />
+    <Content Include="Assets\fonts\olivier_demo.otf" />
+    <Content Include="Assets\fonts\olivier_demo.ttf" />
+    <Content Include="Assets\fonts\olivier_demo.woff" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

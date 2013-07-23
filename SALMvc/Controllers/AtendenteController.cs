@@ -13,7 +13,7 @@ namespace SALMvc.Controllers
     public class AtendenteController : Controller
     {
         IList<Atendente> lista = new List<Atendente>();
-        String photoPath = "~/Uploads/Fotos/Funcionarios/Atendente/";
+        String pastaFotos = "~/Uploads/Fotos/Funcionarios/Atendente/";
 
         public void Listar()
         {
@@ -42,8 +42,6 @@ namespace SALMvc.Controllers
         [HttpPost]
         public ActionResult Create(Atendente atendente)
         {
-
-
             if (!ModelState.IsValid)
             {
                 return View(atendente);
@@ -51,18 +49,18 @@ namespace SALMvc.Controllers
 
             AtendenteBO bo = new AtendenteBO();
 
-            //try
-            //{
+            try
+            {
                 ulong id = bo.Incluir(atendente);
                 if (!Request.Files["Foto"].FileName.Equals(""))
                 {
                     HttpPostedFileBase postedFile = Request.Files["Foto"];
-                    atendente.Foto = Server.MapPath(photoPath) + String.Format("{0:0000000000}", id) + postedFile.FileName.Substring(postedFile.FileName.Length - 4, 4);
+                    atendente.Foto = Server.MapPath(pastaFotos) + String.Format("{0:0000000000}", id) + postedFile.FileName.Substring(postedFile.FileName.Length - 4, 4);
                     postedFile.SaveAs(atendente.Foto);
                     bo.Alterar(atendente);
                 }
                 TempData["flash"] = "Seu cadastro foi realisado com sucesso.";
-            /*}
+            }
             catch (BOException ex)
             {
                 ModelState.AddModelError("", ex.Message);
@@ -72,10 +70,10 @@ namespace SALMvc.Controllers
                 ModelState.AddModelError("", "Ocorreu um problema, tente novamente." + ex.Message);
             }
             finally
-            { */
+            {
                 if (bo != null)
                     bo.Dispose();
-            //}
+            }
 
             return RedirectToAction("Index");
         }
@@ -85,10 +83,26 @@ namespace SALMvc.Controllers
         public ActionResult Details(uint Id)
         {
             AtendenteBO bo = new AtendenteBO();
-            Atendente am = new Atendente();
-            am = bo.BuscarPeloId(Id);
-            bo.Dispose();
-            return View(am);
+            Atendente atendente = new Atendente();
+            try
+            {
+                atendente = bo.BuscarPeloId(Id);
+                if (System.IO.File.Exists(atendente.Foto))
+                {
+                    System.IO.FileInfo info = new System.IO.FileInfo(atendente.Foto);
+                    ViewBag.Foto = pastaFotos + info.Name;
+                }
+            }
+            catch (Exception)
+            {
+                RedirectToAction("Index");
+            }
+            finally
+            {
+                if (bo != null)
+                    bo.Dispose();
+            }
+            return View(atendente);
         }
 
         //
@@ -120,7 +134,7 @@ namespace SALMvc.Controllers
                 {
                     if (System.IO.File.Exists(atendente.Foto)) System.IO.File.Delete(atendente.Foto);
                     postedFile = Request.Files["Foto"];
-                    atendente.Foto = Server.MapPath(photoPath) + String.Format("{0:0000000000}", atendente.Id) + postedFile.FileName.Substring(postedFile.FileName.Length - 4, 4);
+                    atendente.Foto = Server.MapPath(pastaFotos) + String.Format("{0:0000000000}", atendente.Id) + postedFile.FileName.Substring(postedFile.FileName.Length - 4, 4);
                 }
                 bo.Alterar(atendente);
                 if (postedFile != null)

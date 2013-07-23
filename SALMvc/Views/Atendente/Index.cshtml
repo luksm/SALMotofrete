@@ -20,7 +20,7 @@
                 <th>@Html.DisplayNameFor(model => model.Nome)</th>
                 <th>@Html.DisplayNameFor(model => model.Sobrenome)</th>
                 <th>@Html.DisplayNameFor(model => model.Email)</th>
-                <th></th>
+                <th class="actions"></th>
             </tr>
         </thead>    
         <tbody>    
@@ -29,7 +29,7 @@
                 <td>@Html.DisplayFor(modelItem => item.Nome)</td>
                 <td>@Html.DisplayFor(modelItem => item.Sobrenome)</td>
                 <td>@Html.DisplayFor(modelItem => item.Email)</td>
-                <td>
+                <td class="actions">
                     <a href="@Url.Action("Edit", "Atendente", new { id=item.Id })" class="btn btn-small btn-info"><i class="icon-pencil icon-white"> </i>  Editar</a>
                     <a href="@Url.Action("Details", "Atendente", new { id=item.Id })" class="btn btn-small btn-info"><i class="icon-info-sign icon-white"> </i>  Detalhes</a>
                     <a href="@Url.Action("Delete", "Atendente", new { id=item.Id })" class="btn btn-small btn-info"><i class="icon-remove-circle icon-white"> </i>  Excluir</a>
