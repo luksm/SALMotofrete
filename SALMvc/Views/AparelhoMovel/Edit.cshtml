@@ -1,65 +1,66 @@
 ﻿@model SALClassLib.Masterdata.Model.AparelhoMovel
 
 @{
+    ViewBag.Title = "Edição de Aparelho Móvel";
     Layout = "~/Views/Shared/_Utopia.cshtml";
     Html.RenderPartial("~/Views/Shared/_FlashPartial.cshtml");
 }
     
-@using (Html.BeginForm()) {
-    @Html.AntiForgeryToken()
-    @Html.ValidationSummary(true)
-    
-    <fieldset>
-        <legend>AparelhoMovel</legend>
-    
+<div class="row header">
+    <h2>Edição de Aparelho Móvel</h2>
+</div>
+
+<div class="row">
+    <div class="span4 offset4">
+    @using (Html.BeginForm("Edit", "AparelhoMovel", FormMethod.Post, new { @class = "form-horizontal" }))
+    {
         @Html.HiddenFor(model => model.Id)
     
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Tipo)
-        </div>
-        <div class="editor-field">
-            @Html.DropDownListFor(model => model.Tipo.Id, (IEnumerable<SelectListItem>) ViewBag.TipoAparelhoMovel)
-            @Html.ValidationMessageFor(model => model.Tipo)
+        <div class="control-group">
+            @Html.LabelFor(model => model.Tipo,  new { @class = "control-label" })
+            <div class="controls">
+                @Html.DropDownListFor(model => model.Tipo.Id, (IEnumerable<SelectListItem>) ViewBag.TipoAparelhoMovel)
+                @Html.ValidationMessageFor(model => model.Tipo)
+            </div>
         </div>
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Modelo)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.Modelo)
-            @Html.ValidationMessageFor(model => model.Modelo)
-        </div>
-    
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Marca)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.Marca)
-            @Html.ValidationMessageFor(model => model.Marca)
+        <div class="control-group">
+            @Html.LabelFor(model => model.Modelo,  new { @class = "control-label" })
+            <div class="controls">
+                @Html.EditorFor(model => model.Modelo)
+                @Html.ValidationMessageFor(model => model.Modelo)
+            </div>
         </div>
     
-        <div class="editor-label">
-            @Html.LabelFor(model => model.NumeroTelefone)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.NumeroTelefone)
-            @Html.ValidationMessageFor(model => model.NumeroTelefone)
-        </div>
-    
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Observacao)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.Observacao)
-            @Html.ValidationMessageFor(model => model.Observacao)
+        <div class="control-group">
+            @Html.LabelFor(model => model.Marca,  new { @class = "control-label" })
+            <div class="controls">
+                @Html.EditorFor(model => model.Marca)
+                @Html.ValidationMessageFor(model => model.Marca)
+            </div>
         </div>
     
-        <p>
-            <input type="submit" value="Save" />
-        </p>
-    </fieldset>
+        <div class="control-group">
+            @Html.LabelFor(model => model.NumeroTelefone,  new { @class = "control-label" })
+            <div class="controls">
+                @Html.EditorFor(model => model.NumeroTelefone)
+                @Html.ValidationMessageFor(model => model.NumeroTelefone)
+            </div>
+        </div>
+    
+        <div class="control-group">
+            @Html.LabelFor(model => model.Observacao,  new { @class = "control-label" })
+            <div class="controls">
+                @Html.EditorFor(model => model.Observacao)
+                @Html.ValidationMessageFor(model => model.Observacao)
+            </div>
+        </div>
+    
+        <p class="actions">
+            <input class="btn btn-success" type="submit" value="Cadastrar" />
+            <input class="btn btn-warning" type="reset" value="Limpar" />
+            <a class="btn btn-danger" href="@Url.Action("Index", "AparelhoMovel")">Cancelar</a>
+        </p>    
 }
-    
-<div>
-    @Html.ActionLink("Back to List", "Index")
+    </div>
 </div>
