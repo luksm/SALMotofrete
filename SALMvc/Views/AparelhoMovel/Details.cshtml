@@ -1,42 +1,49 @@
 ﻿@model SALClassLib.Masterdata.Model.AparelhoMovel
 
 @{
+    ViewBag.Title = "Detalhes de Aparelho Móvel";
     Layout = "~/Views/Shared/_Utopia.cshtml";
     Html.RenderPartial("~/Views/Shared/_FlashPartial.cshtml");
 }
+    
+<div class="row header">
+    <h2>Edição de Aparelho Móvel</h2>
+</div>
 
-<fieldset>
-    <legend>AparelhoMovel</legend>
+<div class="row">
+    <div class="span4 offset4">
 
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.Modelo)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.Modelo)
-    </div>
+        <div class="control-group">
+            @Html.LabelFor(model => model.Modelo,  new { @class = "control-label" })
+            <strong>
+                @Html.DisplayFor(model => model.Modelo)
+            </strong>
+        </div>
 
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.Marca)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.Marca)
-    </div>
+        <div class="control-group">
+            @Html.LabelFor(model => model.Marca,  new { @class = "control-label" })
+            <strong>
+                @Html.DisplayFor(model => model.Marca)
+            </strong>
+        </div>
 
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.NumeroTelefone)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.NumeroTelefone)
-    </div>
+        <div class="control-group">
+            @Html.LabelFor(model => model.NumeroTelefone,  new { @class = "control-label" })
+            <strong>
+                @Html.DisplayFor(model => model.NumeroTelefone)
+            </strong>
+        </div>
 
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.Observacao)
+        <div class="control-group">
+            @Html.LabelFor(model => model.Observacao,  new { @class = "control-label" })
+            <strong>
+                @Html.DisplayFor(model => model.Observacao)
+            </strong>
+        </div>
+
+        <p class="actions">
+            <a class="btn btn-danger" href="@Url.Action("Index", "AparelhoMovel")">Cancelar</a>
+        </p>    
+
     </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.Observacao)
-    </div>
-</fieldset>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id=Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+</div>
