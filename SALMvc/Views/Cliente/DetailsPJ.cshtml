@@ -1,0 +1,51 @@
+﻿@model SALClassLib.Masterdata.Model.Cliente
+
+@{
+    ViewBag.Title = "DetailsPJ";
+    Layout = "~/Views/Shared/_Utopia.cshtml";
+}
+
+<h2>DetailsPJ</h2>
+
+<fieldset>
+    <legend>Cliente</legend>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.PessoaJuridica.NomeFantasia)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PessoaJuridica.NomeFantasia)
+    </div>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.PessoaJuridica.RazaoSocial)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PessoaJuridica.RazaoSocial)
+    </div>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.PessoaJuridica.Cnpj)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PessoaJuridica.Cnpj)
+    </div>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.PessoaJuridica.InscricaoEstadual)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PessoaJuridica.InscricaoEstadual)
+    </div>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.PessoaJuridica.WebSite)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PessoaJuridica.WebSite)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

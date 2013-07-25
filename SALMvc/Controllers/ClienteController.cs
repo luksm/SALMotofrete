@@ -67,6 +67,7 @@ namespace SALMvc.Controllers
             ViewBag.Municipios = listaMunicipios;
         }
 
+        #region Cliente
         //
         // GET: /Cliente/
 
@@ -120,6 +121,300 @@ namespace SALMvc.Controllers
             return View(cliente);
         }
 
+        //
+        // GET: /Cliente/CreatePJ
+
+        public ActionResult CreatePJ()
+        {
+            return View();
+        }
+
+        //
+        // POST: /Cliente/CreatePJ
+
+        [HttpPost]
+        public ActionResult CreatePJ(Cliente cliente)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(cliente);
+            }
+
+            ClienteBO bo = null;
+
+            try
+            {
+                bo = new ClienteBO();
+                bo.Incluir(cliente);
+                Session["cliente"] = cliente;
+                return RedirectToAction("Enderecos");
+            }
+            catch (BOException ex)
+            {
+                ModelState.AddModelError("", ex.Message);
+            }
+            /*catch (Exception ex)
+            {
+                ModelState.AddModelError("", "Ocorreu um problema, tente novamente.");
+            }*/
+            finally
+            {
+                if (bo != null)
+                    bo.Dispose();
+            }
+            return View(cliente);
+        }
+
+        //
+        // GET: /Cliente/Edit/#
+
+        public ActionResult Edit(uint id)
+        {
+            ClienteBO bo = new ClienteBO();
+            Cliente cliente = new Cliente();
+            cliente = bo.BuscarPeloId(id);
+            bo.Dispose();
+            Session["cliente"] = cliente;
+            if (cliente.Pessoa is PessoaFisica)
+            {
+                return RedirectToAction("EditPF");
+            }
+            if (cliente.Pessoa is PessoaJuridica)
+            {
+                return RedirectToAction("EditPJ");
+            }
+            return RedirectToAction("Index");
+        }
+
+        //
+        // GET: /Cliente/EditPF/#
+        
+        public ActionResult EditPF()
+        {
+            Cliente cliente = (Cliente)Session["cliente"];
+            return View(cliente);
+        }
+
+        //
+        // POST: /Cliente/EditPF/#
+
+        [HttpPost]
+        public ActionResult EditPF(Cliente cliente)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(cliente);
+            }
+
+            ClienteBO bo = null;
+            try
+            {
+                bo = new ClienteBO();
+                bo.Alterar(cliente);
+                Session["cliente"] = cliente;
+                return RedirectToAction("Enderecos");
+            }
+            catch (BOException ex)
+            {
+                ModelState.AddModelError("", ex.Message);
+            }
+            /*catch(Exception)
+            {
+                ModelState.AddModelError("", "Ocorreu um problema, tente novamente.");
+            }*/
+            finally
+            {
+                if(bo != null)
+                    bo.Dispose();
+            }
+            Listar();
+            return View("Index", lista);
+        }
+
+        //
+        // GET: /Cliente/EditPJ/#
+
+        public ActionResult EditPJ()
+        {
+            Cliente cliente = (Cliente)Session["cliente"];
+            return View(cliente);
+        }
+
+        //
+        // POST: /Cliente/EditPJ/#
+
+        [HttpPost]
+        public ActionResult EditPJ(Cliente cliente)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(cliente);
+            }
+
+            ClienteBO bo = null;
+            try
+            {
+                bo = new ClienteBO();
+                bo.Alterar(cliente);
+                Session["cliente"] = cliente;
+                return RedirectToAction("Enderecos");
+            }
+            catch (BOException ex)
+            {
+                ModelState.AddModelError("", ex.Message);
+            }
+            /*catch(Exception)
+            {
+                ModelState.AddModelError("", "Ocorreu um problema, tente novamente.");
+            }*/
+            finally
+            {
+                if (bo != null)
+                    bo.Dispose();
+            }
+            Listar();
+            return View("Index", lista);
+        }
+
+        //
+        // GET: /Cliente/Delete/#
+
+        public ActionResult Delete(uint id)
+        {
+            ClienteBO bo = new ClienteBO();
+            Cliente cliente = null;
+            try
+            {
+                cliente = bo.BuscarPeloId(id);
+                Session["cliente"] = cliente;
+                if (cliente.Pessoa is PessoaFisica)
+                {
+                    return RedirectToAction("DeletePF");
+                }
+                else if (cliente.Pessoa is PessoaJuridica)
+                {
+                    return RedirectToAction("DeletePJ");
+                }
+            }
+            catch (Exception)
+            {
+                Listar();
+                return View("Index", lista);
+            }
+            finally
+            {
+                if (bo != null)
+                    bo.Dispose();
+            }
+            return View(cliente);
+        }
+
+        //
+        // GET: /Cliente/DeletePF/#
+
+        public ActionResult DeletePF()
+        {
+            Cliente cliente = (Cliente)Session["cliente"];
+            return View(cliente);
+        }
+
+        //
+        // POST: /Cliente/DeletePF/#
+
+        [HttpPost]
+        public ActionResult DeletePF(Cliente entregador)
+        {
+            ClienteBO bo = new ClienteBO();
+            try
+            {
+                entregador = bo.BuscarPeloId(entregador.Id);
+                bo.Excluir(entregador);
+            }
+            catch (Exception)
+            {
+                Listar();
+                return View("Index", lista);
+            }
+            finally
+            {
+                if (bo != null)
+                    bo.Dispose();
+            }
+            Listar();
+            return View("Index", lista);
+        }
+
+        //
+        // GET: /Cliente/DeletePJ/#
+
+        public ActionResult DeletePJ()
+        {
+            Cliente cliente = (Cliente)Session["cliente"];
+            return View(cliente);
+        }
+
+        //
+        // POST: /Cliente/DeletePJ/#
+
+        [HttpPost]
+        public ActionResult DeletePJ(Cliente entregador)
+        {
+            ClienteBO bo = new ClienteBO();
+            try
+            {
+                entregador = bo.BuscarPeloId(entregador.Id);
+                bo.Excluir(entregador);
+            }
+            catch (Exception)
+            {
+                Listar();
+                return View("Index", lista);
+            }
+            finally
+            {
+                if (bo != null)
+                    bo.Dispose();
+            }
+            Listar();
+            return View("Index", lista);
+        }
+
+        //
+        // GET: /Cliente/Details/#
+
+        public ActionResult Details(uint id)
+        {
+            ClienteBO bo = new ClienteBO();
+            Cliente cliente = new Cliente();
+            cliente = bo.BuscarPeloId(id);
+            bo.Dispose();
+            Session["cliente"] = cliente;
+            if (cliente.Pessoa is PessoaFisica)
+            {
+                return RedirectToAction("DetailsPF");
+            }
+            if (cliente.Pessoa is PessoaJuridica)
+            {
+                return RedirectToAction("DetailsPJ");
+            }
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult DetailsPF()
+        {
+            Cliente cliente = (Cliente) Session["cliente"];
+            return View(cliente);
+        }
+
+        public ActionResult DetailsPJ()
+        {
+            Cliente cliente = (Cliente)Session["cliente"];
+            return View(cliente);
+        }
+
+        #endregion
+
+        #region Endereco
         //
         // GET: /Cliente/Enderecos/#
 
@@ -194,142 +489,113 @@ namespace SALMvc.Controllers
         }
 
         //
-        // GET: /Cliente/Edit/#
-        /*
-        public ActionResult Edit(uint id)
+        // GET: /Cliente/EditEndereco/#
+
+        public ActionResult EditEndereco(uint id)
         {
-            ClienteBO bo = new ClienteBO();
-            Cliente entregador = new Cliente();
-            entregador = bo.BuscarPeloId(id);
-            bo.Dispose();
-            PreencherBagDropDownLists(entregador);
-            return View(entregador);
-        }
+            PreencherBagDropDownLists();
+            EnderecoBO bo = null;
+            Endereco endereco = null;
 
-        //
-        // POST: /Cliente/Edit/#
-
-        [HttpPost]
-        public ActionResult Edit(Cliente entregador)
-        {
-            if (!ModelState.IsValid)
-            {
-                return View(entregador);
-            }
-
-            ClienteBO bo = new ClienteBO();
             try
             {
-                HttpPostedFileBase postedFile = null;
-                if (!Request.Files["Foto"].FileName.Equals(""))
-                {
-                    if (System.IO.File.Exists(entregador.Foto)) System.IO.File.Delete(entregador.Foto);
-                    postedFile = Request.Files["Foto"];
-                    entregador.Foto = Server.MapPath("~/Uploads/FotosClientees/") + String.Format("{0:0000000000}", entregador.Id) + postedFile.FileName.Substring(postedFile.FileName.Length - 4, 4);
-                }
-                bo.Alterar(entregador);
-                if (postedFile != null)
-                {
-                    postedFile.SaveAs(entregador.Foto);
-                }
-                bo.Dispose();
-                TempData["flash"] = "Seu cadastro foi editado com sucesso.";
+                bo = new EnderecoBO();
+                endereco = bo.BuscarPeloId(id);
             }
             catch (BOException ex)
             {
                 ModelState.AddModelError("", ex.Message);
             }
-            catch(Exception)
+            catch (Exception ex)
             {
                 ModelState.AddModelError("", "Ocorreu um problema, tente novamente.");
             }
-            Listar();
-            return View("Index", lista);
-        }
-
-        //
-        // GET: /Cliente/Delete/#
-
-        public ActionResult Delete(uint id)
-        {
-            ClienteBO bo = new ClienteBO();
-            Cliente entregador = null;
-            try
-            {
-                entregador = bo.BuscarPeloId(id);
-                if (System.IO.File.Exists(entregador.Foto))
-                {
-                    System.IO.FileInfo info = new System.IO.FileInfo(entregador.Foto);
-                    ViewBag.Foto = "/Uploads/FotosClientees/" + info.Name;
-                }
-            }
-            catch (Exception)
-            {
-                Listar();
-                return View("Index", lista);
-            }
             finally
             {
                 if (bo != null)
                     bo.Dispose();
             }
-            return View(entregador);
+            return View(endereco);
         }
 
         //
-        // POST: /Cliente/Delete/#
+        // POST: /Cliente/EditEndereco/#
 
         [HttpPost]
-        public ActionResult Delete(Cliente entregador)
+        public ActionResult EditEndereco(Endereco endereco)
         {
-            ClienteBO bo = new ClienteBO();
+            PreencherBagDropDownLists();
+            ClienteBO bo = null;
+
+            if (!ModelState.IsValid || Session["cliente"] == null)
+            {
+                return View(endereco);
+            }
+
             try
             {
-                entregador = bo.BuscarPeloId(entregador.Id);
-                if (System.IO.File.Exists(entregador.Foto)) System.IO.File.Delete(entregador.Foto);
-                bo.Excluir(entregador);
+                Cliente cliente = (Cliente)Session["cliente"];
+                bo = new ClienteBO();
+                Endereco aux = cliente.Pessoa.Enderecos.Where(e => e.Id == endereco.Id).First();
+                cliente.Pessoa.Enderecos.Remove(aux);
+                cliente.Pessoa.Enderecos.Add(endereco);
+                endereco.Pessoa = cliente.Pessoa;
+                bo.Alterar(cliente);
+                return RedirectToAction("Enderecos");
             }
-            catch (Exception)
+            catch (BOException ex)
             {
-                Listar();
-                return View("Index", lista);
+                ModelState.AddModelError("", ex.Message);
             }
+            /*catch (Exception ex)
+            {
+                ModelState.AddModelError("", "Ocorreu um problema, tente novamente.");
+            }*/
             finally
             {
                 if (bo != null)
                     bo.Dispose();
             }
-            Listar();
-            return View("Index", lista);
+            return View(endereco);
         }
 
         //
-        // GET: /Cliente/Details/#
+        // GET: /Cliente/DeleteEndereco/#
 
-        public ActionResult Details(uint id)
+        public ActionResult DeleteEndereco(uint id)
         {
-            ClienteBO bo = new ClienteBO();
-            Cliente entregador = null;
+            EnderecoBO endBO = null;
+
+            if (!ModelState.IsValid || Session["cliente"] == null)
+            {
+                return RedirectToAction("Enderecos");
+            }
+
             try
             {
-                entregador = bo.BuscarPeloId(id);
-                if (System.IO.File.Exists(entregador.Foto))
-                {
-                    System.IO.FileInfo info = new System.IO.FileInfo(entregador.Foto);
-                    ViewBag.Foto = "/Uploads/FotosClientees/" + info.Name;
-                }
+                Cliente cliente = (Cliente)Session["cliente"];
+                endBO = new EnderecoBO();
+                Endereco endereco = endBO.BuscarPeloId(id);
+                endBO.Excluir(endereco);
+                endereco = cliente.Pessoa.Enderecos.Where(e => e.Id == endereco.Id).First();
+                cliente.Pessoa.Enderecos.Remove(endereco);
             }
-            catch (Exception)
+            catch (BOException ex)
             {
-                Listar();
-                return View("Index", lista);
+                ModelState.AddModelError("", ex.Message);
             }
+            /*catch (Exception ex)
+            {
+                ModelState.AddModelError("", "Ocorreu um problema, tente novamente.");
+            }*/
             finally
             {
-                if (bo != null)
-                    bo.Dispose();
+                if (endBO != null)
+                    endBO.Dispose();
             }
-            return View(entregador);
-        }*/
+            return RedirectToAction("Enderecos");
+        }
+
+        #endregion
     }
 }

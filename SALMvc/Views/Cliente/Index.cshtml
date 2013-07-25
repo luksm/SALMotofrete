@@ -17,7 +17,7 @@
     @Html.ActionLink("Nova Pessoa Fisica", "CreatePF")
 </p>
 <p>
-    @Html.ActionLink("Nova Pessoa Juridica", "CreatePF")
+    @Html.ActionLink("Nova Pessoa Juridica", "CreatePJ")
 </p>
     <table class="table table-hover table-striped">
     <tr>
@@ -25,17 +25,15 @@
         <th>Sobrenome</th>
         <th>CPF</th>
         <th>RG</th>
-        <th>Email</th>
         <th></th>
     </tr>
 
 @foreach (var item in Model) {
     <tr>
-        <td>@item.PessoaFisica.Nome</td>
-        <td>@item.PessoaFisica.Sobrenome</td>
-        <td>@item.PessoaFisica.Cpf</td>
-        <td>@item.PessoaFisica.Rg</td>
-        <td>@item.PessoaFisica.Email</td>
+        <td>@(item.Pessoa is SALClassLib.Masterdata.Model.PessoaFisica ? item.PessoaFisica.Nome : item.PessoaJuridica.NomeFantasia)</td>
+        <td>@(item.Pessoa is SALClassLib.Masterdata.Model.PessoaFisica ? item.PessoaFisica.Sobrenome : item.PessoaJuridica.RazaoSocial)</td>
+        <td>@(item.Pessoa is SALClassLib.Masterdata.Model.PessoaFisica ? item.PessoaFisica.Cpf : item.PessoaJuridica.Cnpj)</td>
+        <td>@(item.Pessoa is SALClassLib.Masterdata.Model.PessoaFisica ? item.PessoaFisica.Rg: item.PessoaJuridica.InscricaoEstadual)</td>
         <td>
             <a href="@Url.Action("Edit", "Cliente", new { id=item.Id })" class="btn btn-small btn-info"><i class="icon-pencil icon-white"> </i>  Editar</a>
             <a href="@Url.Action("Details", "Cliente", new { id=item.Id })" class="btn btn-small btn-info"><i class="icon-info-sign icon-white"> </i>  Detalhes</a>

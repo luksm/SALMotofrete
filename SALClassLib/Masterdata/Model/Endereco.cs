@@ -63,6 +63,11 @@ namespace SALClassLib.Masterdata.Model
             get { return pessoa; }
             set { pessoa = value; }
         }
+
+        public Endereco()
+        {
+            municipio = new Municipio();
+        }
         
 
         // override object.Equals

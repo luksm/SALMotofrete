@@ -1,0 +1,65 @@
+﻿@model SALClassLib.Masterdata.Model.Cliente
+
+@{
+    ViewBag.Title = "CreatePJ";
+    Layout = "~/Views/Shared/_Utopia.cshtml";
+}
+
+<h2>CreatePJ</h2>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Cliente</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PessoaJuridica.NomeFantasia)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PessoaJuridica.NomeFantasia)
+            @Html.ValidationMessageFor(model => model.PessoaJuridica.NomeFantasia)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PessoaJuridica.RazaoSocial)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PessoaJuridica.RazaoSocial)
+            @Html.ValidationMessageFor(model => model.PessoaJuridica.RazaoSocial)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PessoaJuridica.Cnpj)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PessoaJuridica.Cnpj)
+            @Html.ValidationMessageFor(model => model.PessoaJuridica.Cnpj)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PessoaJuridica.InscricaoEstadual)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PessoaJuridica.InscricaoEstadual)
+            @Html.ValidationMessageFor(model => model.PessoaJuridica.InscricaoEstadual)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PessoaJuridica.WebSite)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PessoaJuridica.WebSite)
+            @Html.ValidationMessageFor(model => model.PessoaJuridica.WebSite)
+        </div>
+
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

@@ -1,0 +1,65 @@
+﻿@model SALClassLib.Masterdata.Model.Cliente
+
+@{
+    ViewBag.Title = "DetailsPF";
+    Layout = "~/Views/Shared/_Utopia.cshtml";
+}
+
+<h2>DetailsPF</h2>
+
+<fieldset>
+    <legend>Cliente</legend>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.PessoaFisica.Nome)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PessoaFisica.Nome)
+    </div>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.PessoaFisica.Sobrenome)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PessoaFisica.Sobrenome)
+    </div>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.PessoaFisica.Cpf)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PessoaFisica.Cpf)
+    </div>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.PessoaFisica.Rg)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PessoaFisica.Rg)
+    </div>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.PessoaFisica.TelefoneFixo)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PessoaFisica.TelefoneFixo)
+    </div>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.PessoaFisica.TelefoneCelular)
+    </div>
+    <div class="field-field">
+        @Html.DisplayFor(model => model.PessoaFisica.TelefoneCelular)
+    </div>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.PessoaFisica.Email)
+    </div>
+    <div class="field-field">
+        @Html.DisplayFor(model => model.PessoaFisica.Email)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

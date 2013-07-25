@@ -8,6 +8,6 @@
     </id>
     <property name="Codigo" column="CODIGO" not-null="true" />
     <property name="Nome" column="NOME" length="60" not-null="true" />
-    <many-to-one name="Estado" class="Estado" cascade="none" column="ID_ESTADO" not-null="true" />
+    <many-to-one name="Estado" class="Estado" cascade="none" column="ID_ESTADO" not-null="true" fetch="join" />
   </class>
 </hibernate-mapping>

@@ -1,0 +1,73 @@
+﻿@model SALClassLib.Masterdata.Model.Cliente
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Utopia.cshtml";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<fieldset>
+    <legend>Cliente</legend>
+</fieldset>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    @Html.HiddenFor(model => model.Id);
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.PessoaFisica.Nome)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PessoaFisica.Nome)
+    </div>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.PessoaFisica.Sobrenome)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PessoaFisica.Sobrenome)
+    </div>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.PessoaFisica.Cpf)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PessoaFisica.Cpf)
+    </div>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.PessoaFisica.Rg)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PessoaFisica.Rg)
+    </div>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.PessoaFisica.TelefoneFixo)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PessoaFisica.TelefoneFixo)
+    </div>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.PessoaFisica.TelefoneCelular)
+    </div>
+    <div class="field-field">
+        @Html.DisplayFor(model => model.PessoaFisica.TelefoneCelular)
+    </div>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.PessoaFisica.Email)
+    </div>
+    <div class="field-field">
+        @Html.DisplayFor(model => model.PessoaFisica.Email)
+    </div>
+    
+    <p>
+        <input type="submit" value="Delete" />
+        |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+}

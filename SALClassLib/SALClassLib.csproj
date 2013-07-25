@@ -73,7 +73,7 @@
     <Compile Include="Masterdata\Model\DAO\EstadoDAO.cs" />
     <Compile Include="Masterdata\Model\DAO\MunicipioDAO.cs" />
     <Compile Include="Masterdata\Model\DAO\TipoAparelhoMovelDAO.cs" />
-    <Compile Include="Masterdata\Model\Endereço.cs" />
+    <Compile Include="Masterdata\Model\Endereco.cs" />
     <Compile Include="Masterdata\Model\Entregador.cs" />
     <Compile Include="Masterdata\Model\Estado.cs" />
     <Compile Include="Masterdata\Model\Gerente.cs" />
