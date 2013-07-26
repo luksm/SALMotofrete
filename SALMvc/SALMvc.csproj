@@ -117,12 +117,15 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controllers\AparelhoMovelController.cs" />
+    <Compile Include="Controllers\AparelhoMovelController.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Controllers\AtendenteController.cs" />
     <Compile Include="Controllers\ClienteController.cs" />
     <Compile Include="Controllers\EntregadorController.cs" />
     <Compile Include="Controllers\GerenteController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\OrdemServicoController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -135,6 +138,7 @@
     <Content Include="Assets\css\bootstrap-responsive.min.css" />
     <Content Include="Assets\css\bootstrap.min.css" />
     <Content Include="Assets\css\application.css" />
+    <Content Include="Assets\css\site.css" />
     <Content Include="Assets\fonts\olivier_demo.svg" />
     <Content Include="Assets\img\glyphicons-halflings-white.png" />
     <Content Include="Assets\img\glyphicons-halflings.png" />
@@ -155,6 +159,7 @@
     <Content Include="Assets\js\bootstrap.min.js" />
     <Content Include="Assets\js\gmaps.js" />
     <Content Include="Assets\js\jquery.js" />
+    <Content Include="Assets\js\jquery.tmpl.min.js" />
     <Content Include="Assets\js\prettify.js" />
     <Content Include="Global.asax" />
     <Content Include="Web.config" />
@@ -168,6 +173,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Assets\ico\" />
     <Folder Include="Models\" />
     <Folder Include="Uploads\FotosEntregadores\" />
   </ItemGroup>
@@ -280,6 +286,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Cliente\DetailsPJ.cshtml" />
+    <Content Include="Views\OrdemServico\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\_Home.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

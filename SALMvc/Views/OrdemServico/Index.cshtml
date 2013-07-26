@@ -1,0 +1,71 @@
+﻿@model SALClassLib.OS.Model.OrdemServico
+
+@{
+    ViewBag.Title = "SAL Motofrete, seu motoboy a um click de distância!";
+    Layout = "~/Views/Shared/_Home.cshtml";
+}
+
+<div class="row-fluid" id="sal">
+    <div class="span2">
+        <h1 class="logo">Sal</h1>
+        <form>
+            <fieldset>
+                <legend>Origem</legend>
+
+                <div class="control-group">
+                    <label for="OrigemEndereco">Endereço</label>
+                    <div class="controls">
+                        <input type="text" id="OrigemEndereco" name="Origem[0][Endereco]" placeholder="Vou buscar aqui">
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label for="OrigemComplemento">Complemento</label>
+                    <div class="controls">
+                        <input type="text" id="OrigemComplemento"  name="Origem[0][Complemento]" placeholder="Andar ? Apartamento ?">
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label for="OrigemContato">Contato</label>
+                    <div class="controls">
+                        <input type="text" id="OrigemContato" name="Origem[0][Contato]" placeholder="Vou falar com quem ?">
+                    </div>
+                </div>                
+            </fieldset>
+            <fieldset>
+                <legend>Destino</legend>
+
+                <div class="control-group">
+                    <label for="DestinoEndereco">Endereço</label>
+                    <div class="controls">
+                        <input type="text" id="DestinoEndereco" name="Destino[0][Endereco]" placeholder="Vou buscar aqui">
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label for="DestinoComplemento">Complemento</label>
+                    <div class="controls">
+                        <input type="text" id="DestinoComplemento"  name="Destino[0][Complemento]" placeholder="Andar ? Apartamento ?">
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label for="DestinoContato">Contato</label>
+                    <div class="controls">
+                        <input type="text" id="DestinoContato" name="Destino[0][Contato]" placeholder="Vou falar com quem ?">
+                    </div>
+                </div>                
+            </fieldset>
+            <p><span class="help-block"><a href="#" onclick="document.getElementById('destino2').style.display = 'block';">Mais de um destino ?</a></span></p>
+
+            <div class="form-actions">
+                <button type="submit" class="btn btn-primary">Enviar</button>
+            </div>
+        </form>
+    </div>
+    <div class="span10" id="map-canvas">
+        MAPA
+    </div>
+</div>
+

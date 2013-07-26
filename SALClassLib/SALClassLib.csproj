@@ -86,6 +86,7 @@
     <Compile Include="Masterdata\Model\PessoaJuridica.cs" />
     <Compile Include="Masterdata\Model\TipoAparelhoMovel.cs" />
     <Compile Include="NHibernateHelper.cs" />
+    <Compile Include="OS\Model\BO\OrdemServicoBO.cs" />
     <Compile Include="OS\Model\Cobranca.cs" />
     <Compile Include="OS\Model\DAO\OrdemServicoDAO.cs" />
     <Compile Include="OS\Model\EnderecoEntrega.cs" />
@@ -141,9 +142,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="OS\Model\DAO\Mapeamento\Cobranca.hbm.xml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="OS\Model\BO\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
