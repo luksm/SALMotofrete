@@ -8,38 +8,37 @@
 
 <div class="row" style="border-bottom: 1px solid black;">
     <h2>
-        Entregadores
-        <a href="@Url.Action("Create", "Cliente")" class="btn btn-primary pull-right" type="button"><i class="icon-user icon-white"> </i>  Novo Cliente</a>
+        Clientes
+        <a href="@Url.Action("CreatePF", "Cliente")" class="btn btn-danger pull-right" type="button"><i class="icon-user icon-white"> </i>  Novo Cliente PF</a>
+        <a style="margin-right:10px;" href="@Url.Action("CreatePJ", "Cliente")" class="btn btn-danger pull-right" type="button"><i class="icon-user icon-white"> </i>  Novo Cliente PJ</a>
     </h2>
 </div>
 
-<p>
-    @Html.ActionLink("Nova Pessoa Fisica", "CreatePF")
-</p>
-<p>
-    @Html.ActionLink("Nova Pessoa Juridica", "CreatePJ")
-</p>
+<div class="row">
     <table class="table table-hover table-striped">
-    <tr>
-        <th>Nome</th>
-        <th>Sobrenome</th>
-        <th>CPF</th>
-        <th>RG</th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>@(item.Pessoa is SALClassLib.Masterdata.Model.PessoaFisica ? item.PessoaFisica.Nome : item.PessoaJuridica.NomeFantasia)</td>
-        <td>@(item.Pessoa is SALClassLib.Masterdata.Model.PessoaFisica ? item.PessoaFisica.Sobrenome : item.PessoaJuridica.RazaoSocial)</td>
-        <td>@(item.Pessoa is SALClassLib.Masterdata.Model.PessoaFisica ? item.PessoaFisica.Cpf : item.PessoaJuridica.Cnpj)</td>
-        <td>@(item.Pessoa is SALClassLib.Masterdata.Model.PessoaFisica ? item.PessoaFisica.Rg: item.PessoaJuridica.InscricaoEstadual)</td>
-        <td>
-            <a href="@Url.Action("Edit", "Cliente", new { id=item.Id })" class="btn btn-small btn-info"><i class="icon-pencil icon-white"> </i>  Editar</a>
-            <a href="@Url.Action("Details", "Cliente", new { id=item.Id })" class="btn btn-small btn-info"><i class="icon-info-sign icon-white"> </i>  Detalhes</a>
-            <a href="@Url.Action("Delete", "Cliente", new { id=item.Id })" class="btn btn-small btn-info"><i class="icon-remove-circle icon-white"> </i>  Excluir</a>
-        </td>
-    </tr>
-}
-
-</table>
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Sobrenome</th>
+                <th>CPF</th>
+                <th>RG</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody> 
+            @foreach (var item in Model) {
+                <tr>
+                    <td>@(item.Pessoa is SALClassLib.Masterdata.Model.PessoaFisica ? item.PessoaFisica.Nome : item.PessoaJuridica.NomeFantasia)</td>
+                    <td>@(item.Pessoa is SALClassLib.Masterdata.Model.PessoaFisica ? item.PessoaFisica.Sobrenome : item.PessoaJuridica.RazaoSocial)</td>
+                    <td>@(item.Pessoa is SALClassLib.Masterdata.Model.PessoaFisica ? item.PessoaFisica.Cpf : item.PessoaJuridica.Cnpj)</td>
+                    <td>@(item.Pessoa is SALClassLib.Masterdata.Model.PessoaFisica ? item.PessoaFisica.Rg: item.PessoaJuridica.InscricaoEstadual)</td>
+                    <td>
+                        <a href="@Url.Action("Edit", "Cliente", new { id=item.Id })" class="btn btn-small btn-info"><i class="icon-pencil icon-white"> </i>  Editar</a>
+                        <a href="@Url.Action("Details", "Cliente", new { id=item.Id })" class="btn btn-small btn-info"><i class="icon-info-sign icon-white"> </i>  Detalhes</a>
+                        <a href="@Url.Action("Delete", "Cliente", new { id=item.Id })" class="btn btn-small btn-info"><i class="icon-remove-circle icon-white"> </i>  Excluir</a>
+                    </td>
+                </tr>
+            }
+        <tbody> 
+    </table>
+</div>
