@@ -30,9 +30,7 @@
         <!-- Le javascript
         ================================================== -->
         <!-- Placed at the end of the document so the pages load faster -->
-        <script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
-        <script src="~/Assets/js/jquery.js"></script>
-        <script src="~/Assets/js/google-code-prettify/prettify.js"></script>
+        @Scripts.Render("~/bundles/jquery")
         <script src="~/Assets/js/bootstrap-transition.js"></script>
         <script src="~/Assets/js/bootstrap-alert.js"></script>
         <script src="~/Assets/js/bootstrap-modal.js"></script>
@@ -47,11 +45,6 @@
         <script src="~/Assets/js/bootstrap-typeahead.js"></script>
         <script src="~/Assets/js/bootstrap-affix.js"></script>
         <script src="~/Assets/js/application.js"></script>
-
-        <script type="text/javascript"
-            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCeTKNaa8r6sudbzbDwyj76g605HmJb-FI&amp;sensor=true">
-        </script>
-        <script type="text/javascript" src="~/Assets/js/gmaps.js"></script>
-
+        @RenderSection("scripts", required: false)
   </body>
 </html>

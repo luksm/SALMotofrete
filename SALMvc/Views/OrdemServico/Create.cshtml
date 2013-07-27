@@ -1,0 +1,30 @@
+﻿@model SALClassLib.OS.Model.OrdemServico
+
+@{
+    ViewBag.Title = "SAL Motofrete, seu motoboy a um click de distância!";
+    Layout = "~/Views/Shared/_Home.cshtml";
+}
+
+<h2>Create</h2>
+
+<fieldset>
+    <legend>OrdemServico</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Data)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Data)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Observacao)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Observacao)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
