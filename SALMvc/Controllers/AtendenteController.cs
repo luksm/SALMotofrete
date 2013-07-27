@@ -13,13 +13,28 @@ namespace SALMvc.Controllers
     public class AtendenteController : Controller
     {
         IList<Atendente> lista = new List<Atendente>();
-        String pastaFotos = "~/Uploads/Fotos/Funcionarios/Atendente/";
+        String pastaFotos = "/Uploads/Fotos/Funcionarios/Atendente/";
 
         public void Listar()
         {
-            AtendenteBO bo = new AtendenteBO();
-            lista = bo.ListarAtivos();
-            bo.Dispose();
+            AtendenteBO bo = null;
+            try
+            {
+                bo = new AtendenteBO();
+                lista = bo.ListarAtivos();
+            }
+            catch 
+            {
+                TempData["flash"] = "Ocorreu um erro ao tentar buscar os atendentes";
+            }
+            finally
+            {
+                if (bo != null)
+                {
+                    bo.Dispose();
+                    bo = null;
+                }
+            }
         }
 
         //
@@ -47,27 +62,33 @@ namespace SALMvc.Controllers
                 return View(atendente);
             }
 
-            AtendenteBO bo = new AtendenteBO();
+            AtendenteBO bo = null;
 
             try
             {
-                ulong id = bo.Incluir(atendente);
+                bo = new AtendenteBO();
+                //se houver foto, inclui o atendente passando os parametros para incluir a foto
                 if (!Request.Files["Foto"].FileName.Equals(""))
                 {
                     HttpPostedFileBase postedFile = Request.Files["Foto"];
-                    atendente.Foto = Server.MapPath(pastaFotos) + String.Format("{0:0000000000}", id) + postedFile.FileName.Substring(postedFile.FileName.Length - 4, 4);
+                    bo.Incluir(atendente, Server.MapPath("~" + pastaFotos), postedFile.FileName.Substring(postedFile.FileName.Length - 4, 4));
                     postedFile.SaveAs(atendente.Foto);
-                    bo.Alterar(atendente);
                 }
-                TempData["flash"] = "Seu cadastro foi realisado com sucesso.";
+                //caso contrario apenas inclui o atendente
+                else
+                {
+                    bo.Incluir(atendente);
+                }
+                TempData["flash"] = "Seu cadastro foi realizado com sucesso.";
             }
             catch (BOException ex)
             {
-                ModelState.AddModelError("", ex.Message);
+                ModelState.AddModelError(ex.Message, ex.Message);
+                return View(atendente);
             }
             catch (Exception ex)
             {
-                ModelState.AddModelError("", "Ocorreu um problema, tente novamente." + ex.Message);
+                TempData["flash"] = "Ocorreu um problema, tente novamente.";
             }
             finally
             {
@@ -82,10 +103,11 @@ namespace SALMvc.Controllers
         // GET: /Atendente/Details/#
         public ActionResult Details(uint Id)
         {
-            AtendenteBO bo = new AtendenteBO();
+            AtendenteBO bo = null;
             Atendente atendente = new Atendente();
             try
             {
+                bo = new AtendenteBO();
                 atendente = bo.BuscarPeloId(Id);
                 if (System.IO.File.Exists(atendente.Foto))
                 {
@@ -109,11 +131,26 @@ namespace SALMvc.Controllers
         // GET: /Atendente/Edit/#
         public ActionResult Edit(uint Id)
         {
-            AtendenteBO bo = new AtendenteBO();
-            Atendente am = new Atendente();
-            am = bo.BuscarPeloId(Id);
-            bo.Dispose();
-            return View(am);
+            AtendenteBO bo = null;
+            try
+            {
+                bo = new AtendenteBO();
+                Atendente am = bo.BuscarPeloId(Id);
+                return View(am);
+            }
+            catch (Exception)
+            {
+                TempData["flash"] = "Ocorreu um problema, tente novamente.";
+            }
+            finally
+            {
+                if (bo != null)
+                {
+                    bo.Dispose();
+                    bo = null;
+                }
+            }
+            return RedirectToAction("Index");
         }
 
         //
@@ -126,9 +163,10 @@ namespace SALMvc.Controllers
                 return View(atendente);
             }
 
-            AtendenteBO bo = new AtendenteBO();
+            AtendenteBO bo = null;
             try
             {
+                bo = new AtendenteBO();
                 HttpPostedFileBase postedFile = null;
                 if (!Request.Files["Foto"].FileName.Equals(""))
                 {
@@ -141,16 +179,16 @@ namespace SALMvc.Controllers
                 {
                     postedFile.SaveAs(atendente.Foto);
                 }
-                bo.Dispose();
-                TempData["flash"] = "Seu cadastro foi realisado com sucesso.";
+                TempData["flash"] = "Seu cadastro foi atualizado com sucesso.";
             }
             catch (BOException ex)
             {
                 ModelState.AddModelError("", ex.Message);
+                return View(atendente);
             }
             catch (Exception ex)
             {
-                ModelState.AddModelError("", "Ocorreu um problema, tente novamente.");
+                TempData["flash"] = "Ocorreu um problema, tente novamente.";
             }
             finally
             {
@@ -162,22 +200,65 @@ namespace SALMvc.Controllers
         }
 
         //
-        // GET: /AparelhoMovel/Delete/#
+        // GET: /Atendente/Delete/#
         public ActionResult Delete(uint Id)
         {
-            AtendenteBO bo = new AtendenteBO();
+            AtendenteBO bo = null;
             try
             {
-                Atendente a = new Atendente();
-                a = bo.BuscarPeloId(Id);
-                String nome = a.Nome;
-                bo.Excluir(a);
-                bo.Dispose();
-                TempData["flash"] = "O atendente \"" + nome + " \" foi excluido com sucesso.";
+                bo = new AtendenteBO();
+                Atendente a = bo.BuscarPeloId(Id);
+                if (System.IO.File.Exists(a.Foto))
+                {
+                    System.IO.FileInfo info = new System.IO.FileInfo(a.Foto);
+                    ViewBag.Foto = pastaFotos + info.Name;
+                }
+                return View(a);
             }
             catch
             {
+                TempData["flash"] = "Ocorreu um problema, tente novamente";
+            }
+            finally
+            {
+                if (bo != null)
+                {
+                    bo.Dispose();
+                    bo = null;
+                }
+            }
+            return RedirectToAction("Index");
+        }
+
+        //
+        // POST: /Atendente/Delete/#
+        [HttpPost]
+        public ActionResult Delete(Atendente atendente)
+        {
+            AtendenteBO bo = null;
+            try
+            {
+                bo = new AtendenteBO();
+                atendente = bo.BuscarPeloId(atendente.Id);
+                bo.Excluir(atendente);
+                TempData["flash"] = "O atendente \"" + atendente.Nome + "\" foi excluido com sucesso.";
+            }
+            catch (BOException ex)
+            {
+                ModelState.AddModelError("", ex.Message);
+                return View(atendente);
+            }
+            catch (Exception)
+            {
                 TempData["flash"] = "Ocorreu um problema, tente novamente.";
+            }
+            finally
+            {
+                if (bo != null)
+                {
+                    bo.Dispose();
+                    bo = null;
+                }
             }
             return RedirectToAction("Index");
         }

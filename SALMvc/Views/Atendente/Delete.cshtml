@@ -1,13 +1,17 @@
 ﻿@model SALClassLib.Masterdata.Model.Atendente
 
 @{
-    ViewBag.Title = "Detalhes do Atendente";
+    ViewBag.Title = "Exclusão de Atendente";
     Layout = "~/Views/Shared/_Utopia.cshtml";
     Html.RenderPartial("~/Views/Shared/_FlashPartial.cshtml");
 }
 
 <div class="row header">
-    <h2>Detalhes do Atendente</h2>
+    <h2>Exclusão de Atendente</h2>
+</div>
+
+<div class="row">
+    <h3>Tem certeza que deseja excluir este atendente ?</h3>
 </div>
 
 <div class="row">
@@ -33,6 +37,7 @@
                 @Html.DisplayFor(model => model.Cpf)
             </strong>
         </div>
+
 
         <div class="control-group">
             @Html.DisplayNameFor(model => model.Rg)
@@ -63,21 +68,20 @@
         </div>
 
         <div class="control-group">
-            @Html.DisplayNameFor(model => model.Usuario)
-            <strong>
-                @Html.DisplayFor(model => model.Usuario)
-            </strong>
-        </div>
-
-        <div class="control-group">
             @Html.DisplayNameFor(model => model.Foto)
         </div>
         <div class="display-field">
             <img src="@ViewBag.Foto" width="400" height="310" />
         </div>
-
-        <p class="actions">
-            <a class="btn btn-danger" href="@Url.Action("Index", "Atendente")">Cancelar</a>
-        </p>
     </div>
 </div>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => model.Id)
+    <p>
+        <input type="submit" value="Excluir" class="btn btn-danger" />
+        |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+}

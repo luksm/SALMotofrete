@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 
 namespace SALClassLib.Masterdata.Model
 {
@@ -18,6 +20,7 @@ namespace SALClassLib.Masterdata.Model
 
         private String descricao;
 
+        [DisplayName("Tipo do aparelho móvel")]
         public virtual String Descricao
         {
             get { return descricao; }

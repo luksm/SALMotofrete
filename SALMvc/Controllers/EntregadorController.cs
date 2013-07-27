@@ -188,7 +188,6 @@ namespace SALMvc.Controllers
             try
             {
                 entregador = bo.BuscarPeloId(entregador.Id);
-                if (System.IO.File.Exists(entregador.Foto)) System.IO.File.Delete(entregador.Foto);
                 bo.Excluir(entregador);
             }
             catch (Exception)

@@ -6,120 +6,121 @@
     Html.RenderPartial("~/Views/Shared/_FlashPartial.cshtml");
 }
 
-<h2>Edit</h2>
-
-@using (Html.BeginForm("Edit", "Atendente", FormMethod.Post, new { enctype = "multipart/form-data" }))
-{
-    @Html.AntiForgeryToken()
-    @Html.ValidationSummary(true)
-
-    <fieldset>
-        <legend>Atendente</legend>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Nome)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.Nome)
-            @Html.ValidationMessageFor(model => model.Nome)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Sobrenome)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.Sobrenome)
-            @Html.ValidationMessageFor(model => model.Sobrenome)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Cpf)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.Cpf)
-            @Html.ValidationMessageFor(model => model.Cpf)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Rg)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.Rg)
-            @Html.ValidationMessageFor(model => model.Rg)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Cnh)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.Cnh)
-            @Html.ValidationMessageFor(model => model.Cnh)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Foto)
-        </div>
-        <div class="editor-field">
-            <input type="file" name="Foto" />
-            @Html.ValidationMessageFor(model => model.Foto)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.TelefoneFixo)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.TelefoneFixo)
-            @Html.ValidationMessageFor(model => model.TelefoneFixo)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.TelefoneCelular)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.TelefoneCelular)
-            @Html.ValidationMessageFor(model => model.TelefoneCelular)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Email)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.Email)
-            @Html.ValidationMessageFor(model => model.Email)
-        </div>
-
-        @Html.HiddenFor(model => model.Id)
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.StatusExclusao)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.StatusExclusao)
-            @Html.ValidationMessageFor(model => model.StatusExclusao)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Usuario)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.Usuario)
-            @Html.ValidationMessageFor(model => model.Usuario)
-        </div>
-
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Senha)
-        </div>
-        <div class="editor-field">
-            @Html.PasswordFor(model => model.Senha)
-            @Html.ValidationMessageFor(model => model.Senha)
-        </div>
-        <p>
-            <input type="submit" value="Save" />
-        </p>
-    </fieldset>
-}
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
+<div class="row header">
+    <h2>Edição de Atendente</h2>
 </div>
+
+<div class="row">
+    <div class="span4 offset4">
+        @using (Html.BeginForm("Edit", "Atendente", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true)
+
+            <div class="control-group">
+                @Html.LabelFor(model => model.Nome)
+                <div class="controls">
+                    @Html.EditorFor(model => model.Nome)
+                    @Html.ValidationMessageFor(model => model.Nome)
+                </div>
+            </div>
+
+            <div class="control-group">
+                @Html.LabelFor(model => model.Sobrenome)
+                <div class="controls">
+                    @Html.EditorFor(model => model.Sobrenome)
+                    @Html.ValidationMessageFor(model => model.Sobrenome)
+                </div>
+            </div>
+
+            <div class="control-group">
+                @Html.LabelFor(model => model.Cpf)
+                <div class="controls">
+                    @Html.EditorFor(model => model.Cpf)
+                    @Html.ValidationMessageFor(model => model.Cpf)
+                </div>
+            </div>
+
+            <div class="control-group">
+                @Html.LabelFor(model => model.Rg)
+                <div class="controls">
+                    @Html.EditorFor(model => model.Rg)
+                    @Html.ValidationMessageFor(model => model.Rg)
+                </div>
+            </div>
+
+            <div class="control-group">
+                @Html.LabelFor(model => model.Foto)
+                <div class="controls">
+                    <input type="file" name="Foto" />
+                    @Html.ValidationMessageFor(model => model.Foto)
+                </div>
+            </div>
+
+            <div class="control-group">
+                @Html.LabelFor(model => model.TelefoneFixo)
+                <div class="controls">
+                    @Html.EditorFor(model => model.TelefoneFixo)
+                    @Html.ValidationMessageFor(model => model.TelefoneFixo)
+                </div>
+            </div>
+
+            <div class="control-group">
+                @Html.LabelFor(model => model.TelefoneCelular)
+                <div class="controls">
+                    @Html.EditorFor(model => model.TelefoneCelular)
+                    @Html.ValidationMessageFor(model => model.TelefoneCelular)
+                </div>
+            </div>
+
+            <div class="control-group">
+                @Html.LabelFor(model => model.Email)
+                <div class="controls">
+                    @Html.EditorFor(model => model.Email)
+                    @Html.ValidationMessageFor(model => model.Email)
+                </div>
+            </div>
+
+            <div class="control-group">
+                @Html.LabelFor(model => model.Usuario)
+                <div class="controls">
+                    @Html.EditorFor(model => model.Usuario)
+                    @Html.ValidationMessageFor(model => model.Usuario)
+                </div>
+            </div>
+            
+            @Html.HiddenFor(model => model.Id)
+
+            @Html.HiddenFor(model => model.Foto)
+
+            @Html.HiddenFor(model => model.Senha)
+            
+            <p class="actions">
+                <input class="btn btn-success" type="submit" value="Salvar" />
+                <input class="btn btn-warning" type="reset" value="Limpar" />
+                <a class="btn btn-danger" href="@Url.Action("Index", "Atendente")">Cancelar</a>
+            </p>  
+        }
+
+    </div>
+</div>
+@section Scripts
+{
+    @Scripts.Render("~/bundles/jqueryval");
+    @Scripts.Render("~/bundles/jquery.maskedinput")
+    <script type="text/javascript">
+        $(function () {
+            $('input[id*="Telefone"]').mask('(99) 9999-9999?9').focusout(function () {
+                var phone, element;
+                element = $(this);
+                element.unmask();
+                phone = element.val().replace(/\D/g, '');
+                if (phone.length > 10) {
+                    element.mask("(99) 99999-999?9");
+                } else {
+                    element.mask("(99) 9999-9999?9");
+                }
+            });
+        });
+    </script>
+}

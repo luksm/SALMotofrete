@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
@@ -11,6 +12,7 @@ namespace SALClassLib.Masterdata.Model
     {
         private String nome;
 
+        [Required(ErrorMessage = "O nome deve ser preenchido")]
         public virtual String Nome
         {
             get { return nome; }
@@ -19,6 +21,7 @@ namespace SALClassLib.Masterdata.Model
 
         private String sobrenome;
 
+        [Required(ErrorMessage = "O sobrenome deve ser preenchido")]
         public virtual String Sobrenome
         {
             get { return sobrenome; }
@@ -27,6 +30,8 @@ namespace SALClassLib.Masterdata.Model
 
         private String cpf;
 
+        [DisplayName("CPF")]
+        [Required(ErrorMessage = "O CPF deve ser preenchido")]
         public virtual String Cpf
         {
             get { return cpf; }
@@ -35,6 +40,8 @@ namespace SALClassLib.Masterdata.Model
 
         private String rg;
 
+        [DisplayName("RG")]
+        [Required(ErrorMessage = "O RG deve ser preenchido")]
         public virtual String Rg
         {
             get { return rg; }
@@ -43,6 +50,7 @@ namespace SALClassLib.Masterdata.Model
 
         private String cnh;
 
+        [DisplayName("CNH")]
         public virtual String Cnh
         {
             get { return cnh; }
@@ -60,6 +68,7 @@ namespace SALClassLib.Masterdata.Model
 
         private String telefoneFixo;
 
+        [DisplayName("Telefone Fixo")]
         public virtual String TelefoneFixo
         {
             get { return telefoneFixo; }
@@ -68,6 +77,7 @@ namespace SALClassLib.Masterdata.Model
 
         private String telefoneCelular;
 
+        [DisplayName("Celular")]
         public virtual String TelefoneCelular
         {
             get { return telefoneCelular; }
@@ -76,6 +86,7 @@ namespace SALClassLib.Masterdata.Model
 
         private String email;
 
+        [EmailAddress(ErrorMessage="Informe um endereço de email válido")]
         public virtual String Email
         {
             get { return email; }

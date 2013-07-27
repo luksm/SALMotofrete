@@ -12,6 +12,8 @@ namespace SALClassLib.Masterdata.Model
     {
         private uint id;
 
+        [DisplayName("ID")]
+        [DisplayFormat(DataFormatString="{0:0000}")]
         public virtual uint Id
         {
             get { return id; }
@@ -30,7 +32,7 @@ namespace SALClassLib.Masterdata.Model
         private String modelo;
 
         [MaxLength(25, ErrorMessage="O modelo deve ter no máximo 25 caracteres")]
-        [Required(ErrorMessage="O modelo é obrigatório")]
+        [Required(ErrorMessage="O modelo deve ser preenchido")]
         public virtual String Modelo
         {
             get { return modelo; }
@@ -40,7 +42,7 @@ namespace SALClassLib.Masterdata.Model
         private String marca;
 
         [MaxLength(25, ErrorMessage = "A marca deve ter no máximo 25 caracteres")]
-        [Required(ErrorMessage = "A marca é obrigatória")]
+        [Required(ErrorMessage = "A marca deve ser preenchida")]
         public virtual String Marca
         {
             get { return marca; }

@@ -1,5 +1,7 @@
 ﻿using Iesi.Collections.Generic;
 using System;
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -26,6 +28,8 @@ namespace SALClassLib.Masterdata.Model
 
         private String usuario;
 
+        [DisplayName("Usuário")]
+        [Required(ErrorMessage="O usuário deve ser preenchido")]
         public virtual String Usuario
         {
             get { return usuario; }
@@ -34,6 +38,7 @@ namespace SALClassLib.Masterdata.Model
 
         private String senha;
 
+        [Required(ErrorMessage = "A senha deve ser preenchida")]
         public virtual String Senha
         {
             get { return senha; }

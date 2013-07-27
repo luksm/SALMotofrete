@@ -8,7 +8,7 @@ using SALClassLib.OS.Model;
 namespace SALClassLib.Masterdata.Model
 {
     public class Entregador : PessoaFisica 
-    {        
+    {
         private String placaMoto;
 
         public virtual String PlacaMoto
