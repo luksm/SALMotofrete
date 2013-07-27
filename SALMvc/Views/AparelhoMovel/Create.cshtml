@@ -5,63 +5,82 @@
     Layout = "~/Views/Shared/_Utopia.cshtml";
     Html.RenderPartial("~/Views/Shared/_FlashPartial.cshtml");
 }
-    
+
 <div class="row header">
     <h2>Cadastro de Aparelho Móvel</h2>
 </div>
 
 <div class="row">
     <div class="span4 offset4">
-    @using (Html.BeginForm("Create", "AparelhoMovel", FormMethod.Post, new { @class = "form-horizontal" }))
-    {
-        @Html.AntiForgeryToken()
-        @Html.ValidationSummary(true)
+        @using (Html.BeginForm("Create", "AparelhoMovel", FormMethod.Post, new { @class = "form-horizontal" }))
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true)
  
-        <div class="control-group">
-            @Html.LabelFor(model => model.Tipo,  new { @class = "control-label" })
-            <div class="controls">
-                @Html.DropDownListFor(model => model.Tipo.Id, (IEnumerable<SelectListItem>)ViewBag.TipoAparelhoMovel)
-                @Html.ValidationMessageFor(model => model.Tipo)
+            <div class="control-group">
+                @Html.LabelFor(model => model.Tipo, new { @class = "control-label" })
+                <div class="controls">
+                    @Html.DropDownListFor(model => model.Tipo.Id, (IEnumerable<SelectListItem>)ViewBag.TipoAparelhoMovel)
+                    @Html.ValidationMessageFor(model => model.Tipo)
+                </div>
             </div>
-        </div>
 
-        <div class="control-group">
-            @Html.LabelFor(model => model.Modelo,  new { @class = "control-label" })
-            <div class="controls">
-                @Html.EditorFor(model => model.Modelo)
-                @Html.ValidationMessageFor(model => model.Modelo)
+            <div class="control-group">
+                @Html.LabelFor(model => model.Modelo, new { @class = "control-label" })
+                <div class="controls">
+                    @Html.EditorFor(model => model.Modelo)
+                    @Html.ValidationMessageFor(model => model.Modelo)
+                </div>
             </div>
-        </div>
 
-        <div class="control-group">
-            @Html.LabelFor(model => model.Marca,  new { @class = "control-label" })
-            <div class="controls">
-                @Html.EditorFor(model => model.Marca)
-                @Html.ValidationMessageFor(model => model.Marca)
+            <div class="control-group">
+                @Html.LabelFor(model => model.Marca, new { @class = "control-label" })
+                <div class="controls">
+                    @Html.EditorFor(model => model.Marca)
+                    @Html.ValidationMessageFor(model => model.Marca)
+                </div>
             </div>
-        </div>
     
-        <div class="control-group">
-            @Html.LabelFor(model => model.NumeroTelefone,  new { @class = "control-label" })
-            <div class="controls">
-                @Html.EditorFor(model => model.NumeroTelefone)
-                @Html.ValidationMessageFor(model => model.NumeroTelefone)
+            <div class="control-group">
+                @Html.LabelFor(model => model.NumeroTelefone, new { @class = "control-label" })
+                <div class="controls">
+                    @Html.EditorFor(model => model.NumeroTelefone)
+                    @Html.ValidationMessageFor(model => model.NumeroTelefone)
+                </div>
             </div>
-        </div>
     
-        <div class="control-group">
-            @Html.LabelFor(model => model.Observacao,  new { @class = "control-label" })
-            <div class="controls">
-                @Html.EditorFor(model => model.Observacao)
-                @Html.ValidationMessageFor(model => model.Observacao)
+            <div class="control-group">
+                @Html.LabelFor(model => model.Observacao, new { @class = "control-label" })
+                <div class="controls">
+                    @Html.TextAreaFor(model => model.Observacao)
+                    @Html.ValidationMessageFor(model => model.Observacao)
+                </div>
             </div>
-        </div>
     
-        <p class="actions">
-            <input class="btn btn-success" type="submit" value="Cadastrar" />
-            <input class="btn btn-warning" type="reset" value="Limpar" />
-            <a class="btn btn-danger" href="@Url.Action("Index", "AparelhoMovel")">Cancelar</a>
-        </p>    
-    }
+            <p class="actions">
+                <input class="btn btn-success" type="submit" value="Cadastrar" />
+                <input class="btn btn-warning" type="reset" value="Limpar" />
+                <a class="btn btn-danger" href="@Url.Action("Index", "AparelhoMovel")">Cancelar</a>
+            </p>    
+        }
     </div>
 </div>
+@section Scripts
+{
+    @Scripts.Render("~/bundles/jquery.maskedinput")
+    <script type="text/javascript">
+        $(function () {
+            $('input#NumeroTelefone').mask('(99) 9999-9999?9').focusout(function () {
+                var phone, element;
+                element = $(this);
+                element.unmask();
+                phone = element.val().replace(/\D/g, '');
+                if (phone.length > 10) {
+                    element.mask("(99) 99999-999?9");
+                } else {
+                    element.mask("(99) 9999-9999?9");
+                }
+            });
+        });
+    </script>
+}

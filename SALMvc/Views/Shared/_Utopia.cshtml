@@ -11,6 +11,8 @@
     <link href="~/Assets/css/bootstrap-responsive.min.css" rel="stylesheet" />
     <link href="~/Assets/css/bootstrap.min.css" rel="stylesheet" />
     <link href="~/Assets/css/application.css" rel="stylesheet" />
+    
+    @Scripts.Render("~/bundles/modernizr")
 </head>
 <body data-spy="scroll" data-target=".bs-docs-sidebar">
     <!-- Navbar
@@ -54,6 +56,7 @@
     <!-- Le javascript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
+    @Scripts.Render("~/bundles/jquery")
     <script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
     <script src="~/Assets/js/application.js"></script>
     <script src="~/Assets/js/bootstrap-affix.js"></script>
@@ -70,8 +73,7 @@
     <script src="~/Assets/js/bootstrap-transition.js"></script>
     <script src="~/Assets/js/bootstrap-typeahead.js"></script>
     <script src="~/Assets/js/bootstrap.min.js"></script>
-    <script src="~/Assets/js/gmaps.js"></script>
-    <script src="~/Assets/js/jquery.js"></script>
     <script src="~/Assets/js/prettify.js"></script>
+    @RenderSection("scripts", required: false)
 </body>
 </html>

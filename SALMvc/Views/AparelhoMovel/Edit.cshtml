@@ -41,7 +41,7 @@
         </div>
     
         <div class="control-group">
-            @Html.LabelFor(model => model.NumeroTelefone,  new { @class = "control-label" })
+            @Html.LabelFor(model => model.NumeroTelefone, new { @class = "control-label" })
             <div class="controls">
                 @Html.EditorFor(model => model.NumeroTelefone)
                 @Html.ValidationMessageFor(model => model.NumeroTelefone)
@@ -51,7 +51,7 @@
         <div class="control-group">
             @Html.LabelFor(model => model.Observacao,  new { @class = "control-label" })
             <div class="controls">
-                @Html.EditorFor(model => model.Observacao)
+                @Html.TextAreaFor(model => model.Observacao)
                 @Html.ValidationMessageFor(model => model.Observacao)
             </div>
         </div>
@@ -64,3 +64,19 @@
 }
     </div>
 </div>
+<script src="~/Assets/js/jquery.maskedinput.min.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $('input#NumeroTelefone').mask('(99) 9999-9999?9').focusout(function () {
+            var phone, element;
+            element = $(this);
+            element.unmask();
+            phone = element.val().replace(/\D/g, '');
+            if (phone.length > 10) {
+                element.mask("(99) 99999-999?9");
+            } else {
+                element.mask("(99) 9999-9999?9");
+            }
+        });
+    });
+</script>

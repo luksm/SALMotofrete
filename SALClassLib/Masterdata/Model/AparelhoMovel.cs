@@ -18,9 +18,9 @@ namespace SALClassLib.Masterdata.Model
             set { id = value; }
         }
         
-
         private TipoAparelhoMovel tipo;
 
+        [Required(ErrorMessage="*")]
         public virtual TipoAparelhoMovel Tipo
         {
             get { return tipo; }
@@ -29,8 +29,8 @@ namespace SALClassLib.Masterdata.Model
 
         private String modelo;
 
-        [DisplayName("Modelo")]
-        [MaxLength(25)]
+        [MaxLength(25, ErrorMessage="O modelo deve ter no máximo 25 caracteres")]
+        [Required(ErrorMessage="O modelo é obrigatório")]
         public virtual String Modelo
         {
             get { return modelo; }
@@ -39,6 +39,8 @@ namespace SALClassLib.Masterdata.Model
 
         private String marca;
 
+        [MaxLength(25, ErrorMessage = "A marca deve ter no máximo 25 caracteres")]
+        [Required(ErrorMessage = "A marca é obrigatória")]
         public virtual String Marca
         {
             get { return marca; }
@@ -47,6 +49,8 @@ namespace SALClassLib.Masterdata.Model
 
         private String numeroTelefone;
 
+        [MaxLength(30, ErrorMessage = "O telefone deve ter no máximo 30 caracteres")]
+        [DisplayName("Número de telefone")]
         public virtual String NumeroTelefone
         {
             get { return numeroTelefone; }
@@ -55,6 +59,7 @@ namespace SALClassLib.Masterdata.Model
 
         private String observacao;
 
+        [MaxLength(2000, ErrorMessage = "A observação deve ter no máximo 2000 caracteres")]
         public virtual String Observacao
         {
             get { return observacao; }

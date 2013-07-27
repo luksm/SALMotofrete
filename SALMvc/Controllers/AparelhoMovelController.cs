@@ -13,13 +13,27 @@ namespace SALMvc.Controllers
     {
         IList<AparelhoMovel> lista = new List<AparelhoMovel>();
 
-        //
-        // GET: /AparelhoMovel/
         public void Listar()
         {
             AparelhoMovelBO bo = new AparelhoMovelBO();
             lista = bo.Listar();
             bo.Dispose();
+        }
+
+        private void PreencherBagDropDownLists()
+        {
+            TipoAparelhoMovelBO bo = new TipoAparelhoMovelBO();
+            IList<TipoAparelhoMovel> tipos = bo.Listar();
+            bo.Dispose();
+            bo = null;
+            var listaTipos = new List<SelectListItem>();
+            foreach (var tipo in tipos)
+            {
+                listaTipos.Add(
+                    new SelectListItem() { Text = tipo.Descricao, Value = tipo.Id.ToString() }
+                );
+            }
+            ViewBag.TipoAparelhoMovel = listaTipos;
         }
 
         //
@@ -34,18 +48,7 @@ namespace SALMvc.Controllers
         // GET: /AparelhoMovel/Create
         public ActionResult Create()
         {
-            TipoAparelhoMovelBO bo = new TipoAparelhoMovelBO();
-            IList<TipoAparelhoMovel> tipos = bo.Listar();
-            bo.Dispose();
-            bo = null;
-            var listaTipos = new List<SelectListItem>();
-            foreach (var tipo in tipos)
-            {
-                listaTipos.Add(
-                    new SelectListItem() { Text = tipo.Descricao, Value = tipo.Id.ToString() }
-                );
-            }
-            ViewBag.TipoAparelhoMovel = listaTipos;
+            PreencherBagDropDownLists();
             return View();
         }
 
@@ -57,6 +60,7 @@ namespace SALMvc.Controllers
 
             if (!ModelState.IsValid)
             {
+                PreencherBagDropDownLists();
                 return View(aparelhoMovel);
             }
 
@@ -65,7 +69,7 @@ namespace SALMvc.Controllers
             {
                 bo.Incluir(aparelhoMovel);
                 bo.Dispose();
-                TempData["flash"] = "Seu cadastro foi realisado com sucesso.";
+                TempData["flash"] = "Seu cadastro foi realizado com sucesso.";
             }
             catch
             {
@@ -101,18 +105,7 @@ namespace SALMvc.Controllers
         // GET: /AparelhoMovel/Edit/#
         public ActionResult Edit(uint Id)
         {
-            TipoAparelhoMovelBO bo2 = new TipoAparelhoMovelBO();
-            IList<TipoAparelhoMovel> tipos = bo2.Listar();
-            bo2.Dispose();
-            bo2 = null;
-            var listaTipos = new List<SelectListItem>();
-            foreach (var tipo in tipos)
-            {
-                listaTipos.Add(
-                    new SelectListItem() { Text = tipo.Descricao, Value = tipo.Id.ToString() }
-                );
-            }
-            ViewBag.TipoAparelhoMovel = listaTipos;
+            PreencherBagDropDownLists();
             AparelhoMovelBO bo = new AparelhoMovelBO();
             AparelhoMovel am = new AparelhoMovel();
             am = bo.BuscarPeloId(Id);
@@ -128,6 +121,7 @@ namespace SALMvc.Controllers
 
             if (!ModelState.IsValid)
             {
+                PreencherBagDropDownLists();
                 return View(aparelhoMovel);
             }
 
@@ -158,7 +152,7 @@ namespace SALMvc.Controllers
                 String modelo = am.Modelo;
                 bo.Excluir(am);
                 bo.Dispose();
-                TempData["flash"] = "O aparelho movel \"" + modelo + " \" excluido com sucesso.";
+                TempData["flash"] = "O aparelho movel \"" + modelo + "\" excluido com sucesso.";
             }
             catch
             {
