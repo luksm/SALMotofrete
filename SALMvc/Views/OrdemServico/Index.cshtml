@@ -1,60 +1,46 @@
-﻿@model SALClassLib.OS.Model.OrdemServico
+﻿@model IEnumerable<SALClassLib.OS.Model.OrdemServico>
 
 @{
-    ViewBag.Title = "SAL Motofrete, seu motoboy a um click de distância!";
-    Layout = "~/Views/Shared/_Home.cshtml";
+    ViewBag.Title = "Listagem de Ordens de Serviço";
+    Layout = "~/Views/Shared/_Utopia.cshtml";
 }
 
-<div class="row-fluid" id="sal">
-    <div class="span3">
-        <div class="row-fluid">
-          <div class="span10 offset1">
-            <h1 class="logo">Sal</h1>
+<h2>Index</h2>
 
-        @using (Html.BeginForm("Create", "OrdemServico", FormMethod.Post, new { @class = "" }))
-        {
-            @Html.AntiForgeryToken()
-            @Html.ValidationSummary(true)
-            <fieldset>
-                <legend>Origem</legend>
-                <label for="Origem.0.Endereco">Endereço</label>
-                <input type="text" id="Origem.0.Endereco" name="Origem[0][Endereco]" placeholder="Vou buscar aqui">
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Numero)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Data)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Observacao)
+        </th>
+        <th></th>
+    </tr>
 
-                <label for="Origem.0.Complemento">Complemento</label>
-                <input type="text" id="Origem.0.Complemento"  name="Origem[0][Complemento]" placeholder="Andar ? Apartamento ?">
-                
-                <label for="Origem.0.Contato">Contato</label>
-                <input type="text" id="Origem.0.Contato" name="Origem[0][Contato]" placeholder="Vou falar com quem ?">
-                            
-            </fieldset>
-            <fieldset>
-                <legend>Destino</legend>
-
-                <label for="Destino.0.Endereco">Endereço</label>
-                <input type="text" id="Destino.0.Endereco" name="Destino[0][Endereco]" placeholder="Vou buscar aqui">
-
-                <label for="Destino.0.Complemento">Complemento</label>
-                <input type="text" id="Destino.0.Complemento"  name="Destino[0][Complemento]" placeholder="Andar ? Apartamento ?">
-
-                <label for="Destino.0.Contato">Contato</label>
-                <input type="text" id="Destino.0.Contato" name="Destino[0][Contato]" placeholder="Vou falar com quem ?">
-            </fieldset>
-
-            <div class="form-actions">
-                <button type="submit" class="btn btn-danger">Confirmar</button>
-            </div>
-        }
-          </div>
-        </div>
-    </div>
-    <div class="span9" id="map-canvas">
-        MAPA
-    </div>
-</div>
-
-@section Scripts
-{
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCeTKNaa8r6sudbzbDwyj76g605HmJb-FI&amp;sensor=true&amp;libraries=places"></script>
-
-    <script type="text/javascript" src="~/Assets/js/gmaps.js"></script>
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Numero)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Data)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Observacao)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+        </td>
+    </tr>
 }
+
+</table>

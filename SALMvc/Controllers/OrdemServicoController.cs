@@ -12,12 +12,20 @@ namespace SALMvc.Controllers
     public class OrdemServicoController : Controller
     {
         IList<OrdemServico> lista = new List<OrdemServico>();
+        private void Listar()
+        {
+            OrdemServicoBO bo = new OrdemServicoBO();
+            lista = bo.Listar();
+            bo.Dispose();
+        }
+
 
         //
         // GET: /OrdemServico/
         public ActionResult Index()
         {
-            return View();
+            Listar();
+            return View(lista);
         }
 
         //
@@ -50,15 +58,6 @@ namespace SALMvc.Controllers
                 TempData["flash"] = "Ocorreu um problema, tente novamente.";
             }
             return RedirectToAction("Index");
-        }
-
-        //
-        // GET: /OrdemServico/List
-        public void Listar()
-        {
-            OrdemServicoBO bo = new OrdemServicoBO();
-            lista = bo.Listar();
-            bo.Dispose();
         }
 
         //

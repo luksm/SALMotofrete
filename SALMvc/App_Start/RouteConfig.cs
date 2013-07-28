@@ -16,7 +16,7 @@ namespace SALMvc
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "OrdemServico", action = "Index", id = UrlParameter.Optional }
+                defaults: new { controller = "OrdemServico", action = "Create", id = UrlParameter.Optional }
             );
         }
     }

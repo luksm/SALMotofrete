@@ -5,26 +5,56 @@
     Layout = "~/Views/Shared/_Home.cshtml";
 }
 
-<h2>Create</h2>
+<div class="row-fluid" id="sal">
+    <div class="span3">
+        <div class="row-fluid">
+          <div class="span10 offset1">
+            <h1 class="logo">Sal</h1>
 
-<fieldset>
-    <legend>OrdemServico</legend>
+        @using (Html.BeginForm("Step2", "OrdemServico", FormMethod.Post, new { @class = "" }))
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true)
+            <fieldset>
+                <legend>Origem</legend>
+                <label for="Origem.0.Endereco">Endereço</label>
+                <input type="text" id="Origem.0.Endereco" name="Origem[0][Endereco]" placeholder="Vou buscar aqui">
 
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.Data)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.Data)
-    </div>
+                <label for="Origem.0.Complemento">Complemento</label>
+                <input type="text" id="Origem.0.Complemento"  name="Origem[0][Complemento]" placeholder="Andar ? Apartamento ?">
+                
+                <label for="Origem.0.Contato">Contato</label>
+                <input type="text" id="Origem.0.Contato" name="Origem[0][Contato]" placeholder="Vou falar com quem ?">
+                            
+            </fieldset>
+            <fieldset>
+                <legend>Destino</legend>
 
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.Observacao)
+                <label for="Destino.0.Endereco">Endereço</label>
+                <input type="text" id="Destino.0.Endereco" name="Destino[0][Endereco]" placeholder="Vou buscar aqui">
+
+                <label for="Destino.0.Complemento">Complemento</label>
+                <input type="text" id="Destino.0.Complemento"  name="Destino[0][Complemento]" placeholder="Andar ? Apartamento ?">
+
+                <label for="Destino.0.Contato">Contato</label>
+                <input type="text" id="Destino.0.Contato" name="Destino[0][Contato]" placeholder="Vou falar com quem ?">
+            </fieldset>
+
+            <div class="form-actions">
+                <button type="submit" class="btn btn-danger">Confirmar</button>
+            </div>
+        }
+          </div>
+        </div>
     </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.Observacao)
+    <div class="span9" id="map-canvas">
+        MAPA
     </div>
-</fieldset>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id=Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+</div>
+
+@section Scripts
+{
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCeTKNaa8r6sudbzbDwyj76g605HmJb-FI&amp;sensor=true&amp;libraries=places"></script>
+
+    <script type="text/javascript" src="~/Assets/js/gmaps.js"></script>
+}

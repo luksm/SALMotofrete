@@ -4,12 +4,7 @@
     Html.RenderPartial("~/Views/Shared/_FlashPartial.cshtml");
 }
 
-<h2>Index</h2>
+<h2>Pedidos Ativos</h2>
 
-<ul>
-    <li>@Html.ActionLink("Gerente", "Index", "Gerente")</li>
-    <li>@Html.ActionLink("Entregador", "Index", "Entregador")</li>
-    <li>@Html.ActionLink("Aparelho Móvel", "Index", "AparelhoMovel")</li>
-    <li>@Html.ActionLink("Atendente", "Index", "Atendente")</li>
-    <li>@Html.ActionLink("Cliente", "Index", "Cliente")</li>
-</ul>
+<p>Aqui vão aparecer todos os pedidos que estiverem com um status diferente de completo</p>
+

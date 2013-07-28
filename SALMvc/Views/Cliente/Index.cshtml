@@ -6,14 +6,17 @@
     Html.RenderPartial("~/Views/Shared/_FlashPartial.cshtml");
 }
 
-<div class="row" style="border-bottom: 1px solid black;">
-    <h2>
-        Clientes
-        <a href="@Url.Action("CreatePF", "Cliente")" class="btn btn-danger pull-right" type="button"><i class="icon-user icon-white"> </i>  Novo Cliente PF</a>
-        <a style="margin-right:10px;" href="@Url.Action("CreatePJ", "Cliente")" class="btn btn-danger pull-right" type="button"><i class="icon-user icon-white"> </i>  Novo Cliente PJ</a>
-    </h2>
+<div class="row" style="border-bottom: 1px solid black; margin-bottom: 20px">
+    <div class="span12">
+        <h2>@ViewBag.Title</h2>
+    </div>
 </div>
-
+<div class="row" style="margin-bottom: 20px">
+    <div class="span12">
+        <a href="@Url.Action("CreatePF", "Cliente")" class="btn btn-danger" type="button"><i class="icon-user icon-white"> </i>  Novo Cliente</a>
+        <a style="margin-right:10px;" href="@Url.Action("CreatePJ", "Cliente")" class="btn btn-danger" type="button"><i class="icon-briefcase icon-white"> </i>  Nova Empresa</a>
+    </div>
+</div>
 <div class="row">
     <table class="table table-hover table-striped">
         <thead>
