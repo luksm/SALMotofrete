@@ -1,14 +1,14 @@
 ﻿@model IEnumerable<SALClassLib.Masterdata.Model.Entregador>
 
 @{
-    ViewBag.Title = "Listagem de Entregadores";
+    ViewBag.Title = "Entregadores";
     Layout = "~/Views/Shared/_Utopia.cshtml";
     Html.RenderPartial("~/Views/Shared/_FlashPartial.cshtml");
 }
 
-<div class="row" style="border-bottom: 1px solid black;">
+<div class="row" style="border-bottom: 1px solid #DDD;">
     <h2>
-        Entregadores
+        @ViewBag.Title
         <a href="@Url.Action("Create", "Entregador")" class="btn btn-danger pull-right" type="button"><i class="icon-user icon-white"> </i>  Novo Entregador</a>
     </h2>
 </div>
@@ -16,13 +16,13 @@
 <div class="row">
     <table class="table table-hover table-striped">
         <thead>
-            <tr>
+            <tr style="background:#CCC;color:#FFF;">
                 <th>@Html.DisplayNameFor(model => model.Nome)</th>
                 <th>@Html.DisplayNameFor(model => model.Sobrenome)</th>
                 <th>@Html.DisplayNameFor(model => model.Cpf)</th>
                 <th>@Html.DisplayNameFor(model => model.Rg)</th>
                 <th>@Html.DisplayNameFor(model => model.Cnh)</th>
-                <th class="actions">Ações</th>
+                <th class="actions"></th>
             </tr>
         </thead>
         <tbody>
@@ -34,9 +34,9 @@
                 <td>@Html.DisplayFor(modelItem => item.Rg)</td>
                 <td>@Html.DisplayFor(modelItem => item.Cnh)</td>
                 <td class="actions">
-                    <a href="@Url.Action("Edit", "Entregador", new { id=item.Id })" class="btn btn-small btn-info"><i class="icon-pencil icon-white"> </i>  Editar</a>
-                    <a href="@Url.Action("Details", "Entregador", new { id=item.Id })" class="btn btn-small btn-info"><i class="icon-info-sign icon-white"> </i>  Detalhes</a>
-                    <a href="@Url.Action("Delete", "Entregador", new { id=item.Id })" class="btn btn-small btn-info"><i class="icon-remove-circle icon-white"> </i>  Excluir</a>
+                    <a href="@Url.Action("Edit", "Entregador", new { id=item.Id })"><i class="icon-pencil icon-black"></i></a>
+                    <a href="@Url.Action("Details", "Entregador", new { id=item.Id })"><i class="icon-info-sign icon-black"></i></a>
+                    <a href="@Url.Action("Delete", "Entregador", new { id=item.Id })"><i class="icon-trash icon-black"></i></a>
                 </td>
             </tr>
 }

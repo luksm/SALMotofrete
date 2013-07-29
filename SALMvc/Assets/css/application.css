@@ -1,4 +1,10 @@
-﻿@font-face {
+﻿body a{color:#DE0000;}
+body a:hover{color:#AA0000;}
+body{ background:url("/Assets/img/background.jpg") repeat; }
+body table{ background-color:white; }
+body ul{ background-color:white; }
+
+@font-face {
 	font-family: 'Olivier';
 	src: url('Assets/fonts/olivier_demo.eot');
 	src: local('☺'), url('/Assets/fonts/olivier_demo.woff') format('woff'), url('/Assets/fonts/olivier_demo.ttf') format('truetype'), url('/Assets/fonts/olivier_demo.svg') format('svg');

@@ -62,6 +62,7 @@ namespace SALClassLib.Masterdata.Model
         private String observacao;
 
         [MaxLength(2000, ErrorMessage = "A observação deve ter no máximo 2000 caracteres")]
+        [DisplayName("Observação")]
         public virtual String Observacao
         {
             get { return observacao; }

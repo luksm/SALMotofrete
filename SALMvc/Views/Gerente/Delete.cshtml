@@ -6,11 +6,11 @@
     Html.RenderPartial("~/Views/Shared/_FlashPartial.cshtml");
 }
 
-<h2>Delete</h2>
+<div class="row header">
+    <h2>Apagar Gerente</h2>
+</div>
 
-<h3>Are you sure you want to delete this?</h3>
-<fieldset>
-    <legend>Gerente</legend>
+<h4>Tem certeza de que deseja excluir este gerente?</h4>
 
     <div class="display-label">
          @Html.DisplayNameFor(model => model.Nome)
@@ -67,7 +67,6 @@
     <div class="display-field">
         @Html.DisplayFor(model => model.Usuario)
     </div>
-</fieldset>
 
 @using (Html.BeginForm()) {
     @Html.AntiForgeryToken()

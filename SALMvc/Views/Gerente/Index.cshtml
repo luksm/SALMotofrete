@@ -1,14 +1,14 @@
 ﻿@model IEnumerable<SALClassLib.Masterdata.Model.Gerente>
 
 @{
-    ViewBag.Title = "Listagem de Gerentes";
+    ViewBag.Title = "Gerentes";
     Layout = "~/Views/Shared/_Utopia.cshtml";
     Html.RenderPartial("~/Views/Shared/_FlashPartial.cshtml");
 }
 
-<div class="row" style="border-bottom: 1px solid black;">
+<div class="row" style="border-bottom: 1px solid #DDD;">
     <h2>
-        Gerentes
+        @ViewBag.Title
         <a href="@Url.Action("Create", "Gerente")" class="btn btn-danger pull-right" type="button"><i class="icon-user icon-white"> </i>  Novo Gerente</a>
     </h2>
 </div>
@@ -16,7 +16,7 @@
 <div class="row">
     <table class="table table-hover table-striped">
         <thead>
-            <tr>
+            <tr style="background:#CCC;color:#FFF;">
                 <th>@Html.DisplayNameFor(model => model.Nome)</th>
                 <th>@Html.DisplayNameFor(model => model.Sobrenome)</th>
                 <th>@Html.DisplayNameFor(model => model.Cpf)</th>
@@ -25,27 +25,27 @@
                 <th>@Html.DisplayNameFor(model => model.TelefoneCelular)</th>
                 <th>@Html.DisplayNameFor(model => model.Email)</th>
                 <th>@Html.DisplayNameFor(model => model.Usuario)</th>
-                <th class="actions">Ações</th>
+                <th class="actions"></th>
             </tr>
         </thead>
         <tbody>
-@foreach (var item in Model) {
-            <tr>
-                <td>@Html.DisplayFor(modelItem => item.Nome)</td>
-                <td>@Html.DisplayFor(modelItem => item.Sobrenome)</td>
-                <td>@Html.DisplayFor(modelItem => item.Cpf)</td>
-                <td>@Html.DisplayFor(modelItem => item.Rg)</td>
-                <td>@Html.DisplayFor(modelItem => item.TelefoneFixo)</td>
-                <td>@Html.DisplayFor(modelItem => item.TelefoneCelular)</td>
-                <td>@Html.DisplayFor(modelItem => item.Email)</td>
-                <td>@Html.DisplayFor(modelItem => item.Usuario)</td>
-                <td class="actions">
-                    <a href="@Url.Action("Edit", "Gerente", new { id=item.Id })" class="btn btn-small btn-info"><i class="icon-pencil icon-white"> </i>  Editar</a>
-                    <a href="@Url.Action("Details", "Gerente", new { id=item.Id })" class="btn btn-small btn-info"><i class="icon-info-sign icon-white"> </i>  Detalhes</a>
-                    <a href="@Url.Action("Delete", "Gerente", new { id=item.Id })" class="btn btn-small btn-info"><i class="icon-remove-circle icon-white"> </i>  Excluir</a>
-                </td>
-            </tr>
-}
+            @foreach (var item in Model) {
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => item.Nome)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Sobrenome)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Cpf)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Rg)</td>
+                    <td>@Html.DisplayFor(modelItem => item.TelefoneFixo)</td>
+                    <td>@Html.DisplayFor(modelItem => item.TelefoneCelular)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Email)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Usuario)</td>
+                    <td class="actions">
+                        <a href="@Url.Action("Edit", "Gerente", new { id=item.Id })"><i class="icon-pencil icon-black"></i></a>
+                        <a href="@Url.Action("Details", "Gerente", new { id=item.Id })"><i class="icon-info-sign icon-black"></i></a>
+                        <a href="@Url.Action("Delete", "Gerente", new { id=item.Id })"><i class="icon-trash icon-black"></i></a>
+                    </td>
+                </tr>
+            }
         </tbody>
     </table>
 </div>
