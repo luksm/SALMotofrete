@@ -1,5 +1,6 @@
-﻿body a, a:link{color:#DE0000;}
+﻿body a{color:#DE0000;}
 body a:hover, a:active{color:#AA0000;}
+body .header{ border-bottom:1px solid #DDD; }
 
 @font-face {
 	font-family: 'Olivier';
@@ -49,14 +50,32 @@ h2 {
     line-height:50px;
 }
 
-    .navbar .nav > li > a:hover {
-        color:#AA0000;
-    }
+.navbar-link { color:#DE0000; }
+.navbar-link:hover{color:#AA0000;}
+
+.navbar .nav > li > a:hover {
+    color:#AA0000;
+}
 
 .table-hover tbody tr > td.actions, .table-hover tbody tr > th.actions {
     text-align: right;
 }
 
-form p.actions {
+.form-horizontal p.actions {
     text-align: center;
-}   
+    margin-top:10px;
+}
+
+.details-horizontal .control-label{
+  font-weight:bold;
+}
+
+.details-horizontal .controls{
+  margin-top:5px;
+}
+
+.details-horizontal h4{
+  text-align: center;
+  color:#CDCD00;
+  margin-bottom:20px;
+}

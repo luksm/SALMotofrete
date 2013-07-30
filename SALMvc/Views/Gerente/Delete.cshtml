@@ -1,77 +1,91 @@
 ﻿@model SALClassLib.Masterdata.Model.Gerente
 
 @{
-    ViewBag.Title = "Delete";
+    ViewBag.Title = "Apagar Gerente";
     Layout = "~/Views/Shared/_Utopia.cshtml";
     Html.RenderPartial("~/Views/Shared/_FlashPartial.cshtml");
 }
 
 <div class="row header">
-    <h2>Apagar Gerente</h2>
+    <h2>@ViewBag.Title</h2>
 </div>
 
-<h4>Tem certeza de que deseja excluir este gerente?</h4>
+<div class="form-horizontal details-horizontal">
+    <h4>Tem certeza de que deseja excluir este gerente?</h4>
+    <div class="row">
+        <div class="span5 offset1">
+            <div class="control-group">
+                @Html.LabelFor(model => model.Nome, new { @class = "control-label" })
+                <div class="controls">
+                    @Html.DisplayFor(model => model.Nome)
+                </div>
+            </div>
 
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.Nome)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.Nome)
-    </div>
+            <div class="control-group">
+                @Html.LabelFor(model => model.Sobrenome,  new { @class = "control-label" })
+                <div class="controls">
+                    @Html.DisplayFor(model => model.Sobrenome)
+                </div>
+            </div>
 
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.Sobrenome)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.Sobrenome)
-    </div>
+            <div class="control-group">
+                @Html.LabelFor(model => model.Cpf,  new { @class = "control-label" })
+                <div class="controls">
+                    @Html.DisplayFor(model => model.Cpf)
+                </div>
+            </div>
 
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.Cpf)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.Cpf)
-    </div>
+            <div class="control-group">
+                @Html.LabelFor(model => model.Rg,  new { @class = "control-label" })
+                <div class="controls">
+                    @Html.DisplayFor(model => model.Rg)
+                </div>
+            </div>
 
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.Rg)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.Rg)
-    </div>
+            <div class="control-group">
+                @Html.LabelFor(model => model.Email,  new { @class = "control-label" })
+                <div class="controls">
+                    @Html.DisplayFor(model => model.Email)
+                </div>
+            </div> 
+        </div>
+        <div class="span5">
+            <div class="control-group">
+                @Html.LabelFor(model => model.TelefoneFixo,  new { @class = "control-label" })
+                <div class="controls">
+                    @Html.DisplayFor(model => model.TelefoneFixo)
+                </div>
+            </div>
 
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.TelefoneFixo)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.TelefoneFixo)
-    </div>
+            <div class="control-group">
+                @Html.LabelFor(model => model.TelefoneCelular,  new { @class = "control-label" })
+                <div class="controls">
+                    @Html.DisplayFor(model => model.TelefoneCelular)
+                </div>
+            </div>
 
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.TelefoneCelular)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.TelefoneCelular)
-    </div>
+            <div class="control-group">
+                @Html.LabelFor(model => model.Usuario,  new { @class = "control-label" })
+                <div class="controls">
+                    @Html.DisplayFor(model => model.Usuario)
+                </div>
+            </div>
 
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.Email)
+            <div class="control-group">
+                @Html.LabelFor(model => model.Foto,  new { @class = "control-label" })
+                <div class="controls">
+                    @Html.DisplayFor(model => model.Foto)
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.Email)
+    <div class="row">
+        @using (Html.BeginForm()) {
+            @Html.AntiForgeryToken()
+            <p class="actions">
+                <input type="submit" value="Deletar" class="btn btn-danger" />
+                @Html.ActionLink("Voltar", "Index", new { }, new { @class = "btn" })
+            </p>
+        }
     </div>
-
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.Usuario)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.Usuario)
-    </div>
-
-@using (Html.BeginForm()) {
-    @Html.AntiForgeryToken()
-    <p>
-        <input type="submit" value="Delete" /> |
-        @Html.ActionLink("Back to List", "Index")
-    </p>
-}
+</div>

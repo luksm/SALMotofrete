@@ -1,13 +1,13 @@
 ﻿@model SALClassLib.Masterdata.Model.Gerente
 
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "Editar Gerente";
     Layout = "~/Views/Shared/_Utopia.cshtml";
     Html.RenderPartial("~/Views/Shared/_FlashPartial.cshtml");
 }
 
 <div class="row header">
-    <h2>Editar Gerente</h2>
+    <h2>@ViewBag.Title</h2>
 </div>
 
 @using (Html.BeginForm("Edit", "Gerente", FormMethod.Post, new { @class = "form-horizontal" }))
@@ -49,11 +49,13 @@
             </div>
 
             <div class="control-group">
-                @Html.LabelFor(model => model.Foto,  new { @class = "control-label" })
+                @Html.LabelFor(model => model.Email,  new { @class = "control-label" })
                 <div class="controls">
-                    <input type="file" name="Foto" />
+                    @Html.EditorFor(model => model.Email)
+                    @Html.ValidationMessageFor(model => model.Email)
                 </div>
             </div>
+            
         </div>
         <div class="span5">
             <div class="control-group">
@@ -73,14 +75,6 @@
             </div>
 
             <div class="control-group">
-                @Html.LabelFor(model => model.Email,  new { @class = "control-label" })
-                <div class="controls">
-                    @Html.EditorFor(model => model.Email)
-                    @Html.ValidationMessageFor(model => model.Email)
-                </div>
-            </div>
-
-            <div class="control-group">
                 @Html.LabelFor(model => model.Usuario,  new { @class = "control-label" })
                 <div class="controls">
                     @Html.EditorFor(model => model.Usuario)
@@ -95,11 +89,19 @@
                     @Html.ValidationMessageFor(model => model.Senha)
                 </div>
             </div>
+
+            <div class="control-group">
+                @Html.LabelFor(model => model.Foto,  new { @class = "control-label" })
+                <div class="controls">
+                    <input type="file" name="Foto" />
+                </div>
+            </div>
+
         </div>
     </div>
     <div class="row">
         <p class="actions">
-            <input class="btn btn-danger" type="submit" value="Save" />
+            <input class="btn btn-danger" type="submit" value="Salvar" />
             <a class="btn" href="@Url.Action("Index", "Gerente")">Cancelar</a>
         </p>
     </div>
