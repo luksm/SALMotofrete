@@ -5,26 +5,72 @@
     Layout = "~/Views/Shared/_Home.cshtml";
 }
 
-<h2>Create</h2>
+<div class="row header">
+    <h2>Novo Pedido</h2>
+</div>
 
-<fieldset>
-    <legend>OrdemServico</legend>
-
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.Data)
+@using (Html.BeginForm("Create", "Gerente", FormMethod.Post, new { @class = "form-horizontal" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+    <div class="row">
+        <div class="span5">
+            <div class="control-group">
+                @Html.LabelFor(model => model.Data, new { @class = "control-label" })
+                <div class="controls">
+                    @Html.EditorFor(model => model.Data)
+                    @Html.ValidationMessageFor(model => model.Data)
+                </div>
+            </div>
+            <div class="control-group">
+                @Html.LabelFor(model => model.EnderecoRetirada.Logradouro, new { @class = "control-label" })
+                <div class="controls">
+                    @Html.EditorFor(model => model.EnderecoRetirada.Logradouro)
+                    @Html.ValidationMessageFor(model => model.EnderecoRetirada.Logradouro)
+                </div>
+            </div>
+            <div class="control-group">
+                @Html.LabelFor(model => model.EnderecoRetirada.Complemento, new { @class = "control-label" })
+                <div class="controls">
+                    @Html.EditorFor(model => model.EnderecoRetirada.Complemento)
+                    @Html.ValidationMessageFor(model => model.EnderecoRetirada.Complemento)
+                </div>
+            </div>
+            <div class="control-group">
+                @Html.LabelFor(model => model.EnderecoRetirada.NomeContato, new { @class = "control-label" })
+                <div class="controls">
+                    @Html.EditorFor(model => model.EnderecoRetirada.NomeContato)
+                    @Html.ValidationMessageFor(model => model.EnderecoRetirada.NomeContato)
+                </div>
+            </div>
+            <div class="control-group">
+                @Html.LabelFor(model => model.EnderecoEntrega.Logradouro, new { @class = "control-label" })
+                <div class="controls">
+                    @Html.EditorFor(model => model.EnderecoEntrega.Logradouro)
+                    @Html.ValidationMessageFor(model => model.EnderecoEntrega.Logradouro)
+                </div>
+            </div>
+            <div class="control-group">
+                @Html.LabelFor(model => model.EnderecoEntrega.Logradouro, new { @class = "control-label" })
+                <div class="controls">
+                    @Html.EditorFor(model => model.EnderecoEntrega.Complemento)
+                    @Html.ValidationMessageFor(model => model.EnderecoEntrega.Logradouro)
+                </div>
+            </div>
+            <div class="control-group">
+                @Html.LabelFor(model => model.EnderecoEntrega.NomeContato, new { @class = "control-label" })
+                <div class="controls">
+                    @Html.EditorFor(model => model.EnderecoEntrega.NomeContato)
+                    @Html.ValidationMessageFor(model => model.EnderecoEntrega.NomeContato)
+                </div>
+            </div>
+            <div class="control-group">
+                @Html.LabelFor(model => model.Observacao, new { @class = "control-label" })
+                <div class="controls">
+                    @Html.EditorFor(model => model.Observacao)
+                    @Html.ValidationMessageFor(model => model.Observacao)
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.Data)
-    </div>
-
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.Observacao)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.Observacao)
-    </div>
-</fieldset>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id=Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+}

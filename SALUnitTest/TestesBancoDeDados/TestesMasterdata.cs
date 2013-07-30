@@ -82,7 +82,7 @@ namespace SALUnitTest
             Endereco e = new Endereco();
             e.Logradouro = "rua abc";
             e.Municipio = session.Get<Municipio>(Convert.ToUInt32(1));
-            e.Numero = 13;
+            e.Numero = "13";
             e.Bairro = "asas";
             atendente.Enderecos.Add(e);
             atendente.Usuario = "abc";
@@ -105,7 +105,7 @@ namespace SALUnitTest
             atendente.StatusExclusao = 1;
             e = new Endereco();
             e.Logradouro = "rua alterado";
-            e.Numero = 412;
+            e.Numero = "412";
             e.Bairro = "aterado";
             e.Municipio = session.Get<Municipio>(Convert.ToUInt32(1));
             atendente.Enderecos.Clear();
@@ -150,7 +150,7 @@ namespace SALUnitTest
             e.Logradouro = "rua abc";
             e.Municipio = new Municipio();
             e.Municipio.Id = 1;
-            e.Numero = 13;
+            e.Numero = "13";
             e.Municipio = session.Get<Municipio>(Convert.ToUInt32(1));
             e.Bairro = "asas";
             atendente.Enderecos.Add(e);
@@ -198,7 +198,7 @@ namespace SALUnitTest
                 e.Logradouro = "rua abc";
                 e.Municipio = new Municipio();
                 e.Municipio.Id = 1;
-                e.Numero = 13;
+                e.Numero = "13";
                 e.Municipio = session.Get<Municipio>(Convert.ToUInt32(1));
                 e.Bairro = "asas";
                 atendente.Enderecos.Add(e);
@@ -289,7 +289,7 @@ namespace SALUnitTest
             Endereco e = new Endereco();
             e.Logradouro = "rua abcd";
             e.Municipio = session.Get<Municipio>(Convert.ToUInt32(1));
-            e.Numero = 13;
+            e.Numero = "13";
             e.Bairro = "asas";
             gerente.Enderecos.Add(e);
             gerente.Usuario = "abcd";
@@ -311,7 +311,7 @@ namespace SALUnitTest
             gerente.Email = "xxxxxxxxxxxxxxxx";
             e = new Endereco();
             e.Logradouro = "rua alterado";
-            e.Numero = 412;
+            e.Numero = "421";
             e.Bairro = "aterado";
             e.Municipio = session.Get<Municipio>(Convert.ToUInt32(1));
             gerente.Enderecos.Clear();
@@ -404,7 +404,7 @@ namespace SALUnitTest
                 e.Logradouro = "rua abcd";
                 e.Municipio = new Municipio();
                 e.Municipio.Id = 1;
-                e.Numero = 13;
+                e.Numero = "13";
                 e.Municipio = session.Get<Municipio>(Convert.ToUInt32(1));
                 e.Bairro = "asas";
                 gerente.Enderecos.Add(e);
@@ -484,7 +484,7 @@ namespace SALUnitTest
             Endereco e = new Endereco();
             e.Logradouro = "rua abcd";
             e.Municipio = session.Get<Municipio>(Convert.ToUInt32(1));
-            e.Numero = 13;
+            e.Numero = "13";
             e.Bairro = "asas";
             entregador.Enderecos.Add(e);
             entregador.Usuario = "entreg";
@@ -611,7 +611,7 @@ namespace SALUnitTest
                 e.Logradouro = "rua abcd";
                 e.Municipio = new Municipio();
                 e.Municipio.Id = 1;
-                e.Numero = 13;
+                e.Numero = "13";
                 e.Municipio = session.Get<Municipio>(Convert.ToUInt32(1));
                 e.Bairro = "asas";
                 entregador.Enderecos.Add(e);

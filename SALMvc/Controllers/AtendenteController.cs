@@ -86,10 +86,6 @@ namespace SALMvc.Controllers
                 ModelState.AddModelError(ex.Message, ex.Message);
                 return View(atendente);
             }
-            catch (Exception ex)
-            {
-                TempData["flash"] = "Ocorreu um problema, tente novamente.";
-            }
             finally
             {
                 if (bo != null)

@@ -36,6 +36,28 @@ namespace SALMvc.Controllers
         }
 
         //
+        // POST: /OrdemServico/Step2
+        [HttpPost]
+        public ActionResult Step2()
+        {
+            OrdemServico ordemServico = new OrdemServico();
+            ordemServico.EnderecoRetirada = new EnderecoRetirada();
+            ordemServico.EnderecoEntrega = new EnderecoEntrega();
+
+            ordemServico.Data = DateTime.Now;
+
+            ordemServico.EnderecoRetirada.Logradouro = Request.Params["Origem[0][Endereco]"];
+            // ordemServico.EnderecoRetirada.Complemeto = Request.Params["Origem[0][Complemento]"];
+            ordemServico.EnderecoRetirada.NomeContato = Request.Params["Origem[0][Contato]"];
+
+            ordemServico.EnderecoEntrega.Logradouro = Request.Params["Destino[0][Endereco]"];
+            // ordemServico.EnderecoEntrega.Complemeto = Request.Params["Destino[0][Complemento]"];
+            ordemServico.EnderecoEntrega.NomeContato = Request.Params["Destino[0][Contato]"];
+
+            return View(ordemServico);
+        }
+
+        //
         // POST: /OrdemServico/Create
         [HttpPost]
         public ActionResult Create(OrdemServico ordemServico)
