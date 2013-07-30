@@ -37,7 +37,7 @@ namespace SALClassLib.Masterdata.Model.DAO
                 end.Id = Convert.ToUInt32(dr["ID_ENDERECO"]);
                 end.Logradouro = dr["LOGRADOURO"].ToString();
                 end.Bairro = dr["BAIRRO"].ToString();
-                end.Numero = Convert.ToUInt32(dr["NUMERO"].ToString());
+                end.Numero = dr["NUMERO"].ToString();
                 end.Observacao = dr["OBSERVACAO"].ToString();
                 end.Municipio.Id = Convert.ToUInt32(dr["ID_MUNICIPIO"]);
                 end.Municipio.Nome = dr["NOMEMUNICIPIO"].ToString();

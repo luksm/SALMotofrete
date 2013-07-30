@@ -9,6 +9,7 @@
     <property name="Logradouro" column="LOGRADOURO" length="80" not-null="true" />
     <property name="Bairro" column="BAIRRO" length="20" not-null="true" />
     <property name="Numero" column="NUMERO" not-null="true" />
+    <property name="Complemento" column="COMPLEMENTO" length="255" not-null="false" />
     <property name="Observacao" column="OBSERVACAO" length="2000" not-null="false" />
     <many-to-one name="Municipio" class="Municipio" column="ID_MUNICIPIO" cascade="none" not-null="true" fetch="join" />
     <many-to-one name="Pessoa" class="Pessoa" column="ID_PESSOA" cascade="none" not-null="true" />

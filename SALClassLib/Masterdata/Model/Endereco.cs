@@ -32,12 +32,20 @@ namespace SALClassLib.Masterdata.Model
             set { bairro = value; }
         }
 
-        private uint numero;
+        private String numero;
 
-        public virtual uint Numero
+        public virtual String Numero
         {
             get { return numero; }
             set { numero = value; }
+        }
+
+        private String complemento;
+
+        public virtual String Complemento
+        {
+            get { return complemento; }
+            set { complemento = value; }
         }
 
         private String observacao;
