@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Utilitarios.BO;
 
 namespace SALMvc.Controllers
 {
@@ -15,17 +16,47 @@ namespace SALMvc.Controllers
 
         public void Listar()
         {
-            AparelhoMovelBO bo = new AparelhoMovelBO();
-            lista = bo.Listar();
-            bo.Dispose();
+            AparelhoMovelBO bo = null;
+            try
+            {
+                bo = new AparelhoMovelBO();
+                lista = bo.Listar();
+            }
+            catch (Exception)
+            {
+                TempData["flash"] = "Ocorreu um erro ao tentar buscar os aparelhos móveis";
+            }
+            finally
+            {
+                if (bo != null)
+                {
+                    bo.Dispose();
+                    bo = null;
+                }
+            }
         }
 
         private void PreencherBagDropDownLists()
         {
-            TipoAparelhoMovelBO bo = new TipoAparelhoMovelBO();
-            IList<TipoAparelhoMovel> tipos = bo.Listar();
-            bo.Dispose();
-            bo = null;
+            TipoAparelhoMovelBO bo = null;
+            IList<TipoAparelhoMovel> tipos = null;
+            try
+            {
+                bo = new TipoAparelhoMovelBO();
+                tipos = bo.Listar();
+            }
+            catch
+            {
+                return;
+            }
+            finally
+            {
+                if (bo != null)
+                {
+                    bo.Dispose();
+                    bo = null;
+                }
+            }
             var listaTipos = new List<SelectListItem>();
             foreach (var tipo in tipos)
             {
@@ -57,23 +88,35 @@ namespace SALMvc.Controllers
         [HttpPost]
         public ActionResult Create(AparelhoMovel aparelhoMovel)
         {
-
             if (!ModelState.IsValid)
             {
                 PreencherBagDropDownLists();
                 return View(aparelhoMovel);
             }
 
-            AparelhoMovelBO bo = new AparelhoMovelBO();
+            AparelhoMovelBO bo = null;
             try
             {
+                bo = new AparelhoMovelBO();
                 bo.Incluir(aparelhoMovel);
-                bo.Dispose();
                 TempData["flash"] = "Seu cadastro foi realizado com sucesso.";
             }
-            catch
+            catch (BOException ex)
+            {
+                TempData["flash"] = ex.Message;
+                return View(aparelhoMovel);
+            }
+            catch(Exception)
             {
                 TempData["flash"] = "Ocorreu um problema, tente novamente.";
+            }
+            finally
+            {
+                if (bo != null)
+                {
+                    bo.Dispose();
+                    bo = null;
+                }
             }
             return RedirectToAction("Index");
         }
@@ -82,22 +125,26 @@ namespace SALMvc.Controllers
         // GET: /AparelhoMovel/Details/#
         public ActionResult Details(uint Id)
         {
-            TipoAparelhoMovelBO bo2 = new TipoAparelhoMovelBO();
-            IList<TipoAparelhoMovel> tipos = bo2.Listar();
-            bo2.Dispose();
-            bo2 = null;
-            var listaTipos = new List<SelectListItem>();
-            foreach (var tipo in tipos)
+            AparelhoMovelBO bo = null;
+            AparelhoMovel am = null;
+            try
             {
-                listaTipos.Add(
-                    new SelectListItem() { Text = tipo.Descricao, Value = tipo.Id.ToString() }
-                );
+                bo = new AparelhoMovelBO();
+                am = bo.BuscarPeloId(Id);
             }
-            ViewBag.TipoAparelhoMovel = listaTipos;
-            AparelhoMovelBO bo = new AparelhoMovelBO();
-            AparelhoMovel am = new AparelhoMovel();
-            am = bo.BuscarPeloId(Id);
-            bo.Dispose();
+            catch
+            {
+                TempData["flash"] = "Ocorreu um problema, tente novamente.";
+                return RedirectToAction("Index");
+            }
+            finally
+            {
+                if (bo != null)
+                {
+                    bo.Dispose();
+                    bo = null;
+                }
+            }
             return View(am);
         }
 
@@ -106,10 +153,26 @@ namespace SALMvc.Controllers
         public ActionResult Edit(uint Id)
         {
             PreencherBagDropDownLists();
-            AparelhoMovelBO bo = new AparelhoMovelBO();
-            AparelhoMovel am = new AparelhoMovel();
-            am = bo.BuscarPeloId(Id);
-            bo.Dispose();
+            AparelhoMovelBO bo = null;
+            AparelhoMovel am = null;
+            try
+            {
+                bo = new AparelhoMovelBO();
+                am = bo.BuscarPeloId(Id);
+            }
+            catch
+            {
+                TempData["flash"] = "Ocorreu um problema, tente novamente.";
+                return RedirectToAction("Index");
+            }
+            finally
+            {
+                if(bo != null)
+                {
+                    bo.Dispose();
+                    bo = null;
+                }
+            }
             return View(am);
         }
 
@@ -125,16 +188,28 @@ namespace SALMvc.Controllers
                 return View(aparelhoMovel);
             }
 
-            AparelhoMovelBO bo = new AparelhoMovelBO();
+            AparelhoMovelBO bo = null;
             try
             {
+                bo = new AparelhoMovelBO();
                 bo.Alterar(aparelhoMovel);
-                bo.Dispose();
                 TempData["flash"] = "Seu cadastro foi editado com sucesso.";
             }
-            catch
+            catch (BOException ex)
+            {
+                TempData["flash"] = ex.Message;
+            }
+            catch (Exception)
             {
                 TempData["flash"] = "Ocorreu um problema, tente novamente.";
+            }
+            finally
+            {
+                if (bo != null)
+                {
+                    bo.Dispose();
+                    bo = null;
+                }
             }
             Listar();
             return View("Index", lista);
@@ -144,19 +219,62 @@ namespace SALMvc.Controllers
         // GET: /AparelhoMovel/Delete/#
         public ActionResult Delete(uint Id)
         {
-            AparelhoMovelBO bo = new AparelhoMovelBO();
+            AparelhoMovelBO bo = null;
+
             try
             {
-                AparelhoMovel am = new AparelhoMovel();
-                am = bo.BuscarPeloId(Id);
-                String modelo = am.Modelo;
-                bo.Excluir(am);
-                bo.Dispose();
-                TempData["flash"] = "O aparelho movel \"" + modelo + "\" excluido com sucesso.";
+                bo = new AparelhoMovelBO();
+                AparelhoMovel am = bo.BuscarPeloId(Id);
+                return View(am);
             }
-            catch
+            catch (BOException ex)
+            {
+                TempData["flash"] = ex.Message;
+            }
+            catch (Exception)
             {
                 TempData["flash"] = "Ocorreu um problema, tente novamente.";
+            }
+            finally
+            {
+                if (bo != null)
+                {
+                    bo.Dispose();
+                    bo = null;
+                }
+            }
+            return RedirectToAction("Index");
+        }
+
+        //
+        // POST: /AparelhoMovel/Delete/#
+        [HttpPost]
+        public ActionResult Delete(AparelhoMovel aparelhoMovel)
+        {
+            AparelhoMovelBO bo = null;
+
+            try
+            {
+                bo = new AparelhoMovelBO();
+                aparelhoMovel = bo.BuscarPeloId(aparelhoMovel.Id);
+                bo.Excluir(aparelhoMovel);
+                TempData["flash"] = "O aparelho movel \"" + aparelhoMovel.Modelo + "\" excluído com sucesso.";
+            }
+            catch (BOException ex)
+            {
+                TempData["flash"] = ex.Message;
+            }
+            catch (Exception)
+            {
+                TempData["flash"] = "Ocorreu um problema, tente novamente.";
+            }
+            finally
+            {
+                if (bo != null)
+                {
+                    bo.Dispose();
+                    bo = null;
+                }
             }
             return RedirectToAction("Index");
         }

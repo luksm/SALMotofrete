@@ -4,103 +4,113 @@
     Layout = "~/Views/Shared/_Utopia.cshtml";
     Html.RenderPartial("~/Views/Shared/_FlashPartial.cshtml");
 }
-    
-    @using (Html.BeginForm("Edit", "Entregador", FormMethod.Post, new { enctype = "multipart/form-data" }))
-    {
-        @Html.AntiForgeryToken()
-        @Html.ValidationSummary(true)
-    
-        <fieldset>
-            <legend>Entregador</legend>
-            @Html.HiddenFor(model => model.Id)
-            <div class="editor-label">
-                @Html.LabelFor(model => model.PlacaMoto)
-            </div>
-            <div class="editor-field">
-                @Html.EditorFor(model => model.PlacaMoto)
-                @Html.ValidationMessageFor(model => model.PlacaMoto)
-            </div>
-    
-            <div class="editor-label">
-                @Html.LabelFor(model => model.ModeloMoto)
-            </div>
-            <div class="editor-field">
-                @Html.EditorFor(model => model.ModeloMoto)
-                @Html.ValidationMessageFor(model => model.ModeloMoto)
-            </div>
-    
-            <div class="editor-label">
-                @Html.LabelFor(model => model.Nome)
-            </div>
-            <div class="editor-field">
-                @Html.EditorFor(model => model.Nome)
-                @Html.ValidationMessageFor(model => model.Nome)
-            </div>
-    
-            <div class="editor-label">
-                @Html.LabelFor(model => model.Sobrenome)
-            </div>
-            <div class="editor-field">
-                @Html.EditorFor(model => model.Sobrenome)
-                @Html.ValidationMessageFor(model => model.Sobrenome)
-            </div>
-    
-            <div class="editor-label">
-                @Html.LabelFor(model => model.Cpf)
-            </div>
-            <div class="editor-field">
-                @Html.EditorFor(model => model.Cpf)
-                @Html.ValidationMessageFor(model => model.Cpf)
-            </div>
-    
-            <div class="editor-label">
-                @Html.LabelFor(model => model.Rg)
-            </div>
-            <div class="editor-field">
-                @Html.EditorFor(model => model.Rg)
-                @Html.ValidationMessageFor(model => model.Rg)
-            </div>
-    
-            <div class="editor-label">
-                @Html.LabelFor(model => model.Cnh)
-            </div>
-            <div class="editor-field">
-                @Html.EditorFor(model => model.Cnh)
-                @Html.ValidationMessageFor(model => model.Cnh)
-            </div>
-    
-            <div class="editor-label">
-                @Html.LabelFor(model => model.Foto)
-            </div>
-            <div class="editor-field">
-                <input type="file" name="Foto" />
-                @Html.HiddenFor(model => model.Foto)
-            </div>
-    
-            <div class="editor-label">
-                @Html.LabelFor(model => model.Usuario)
-            </div>
-            <div class="editor-field">
-                @Html.EditorFor(model => model.Usuario)
-                @Html.ValidationMessageFor(model => model.Usuario)
-            </div>
-    
-            <div class="editor-label">
-                @Html.LabelFor(model => model.AparelhoMovel)
-            </div>
-            <div class="editor-field">
-                @Html.DropDownListFor(model => model.AparelhoMovel.Id, (IEnumerable<SelectListItem>)ViewBag.AparelhoMovel)
-                @Html.ValidationMessageFor(model => model.AparelhoMovel)
-            </div>
-            @Html.HiddenFor(model => model.Senha)
-            
-            <p>
-                <input type="submit" value="Save" />
-            </p>
-        </fieldset>
-    }
-    
-    <div>
-        @Html.ActionLink("Back to List", "Index")
-    </div>
 
+@using (Html.BeginForm("Edit", "Entregador", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+    
+    <fieldset>
+        <legend>Entregador</legend>
+        @Html.HiddenFor(model => model.Id)
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Nome)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Nome)
+            @Html.ValidationMessageFor(model => model.Nome)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Sobrenome)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Sobrenome)
+            @Html.ValidationMessageFor(model => model.Sobrenome)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Cpf)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Cpf)
+            @Html.ValidationMessageFor(model => model.Cpf)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Rg)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Rg)
+            @Html.ValidationMessageFor(model => model.Rg)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Cnh)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Cnh)
+            @Html.ValidationMessageFor(model => model.Cnh)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Foto)
+        </div>
+        <div class="editor-field">
+            <input type="file" name="Foto" />
+            @Html.HiddenFor(model => model.Foto)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Usuario)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Usuario)
+            @Html.ValidationMessageFor(model => model.Usuario)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PlacaMoto)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PlacaMoto)
+            @Html.ValidationMessageFor(model => model.PlacaMoto)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ModeloMoto)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.ModeloMoto)
+            @Html.ValidationMessageFor(model => model.ModeloMoto)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.AparelhoMovel)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(model => model.AparelhoMovel.Id, (IEnumerable<SelectListItem>)ViewBag.AparelhoMovel)
+            @Html.ValidationMessageFor(model => model.AparelhoMovel)
+        </div>
+        @Html.HiddenFor(model => model.Senha)
+
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts
+{
+    @Scripts.Render("~/bundles/jqueryval");
+    @Scripts.Render("~/bundles/jquery.maskedinput")
+    <script type="text/javascript">
+        $(function () {
+            $('#Cpf').mask('999.999.999-99');
+            $('#PlacaMoto').mask('aaa-9999');
+        });
+    </script>
+}

@@ -1,75 +1,86 @@
 ﻿@model SALClassLib.Masterdata.Model.Entregador
 
 @{
+    ViewBag.Title = "Exclusão de Entregador";
     Layout = "~/Views/Shared/_Utopia.cshtml";
     Html.RenderPartial("~/Views/Shared/_FlashPartial.cshtml");
 }
+<div class="row header">
+    <h2>Exclusão de Atendente</h2>
+</div>
 
-    <h3>Tem certeza que deseja excluir este entregador?</h3>
-    <fieldset>
-        <legend>Entregador</legend>
-    
+<div class="row">
+    <h3>Tem certeza que deseja excluir este atendente ?</h3>
+</div>
+
+<div class="row">
+    <div class="span4 offset4">
+
         <div class="display-label">
-             @Html.DisplayNameFor(model => model.PlacaMoto)
-        </div>
-        <div class="display-field">
-            @Html.DisplayFor(model => model.PlacaMoto)
-        </div>
-    
-        <div class="display-label">
-             @Html.DisplayNameFor(model => model.ModeloMoto)
+            @Html.DisplayNameFor(model => model.ModeloMoto)
         </div>
         <div class="display-field">
             @Html.DisplayFor(model => model.ModeloMoto)
         </div>
-    
+
         <div class="display-label">
-             @Html.DisplayNameFor(model => model.Nome)
+            @Html.DisplayNameFor(model => model.Nome)
         </div>
         <div class="display-field">
             @Html.DisplayFor(model => model.Nome)
         </div>
-    
+
         <div class="display-label">
-             @Html.DisplayNameFor(model => model.Sobrenome)
+            @Html.DisplayNameFor(model => model.Sobrenome)
         </div>
         <div class="display-field">
             @Html.DisplayFor(model => model.Sobrenome)
         </div>
-    
+
         <div class="display-label">
-             @Html.DisplayNameFor(model => model.Cpf)
+            @Html.DisplayNameFor(model => model.Cpf)
         </div>
         <div class="display-field">
             @Html.DisplayFor(model => model.Cpf)
         </div>
-    
+
         <div class="display-label">
-             @Html.DisplayNameFor(model => model.Rg)
+            @Html.DisplayNameFor(model => model.Rg)
         </div>
         <div class="display-field">
             @Html.DisplayFor(model => model.Rg)
         </div>
-    
+
         <div class="display-label">
-             @Html.DisplayNameFor(model => model.Cnh)
+            @Html.DisplayNameFor(model => model.Cnh)
         </div>
         <div class="display-field">
             @Html.DisplayFor(model => model.Cnh)
         </div>
-    
+
         <div class="display-label">
-             @Html.DisplayNameFor(model => model.Foto)
+            @Html.DisplayNameFor(model => model.PlacaMoto)
+        </div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.PlacaMoto)
+        </div>
+
+        <div class="display-label">
+            @Html.DisplayNameFor(model => model.Foto)
         </div>
         <div class="display-field">
             <img src="@ViewBag.Foto" width="400" height="310" />
         </div>
-    </fieldset>
-    @using (Html.BeginForm()) {
-        @Html.AntiForgeryToken()
-        <p>
-            <input type="submit" value="Delete" /> |
-            @Html.ActionLink("Back to List", "Index")
-        </p>
-    }
 
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            <p>
+                <input type="submit" value="Delete" />
+                |
+            @Html.ActionLink("Back to List", "Index")
+            </p>
+        }
+
+    </div>
+</div>

@@ -13,6 +13,7 @@ namespace SALClassLib.Masterdata.Model
         private String nome;
 
         [Required(ErrorMessage = "O nome deve ser preenchido")]
+        [MaxLength(25, ErrorMessage="O nome deve conter no máximo 25 caracteres")]
         public virtual String Nome
         {
             get { return nome; }
@@ -22,6 +23,7 @@ namespace SALClassLib.Masterdata.Model
         private String sobrenome;
 
         [Required(ErrorMessage = "O sobrenome deve ser preenchido")]
+        [MaxLength(80, ErrorMessage = "O sobrenome deve conter no máximo 80 caracteres")]
         public virtual String Sobrenome
         {
             get { return sobrenome; }
@@ -32,6 +34,8 @@ namespace SALClassLib.Masterdata.Model
 
         [DisplayName("CPF")]
         [Required(ErrorMessage = "O CPF deve ser preenchido")]
+        [MaxLength(14, ErrorMessage = "O CPF deve conter 11 dígitos")]
+        [MinLength(14, ErrorMessage = "O CPF deve conter 11 dígitos")]
         public virtual String Cpf
         {
             get { return cpf; }
@@ -42,6 +46,7 @@ namespace SALClassLib.Masterdata.Model
 
         [DisplayName("RG")]
         [Required(ErrorMessage = "O RG deve ser preenchido")]
+        [MaxLength(12, ErrorMessage = "O RG deve conter no máximo 12 caracteres")]
         public virtual String Rg
         {
             get { return rg; }
@@ -51,6 +56,7 @@ namespace SALClassLib.Masterdata.Model
         private String cnh;
 
         [DisplayName("CNH")]
+        [MaxLength(14, ErrorMessage = "A CNH deve conter no máximo 14 dígitos")]
         public virtual String Cnh
         {
             get { return cnh; }
@@ -69,6 +75,7 @@ namespace SALClassLib.Masterdata.Model
         private String telefoneFixo;
 
         [DisplayName("Telefone Fixo")]
+        [MaxLength(15, ErrorMessage = "O telefone fixo deve conter no máximo 15 caracteres")]
         public virtual String TelefoneFixo
         {
             get { return telefoneFixo; }
@@ -78,6 +85,7 @@ namespace SALClassLib.Masterdata.Model
         private String telefoneCelular;
 
         [DisplayName("Celular")]
+        [MaxLength(16, ErrorMessage = "O telefone celular deve conter no máximo 16 caracteres")]
         public virtual String TelefoneCelular
         {
             get { return telefoneCelular; }
@@ -87,6 +95,7 @@ namespace SALClassLib.Masterdata.Model
         private String email;
 
         [EmailAddress(ErrorMessage="Informe um endereço de email válido")]
+        [MaxLength(80, ErrorMessage = "O email deve conter no máximo 80 caracteres")]
         public virtual String Email
         {
             get { return email; }

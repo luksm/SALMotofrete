@@ -18,7 +18,7 @@
       <key column="ID_PESSOA" />
       <property name="Nome" column="NOME" length="25" not-null="true" />
       <property name="Sobrenome" column="SOBRENOME" length="80" not-null="true" />
-      <property name="Cpf" column="CPF" length="11" not-null="true" />
+      <property name="Cpf" column="CPF" length="14" not-null="true" />
       <property name="Rg" column="RG" length="12" not-null="true" />
       <property name="Cnh" column="CNH" length="14" not-null="false" />
       <property name="Foto" column="FOTO" length="500" not-null="false" />

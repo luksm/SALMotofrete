@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using SALClassLib.OS.Model;
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 
 namespace SALClassLib.Masterdata.Model
 {
@@ -11,6 +13,10 @@ namespace SALClassLib.Masterdata.Model
     {
         private String placaMoto;
 
+        [DisplayName("Placa da moto")]
+        [Required(ErrorMessage="Informe a placa da moto")]
+        [MaxLength(10, ErrorMessage = "A placa da moto deve conter no máximo 10 caracteres")]
+        [MinLength(8, ErrorMessage = "A placa da moto deve conter no mínimo 8 caracteres")]
         public virtual String PlacaMoto
         {
             get { return placaMoto; }
@@ -19,6 +25,9 @@ namespace SALClassLib.Masterdata.Model
 
         private String modeloMoto;
 
+        [DisplayName("Modelo da moto")]
+        [Required(ErrorMessage="Informe o modelo da moto")]
+        [MaxLength(50, ErrorMessage = "O modelo da moto deve conter no máximo 50 caracteres")]
         public virtual String ModeloMoto
         {
             get { return modeloMoto; }
@@ -43,6 +52,7 @@ namespace SALClassLib.Masterdata.Model
 
         private AparelhoMovel aparelhoMovel;
 
+        
         public virtual AparelhoMovel AparelhoMovel
         {
             get { return aparelhoMovel; }

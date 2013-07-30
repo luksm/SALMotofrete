@@ -31,18 +31,34 @@ namespace SALClassLib.Masterdata.Model.BO
             NHibernateHelper.CloseSession(sessao);
         }
 
+        public ulong Incluir(Entregador obj, String caminhoFotos = null, String extensaoFoto = null)
+        {
+            obj.StatusExclusao = 0;
+            ulong id = 0;
+            using (ITransaction tx = dao.Sessao.BeginTransaction())
+            {
+                id = Convert.ToUInt64(dao.Sessao.Save(obj));
+                //após incluir o atendente, se houver foto, faz o cadastro com o caminho da foto
+                if (caminhoFotos != null && !caminhoFotos.Equals("") &&
+                    extensaoFoto != null && !extensaoFoto.Equals(""))
+                {
+                    //adiciona \ no final do caminho caso nao tenha
+                    if (!caminhoFotos.EndsWith("\\")) caminhoFotos += "\\";
+                    //a foto ficará na pasta informada, com o ID formatado com 10 digitos como nome do arquivo
+                    obj.Foto = caminhoFotos + String.Format("{0:0000000000}", id) + extensaoFoto;
+                    dao.Sessao.Update(obj);
+                }
+                tx.Commit();
+            }
+            return id;
+        }
+
         public override void Excluir(Entregador obj)
         {
             if (obj == null) return;
             obj.StatusExclusao = 1;
             obj.AparelhoMovel = null;
             this.Alterar(obj);
-        }
-
-        public override ulong Incluir(Entregador obj)
-        {
-            obj.StatusExclusao = 0;
-            return base.Incluir(obj);
         }
 
         public IList<Entregador> ListarAtivos()

@@ -73,15 +73,15 @@
         <div class="display-field">
             <img src="@ViewBag.Foto" width="400" height="310" />
         </div>
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            <p>
+                <input type="submit" class="btn btn-danger" value="Excluir" />
+                |
+                @Html.ActionLink("Back to List", "Index")
+            </p>
+        }
     </div>
 </div>
-@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
-    @Html.HiddenFor(model => model.Id)
-    <p>
-        <input type="submit" value="Excluir" class="btn btn-danger" />
-        |
-        @Html.ActionLink("Back to List", "Index")
-    </p>
-}

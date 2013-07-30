@@ -22,7 +22,7 @@ namespace SALClassLib.Masterdata.Model
         
         private TipoAparelhoMovel tipo;
 
-        [Required(ErrorMessage="*")]
+        [Required(ErrorMessage="Informe o tipo do aparelho móvel")]
         public virtual TipoAparelhoMovel Tipo
         {
             get { return tipo; }

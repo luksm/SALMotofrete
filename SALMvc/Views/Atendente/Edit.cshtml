@@ -97,7 +97,6 @@
             
             <p class="actions">
                 <input class="btn btn-success" type="submit" value="Salvar" />
-                <input class="btn btn-warning" type="reset" value="Limpar" />
                 <a class="btn btn-danger" href="@Url.Action("Index", "Atendente")">Cancelar</a>
             </p>  
         }
@@ -121,6 +120,8 @@
                     element.mask("(99) 9999-9999?9");
                 }
             });
+
+            $('#Cpf').mask('999.999.999-99');
         });
     </script>
 }

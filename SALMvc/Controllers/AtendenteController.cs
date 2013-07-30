@@ -241,7 +241,7 @@ namespace SALMvc.Controllers
                 bo = new AtendenteBO();
                 atendente = bo.BuscarPeloId(atendente.Id);
                 bo.Excluir(atendente);
-                TempData["flash"] = "O atendente \"" + atendente.Nome + "\" foi excluido com sucesso.";
+                TempData["flash"] = "O atendente \"" + atendente.Nome + "\" foi excluído com sucesso.";
             }
             catch (BOException ex)
             {

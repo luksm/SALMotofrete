@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Utilitarios;
 using Utilitarios.BO;
 
 namespace SALMvc.Controllers
@@ -12,28 +13,59 @@ namespace SALMvc.Controllers
     public class EntregadorController : Controller
     {
         IList<Entregador> lista = null;
-        private String pastaFotos = "/Uploads/FotosEntregadores/";
+        private String pastaFotos = "/Uploads/Fotos/Funcionarios/Entregador/";
 
         public void Listar()
         {
-            EntregadorBO bo = new EntregadorBO();
-            lista = bo.ListarAtivos();
-            bo.Dispose();
+            EntregadorBO bo = null;
+            try
+            {
+                bo = new EntregadorBO();
+                lista = bo.ListarAtivos();
+            }
+            catch
+            {
+                TempData["flash"] = "Ocorreu um erro ao tentar buscar os atendentes";
+            }
+            finally
+            {
+                if (bo != null)
+                {
+                    bo.Dispose();
+                    bo = null;
+                }
+            }
         }
 
         public void PreencherBagDropDownLists(Entregador e = null)
         {
-            AparelhoMovelBO bo = new AparelhoMovelBO();
-            IList<AparelhoMovel> aparelhos = bo.ListarDisponiveis();
-            bo.Dispose();
-            bo = null;
+            AparelhoMovelBO bo = null;
+            IList<AparelhoMovel> aparelhos = null;
+            try
+            {
+                bo = new AparelhoMovelBO();
+                aparelhos = bo.ListarDisponiveis();
+            }
+            catch (Exception)
+            {
+                return;
+            }
+            finally
+            {
+                if (bo != null)
+                {
+                    bo.Dispose();
+                    bo = null;
+                }
+            }
+
             var listaAparelhos = new List<SelectListItem>();
             foreach (var item in aparelhos)
             {
                 listaAparelhos.Add(
                     new SelectListItem()
                     {
-                        Text = item.Id + " (" + item.Modelo + " " + item.Marca + ")",
+                        Text = item.Id + " (" + item.Marca + " " + item.Modelo + ")",
                         Value = item.Id.ToString()
                     }
                 );
@@ -68,50 +100,77 @@ namespace SALMvc.Controllers
         [HttpPost]
         public ActionResult Create(Entregador entregador)
         {
-            PreencherBagDropDownLists();
-
+            ValidationHelper.RemoverValidacaoDoModelState(ModelState, 
+                "AparelhoMovel.Tipo", "AparelhoMovel.Modelo", "AparelhoMovel.Marca");
             if (!ModelState.IsValid)
             {
+                PreencherBagDropDownLists();
                 return View(entregador);
             }
 
-            EntregadorBO bo = new EntregadorBO();
+            EntregadorBO bo = null;
             
             try
             {
-                ulong id = bo.Incluir(entregador);
+                bo = new EntregadorBO();
                 if (!Request.Files["Foto"].FileName.Equals(""))
                 {
                     HttpPostedFileBase postedFile = Request.Files["Foto"];
-                    entregador.Foto = Server.MapPath("~" + pastaFotos) + String.Format("{0:0000000000}", id) + postedFile.FileName.Substring(postedFile.FileName.Length - 4, 4);
+                    bo.Incluir(entregador, Server.MapPath("~" + pastaFotos), postedFile.FileName.Substring(postedFile.FileName.Length - 4, 4));
                     postedFile.SaveAs(entregador.Foto);
-                    bo.Alterar(entregador);
+                }
+                else
+                {
+                    PreencherBagDropDownLists();
+                    ModelState.AddModelError("", "Escolha uma foto para o entregador");
+                    return View(entregador);
                 }
                 TempData["flash"] = "Seu cadastro foi realizado com sucesso.";
-                return RedirectToAction("Index");
             }
             catch (BOException ex)
             {
+                PreencherBagDropDownLists();
                 ModelState.AddModelError("", ex.Message);
+                return View(entregador);
             }
             catch (Exception ex)
             {
-                ModelState.AddModelError("", "Ocorreu um problema, tente novamente.");
+                TempData["flash"] = "Ocorreu um problema, tente novamente.";
             }
             finally
             {
-                if(bo != null)
+                if (bo != null)
+                {
                     bo.Dispose();
+                    bo = null;
+                }
             }
-            return View(entregador);
+            return RedirectToAction("Index");
         }
 
         public ActionResult Edit(uint id)
         {
-            EntregadorBO bo = new EntregadorBO();
-            Entregador entregador = new Entregador();
-            entregador = bo.BuscarPeloId(id);
-            bo.Dispose();
+            EntregadorBO bo = null;
+            Entregador entregador = null;
+            try
+            {
+                bo = new EntregadorBO();
+                entregador = new Entregador();
+                entregador = bo.BuscarPeloId(id);
+            }
+            catch (Exception)
+            {
+                TempData["flash"] = "Ocorreu um erro, tente novamente.";
+                return RedirectToAction("Index");
+            }
+            finally
+            {
+                if (bo != null)
+                {
+                    bo.Dispose();
+                    bo = null;
+                }
+            }
             PreencherBagDropDownLists(entregador);
             return View(entregador);
         }
@@ -119,14 +178,15 @@ namespace SALMvc.Controllers
         [HttpPost]
         public ActionResult Edit(Entregador entregador)
         {
-            PreencherBagDropDownLists(entregador);
-
+            ValidationHelper.RemoverValidacaoDoModelState(ModelState,
+                "AparelhoMovel.Tipo", "AparelhoMovel.Modelo", "AparelhoMovel.Marca");
             if (!ModelState.IsValid)
             {
+                PreencherBagDropDownLists(entregador);
                 return View(entregador);
             }
             
-            EntregadorBO bo = new EntregadorBO();
+            EntregadorBO bo = null;
             try
             {
                 HttpPostedFileBase postedFile = null;
@@ -136,31 +196,41 @@ namespace SALMvc.Controllers
                     postedFile = Request.Files["Foto"];
                     entregador.Foto = Server.MapPath("~" + pastaFotos) + String.Format("{0:0000000000}", entregador.Id) + postedFile.FileName.Substring(postedFile.FileName.Length - 4, 4);
                 }
+                bo = new EntregadorBO();
                 bo.Alterar(entregador);
                 if (postedFile != null)
                 {
                     postedFile.SaveAs(entregador.Foto);
                 }
-                bo.Dispose();
-                TempData["flash"] = "Seu cadastro foi editado com sucesso.";
+                TempData["flash"] = "Seu cadastro foi atualizado com sucesso.";
             }
             catch (BOException ex)
             {
                 ModelState.AddModelError("", ex.Message);
+                return View(entregador);
             }
-            catch(Exception)
+            catch (Exception)
             {
-                ModelState.AddModelError("", "Ocorreu um problema, tente novamente.");
+                TempData["flash"] = "Ocorreu um problema, tente novamente.";
+            }
+            finally
+            {
+                if (bo != null)
+                {
+                    bo.Dispose();
+                    bo = null;
+                }
             }
             return RedirectToAction("Index");
         }
 
         public ActionResult Delete(uint id)
         {
-            EntregadorBO bo = new EntregadorBO();
+            EntregadorBO bo = null;
             Entregador entregador = null;
             try
             {
+                bo = new EntregadorBO();
                 entregador = bo.BuscarPeloId(id);
                 if (System.IO.File.Exists(entregador.Foto))
                 {
@@ -170,13 +240,16 @@ namespace SALMvc.Controllers
             }
             catch (Exception)
             {
-                Listar();
-                return View("Index", lista);
+                TempData["flash"] = "Ocorreu um erro, tente novamente.";
+                return RedirectToAction("Index");
             }
             finally
             {
                 if (bo != null)
+                {
                     bo.Dispose();
+                    bo = null;
+                }
             }
             return View(entregador);
         }
@@ -184,31 +257,36 @@ namespace SALMvc.Controllers
         [HttpPost]
         public ActionResult Delete(Entregador entregador)
         {
-            EntregadorBO bo = new EntregadorBO();
+            EntregadorBO bo = null;
             try
             {
+                bo = new EntregadorBO();
                 entregador = bo.BuscarPeloId(entregador.Id);
                 bo.Excluir(entregador);
+                TempData["flash"] = "O entregador \"" + entregador.Nome + "\" foi excluído com sucesso.";
             }
             catch (Exception)
             {
-                Listar();
-                return View("Index", lista);
+                TempData["flash"] = "Ocorreu um erro, tente novamente.";
             }
             finally
             {
                 if (bo != null)
+                {
                     bo.Dispose();
+                    bo = null;
+                }
             }
             return RedirectToAction("Index");
         }
 
         public ActionResult Details(uint id)
         {
-            EntregadorBO bo = new EntregadorBO();
+            EntregadorBO bo = null;
             Entregador entregador = null;
             try
             {
+                bo = new EntregadorBO();
                 entregador = bo.BuscarPeloId(id);
                 if (System.IO.File.Exists(entregador.Foto))
                 {
@@ -218,12 +296,16 @@ namespace SALMvc.Controllers
             }
             catch (Exception)
             {
-                RedirectToAction("Index");
+                TempData["flash"] = "Ocorreu um erro, tente novamente.";
+                return RedirectToAction("Index");
             }
             finally
             {
                 if (bo != null)
+                {
                     bo.Dispose();
+                    bo = null;
+                }
             }
             return View(entregador);
         }
