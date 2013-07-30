@@ -1,8 +1,5 @@
-﻿body a{color:#DE0000;}
-body a:hover{color:#AA0000;}
-body{ background:url("/Assets/img/background.jpg") repeat; }
-body table{ background-color:white; }
-body ul{ background-color:white; }
+﻿body a, a:link{color:#DE0000;}
+body a:hover, a:active{color:#AA0000;}
 
 @font-face {
 	font-family: 'Olivier';
@@ -53,7 +50,7 @@ h2 {
 }
 
     .navbar .nav > li > a:hover {
-        color:#DE0000;
+        color:#AA0000;
     }
 
 .table-hover tbody tr > td.actions, .table-hover tbody tr > th.actions {
