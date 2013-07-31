@@ -12,12 +12,28 @@ namespace SALMvc.Controllers
     public class GerenteController : Controller
     {
         IList<Gerente> lista = null;
+        private String pastaFotos = "/Uploads/Fotos/Funcionarios/Gerente/";
 
         public void Listar()
         {
-            GerenteBO bo = new GerenteBO();
-            lista = bo.ListarAtivos();
-            bo.Dispose();
+            GerenteBO bo = null;
+            try
+            {
+                bo = new GerenteBO();
+                lista = bo.ListarAtivos();
+            }
+            catch(Exception)
+            {
+                TempData["flash"] = "Ocorreu um erro ao tentar buscar os atendentes";
+            }
+            finally
+            {
+                if (bo != null)
+                {
+                    bo.Dispose();
+                    bo = null;
+                }
+            }
         }
 
         //
@@ -43,40 +59,44 @@ namespace SALMvc.Controllers
         [HttpPost]
         public ActionResult Create(Gerente gerente)
         {
-
             if (!ModelState.IsValid)
             {
                 return View(gerente);
             }
 
-            GerenteBO bo = new GerenteBO();
+            GerenteBO bo = null;
 
             try
             {
-                ulong id = bo.Incluir(gerente);
+                bo = new GerenteBO();
                 if (Request.Files["Foto"] != null && !Request.Files["Foto"].FileName.Equals(""))
                 {
                     HttpPostedFileBase postedFile = Request.Files["Foto"];
-                    gerente.Foto = Server.MapPath("~/Uploads/FotosGerentes/") + String.Format("{0:0000000000}", id) + postedFile.FileName.Substring(postedFile.FileName.Length - 4, 4);
+                    bo.Incluir(gerente, Server.MapPath("~" + pastaFotos), postedFile.FileName.Substring(postedFile.FileName.Length - 4, 4));
                     postedFile.SaveAs(gerente.Foto);
-                    bo.Alterar(gerente);
+                }
+                else
+                {
+                    bo.Incluir(gerente);
                 }
                 TempData["flash"] = "Seu cadastro foi realizado com sucesso.";
-                Listar();
-                return View("Index", lista);
+                return RedirectToAction("Index");
             }
             catch (BOException ex)
             {
                 ModelState.AddModelError("", ex.Message);
             }
-            /*catch (Exception ex)
+            catch (Exception ex)
             {
-                ModelState.AddModelError("", "Ocorreu um problema, tente novamente.");
-            }*/
+                TempData["flash"] = "Ocorreu um problema, tente novamente.";
+            }
             finally
             {
                 if (bo != null)
+                {
                     bo.Dispose();
+                    bo = null;
+                }
             }
             return View(gerente);
         }
@@ -86,10 +106,11 @@ namespace SALMvc.Controllers
 
         public ActionResult Delete(uint id)
         {
-            GerenteBO bo = new GerenteBO();
+            GerenteBO bo = null;
             Gerente gerente = null;
             try
             {
+                bo = new GerenteBO();
                 gerente = bo.BuscarPeloId(id);
                 if (System.IO.File.Exists(gerente.Foto))
                 {
@@ -99,13 +120,16 @@ namespace SALMvc.Controllers
             }
             catch (Exception)
             {
-                Listar();
-                return View("Index", lista);
+                TempData["flash"] = "Ocorreu um problema, tente novamente.";
+                return RedirectToAction("Index");
             }
             finally
             {
                 if (bo != null)
+                {
                     bo.Dispose();
+                    bo = null;
+                }
             }
             return View(gerente);
         }
@@ -116,25 +140,26 @@ namespace SALMvc.Controllers
         [HttpPost]
         public ActionResult Delete(Gerente gerente)
         {
-            GerenteBO bo = new GerenteBO();
+            GerenteBO bo = null;
             try
             {
+                bo = new GerenteBO();
                 gerente = bo.BuscarPeloId(gerente.Id);
-                if (System.IO.File.Exists(gerente.Foto)) System.IO.File.Delete(gerente.Foto);
                 bo.Excluir(gerente);
             }
             catch (Exception)
             {
-                Listar();
-                return View("Index", lista);
+                TempData["flash"] = "Ocorreu um erro, tente novamente.";
             }
             finally
             {
                 if (bo != null)
+                {
                     bo.Dispose();
+                    bo = null;
+                }
             }
-            Listar();
-            return View("Index", lista);
+            return RedirectToAction("Index");
         }
 
         //
@@ -142,10 +167,26 @@ namespace SALMvc.Controllers
 
         public ActionResult Edit(uint id)
         {
-            EntregadorBO bo = new EntregadorBO();
-            Entregador entregador = new Entregador();
-            entregador = bo.BuscarPeloId(id);
-            bo.Dispose();
+            GerenteBO bo = null;
+            Gerente entregador = null;
+            try
+            {
+                bo = new GerenteBO();
+                entregador = bo.BuscarPeloId(id);
+            }
+            catch (Exception)
+            {
+                TempData["flash"] = "Ocorreu um erro, tente novamente.";
+                return RedirectToAction("Index");
+            }
+            finally
+            {
+                if (bo != null)
+                {
+                    bo.Dispose();
+                    bo = null;
+                }
+            }
             return View(entregador);
         }
 
@@ -155,8 +196,12 @@ namespace SALMvc.Controllers
         [HttpPost]
         public ActionResult Edit(Gerente gerente)
         {
+            if (!ModelState.IsValid)
+            {
+                return View(gerente);
+            }
 
-            GerenteBO bo = new GerenteBO();
+            GerenteBO bo = null;
             try
             {
                 HttpPostedFileBase postedFile = null;
@@ -164,26 +209,34 @@ namespace SALMvc.Controllers
                 {
                     if (System.IO.File.Exists(gerente.Foto)) System.IO.File.Delete(gerente.Foto);
                     postedFile = Request.Files["Foto"];
-                    gerente.Foto = Server.MapPath("~/Uploads/FotosGerentes/") + String.Format("{0:0000000000}", gerente.Id) + postedFile.FileName.Substring(postedFile.FileName.Length - 4, 4);
+                    gerente.Foto = Server.MapPath("~" + pastaFotos) + String.Format("{0:0000000000}", gerente.Id) + postedFile.FileName.Substring(postedFile.FileName.Length - 4, 4);
                 }
+                bo = new GerenteBO();
                 bo.Alterar(gerente);
                 if (postedFile != null)
                 {
                     postedFile.SaveAs(gerente.Foto);
                 }
-                bo.Dispose();
                 TempData["flash"] = "Seu cadastro foi editado com sucesso.";
             }
             catch (BOException ex)
             {
                 ModelState.AddModelError("", ex.Message);
+                return View(gerente);
             }
-            /*catch(Exception)
+            catch (Exception)
             {
-                ModelState.AddModelError("", "Ocorreu um problema, tente novamente.");
-            }*/
-            Listar();
-            return View("Index", lista);
+                TempData["flash"] = "Ocorreu um problema, tente novamente.";
+            }
+            finally
+            {
+                if (bo != null)
+                {
+                    bo.Dispose();
+                    bo = null;
+                }
+            }
+            return RedirectToAction("Index");
         }
 
         //
@@ -191,15 +244,16 @@ namespace SALMvc.Controllers
 
         public ActionResult Details(uint id)
         {
-            GerenteBO bo = new GerenteBO();
+            GerenteBO bo = null;
             Gerente gerente = null;
             try
             {
+                bo = new GerenteBO();
                 gerente = bo.BuscarPeloId(id);
                 if (System.IO.File.Exists(gerente.Foto))
                 {
                     System.IO.FileInfo info = new System.IO.FileInfo(gerente.Foto);
-                    ViewBag.Foto = "/Uploads/FotosGerentes/" + info.Name;
+                    ViewBag.Foto = pastaFotos + info.Name;
                 }
             }
             catch (Exception)
@@ -210,7 +264,10 @@ namespace SALMvc.Controllers
             finally
             {
                 if (bo != null)
+                {
                     bo.Dispose();
+                    bo = null;
+                }
             }
             return View(gerente);
         }
