@@ -86,12 +86,8 @@
     <Compile Include="Masterdata\Model\PessoaJuridica.cs" />
     <Compile Include="Masterdata\Model\TipoAparelhoMovel.cs" />
     <Compile Include="NHibernateHelper.cs" />
-    <Compile Include="OS\Model\BO\EnderecoEntregaBO.cs" />
-    <Compile Include="OS\Model\BO\EnderecoRetiradaBO.cs" />
     <Compile Include="OS\Model\BO\OrdemServicoBO.cs" />
     <Compile Include="OS\Model\Cobranca.cs" />
-    <Compile Include="OS\Model\DAO\EnderecoEntregaDAO.cs" />
-    <Compile Include="OS\Model\DAO\EnderecoRetiradaDAO.cs" />
     <Compile Include="OS\Model\DAO\OrdemServicoDAO.cs" />
     <Compile Include="OS\Model\EnderecoEntrega.cs" />
     <Compile Include="OS\Model\EnderecoRetirada.cs" />
