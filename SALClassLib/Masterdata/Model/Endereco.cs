@@ -64,14 +64,6 @@ namespace SALClassLib.Masterdata.Model
             set { municipio = value; }
         }
 
-        private Pessoa pessoa;
-
-        public virtual Pessoa Pessoa
-        {
-            get { return pessoa; }
-            set { pessoa = value; }
-        }
-
         public Endereco()
         {
             municipio = new Municipio();

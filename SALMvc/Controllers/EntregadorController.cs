@@ -135,7 +135,7 @@ namespace SALMvc.Controllers
             }
             catch (Exception ex)
             {
-                TempData["flash"] = "Ocorreu um problema, tente novamente.";
+                TempData["flash"] = "Ocorreu um problema, tente novamente. " + ex.Message;
             }
             finally
             {

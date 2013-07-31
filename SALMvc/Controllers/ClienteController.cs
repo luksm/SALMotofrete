@@ -466,7 +466,6 @@ namespace SALMvc.Controllers
             try
             {
                 Cliente c = (Cliente)Session["cliente"];
-                endereco.Pessoa = c.Pessoa;
                 c.Pessoa.Enderecos.Add(endereco);
                 bo.Alterar(c);
                 Session["cliente"] = c;
@@ -478,7 +477,7 @@ namespace SALMvc.Controllers
             }
             catch (Exception ex)
             {
-                ModelState.AddModelError("", "Ocorreu um problema, tente novamente.");
+                ModelState.AddModelError("", "Ocorreu um problema, tente novamente. " + ex.Message);
             }
             finally
             {
@@ -508,7 +507,7 @@ namespace SALMvc.Controllers
             }
             catch (Exception ex)
             {
-                ModelState.AddModelError("", "Ocorreu um problema, tente novamente.");
+                ModelState.AddModelError("", "Ocorreu um problema, tente novamente. " + ex.Message);
             }
             finally
             {
@@ -539,7 +538,6 @@ namespace SALMvc.Controllers
                 Endereco aux = cliente.Pessoa.Enderecos.Where(e => e.Id == endereco.Id).First();
                 cliente.Pessoa.Enderecos.Remove(aux);
                 cliente.Pessoa.Enderecos.Add(endereco);
-                endereco.Pessoa = cliente.Pessoa;
                 bo.Alterar(cliente);
                 return RedirectToAction("Enderecos");
             }

@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using SALClassLib.Masterdata.Model;
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 
 namespace SALClassLib.OS.Model
 {
@@ -12,6 +14,7 @@ namespace SALClassLib.OS.Model
 
         private String nomeContato;
 
+        [DisplayName("Nome do Contato")]
         public virtual String NomeContato
         {
             get { return nomeContato; }
@@ -20,6 +23,7 @@ namespace SALClassLib.OS.Model
 
         private String telefoneContato;
 
+        [DisplayName("Telefone do Contato")]
         public virtual String TelefoneContato
         {
             get { return telefoneContato; }

@@ -355,7 +355,7 @@ namespace SALUnitTest
             e.Logradouro = "rua abcd";
             e.Municipio = new Municipio();
             e.Municipio.Id = 1;
-            e.Numero = 13;
+            e.Numero = "13";
             e.Municipio = session.Get<Municipio>(Convert.ToUInt32(1));
             e.Bairro = "asas";
             gerente.Enderecos.Add(e);
@@ -510,7 +510,7 @@ namespace SALUnitTest
             entregador.StatusAtividade = 2;
             e = new Endereco();
             e.Logradouro = "rua alterado";
-            e.Numero = 412;
+            e.Numero = "412";
             e.Bairro = "aterado";
             e.Municipio = session.Get<Municipio>(Convert.ToUInt32(1));
             entregador.Enderecos.Clear();
@@ -559,7 +559,7 @@ namespace SALUnitTest
             e.Logradouro = "rua abcd";
             e.Municipio = new Municipio();
             e.Municipio.Id = 1;
-            e.Numero = 13;
+            e.Numero = "13";
             e.Municipio = session.Get<Municipio>(Convert.ToUInt32(1));
             e.Bairro = "asas";
             entregador.Enderecos.Add(e);

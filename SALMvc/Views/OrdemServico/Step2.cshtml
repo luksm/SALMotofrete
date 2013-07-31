@@ -4,72 +4,192 @@
     ViewBag.Title = "SAL Motofrete, seu motoboy a um click de distância!";
     Layout = "~/Views/Shared/_Home.cshtml";
 }
-
-<div class="row header">
-    <h2>Novo Pedido</h2>
+@section navigation {
+<!-- Navbar
+================================================== -->
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="span12">
+          <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>  
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a href="@Url.Action("Index", "Home")" class="logo brand">Sal</a>
+          <div class="nav-collapse collapse">
+            <p class="navbar-text">
+              seu motoboy a um click de distância
+            </p>
+          </div>
+        </div>
+      </div>
+</div>    
+}
+<div class="row-fluid header">
+    <div class="span3 offset6">
+        <h2>Novo Pedido</h2>
+    </div>
+</div>
+<div class="row-fluid">
+<div class="span12">
+    &nbsp;
 </div>
 
-@using (Html.BeginForm("Create", "Gerente", FormMethod.Post, new { @class = "form-horizontal" }))
+</div>
+
+@using (Html.BeginForm("Create", "OrdemServico", FormMethod.Post, new { @class = "form-horizontal" }))
 {
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
-    <div class="row">
-        <div class="span5">
+    <div class="row-fluid">
+        <div class="span4 offset2">
             <div class="control-group">
-                @Html.LabelFor(model => model.Data, new { @class = "control-label" })
+                @Html.LabelFor(model => model.Data, new { @class = "control-label"})
                 <div class="controls">
-                    @Html.EditorFor(model => model.Data)
+                    <span class="input-large uneditable-input">@Html.DisplayFor(model => model.Data)</span>
+                    @Html.HiddenFor(model => model.Data)
                     @Html.ValidationMessageFor(model => model.Data)
                 </div>
             </div>
-            <div class="control-group">
-                @Html.LabelFor(model => model.EnderecoRetirada.Logradouro, new { @class = "control-label" })
-                <div class="controls">
-                    @Html.EditorFor(model => model.EnderecoRetirada.Logradouro)
-                    @Html.ValidationMessageFor(model => model.EnderecoRetirada.Logradouro)
-                </div>
-            </div>
-            <div class="control-group">
-                @Html.LabelFor(model => model.EnderecoRetirada.Complemento, new { @class = "control-label" })
-                <div class="controls">
-                    @Html.EditorFor(model => model.EnderecoRetirada.Complemento)
-                    @Html.ValidationMessageFor(model => model.EnderecoRetirada.Complemento)
-                </div>
-            </div>
-            <div class="control-group">
-                @Html.LabelFor(model => model.EnderecoRetirada.NomeContato, new { @class = "control-label" })
-                <div class="controls">
-                    @Html.EditorFor(model => model.EnderecoRetirada.NomeContato)
-                    @Html.ValidationMessageFor(model => model.EnderecoRetirada.NomeContato)
-                </div>
-            </div>
-            <div class="control-group">
-                @Html.LabelFor(model => model.EnderecoEntrega.Logradouro, new { @class = "control-label" })
-                <div class="controls">
-                    @Html.EditorFor(model => model.EnderecoEntrega.Logradouro)
-                    @Html.ValidationMessageFor(model => model.EnderecoEntrega.Logradouro)
-                </div>
-            </div>
-            <div class="control-group">
-                @Html.LabelFor(model => model.EnderecoEntrega.Logradouro, new { @class = "control-label" })
-                <div class="controls">
-                    @Html.EditorFor(model => model.EnderecoEntrega.Complemento)
-                    @Html.ValidationMessageFor(model => model.EnderecoEntrega.Logradouro)
-                </div>
-            </div>
-            <div class="control-group">
-                @Html.LabelFor(model => model.EnderecoEntrega.NomeContato, new { @class = "control-label" })
-                <div class="controls">
-                    @Html.EditorFor(model => model.EnderecoEntrega.NomeContato)
-                    @Html.ValidationMessageFor(model => model.EnderecoEntrega.NomeContato)
-                </div>
-            </div>
+        </div>
+        <div class="span4">
             <div class="control-group">
                 @Html.LabelFor(model => model.Observacao, new { @class = "control-label" })
                 <div class="controls">
                     @Html.EditorFor(model => model.Observacao)
                     @Html.ValidationMessageFor(model => model.Observacao)
                 </div>
+            </div>
+        </div>
+    </div>
+    <div class="row-fluid">
+        <div class="span4 offset2">
+            <fieldset>
+                <legend>Endereço de Retirada</legend>
+                <div class="control-group">
+                    @Html.LabelFor(model => model.EnderecoRetirada.Logradouro, new { @class = "control-label" })
+                    <div class="controls">
+                        @Html.EditorFor(model => model.EnderecoRetirada.Logradouro)
+                        @Html.ValidationMessageFor(model => model.EnderecoRetirada.Logradouro)
+                    </div>
+                </div>
+                <div class="control-group">
+                    @Html.LabelFor(model => model.EnderecoRetirada.Numero, new { @class = "control-label" })
+                    <div class="controls">
+                        @Html.EditorFor(model => model.EnderecoRetirada.Numero)
+                        @Html.ValidationMessageFor(model => model.EnderecoRetirada.Complemento)
+                    </div>
+                </div>
+                <div class="control-group">
+                    @Html.LabelFor(model => model.EnderecoRetirada.Complemento, new { @class = "control-label" })
+                    <div class="controls">
+                        @Html.EditorFor(model => model.EnderecoRetirada.Complemento)
+                        @Html.ValidationMessageFor(model => model.EnderecoRetirada.Complemento)
+                    </div>
+                </div>
+                <div class="control-group">
+                    @Html.LabelFor(model => model.EnderecoRetirada.Bairro, new { @class = "control-label" })
+                    <div class="controls">
+                        @Html.EditorFor(model => model.EnderecoRetirada.Bairro)
+                        @Html.ValidationMessageFor(model => model.EnderecoRetirada.Bairro)
+                    </div>
+                </div>
+                <div class="control-group">
+                    @Html.LabelFor(model => model.EnderecoRetirada.Municipio.Estado, new { @class = "control-label" })
+                    <div class="controls">
+                        @Html.DropDownListFor(model => model.EnderecoRetirada.Municipio.Estado.Id, (IEnumerable<SelectListItem>) ViewBag.Estados)
+                        @Html.ValidationMessageFor(model => model.EnderecoRetirada.Municipio.Estado.Id)
+                    </div>
+                </div>
+                <div class="control-group">
+                    @Html.LabelFor(model => model.EnderecoRetirada.Municipio, new { @class = "control-label" })
+                    <div class="controls">
+                        @Html.DropDownListFor(model => model.EnderecoRetirada.Municipio.Id, (IEnumerable<SelectListItem>) ViewBag.Municipios)
+                        @Html.ValidationMessageFor(model => model.EnderecoRetirada.Municipio.Id)
+                    </div>
+                </div>
+                <div class="control-group">
+                    @Html.LabelFor(model => model.EnderecoRetirada.NomeContato, new { @class = "control-label" })
+                    <div class="controls">
+                        @Html.EditorFor(model => model.EnderecoRetirada.NomeContato)
+                        @Html.ValidationMessageFor(model => model.EnderecoRetirada.NomeContato)
+                    </div>
+                </div>
+                <div class="control-group">
+                    @Html.LabelFor(model => model.EnderecoRetirada.TelefoneContato, new { @class = "control-label" })
+                    <div class="controls">
+                        @Html.EditorFor(model => model.EnderecoRetirada.TelefoneContato)
+                        @Html.ValidationMessageFor(model => model.EnderecoRetirada.TelefoneContato)
+                    </div>
+                </div>
+            </fieldset>
+        </div>
+        <div class="span4">
+            <fieldset>
+                <legend>Endereço de Entrega</legend>
+                <div class="control-group">
+                    @Html.LabelFor(model => model.EnderecoEntrega.Logradouro, new { @class = "control-label" })
+                    <div class="controls">
+                        @Html.EditorFor(model => model.EnderecoEntrega.Logradouro)
+                        @Html.ValidationMessageFor(model => model.EnderecoEntrega.Logradouro)
+                    </div>
+                </div>
+                <div class="control-group">
+                    @Html.LabelFor(model => model.EnderecoEntrega.Numero, new { @class = "control-label" })
+                    <div class="controls">
+                        @Html.EditorFor(model => model.EnderecoEntrega.Numero)
+                        @Html.ValidationMessageFor(model => model.EnderecoEntrega.Complemento)
+                    </div>
+                </div>
+                <div class="control-group">
+                    @Html.LabelFor(model => model.EnderecoEntrega.Complemento, new { @class = "control-label" })
+                    <div class="controls">
+                        @Html.EditorFor(model => model.EnderecoEntrega.Complemento)
+                        @Html.ValidationMessageFor(model => model.EnderecoEntrega.Complemento)
+                    </div>
+                </div>
+                <div class="control-group">
+                    @Html.LabelFor(model => model.EnderecoEntrega.Bairro, new { @class = "control-label" })
+                    <div class="controls">
+                        @Html.EditorFor(model => model.EnderecoEntrega.Bairro)
+                        @Html.ValidationMessageFor(model => model.EnderecoEntrega.Bairro)
+                    </div>
+                </div>
+                <div class="control-group">
+                    @Html.LabelFor(model => model.EnderecoEntrega.Municipio.Estado, new { @class = "control-label" })
+                    <div class="controls">
+                        @Html.DropDownListFor(model => model.EnderecoEntrega.Municipio.Estado.Id, (IEnumerable<SelectListItem>) ViewBag.Estados)
+                        @Html.ValidationMessageFor(model => model.EnderecoEntrega.Municipio.Estado)
+                    </div>
+                </div>
+                <div class="control-group">
+                    @Html.LabelFor(model => model.EnderecoEntrega.Municipio, new { @class = "control-label" })
+                    <div class="controls">
+                        @Html.DropDownListFor(model => model.EnderecoEntrega.Municipio.Id, (IEnumerable<SelectListItem>) ViewBag.Municipios)
+                        @Html.ValidationMessageFor(model => model.EnderecoEntrega.Municipio)
+                    </div>
+                </div>
+                <div class="control-group">
+                    @Html.LabelFor(model => model.EnderecoEntrega.NomeContato, new { @class = "control-label" })
+                    <div class="controls">
+                        @Html.EditorFor(model => model.EnderecoEntrega.NomeContato)
+                        @Html.ValidationMessageFor(model => model.EnderecoEntrega.NomeContato)
+                    </div>
+                </div>
+                <div class="control-group">
+                    @Html.LabelFor(model => model.EnderecoEntrega.TelefoneContato, new { @class = "control-label" })
+                    <div class="controls">
+                        @Html.EditorFor(model => model.EnderecoEntrega.TelefoneContato)
+                        @Html.ValidationMessageFor(model => model.EnderecoEntrega.TelefoneContato)
+                    </div>
+                </div>
+            </fieldset>
+        </div>
+    </div>
+    <div class="row-fluid">
+        <div class="span8 offset2">
+            <div class="form-actions">
+                <button type="submit" class="btn btn-danger">Confirmar</button>
             </div>
         </div>
     </div>

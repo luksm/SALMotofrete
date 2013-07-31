@@ -6,16 +6,34 @@
 	font-style: normal;
 }
 
-.logo {
+.logo,
+.navbar .logo {
     font-family: 'Olivier';
-}
-
-h1 {
     color:#DE0000;
-    font-weight: normal;
     text-align: center;
 }
 
+.navbar .logo {
+    font-family: 'Olivier';
+    color: #DE0000;
+    text-align: center;
+    padding: 10px 20px 5px;
+    font-size: 2em;
+    line-height: 1em;
+}
+
+h1 {
+    font-weight: normal;
+}
+.container-fluid {
+    height: 100%;
+    padding-right: 0px;
+}
+.navbar + .container-fluid {
+    min-height: 100%;
+    margin-top: 50px;
+    padding-right: 20px;
+}
 #sal, #map-canvas {
     height: 100%;
 }
@@ -28,4 +46,9 @@ html, body {
     width: 14%;
     margin: 0.4468085106382975% auto;
 
+}
+
+.form-horizontal .form-actions {
+    text-align: center;
+    padding-left: 0px;
 }

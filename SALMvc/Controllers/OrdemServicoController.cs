@@ -1,11 +1,14 @@
 ﻿using NHibernate;
 using SALClassLib.OS.Model;
 using SALClassLib.OS.Model.BO;
+using SALClassLib.Masterdata.Model;
+using SALClassLib.Masterdata.Model.BO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Utilitarios.BO;
 
 namespace SALMvc.Controllers
 {
@@ -19,6 +22,42 @@ namespace SALMvc.Controllers
             bo.Dispose();
         }
 
+        private void PreencherBagDropDownLists()
+        {
+            EstadoBO boe = new EstadoBO();
+            IList<Estado> estados = boe.Listar();
+            boe.Dispose();
+            boe = null;
+            var listaEstados = new List<SelectListItem>();
+            foreach (var item in estados)
+            {
+                listaEstados.Add(
+                    new SelectListItem()
+                    {
+                        Text = item.Sigla,
+                        Value = item.Id.ToString()
+                    }
+                );
+            }
+            ViewBag.Estados = listaEstados;
+
+            MunicipioBO bom = new MunicipioBO();
+            IList<Municipio> municipios = bom.Listar();
+            bom.Dispose();
+            bom = null;
+            var listaMunicipios = new List<SelectListItem>();
+            foreach (var item in municipios)
+            {
+                listaMunicipios.Add(
+                    new SelectListItem()
+                    {
+                        Text = item.Nome,
+                        Value = item.Id.ToString()
+                    }
+                );
+            }
+            ViewBag.Municipios = listaMunicipios;
+        }
 
         //
         // GET: /OrdemServico/
@@ -47,12 +86,14 @@ namespace SALMvc.Controllers
             ordemServico.Data = DateTime.Now;
 
             ordemServico.EnderecoRetirada.Logradouro = Request.Params["Origem[0][Endereco]"];
-            // ordemServico.EnderecoRetirada.Complemeto = Request.Params["Origem[0][Complemento]"];
+            ordemServico.EnderecoRetirada.Complemento = Request.Params["Origem[0][Complemento]"];
             ordemServico.EnderecoRetirada.NomeContato = Request.Params["Origem[0][Contato]"];
 
             ordemServico.EnderecoEntrega.Logradouro = Request.Params["Destino[0][Endereco]"];
-            // ordemServico.EnderecoEntrega.Complemeto = Request.Params["Destino[0][Complemento]"];
+            ordemServico.EnderecoEntrega.Complemento = Request.Params["Destino[0][Complemento]"];
             ordemServico.EnderecoEntrega.NomeContato = Request.Params["Destino[0][Contato]"];
+
+            PreencherBagDropDownLists();
 
             return View(ordemServico);
         }
@@ -62,24 +103,36 @@ namespace SALMvc.Controllers
         [HttpPost]
         public ActionResult Create(OrdemServico ordemServico)
         {
-
             if (!ModelState.IsValid)
             {
                 return View(ordemServico);
             }
 
             OrdemServicoBO bo = new OrdemServicoBO();
+            ordemServico.Status = new StatusOrdemServico();
+            ordemServico.Status.Id = 1;
+
+            ordemServico.Cliente = new Cliente();
+            ordemServico.Cliente.Id = 2;
+
+            // Save de Ordem de Serviço
             try
             {
-                bo.Incluir(ordemServico);
-                bo.Dispose();
-                TempData["flash"] = "Seu cadastro foi realisado com sucesso.";
+                ulong id = bo.Incluir(ordemServico);
+                TempData["flash"] = "Seu cadastro foi realizado com sucesso.";
+                return RedirectToAction("Index");
             }
-            catch
+            catch (BOException ex)
             {
-                TempData["flash"] = "Ocorreu um problema, tente novamente.";
+                ModelState.AddModelError("", ex.Message);
             }
-            return RedirectToAction("Index");
+            finally
+            {
+                if (bo != null)
+                    bo.Dispose();
+            }
+            PreencherBagDropDownLists();
+            return View("Step2");
         }
 
         //

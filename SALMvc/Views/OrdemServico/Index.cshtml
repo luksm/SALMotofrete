@@ -3,14 +3,21 @@
 @{
     ViewBag.Title = "Listagem de Ordens de Serviço";
     Layout = "~/Views/Shared/_Utopia.cshtml";
+    Html.RenderPartial("~/Views/Shared/_FlashPartial.cshtml");
 }
 
-<h2>Index</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table>
+<div class="row" style="border-bottom: 1px solid #DDD;">
+    <h2>
+        @ViewBag.Title
+        <a href="@Url.Action("Create", "OrdemServico")" class="btn btn-danger pull-right" type="button"><i class="icon-user icon-white"> </i>  Nova Ordem de Serviço</a>
+    </h2>
+</div>
+
+<div class="row">
+    <table class="table table-hover table-striped">
+        <thead>
+            <tr style="background:#CCC;color:#FFF;">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.Numero)
@@ -44,3 +51,4 @@
 }
 
 </table>
+</div>

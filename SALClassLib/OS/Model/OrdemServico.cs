@@ -4,6 +4,9 @@ using System.Text;
 using System.Threading.Tasks;
 using SALClassLib.Masterdata.Model;
 using Iesi.Collections.Generic;
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
+
 
 namespace SALClassLib.OS.Model
 {
@@ -35,6 +38,7 @@ namespace SALClassLib.OS.Model
 
         private String observacao;
 
+        [DisplayName("Observação")]
         public virtual String Observacao
         {
             get { return observacao; }
