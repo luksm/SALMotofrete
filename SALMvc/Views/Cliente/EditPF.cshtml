@@ -1,85 +1,86 @@
 ﻿@model SALClassLib.Masterdata.Model.Cliente
 
 @{
-    ViewBag.Title = "EditPF";
+    ViewBag.Title = "Edição de Cliente";
     Layout = "~/Views/Shared/_Utopia.cshtml";
+    Html.RenderPartial("~/Views/Shared/_FlashPartial.cshtml");
 }
 
-<h2>EditPF</h2>
+<div class="row header">
+    <h2>@ViewBag.Title</h2>
+</div>
 
-@using (Html.BeginForm()) {
+@using (Html.BeginForm("EditPF", "Cliente", FormMethod.Post, new { @class = "form-horizontal", enctype = "multipart/form-data" })){
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
+    <div class="row">
+        <div class="span5 offset3">
+            @Html.HiddenFor(model => model.Id)
+            @Html.HiddenFor(model => model.PessoaFisica.Id)
+            @Html.HiddenFor(model => model.PessoaFisica.Usuario)
+            @Html.HiddenFor(model => model.PessoaFisica.Senha)
 
-    <fieldset>
-        <legend>Cliente</legend>
+            <div class="control-group">
+                @Html.LabelFor(model => model.PessoaFisica.Nome,  new { @class = "control-label" })
+                <div class="controls">
+                    @Html.EditorFor(model => model.PessoaFisica.Nome)<br />
+                    @Html.ValidationMessageFor(model => model.PessoaFisica.Nome)
+                </div>
+            </div>
 
-        @Html.HiddenFor(model => model.Id)
-        @Html.HiddenFor(model => model.PessoaFisica.Id)
-        @Html.HiddenFor(model => model.PessoaFisica.Usuario)
-        @Html.HiddenFor(model => model.PessoaFisica.Senha)
+            <div class="control-group">
+                @Html.LabelFor(model => model.PessoaFisica.Sobrenome,  new { @class = "control-label" })
+                <div class="controls">
+                    @Html.EditorFor(model => model.PessoaFisica.Sobrenome)<br />
+                    @Html.ValidationMessageFor(model => model.PessoaFisica.Sobrenome)
+                </div>
+            </div>
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.PessoaFisica.Nome)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.PessoaFisica.Nome)
-            @Html.ValidationMessageFor(model => model.PessoaFisica.Nome)
-        </div>
+            <div class="control-group">
+                @Html.LabelFor(model => model.PessoaFisica.Cpf,  new { @class = "control-label" })
+                <div class="controls">
+                    @Html.EditorFor(model => model.PessoaFisica.Cpf)<br />
+                    @Html.ValidationMessageFor(model => model.PessoaFisica.Cpf)
+                </div>
+            </div>
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.PessoaFisica.Sobrenome)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.PessoaFisica.Sobrenome)
-            @Html.ValidationMessageFor(model => model.PessoaFisica.Sobrenome)
-        </div>
+            <div class="control-group">
+                @Html.LabelFor(model => model.PessoaFisica.Rg,  new { @class = "control-label" })
+                <div class="controls">
+                    @Html.EditorFor(model => model.PessoaFisica.Rg)<br />
+                    @Html.ValidationMessageFor(model => model.PessoaFisica.Rg)
+                </div>
+            </div>
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.PessoaFisica.Cpf)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.PessoaFisica.Cpf)
-            @Html.ValidationMessageFor(model => model.PessoaFisica.Cpf)
-        </div>
+            <div class="control-group">
+                @Html.LabelFor(model => model.PessoaFisica.TelefoneFixo,  new { @class = "control-label" })
+                <div class="controls">
+                    @Html.EditorFor(model => model.PessoaFisica.TelefoneFixo)<br />
+                    @Html.ValidationMessageFor(model => model.PessoaFisica.TelefoneFixo)
+                </div>
+            </div>
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.PessoaFisica.Rg)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.PessoaFisica.Rg)
-            @Html.ValidationMessageFor(model => model.PessoaFisica.Rg)
-        </div>
+            <div class="control-group">
+                @Html.LabelFor(model => model.PessoaFisica.TelefoneCelular,  new { @class = "control-label" })
+                <div class="controls">
+                    @Html.EditorFor(model => model.PessoaFisica.TelefoneCelular)<br />
+                    @Html.ValidationMessageFor(model => model.PessoaFisica.TelefoneCelular)
+                </div>
+            </div>
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.PessoaFisica.TelefoneFixo)
+            <div class="control-group">
+                @Html.LabelFor(model => model.PessoaFisica.Email,  new { @class = "control-label" })
+                <div class="controls">
+                    @Html.EditorFor(model => model.PessoaFisica.Email)<br />
+                    @Html.ValidationMessageFor(model => model.PessoaFisica.Email)
+                </div>
+            </div>
         </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.PessoaFisica.TelefoneFixo)
-            @Html.ValidationMessageFor(model => model.PessoaFisica.TelefoneFixo)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.PessoaFisica.TelefoneCelular)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.PessoaFisica.TelefoneCelular)
-            @Html.ValidationMessageFor(model => model.PessoaFisica.TelefoneCelular)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.PessoaFisica.Email)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.PessoaFisica.Email)
-            @Html.ValidationMessageFor(model => model.PessoaFisica.Email)
-        </div>
-        <p>
-            <input type="submit" value="Save" />
-        </p>
-    </fieldset>
+    </div>
+    <div class="row">
+        <p class="actions">
+            <input class="btn btn-danger" type="submit" value="Salvar" />
+            <a class="btn" href="@Url.Action("Index", "Cliente")">Cancelar</a>
+        </p>  
+    </div>
 }
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>

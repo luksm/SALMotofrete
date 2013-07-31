@@ -19,7 +19,7 @@
             <div class="control-group">
                 @Html.LabelFor(model => model.Tipo, new { @class = "control-label" })
                 <div class="controls">
-                    @Html.DropDownListFor(model => model.Tipo.Id, (IEnumerable<SelectListItem>)ViewBag.TipoAparelhoMovel)
+                    @Html.DropDownListFor(model => model.Tipo.Id, (IEnumerable<SelectListItem>)ViewBag.TipoAparelhoMovel)<br />
                     @Html.ValidationMessageFor(model => model.Tipo)
                 </div>
             </div>
@@ -27,7 +27,7 @@
             <div class="control-group">
                 @Html.LabelFor(model => model.Modelo, new { @class = "control-label" })
                 <div class="controls">
-                    @Html.EditorFor(model => model.Modelo)
+                    @Html.EditorFor(model => model.Modelo)<br />
                     @Html.ValidationMessageFor(model => model.Modelo)
                 </div>
             </div>
@@ -35,7 +35,7 @@
             <div class="control-group">
                 @Html.LabelFor(model => model.Marca, new { @class = "control-label" })
                 <div class="controls">
-                    @Html.EditorFor(model => model.Marca)
+                    @Html.EditorFor(model => model.Marca)<br />
                     @Html.ValidationMessageFor(model => model.Marca)
                 </div>
             </div>
@@ -44,7 +44,7 @@
             <div class="control-group">
                 @Html.LabelFor(model => model.NumeroTelefone, new { @class = "control-label" })
                 <div class="controls">
-                    @Html.EditorFor(model => model.NumeroTelefone)
+                    @Html.EditorFor(model => model.NumeroTelefone)<br />
                     @Html.ValidationMessageFor(model => model.NumeroTelefone)
                 </div>
             </div>
@@ -52,7 +52,7 @@
             <div class="control-group">
                 @Html.LabelFor(model => model.Observacao, new { @class = "control-label" })
                 <div class="controls">
-                    @Html.TextAreaFor(model => model.Observacao)
+                    @Html.TextAreaFor(model => model.Observacao)<br />
                     @Html.ValidationMessageFor(model => model.Observacao)
                 </div>
             </div>

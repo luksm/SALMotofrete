@@ -1,51 +1,55 @@
 ﻿@model SALClassLib.Masterdata.Model.Cliente
 
 @{
-    ViewBag.Title = "DetailsPJ";
+    ViewBag.Title = "Detalhes da Empresa";
     Layout = "~/Views/Shared/_Utopia.cshtml";
+    Html.RenderPartial("~/Views/Shared/_FlashPartial.cshtml");
 }
 
-<h2>DetailsPJ</h2>
+<div class="row header">
+    <h2>@ViewBag.Title</h2>
+</div>
 
-<fieldset>
-    <legend>Cliente</legend>
+<div class="row">
+    <div class="span4 offset4">
+        <div class="control-group">
+            @Html.DisplayNameFor(model => model.PessoaJuridica.NomeFantasia)
+            <strong>
+                @Html.DisplayFor(model => model.PessoaJuridica.NomeFantasia)
+            </strong>
+        </div>
 
-    <div class="display-label">
-        @Html.DisplayNameFor(model => model.PessoaJuridica.NomeFantasia)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.PessoaJuridica.NomeFantasia)
-    </div>
+        <div class="control-group">
+            @Html.DisplayNameFor(model => model.PessoaJuridica.RazaoSocial)
+            <strong>
+                @Html.DisplayFor(model => model.PessoaJuridica.RazaoSocial)
+            </strong>
+        </div>
 
-    <div class="display-label">
-        @Html.DisplayNameFor(model => model.PessoaJuridica.RazaoSocial)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.PessoaJuridica.RazaoSocial)
-    </div>
+        <div class="control-group">
+            @Html.DisplayNameFor(model => model.PessoaJuridica.Cnpj)
+            <strong>
+                @Html.DisplayFor(model => model.PessoaJuridica.Cnpj)
+            </strong>
+        </div>
 
-    <div class="display-label">
-        @Html.DisplayNameFor(model => model.PessoaJuridica.Cnpj)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.PessoaJuridica.Cnpj)
-    </div>
+        <div class="control-group">
+            @Html.DisplayNameFor(model => model.PessoaJuridica.InscricaoEstadual)
+            <strong>
+                @Html.DisplayFor(model => model.PessoaJuridica.InscricaoEstadual)
+            </strong>
+        </div>
 
-    <div class="display-label">
-        @Html.DisplayNameFor(model => model.PessoaJuridica.InscricaoEstadual)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.PessoaJuridica.InscricaoEstadual)
-    </div>
+        <div class="control-group">
+            @Html.DisplayNameFor(model => model.PessoaJuridica.WebSite)
+            <strong>
+                @Html.DisplayFor(model => model.PessoaJuridica.WebSite)
+            </strong>
+        </div>
 
-    <div class="display-label">
-        @Html.DisplayNameFor(model => model.PessoaJuridica.WebSite)
+        <p class="actions">
+            @Html.ActionLink("Editar", "EditPJ", new { id = Model.Id }, new { @class = "btn btn-danger" })
+            @Html.ActionLink("Voltar", "Index", new { }, new { @class = "btn" })
+        </p>
     </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.PessoaJuridica.WebSite)
-    </div>
-</fieldset>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id=Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+</div>

@@ -1,11 +1,14 @@
 ﻿@model SALClassLib.Masterdata.Model.Endereco
 
 @{
-    ViewBag.Title = "CreateEndereco";
+    ViewBag.Title = "Cadastro de Endereço";
     Layout = "~/Views/Shared/_Utopia.cshtml";
+    Html.RenderPartial("~/Views/Shared/_FlashPartial.cshtml");
 }
 
-<h2>CreateEndereco</h2>
+<div class="row header">
+    <h2>@ViewBag.Title</h2>
+</div>
 
 @using (Html.BeginForm()) {
     @Html.AntiForgeryToken()

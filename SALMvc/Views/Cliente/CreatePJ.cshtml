@@ -1,65 +1,66 @@
 ﻿@model SALClassLib.Masterdata.Model.Cliente
 
 @{
-    ViewBag.Title = "CreatePJ";
+    ViewBag.Title = "Cadastro de Empresa";
     Layout = "~/Views/Shared/_Utopia.cshtml";
+    Html.RenderPartial("~/Views/Shared/_FlashPartial.cshtml");
 }
 
-<h2>CreatePJ</h2>
+<div class="row header">
+    <h2>@ViewBag.Title</h2>
+</div>
 
-@using (Html.BeginForm()) {
+@using (Html.BeginForm("CreatePJ", "Cliente", FormMethod.Post, new { @class = "form-horizontal", enctype = "multipart/form-data" })){
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
+    <div class="row">
+        <div class="span5 offset3">
+            <div class="control-group">
+                @Html.LabelFor(model => model.PessoaJuridica.NomeFantasia,  new { @class = "control-label" })
+                <div class="controls">
+                    @Html.EditorFor(model => model.PessoaJuridica.NomeFantasia)<br />
+                    @Html.ValidationMessageFor(model => model.PessoaJuridica.NomeFantasia)
+                </div>
+            </div>
 
-    <fieldset>
-        <legend>Cliente</legend>
+            <div class="control-group">
+                @Html.LabelFor(model => model.PessoaJuridica.RazaoSocial,  new { @class = "control-label" })
+                <div class="controls">
+                    @Html.EditorFor(model => model.PessoaJuridica.RazaoSocial)<br />
+                    @Html.ValidationMessageFor(model => model.PessoaJuridica.RazaoSocial)
+                </div>
+            </div>
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.PessoaJuridica.NomeFantasia)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.PessoaJuridica.NomeFantasia)
-            @Html.ValidationMessageFor(model => model.PessoaJuridica.NomeFantasia)
-        </div>
+            <div class="control-group">
+                @Html.LabelFor(model => model.PessoaJuridica.Cnpj,  new { @class = "control-label" })
+                <div class="controls">
+                    @Html.EditorFor(model => model.PessoaJuridica.Cnpj)<br />
+                    @Html.ValidationMessageFor(model => model.PessoaJuridica.Cnpj)
+                </div>
+            </div>
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.PessoaJuridica.RazaoSocial)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.PessoaJuridica.RazaoSocial)
-            @Html.ValidationMessageFor(model => model.PessoaJuridica.RazaoSocial)
-        </div>
+            <div class="control-group">
+                @Html.LabelFor(model => model.PessoaJuridica.InscricaoEstadual,  new { @class = "control-label" })
+                <div class="controls">
+                    @Html.EditorFor(model => model.PessoaJuridica.InscricaoEstadual)<br />
+                    @Html.ValidationMessageFor(model => model.PessoaJuridica.InscricaoEstadual)
+                </div>
+            </div>
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.PessoaJuridica.Cnpj)
+            <div class="control-group">
+                @Html.LabelFor(model => model.PessoaJuridica.WebSite,  new { @class = "control-label" })
+                <div class="controls">
+                    @Html.EditorFor(model => model.PessoaJuridica.WebSite)<br />
+                    @Html.ValidationMessageFor(model => model.PessoaJuridica.WebSite)
+                </div>
+            </div>
         </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.PessoaJuridica.Cnpj)
-            @Html.ValidationMessageFor(model => model.PessoaJuridica.Cnpj)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.PessoaJuridica.InscricaoEstadual)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.PessoaJuridica.InscricaoEstadual)
-            @Html.ValidationMessageFor(model => model.PessoaJuridica.InscricaoEstadual)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.PessoaJuridica.WebSite)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.PessoaJuridica.WebSite)
-            @Html.ValidationMessageFor(model => model.PessoaJuridica.WebSite)
-        </div>
-
-        <p>
-            <input type="submit" value="Create" />
-        </p>
-    </fieldset>
+    </div>
+    <div class="row">
+        <p class="actions">
+            <input class="btn btn-danger" type="submit" value="Cadastrar" />
+            <input class="btn" type="reset" value="Limpar" />
+            <a class="btn" href="@Url.Action("Index", "Cliente")">Cancelar</a>
+        </p>  
+    </div>
 }
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>

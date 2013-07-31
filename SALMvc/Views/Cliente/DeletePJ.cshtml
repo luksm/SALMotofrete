@@ -1,60 +1,60 @@
 ﻿@model SALClassLib.Masterdata.Model.Cliente
 
 @{
-    ViewBag.Title = "DeletePJ";
+    ViewBag.Title = "Exclusão de Empresa";
     Layout = "~/Views/Shared/_Utopia.cshtml";
+    Html.RenderPartial("~/Views/Shared/_FlashPartial.cshtml");
 }
 
-<h2>DeletePJ</h2>
+<div class="row header">
+    <h2>@ViewBag.Title</h2>
+</div>
 
-<h3>Are you sure you want to delete this?</h3>
-<fieldset>
-    <legend>Cliente</legend>
-</fieldset>
-@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
+<div class="row">
+    <div class="span6 offset4">
+        <h4>Tem certeza que deseja excluir esta empresa?</h4>
 
-    @Html.HiddenFor(model => model.Id);
+        <div class="control-group">
+            @Html.DisplayNameFor(model => model.PessoaJuridica.NomeFantasia)
+            <strong>
+                @Html.DisplayFor(model => model.PessoaJuridica.NomeFantasia)
+            </strong>
+        </div>
+
+        <div class="control-group">
+            @Html.DisplayNameFor(model => model.PessoaJuridica.RazaoSocial)
+            <strong>
+                @Html.DisplayFor(model => model.PessoaJuridica.RazaoSocial)
+            </strong>
+        </div>
+
+        <div class="control-group">
+            @Html.DisplayNameFor(model => model.PessoaJuridica.Cnpj)
+            <strong>
+                @Html.DisplayFor(model => model.PessoaJuridica.Cnpj)
+            </strong>
+        </div>
+
+        <div class="control-group">
+            @Html.DisplayNameFor(model => model.PessoaJuridica.InscricaoEstadual)
+            <strong>
+                @Html.DisplayFor(model => model.PessoaJuridica.InscricaoEstadual)
+            </strong>
+        </div>
+
+        <div class="control-group">
+            @Html.DisplayNameFor(model => model.PessoaJuridica.WebSite)
+            <strong>
+                @Html.DisplayFor(model => model.PessoaJuridica.WebSite)
+            </strong>
+        </div>
     
-    <div class="display-label">
-        @Html.DisplayNameFor(model => model.PessoaJuridica.NomeFantasia)
+        @using (Html.BeginForm()) {
+            @Html.AntiForgeryToken()
+            <p class="actions">
+                <input type="submit" value="Deletar" class="btn btn-danger" />
+                @Html.ActionLink("Voltar", "Index", new { }, new { @class = "btn" })
+            </p>
+        }
     </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.PessoaJuridica.NomeFantasia)
-    </div>
-
-    <div class="display-label">
-        @Html.DisplayNameFor(model => model.PessoaJuridica.RazaoSocial)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.PessoaJuridica.RazaoSocial)
-    </div>
-
-    <div class="display-label">
-        @Html.DisplayNameFor(model => model.PessoaJuridica.Cnpj)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.PessoaJuridica.Cnpj)
-    </div>
-
-    <div class="display-label">
-        @Html.DisplayNameFor(model => model.PessoaJuridica.InscricaoEstadual)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.PessoaJuridica.InscricaoEstadual)
-    </div>
-
-    <div class="display-label">
-        @Html.DisplayNameFor(model => model.PessoaJuridica.WebSite)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.PessoaJuridica.WebSite)
-    </div>
-    
-    <p>
-        <input type="submit" value="Delete" />
-        |
-        @Html.ActionLink("Back to List", "Index")
-    </p>
-}
+</div>

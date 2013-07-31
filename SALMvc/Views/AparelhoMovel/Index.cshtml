@@ -1,12 +1,12 @@
 ﻿@model IEnumerable<SALClassLib.Masterdata.Model.AparelhoMovel>
 
 @{
-    ViewBag.Title = "Aparelhos Móveis";
+    ViewBag.Title = "Aparelho Móvel";
     Layout = "~/Views/Shared/_Utopia.cshtml";
     Html.RenderPartial("~/Views/Shared/_FlashPartial.cshtml");
 }
 
-<div class="row" style="border-bottom: 1px solid #DDD;">
+<div class="row">
     <h2>
         @ViewBag.Title
         <a href="@Url.Action("Create", "AparelhoMovel")" class="btn btn-danger pull-right" type="button"><i class="icon-plus icon-white"> </i>  Novo Aparelho Movel</a>

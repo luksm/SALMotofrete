@@ -1,12 +1,12 @@
 ﻿@model IEnumerable<SALClassLib.Masterdata.Model.Cliente>
 
 @{
-    ViewBag.Title = "Clientes";
+    ViewBag.Title = "Cliente";
     Layout = "~/Views/Shared/_Utopia.cshtml";
     Html.RenderPartial("~/Views/Shared/_FlashPartial.cshtml");
 }
 
-<div class="row" style="border-bottom: 1px solid #DDD">
+<div class="row">
     <h2>
         @ViewBag.Title
         <a href="@Url.Action("CreatePF", "Cliente")" class="btn btn-danger pull-right" type="button"><i class="icon-user icon-white"> </i>  Novo Cliente</a>
@@ -18,10 +18,10 @@
     <table class="table table-hover table-striped">
         <thead>
             <tr style="background:#CCC;color:#FFF;">
-                <th>Nome</th>
-                <th>Sobrenome</th>
-                <th>CPF</th>
-                <th>RG</th>
+                <th>Nome / Fantasia</th>
+                <th>Sobrenome / Razão Social</th>
+                <th>CPF / CNPJ</th>
+                <th>Email / Website</th>
                 <th class="actions"></th>
             </tr>
         </thead>
@@ -31,7 +31,7 @@
                     <td>@(item.Pessoa is SALClassLib.Masterdata.Model.PessoaFisica ? item.PessoaFisica.Nome : item.PessoaJuridica.NomeFantasia)</td>
                     <td>@(item.Pessoa is SALClassLib.Masterdata.Model.PessoaFisica ? item.PessoaFisica.Sobrenome : item.PessoaJuridica.RazaoSocial)</td>
                     <td>@(item.Pessoa is SALClassLib.Masterdata.Model.PessoaFisica ? item.PessoaFisica.Cpf : item.PessoaJuridica.Cnpj)</td>
-                    <td>@(item.Pessoa is SALClassLib.Masterdata.Model.PessoaFisica ? item.PessoaFisica.Rg: item.PessoaJuridica.InscricaoEstadual)</td>
+                    <td>@(item.Pessoa is SALClassLib.Masterdata.Model.PessoaFisica ? item.PessoaFisica.Email: item.PessoaJuridica.WebSite)</td>
                     <td class="actions">
                         <a href="@Url.Action("Edit", "Cliente", new { id=item.Id })"><i class="icon-pencil icon-black"></i></a>
                         <a href="@Url.Action("Details", "Cliente", new { id=item.Id })"><i class="icon-info-sign icon-black"></i></a>

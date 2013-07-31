@@ -1,10 +1,12 @@
 ﻿@{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Ordens de Serviço Ativas";
     Layout = "~/Views/Shared/_Utopia.cshtml";
     Html.RenderPartial("~/Views/Shared/_FlashPartial.cshtml");
 }
 
-<h2>Ordens de Serviço Ativas</h2>
+<div class="row header">
+    <h2>@ViewBag.Title</h2>
+</div>
 
-<p>Aqui vão aparecer todos os pedidos que estiverem com um status diferente de completo</p>
+<p>Aqui serão listados todos os pedidos que estiverem com o status diferente de "completo".</p>
 

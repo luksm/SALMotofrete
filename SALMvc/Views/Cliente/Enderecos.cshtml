@@ -1,11 +1,14 @@
 ﻿@model IEnumerable<SALClassLib.Masterdata.Model.Endereco>
 
 @{
-    ViewBag.Title = "Enderecos";
+    ViewBag.Title = "Endereço";
     Layout = "~/Views/Shared/_Utopia.cshtml";
+    Html.RenderPartial("~/Views/Shared/_FlashPartial.cshtml");
 }
 
-<h2>Enderecos</h2>
+<div class="row header">
+    <h2>@ViewBag.Title</h2>
+</div>
 
 <p>
     @Html.ActionLink("Create New", "CreateEndereco")
