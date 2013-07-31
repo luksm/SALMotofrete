@@ -7,15 +7,15 @@
 }
 
 <div class="row header">
-    <h2>Edição de Aparelho Móvel</h2>
+    <h2>@ViewBag.Title</h2>
 </div>
 
-<div class="row">
-    <div class="span4 offset4">
-        @using (Html.BeginForm("Edit", "AparelhoMovel", FormMethod.Post, new { @class = "form-horizontal" }))
-        {
-            @Html.HiddenFor(model => model.Id)
-    
+@using (Html.BeginForm("Edit", "AparelhoMovel", FormMethod.Post, new { @class = "form-horizontal" }))
+{
+    @Html.HiddenFor(model => model.Id)
+    <div class="row">
+        <div class="span5">
+
             <div class="control-group">
                 @Html.LabelFor(model => model.Tipo, new { @class = "control-label" })
                 <div class="controls">
@@ -39,7 +39,8 @@
                     @Html.ValidationMessageFor(model => model.Marca)
                 </div>
             </div>
-    
+        </div>
+       <div class="span5">
             <div class="control-group">
                 @Html.LabelFor(model => model.NumeroTelefone, new { @class = "control-label" })
                 <div class="controls">
@@ -55,14 +56,15 @@
                     @Html.ValidationMessageFor(model => model.Observacao)
                 </div>
             </div>
-    
-            <p class="actions">
-                <input class="btn btn-success" type="submit" value="Cadastrar" />
-                <a class="btn btn-danger" href="@Url.Action("Index", "AparelhoMovel")">Cancelar</a>
-            </p>    
-        }
+        </div>
     </div>
-</div>
+    <div class="row">
+        <p class="actions">
+            <input class="btn btn-danger" type="submit" value="Salvar" />
+            <a class="btn" href="@Url.Action("Index", "AparelhoMovel")">Cancelar</a>
+        </p>            
+    </div>
+}
 @section Scripts
 {
     @Scripts.Render("~/bundles/jqueryval");

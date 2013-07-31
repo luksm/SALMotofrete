@@ -7,7 +7,7 @@
 }
 
 <div class="row header">
-    <h2>Cadastro de Aparelho Móvel</h2>
+    <h2>@ViewBag.Title</h2>
 </div>
 
 @using (Html.BeginForm("Create", "AparelhoMovel", FormMethod.Post, new { @class = "form-horizontal" }))
@@ -15,7 +15,7 @@
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
     <div class="row">
-        <div class="span4 offset2">
+        <div class="span5">
  
             <div class="control-group">
                 @Html.LabelFor(model => model.Tipo, new { @class = "control-label" })
@@ -41,7 +41,7 @@
                 </div>
             </div>
        </div>
-       <div class="span4">
+       <div class="span5">
             <div class="control-group">
                 @Html.LabelFor(model => model.NumeroTelefone, new { @class = "control-label" })
                 <div class="controls">
@@ -60,13 +60,11 @@
        </div>
     </div>
     <div class="row">
-        <div class="span12">
-            <p class="actions">
-                <input class="btn btn-success" type="submit" value="Cadastrar" />
-                <input class="btn btn-warning" type="reset" value="Limpar" />
-                <a class="btn btn-danger" href="@Url.Action("Index", "AparelhoMovel")">Cancelar</a>
-            </p>    
-        </div>
+        <p class="actions">
+            <input class="btn btn-danger" type="submit" value="Cadastrar" />
+            <input class="btn" type="reset" value="Limpar" />
+            <a class="btn" href="@Url.Action("Index", "AparelhoMovel")">Cancelar</a>
+        </p>
     </div>
 }
 @section Scripts

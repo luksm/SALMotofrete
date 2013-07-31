@@ -1,62 +1,63 @@
 ﻿@model SALClassLib.Masterdata.Model.AparelhoMovel
 
 @{
-    ViewBag.Title = "Detalhes de Aparelho Móvel";
+    ViewBag.Title = "Detalhes do Aparelho Móvel";
     Layout = "~/Views/Shared/_Utopia.cshtml";
     Html.RenderPartial("~/Views/Shared/_FlashPartial.cshtml");
 }
     
 <div class="row header">
-    <h2>Detalhes do Aparelho Móvel</h2>
+    <h2>@ViewBag.Title</h2>
 </div>
 
 <div class="row">
     <div class="span4 offset4">
 
         <div class="control-group">
-            @Html.LabelFor(model => model.Id,  new { @class = "control-label" })
+            @Html.DisplayNameFor(model => model.Id)
             <strong>
                 @Html.DisplayFor(model => model.Id)
             </strong>
         </div>
 
         <div class="control-group">
-            @Html.LabelFor(model => model.Tipo.Descricao,  new { @class = "control-label" })
+            @Html.DisplayNameFor(model => model.Tipo.Descricao)
             <strong>
                 @Html.DisplayFor(model => model.Tipo.Descricao)
             </strong>
         </div>
 
         <div class="control-group">
-            @Html.LabelFor(model => model.Modelo,  new { @class = "control-label" })
+            @Html.DisplayNameFor(model => model.Modelo)
             <strong>
                 @Html.DisplayFor(model => model.Modelo)
             </strong>
         </div>
 
         <div class="control-group">
-            @Html.LabelFor(model => model.Marca,  new { @class = "control-label" })
+            @Html.DisplayNameFor(model => model.Marca)
             <strong>
                 @Html.DisplayFor(model => model.Marca)
             </strong>
         </div>
 
         <div class="control-group">
-            @Html.LabelFor(model => model.NumeroTelefone,  new { @class = "control-label" })
+            @Html.DisplayNameFor(model => model.NumeroTelefone)
             <strong>
                 @Html.DisplayFor(model => model.NumeroTelefone)
             </strong>
         </div>
 
         <div class="control-group">
-            @Html.LabelFor(model => model.Observacao,  new { @class = "control-label" })
+            @Html.DisplayNameFor(model => model.Observacao)
             <strong>
                 @Html.DisplayFor(model => model.Observacao)
             </strong>
         </div>
 
         <p class="actions">
-            <a class="btn btn-danger" href="@Url.Action("Index", "AparelhoMovel")">Voltar</a>
+            @Html.ActionLink("Editar", "Edit", new { id = Model.Id }, new { @class = "btn btn-danger" })
+            @Html.ActionLink("Voltar", "Index", new { }, new { @class = "btn" })
         </p>    
 
     </div>
