@@ -7,7 +7,7 @@
 }
 
 <div class="row header">
-    <h2>Detalhes do Entregador</h2>
+    <h2>@ViewBag.Title</h2>
 </div>
 
 <div class="row">
@@ -49,6 +49,13 @@
         </div>
 
         <div class="control-group">
+            @Html.DisplayNameFor(model => model.AparelhoMovel)
+            <strong>
+                @Html.DisplayFor(model => model.AparelhoMovel.Modelo)
+            </strong>
+        </div>
+
+        <div class="control-group">
             @Html.DisplayNameFor(model => model.PlacaMoto)
             <strong>
                 @Html.DisplayFor(model => model.PlacaMoto)
@@ -75,9 +82,9 @@
         <div class="display-field">
             <img src="@ViewBag.Foto" width="400" height="310" />
         </div>
-
-        <p>
-            @Html.ActionLink("Back to List", "Index")
+        <p class="actions">
+            @Html.ActionLink("Editar", "Edit", new { id = Model.Id }, new { @class = "btn btn-danger" })
+            @Html.ActionLink("Voltar", "Index", new { }, new { @class = "btn" })
         </p>
 
     </div>

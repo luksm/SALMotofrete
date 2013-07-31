@@ -1,7 +1,7 @@
 ﻿@model SALClassLib.Masterdata.Model.Gerente
 
 @{
-    ViewBag.Title = "Editar Gerente";
+    ViewBag.Title = "Edição de Gerente";
     Layout = "~/Views/Shared/_Utopia.cshtml";
     Html.RenderPartial("~/Views/Shared/_FlashPartial.cshtml");
 }
@@ -54,8 +54,7 @@
                     @Html.EditorFor(model => model.Email)
                     @Html.ValidationMessageFor(model => model.Email)
                 </div>
-            </div>
-            
+            </div>            
         </div>
         <div class="span5">
             <div class="control-group">
@@ -96,7 +95,6 @@
                     <input type="file" name="Foto" />
                 </div>
             </div>
-
         </div>
     </div>
     <div class="row">

@@ -5,80 +5,90 @@
     Layout = "~/Views/Shared/_Utopia.cshtml";
     Html.RenderPartial("~/Views/Shared/_FlashPartial.cshtml");
 }
+
 <div class="row header">
-    <h2>Exclusão de Atendente</h2>
+    <h2>@ViewBag.Title</h2>
 </div>
 
 <div class="row">
-    <h3>Tem certeza que deseja excluir este atendente ?</h3>
-</div>
+    <div class="span6 offset4">
+        <h4>Tem certeza que deseja excluir este entregador?</h4>
 
-<div class="row">
-    <div class="span4 offset4">
-
-        <div class="display-label">
-            @Html.DisplayNameFor(model => model.ModeloMoto)
-        </div>
-        <div class="display-field">
-            @Html.DisplayFor(model => model.ModeloMoto)
-        </div>
-
-        <div class="display-label">
+        <div class="control-group">
             @Html.DisplayNameFor(model => model.Nome)
-        </div>
-        <div class="display-field">
-            @Html.DisplayFor(model => model.Nome)
+            <strong>
+                @Html.DisplayFor(model => model.Nome)
+            </strong>
         </div>
 
-        <div class="display-label">
+        <div class="control-group">
             @Html.DisplayNameFor(model => model.Sobrenome)
-        </div>
-        <div class="display-field">
-            @Html.DisplayFor(model => model.Sobrenome)
+            <strong>
+                @Html.DisplayFor(model => model.Sobrenome)
+            </strong>
         </div>
 
-        <div class="display-label">
+        <div class="control-group">
             @Html.DisplayNameFor(model => model.Cpf)
-        </div>
-        <div class="display-field">
-            @Html.DisplayFor(model => model.Cpf)
+            <strong>
+                @Html.DisplayFor(model => model.Cpf)
+            </strong>
         </div>
 
-        <div class="display-label">
+        <div class="control-group">
             @Html.DisplayNameFor(model => model.Rg)
-        </div>
-        <div class="display-field">
-            @Html.DisplayFor(model => model.Rg)
+            <strong>
+                @Html.DisplayFor(model => model.Rg)
+            </strong>
         </div>
 
-        <div class="display-label">
+        <div class="control-group">
             @Html.DisplayNameFor(model => model.Cnh)
-        </div>
-        <div class="display-field">
-            @Html.DisplayFor(model => model.Cnh)
+            <strong>
+                @Html.DisplayFor(model => model.Cnh)
+            </strong>
         </div>
 
-        <div class="display-label">
+        <div class="control-group">
+            @Html.DisplayNameFor(model => model.AparelhoMovel)
+            <strong>
+                @Html.DisplayFor(model => model.AparelhoMovel.Modelo)
+            </strong>
+        </div>
+
+        <div class="control-group">
             @Html.DisplayNameFor(model => model.PlacaMoto)
-        </div>
-        <div class="display-field">
-            @Html.DisplayFor(model => model.PlacaMoto)
+            <strong>
+                @Html.DisplayFor(model => model.PlacaMoto)
+            </strong>
         </div>
 
-        <div class="display-label">
+        <div class="control-group">
+            @Html.DisplayNameFor(model => model.ModeloMoto)
+            <strong>
+                @Html.DisplayFor(model => model.ModeloMoto)
+            </strong>
+        </div>
+
+        <div class="control-group">
+            @Html.DisplayNameFor(model => model.Usuario)
+            <strong>
+                @Html.DisplayFor(model => model.Usuario)
+            </strong>
+        </div>
+
+        <div class="control-group">
             @Html.DisplayNameFor(model => model.Foto)
         </div>
         <div class="display-field">
             <img src="@ViewBag.Foto" width="400" height="310" />
         </div>
 
-        @using (Html.BeginForm())
-        {
+        @using (Html.BeginForm()) {
             @Html.AntiForgeryToken()
-            <p>
-                <input type="submit" value="Delete" />
-                |
-            @Html.ActionLink("Back to List", "Index")
+            <p class="actions">
+                <input type="submit" value="Deletar" class="btn btn-danger" />
+                @Html.ActionLink("Voltar", "Index", new { }, new { @class = "btn" })
             </p>
         }
 

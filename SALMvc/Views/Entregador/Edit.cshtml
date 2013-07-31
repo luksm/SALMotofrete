@@ -1,107 +1,120 @@
 ﻿@model SALClassLib.Masterdata.Model.Entregador
 
 @{
+    ViewBag.Title = "Edição de Entregador";
     Layout = "~/Views/Shared/_Utopia.cshtml";
     Html.RenderPartial("~/Views/Shared/_FlashPartial.cshtml");
 }
 
-@using (Html.BeginForm("Edit", "Entregador", FormMethod.Post, new { enctype = "multipart/form-data" }))
+<div class="row header">
+    <h2>@ViewBag.Title</h2>
+</div>
+
+@using (Html.BeginForm("Edit", "Entregador", FormMethod.Post, new { enctype = "multipart/form-data", @class = "form-horizontal" }))
 {
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
-    
-    <fieldset>
-        <legend>Entregador</legend>
-        @Html.HiddenFor(model => model.Id)
+    <div class="row">
+        <div class="span5">
+            @Html.HiddenFor(model => model.Id)
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Nome)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.Nome)
-            @Html.ValidationMessageFor(model => model.Nome)
-        </div>
+            <div class="control-group">
+                @Html.LabelFor(model => model.Nome, new { @class = "control-label" })
+                <div class="controls">
+                    @Html.EditorFor(model => model.Nome)
+                    @Html.ValidationMessageFor(model => model.Nome)
+                </div>
+            </div>
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Sobrenome)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.Sobrenome)
-            @Html.ValidationMessageFor(model => model.Sobrenome)
-        </div>
+            <div class="control-group">
+                @Html.LabelFor(model => model.Sobrenome,  new { @class = "control-label" })
+                <div class="controls">
+                    @Html.EditorFor(model => model.Sobrenome)
+                    @Html.ValidationMessageFor(model => model.Sobrenome)
+                </div>
+            </div>
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Cpf)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.Cpf)
-            @Html.ValidationMessageFor(model => model.Cpf)
-        </div>
+            <div class="control-group">
+                @Html.LabelFor(model => model.Cpf,  new { @class = "control-label" })
+                <div class="controls">
+                    @Html.EditorFor(model => model.Cpf)
+                    @Html.ValidationMessageFor(model => model.Cpf)
+                </div>
+            </div>
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Rg)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.Rg)
-            @Html.ValidationMessageFor(model => model.Rg)
-        </div>
+            <div class="control-group">
+                @Html.LabelFor(model => model.Rg,  new { @class = "control-label" })
+                <div class="controls">
+                    @Html.EditorFor(model => model.Rg)
+                    @Html.ValidationMessageFor(model => model.Rg)
+                </div>
+            </div>
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Cnh)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.Cnh)
-            @Html.ValidationMessageFor(model => model.Cnh)
-        </div>
+            <div class="control-group">
+                @Html.LabelFor(model => model.Cnh,  new { @class = "control-label" })
+                <div class="controls">
+                    @Html.EditorFor(model => model.Cnh)
+                    @Html.ValidationMessageFor(model => model.Cnh)
+                </div>
+            </div>  
+            
+            <div class="control-group">
+                @Html.LabelFor(model => model.AparelhoMovel,  new { @class = "control-label" })
+                <div class="controls">
+                    @Html.DropDownListFor(model => model.AparelhoMovel.Id, (IEnumerable<SelectListItem>)ViewBag.AparelhoMovel)
+                    @Html.ValidationMessageFor(model => model.AparelhoMovel)
+                </div>
+            </div>        
+        </div> 
+        <div class="span5">
+            <div class="control-group">
+                @Html.LabelFor(model => model.PlacaMoto,  new { @class = "control-label" })
+                <div class="controls">
+                    @Html.EditorFor(model => model.PlacaMoto)
+                    @Html.ValidationMessageFor(model => model.PlacaMoto)
+                </div>
+            </div>
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Foto)
-        </div>
-        <div class="editor-field">
-            <input type="file" name="Foto" />
-            @Html.HiddenFor(model => model.Foto)
-        </div>
+            <div class="control-group">
+                @Html.LabelFor(model => model.ModeloMoto,  new { @class = "control-label" })
+                <div class="controls">
+                    @Html.EditorFor(model => model.ModeloMoto)
+                    @Html.ValidationMessageFor(model => model.ModeloMoto)
+                </div>
+            </div>
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Usuario)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.Usuario)
-            @Html.ValidationMessageFor(model => model.Usuario)
-        </div>
-        <div class="editor-label">
-            @Html.LabelFor(model => model.PlacaMoto)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.PlacaMoto)
-            @Html.ValidationMessageFor(model => model.PlacaMoto)
-        </div>
+            <div class="control-group">
+                @Html.LabelFor(model => model.Usuario,  new { @class = "control-label" })
+                <div class="controls">
+                    @Html.EditorFor(model => model.Usuario)
+                    @Html.ValidationMessageFor(model => model.Usuario)
+                </div>
+            </div>
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.ModeloMoto)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.ModeloMoto)
-            @Html.ValidationMessageFor(model => model.ModeloMoto)
-        </div>
-        <div class="editor-label">
-            @Html.LabelFor(model => model.AparelhoMovel)
-        </div>
-        <div class="editor-field">
-            @Html.DropDownListFor(model => model.AparelhoMovel.Id, (IEnumerable<SelectListItem>)ViewBag.AparelhoMovel)
-            @Html.ValidationMessageFor(model => model.AparelhoMovel)
-        </div>
-        @Html.HiddenFor(model => model.Senha)
+            <div class="control-group">
+                @Html.LabelFor(model => model.Senha,  new { @class = "control-label" })
+                <div class="controls">
+                    @Html.PasswordFor(model => model.Senha)
+                    @Html.ValidationMessageFor(model => model.Senha)
+                </div>
+            </div>
 
-        <p>
-            <input type="submit" value="Save" />
+            <div class="control-group">
+                @Html.LabelFor(model => model.Foto,  new { @class = "control-label" })
+                <div class="controls">
+                    <input type="file" name="Foto" />
+                    @Html.HiddenFor(model => model.Foto)
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <p class="actions">
+            <input class="btn btn-danger" type="submit" value="Salvar" />
+            <a class="btn" href="@Url.Action("Index", "Entregador")">Cancelar</a>
         </p>
-    </fieldset>
+    </div>
 }
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
 
 @section Scripts
 {

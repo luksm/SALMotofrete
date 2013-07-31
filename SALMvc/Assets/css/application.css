@@ -65,17 +65,3 @@ h2 {
     text-align: center;
     margin-top:10px;
 }
-
-.details-horizontal .control-label{
-  font-weight:bold;
-}
-
-.details-horizontal .controls{
-  margin-top:5px;
-}
-
-.details-horizontal h4{
-  text-align: center;
-  color:#CDCD00;
-  margin-bottom:20px;
-}
