@@ -20,8 +20,8 @@
                 <th>@Html.DisplayNameFor(model => model.Nome)</th>
                 <th>@Html.DisplayNameFor(model => model.Sobrenome)</th>
                 <th>@Html.DisplayNameFor(model => model.Cpf)</th>
-                <th>@Html.DisplayNameFor(model => model.Rg)</th>
                 <th>@Html.DisplayNameFor(model => model.Cnh)</th>
+                <th>@Html.DisplayNameFor(model => model.PlacaMoto)</th>
                 <th class="actions"></th>
             </tr>
         </thead>
@@ -30,9 +30,9 @@
             <tr>
                 <td>@Html.DisplayFor(modelItem => item.Nome)</td>
                 <td>@Html.DisplayFor(modelItem => item.Sobrenome)</td>
-                <td>@Html.DisplayFor(modelItem => item.Cpf)</td>
-                <td>@Html.DisplayFor(modelItem => item.Rg)</td>
+                <td>@Html.DisplayFor(modelItem => item.Cpf)</td>                
                 <td>@Html.DisplayFor(modelItem => item.Cnh)</td>
+                <td>@Html.DisplayFor(modelItem => item.PlacaMoto)</td>
                 <td class="actions">
                     <a href="@Url.Action("Edit", "Entregador", new { id=item.Id })"><i class="icon-pencil icon-black"></i></a>
                     <a href="@Url.Action("Details", "Entregador", new { id=item.Id })"><i class="icon-info-sign icon-black"></i></a>

@@ -7,15 +7,12 @@
 }
 
 <div class="row header">
-    <h2>Exclusão de Atendente</h2>
+    <h2>@ViewBag.Title</h2>
 </div>
 
 <div class="row">
-    <h3>Tem certeza que deseja excluir este atendente ?</h3>
-</div>
-
-<div class="row">
-    <div class="span4 offset4">
+    <div class="span6 offset4">
+        <h4>Tem certeza que deseja excluir este atendente ?</h4>
 
         <div class="control-group">
             @Html.DisplayNameFor(model => model.Nome)
@@ -37,7 +34,6 @@
                 @Html.DisplayFor(model => model.Cpf)
             </strong>
         </div>
-
 
         <div class="control-group">
             @Html.DisplayNameFor(model => model.Rg)
@@ -74,13 +70,11 @@
             <img src="@ViewBag.Foto" width="400" height="310" />
         </div>
 
-        @using (Html.BeginForm())
-        {
+        @using (Html.BeginForm()) {
             @Html.AntiForgeryToken()
-            <p>
-                <input type="submit" class="btn btn-danger" value="Excluir" />
-                |
-                @Html.ActionLink("Back to List", "Index")
+            <p class="actions">
+                <input type="submit" value="Deletar" class="btn btn-danger" />
+                @Html.ActionLink("Voltar", "Index", new { }, new { @class = "btn" })
             </p>
         }
     </div>
