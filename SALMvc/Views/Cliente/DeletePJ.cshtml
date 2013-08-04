@@ -50,6 +50,7 @@
         </div>
     
         @using (Html.BeginForm()) {
+            @Html.HiddenFor(model => model.Id)
             @Html.AntiForgeryToken()
             <p class="actions">
                 <input type="submit" value="Deletar" class="btn btn-danger" />

@@ -42,10 +42,18 @@
         </div>
 
         <div class="editor-label">
+            @Html.LabelFor(model => model.Complemento)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Complemento)
+            @Html.ValidationMessageFor(model => model.Complemento)
+        </div>
+
+        <div class="editor-label">
             @Html.LabelFor(model => model.Observacao)
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.Observacao)
+            @Html.TextAreaFor(model => model.Observacao)
             @Html.ValidationMessageFor(model => model.Observacao)
         </div>
 
@@ -54,15 +62,15 @@
         </div>
         <div class="editor-field">
             @Html.DropDownListFor(model => model.Municipio.Estado.Id, (IEnumerable<SelectListItem>) ViewBag.Estados)
-            @Html.ValidationMessageFor(model => model.Municipio.Estado)
+            @Html.ValidationMessageFor(model => model.Municipio.Estado.Id)
         </div>
 
         <div class="editor-label">
             @Html.LabelFor(model => model.Municipio)
         </div>
         <div class="editor-field">
-            @Html.DropDownListFor(model => model.Municipio.Id, (IEnumerable<SelectListItem>) ViewBag.Municipios)
-            @Html.ValidationMessageFor(model => model.Municipio)
+            <select id="selMunicipio" name="selMunicipio"></select>
+            @ViewBag.ErrMunicipio
         </div>
 
         <p>
@@ -74,3 +82,30 @@
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>
+
+@section Scripts
+{
+    @Scripts.Render("~/bundles/jqueryval");
+    <script type="text/javascript">
+        $(function () {
+            $('#Municipio_Estado_Id').change(function () {
+                $.ajax({
+                    url: 'BuscarMunicipios',
+                    data: JSON.stringify({idEstado: $(this).val()}),
+                    type: 'POST',
+                    contentType: 'application/json; charset=utf-8',
+                    success: function (municipios) {
+                        $('#selMunicipio').find('option').remove();
+                        $('#selMunicipio').append('<option value="0" selected="selected">-- Selecione --</option>');
+                        $.each(municipios, function (index, municipio) {
+                            $('#selMunicipio').append('<option value="' + municipio.Id + '">' +
+                                municipio.Nome + "</option>");
+                        });
+                    }
+                    });
+            });
+
+            $('#Municipio_Estado_Id').trigger('change');
+        });
+    </script>
+}

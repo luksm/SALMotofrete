@@ -1,12 +1,13 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace SALClassLib.Masterdata.Model
 {
-    public class Endereco
+    public class Endereco : ICloneable
     {
         private uint id;
 
@@ -18,6 +19,8 @@ namespace SALClassLib.Masterdata.Model
 
         private String logradouro;
 
+        [Required(ErrorMessage="O logradouro deve ser preenchido")]
+        [MaxLength(80, ErrorMessage="O logradouro deve conter no máximo 80 caracteres")]
         public virtual String Logradouro
         {
             get { return logradouro; }
@@ -26,6 +29,8 @@ namespace SALClassLib.Masterdata.Model
 
         private String bairro;
 
+        [Required(ErrorMessage = "O bairro deve ser preenchido")]
+        [MaxLength(20, ErrorMessage = "O bairro deve conter no máximo 20 caracteres")]
         public virtual String Bairro
         {
             get { return bairro; }
@@ -34,6 +39,8 @@ namespace SALClassLib.Masterdata.Model
 
         private String numero;
 
+        [Required(ErrorMessage = "O número deve ser preenchido")]
+        [MaxLength(20, ErrorMessage = "O número deve conter no máximo 20 caracteres")]
         public virtual String Numero
         {
             get { return numero; }
@@ -42,6 +49,7 @@ namespace SALClassLib.Masterdata.Model
 
         private String complemento;
 
+        [MaxLength(255, ErrorMessage = "O complemento deve conter no máximo 255 caracteres")]
         public virtual String Complemento
         {
             get { return complemento; }
@@ -50,6 +58,7 @@ namespace SALClassLib.Masterdata.Model
 
         private String observacao;
 
+        [MaxLength(2000, ErrorMessage = "A observação deve conter no máximo 2000 caracteres")]
         public virtual String Observacao
         {
             get { return observacao; }
@@ -63,6 +72,15 @@ namespace SALClassLib.Masterdata.Model
             get { return municipio; }
             set { municipio = value; }
         }
+
+        private Pessoa pessoa;
+
+        public virtual Pessoa Pessoa
+        {
+            get { return pessoa; }
+            set { pessoa = value; }
+        }
+        
 
         public Endereco()
         {
@@ -89,6 +107,19 @@ namespace SALClassLib.Masterdata.Model
             {
                 return base.GetHashCode();
             }
+        }
+
+        public virtual object Clone()
+        {
+            Endereco end = new Endereco();
+            end.Id = this.id;
+            end.Bairro = this.bairro;
+            end.Complemento = this.complemento;
+            end.Logradouro = this.logradouro;
+            end.Municipio = this.municipio;
+            end.Numero = this.numero;
+            end.Observacao = this.observacao;
+            return end;
         }
     }
 }

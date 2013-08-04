@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Utilitarios;
 using Utilitarios.BO;
 
 namespace SALMvc.Controllers
@@ -17,26 +18,78 @@ namespace SALMvc.Controllers
 
         private void Listar()
         {
-            ClienteBO bo = new ClienteBO();
-            lista = bo.ListarAtivos();
-            bo.Dispose();
+            ClienteBO bo = null;
+            try
+            {
+                bo = new ClienteBO();
+                lista = bo.ListarAtivos();
+            }
+            catch (Exception ex)
+            {
+                TempData["flash"] = "Ocorreu um erro ao tentar buscar os atendentes";
+            }
+            finally
+            {
+                if (bo != null)
+                {
+                    bo.Dispose();
+                    bo = null;
+                }
+            }
         }
 
         private void ListarEnderecos(Cliente c)
         {
-            EnderecoBO bo = new EnderecoBO();
-            listaEnderecos = bo.ListarEnderecosDoCliente(c);
-            bo.Dispose();
-            if (listaEnderecos == null) listaEnderecos = new List<Endereco>();
+            EnderecoBO bo = null;
+            try
+            {
+                bo = new EnderecoBO();
+                listaEnderecos = bo.ListarEnderecosDoCliente(c);
+                if (listaEnderecos == null) listaEnderecos = new List<Endereco>();
+            }
+            catch(Exception)
+            {
+                TempData["flash"] = "Ocorreu um erro ao tentar buscar os endereços";
+            }
+            finally
+            {
+                if (bo != null)
+                {
+                    bo.Dispose();
+                    bo = null;
+                }
+            }
         }
 
         private void PreencherBagDropDownLists()
         {
-            EstadoBO boe = new EstadoBO();
-            IList<Estado> estados = boe.Listar();
-            boe.Dispose();
-            boe = null;
+            EstadoBO boe = null;
+            IList<Estado> estados = null;
+            try
+            {
+                boe = new EstadoBO();
+                estados = boe.Listar();
+            }
+            catch (Exception)
+            {
+                return;
+            }
+            finally
+            {
+                if (boe != null)
+                {
+                    boe.Dispose();
+                    boe = null;
+                }
+            }
             var listaEstados = new List<SelectListItem>();
+            listaEstados.Add(
+                    new SelectListItem()
+                    {
+                        Text = "-- Selecione --",
+                        Value = "0"
+                    }
+                );
             foreach (var item in estados)
             {
                 listaEstados.Add(
@@ -48,23 +101,29 @@ namespace SALMvc.Controllers
                 );
             }
             ViewBag.Estados = listaEstados;
+        }
 
-            MunicipioBO bom = new MunicipioBO();
-            IList<Municipio> municipios = bom.Listar();
-            bom.Dispose();
-            bom = null;
-            var listaMunicipios = new List<SelectListItem>();
-            foreach (var item in municipios)
+        [HttpPost]
+        public ActionResult BuscarMunicipios(ushort idEstado)
+        {
+            MunicipioBO bom = null;
+            try
             {
-                listaMunicipios.Add(
-                    new SelectListItem()
-                    {
-                        Text = item.Nome,
-                        Value = item.Id.ToString()
-                    }
-                );
+                bom = new MunicipioBO();
+                return Json(bom.ListarPeloEstado(new Estado() { Id = idEstado }));
             }
-            ViewBag.Municipios = listaMunicipios;
+            catch (Exception)
+            {
+                return null;
+            }
+            finally
+            {
+                if (bom != null)
+                {
+                    bom.Dispose();
+                    bom = null;
+                }
+            }
         }
 
         #region Cliente
@@ -91,6 +150,7 @@ namespace SALMvc.Controllers
         [HttpPost]
         public ActionResult CreatePF(Cliente cliente)
         {
+            ValidationHelper.RemoverValidacaoDoModelState(ModelState, "PessoaFisica.Usuario", "PessoaFisica.Senha");
             if (!ModelState.IsValid)
             {
                 return View(cliente);
@@ -135,6 +195,7 @@ namespace SALMvc.Controllers
         [HttpPost]
         public ActionResult CreatePJ(Cliente cliente)
         {
+            ValidationHelper.RemoverValidacaoDoModelState(ModelState, "PessoaJuridica.Usuario", "PessoaJuridica.Senha");
             if (!ModelState.IsValid)
             {
                 return View(cliente);
@@ -201,6 +262,7 @@ namespace SALMvc.Controllers
         [HttpPost]
         public ActionResult EditPF(Cliente cliente)
         {
+            ValidationHelper.RemoverValidacaoDoModelState(ModelState, "PessoaFisica.Usuario", "PessoaFisica.Senha");
             if (!ModelState.IsValid)
             {
                 return View(cliente);
@@ -209,6 +271,8 @@ namespace SALMvc.Controllers
             ClienteBO bo = null;
             try
             {
+                ListarEnderecos(cliente);
+                cliente.Pessoa.Enderecos = new Iesi.Collections.Generic.HashedSet<Endereco>(listaEnderecos);
                 bo = new ClienteBO();
                 bo.Alterar(cliente);
                 Session["cliente"] = cliente;
@@ -246,6 +310,7 @@ namespace SALMvc.Controllers
         [HttpPost]
         public ActionResult EditPJ(Cliente cliente)
         {
+            ValidationHelper.RemoverValidacaoDoModelState(ModelState, "PessoaJuridica.Usuario", "PessoaJuridica.Senha");
             if (!ModelState.IsValid)
             {
                 return View(cliente);
@@ -322,13 +387,14 @@ namespace SALMvc.Controllers
         // POST: /Cliente/DeletePF/#
 
         [HttpPost]
-        public ActionResult DeletePF(Cliente entregador)
+        public ActionResult DeletePF(Cliente cliente)
         {
-            ClienteBO bo = new ClienteBO();
+            ClienteBO bo = null;
             try
             {
-                entregador = bo.BuscarPeloId(entregador.Id);
-                bo.Excluir(entregador);
+                bo = new ClienteBO();
+                cliente = bo.BuscarPeloId(cliente.Id);
+                bo.Excluir(cliente);
             }
             catch (Exception)
             {
@@ -357,13 +423,13 @@ namespace SALMvc.Controllers
         // POST: /Cliente/DeletePJ/#
 
         [HttpPost]
-        public ActionResult DeletePJ(Cliente entregador)
+        public ActionResult DeletePJ(Cliente cliente)
         {
             ClienteBO bo = new ClienteBO();
             try
             {
-                entregador = bo.BuscarPeloId(entregador.Id);
-                bo.Excluir(entregador);
+                cliente = bo.BuscarPeloId(cliente.Id);
+                bo.Excluir(cliente);
             }
             catch (Exception)
             {
@@ -461,13 +527,27 @@ namespace SALMvc.Controllers
                 return View(endereco);
             }
 
-            ClienteBO bo = new ClienteBO();
+            if (endereco.Municipio.Estado.Id == 0)
+            {
+                ModelState["Municipio.Estado.Id"].Errors.Add("Selecione um estado");
+                return View(endereco);
+            }
+
+            if (Request.Form["selMunicipio"] == null || Request.Form["selMunicipio"].Equals("0"))
+            {
+                ViewBag.ErrMunicipio = "Selecione um município";
+                return View(endereco);
+            }
+
+            EnderecoBO bo = new EnderecoBO();
 
             try
             {
+                endereco.Municipio.Id = Convert.ToUInt32(Request.Form["selMunicipio"]);
                 Cliente c = (Cliente)Session["cliente"];
                 c.Pessoa.Enderecos.Add(endereco);
-                bo.Alterar(c);
+                endereco.Pessoa = c.Pessoa;
+                bo.Incluir(endereco);
                 Session["cliente"] = c;
                 return RedirectToAction("Enderecos");
             }
@@ -500,6 +580,7 @@ namespace SALMvc.Controllers
             {
                 bo = new EnderecoBO();
                 endereco = bo.BuscarPeloId(id);
+                ViewBag.IdMunicipio = endereco.Municipio.Id;
             }
             catch (BOException ex)
             {
@@ -507,7 +588,8 @@ namespace SALMvc.Controllers
             }
             catch (Exception ex)
             {
-                ModelState.AddModelError("", "Ocorreu um problema, tente novamente. " + ex.Message);
+                TempData["flash"] = "Ocorreu um problema, tente novamente.";
+                return RedirectToAction("Index");
             }
             finally
             {
@@ -524,21 +606,36 @@ namespace SALMvc.Controllers
         public ActionResult EditEndereco(Endereco endereco)
         {
             PreencherBagDropDownLists();
-            ClienteBO bo = null;
+            EnderecoBO bo = null;
+            ValidationHelper.RemoverValidacaoDoModelState(ModelState, "Pessoa.Usuario", "Pessoa.Senha");
 
             if (!ModelState.IsValid || Session["cliente"] == null)
             {
+                ViewBag.IdMunicipio = Request.Form["selMunicipio"];
+                return View(endereco);
+            }
+
+            if (endereco.Municipio.Estado.Id == 0)
+            {
+                ModelState["Municipio.Estado.Id"].Errors.Add("Selecione um estado");
+                return View(endereco);
+            }
+
+            if (Request.Form["selMunicipio"] == null || Request.Form["selMunicipio"].Equals("0"))
+            {
+                ViewBag.ErrMunicipio = "Selecione um município";
                 return View(endereco);
             }
 
             try
             {
+                endereco.Municipio.Id = Convert.ToUInt32(Request.Form["selMunicipio"]);
                 Cliente cliente = (Cliente)Session["cliente"];
-                bo = new ClienteBO();
+                bo = new EnderecoBO();
                 Endereco aux = cliente.Pessoa.Enderecos.Where(e => e.Id == endereco.Id).First();
                 cliente.Pessoa.Enderecos.Remove(aux);
                 cliente.Pessoa.Enderecos.Add(endereco);
-                bo.Alterar(cliente);
+                bo.Alterar(endereco);
                 return RedirectToAction("Enderecos");
             }
             catch (BOException ex)
@@ -575,7 +672,6 @@ namespace SALMvc.Controllers
                 endBO = new EnderecoBO();
                 Endereco endereco = endBO.BuscarPeloId(id);
                 endBO.Excluir(endereco);
-                endereco = cliente.Pessoa.Enderecos.Where(e => e.Id == endereco.Id).First();
                 cliente.Pessoa.Enderecos.Remove(endereco);
             }
             catch (BOException ex)

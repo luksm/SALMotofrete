@@ -19,7 +19,7 @@ namespace SALClassLib.Masterdata.Model.DAO
         public IList<Municipio> ListarPeloEstado(Estado estado)
         {
             ITransaction tx = Sessao.BeginTransaction();
-            IQuery query = Sessao.CreateQuery("from Municipio join Estado where Estado.Id=?");
+            IQuery query = Sessao.CreateQuery("from Municipio as mun inner join fetch mun.Estado as est where est.Id=?");
             query.SetInt32(0, estado.Id);
             IList<Municipio> lista = query.List<Municipio>();
             tx.Commit();

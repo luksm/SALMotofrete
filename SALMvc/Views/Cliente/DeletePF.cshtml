@@ -65,6 +65,7 @@
 
         @using (Html.BeginForm()) {
             @Html.AntiForgeryToken()
+            @Html.HiddenFor(model => model.Id)
             <p class="actions">
                 <input type="submit" value="Deletar" class="btn btn-danger" />
                 @Html.ActionLink("Voltar", "Index", new { }, new { @class = "btn" })

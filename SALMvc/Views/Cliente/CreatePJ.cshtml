@@ -64,3 +64,14 @@
         </p>  
     </div>
 }
+
+@section Scripts
+{
+    @Scripts.Render("~/bundles/jqueryval");
+    @Scripts.Render("~/bundles/jquery.maskedinput")
+    <script type="text/javascript">
+        $(function () {
+            $('#PessoaJuridica_Cnpj').mask('99.999.999/9999-99');
+        });
+    </script>
+}

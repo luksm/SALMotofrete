@@ -99,9 +99,17 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\SALClassLib\SALClassLib.csproj">
+      <Project>{0076f261-c2d5-47e6-a221-3b335c5e0768}</Project>
+      <Name>SALClassLib</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SALMvc\SALMvc.csproj">
       <Project>{C21DA84E-3680-4F60-91BD-82E60A64A8EA}</Project>
       <Name>SALMvc</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Utilitarios\Utilitarios.csproj">
+      <Project>{dd15586e-2a7b-4286-9687-2af377e8c280}</Project>
+      <Name>Utilitarios</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
