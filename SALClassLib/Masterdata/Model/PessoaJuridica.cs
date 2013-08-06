@@ -3,6 +3,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Iesi.Collections.Generic;
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 
 namespace SALClassLib.Masterdata.Model
 {
@@ -10,6 +12,9 @@ namespace SALClassLib.Masterdata.Model
     {
         private String nomeFantasia;
 
+        [DisplayName("Nome Fantasia")]
+        [Required(ErrorMessage="O nome fantasia deve ser preenchido")]
+        [MaxLength(40, ErrorMessage = "O nome fantasia deve conter no máximo 40 caracteres")]
         public virtual String NomeFantasia
         {
             get { return nomeFantasia; }
@@ -18,6 +23,9 @@ namespace SALClassLib.Masterdata.Model
 
         private String razaoSocial;
 
+        [DisplayName("Razão Social")]
+        [Required(ErrorMessage = "A razão social deve ser preenchido")]
+        [MaxLength(100, ErrorMessage = "A razão social deve conter no máximo 100 caracteres")]
         public virtual String RazaoSocial
         {
             get { return razaoSocial; }
@@ -26,6 +34,9 @@ namespace SALClassLib.Masterdata.Model
 
         private String cnpj;
 
+        [DisplayName("CNPJ")]
+        [Required(ErrorMessage = "O CNPJ deve ser preenchido")]
+        [MaxLength(20, ErrorMessage = "O CNPJ deve conter no máximo 20 caracteres")]
         public virtual String Cnpj
         {
             get { return cnpj; }
@@ -34,6 +45,8 @@ namespace SALClassLib.Masterdata.Model
 
         private String inscricaoEstadual;
 
+        [DisplayName("Inscrição Estadual")]
+        [MaxLength(20, ErrorMessage = "A inscrição estadual deve conter no máximo 20 caracteres")]
         public virtual String InscricaoEstadual
         {
             get { return inscricaoEstadual; }
@@ -42,6 +55,8 @@ namespace SALClassLib.Masterdata.Model
 
         private String webSite;
 
+        [DisplayName("Web Site")]
+        [MaxLength(40, ErrorMessage = "O web site deve conter no máximo 40 caracteres")]
         public virtual String WebSite
         {
             get { return webSite; }

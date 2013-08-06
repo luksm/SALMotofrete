@@ -56,7 +56,7 @@
       <property name="NomeFantasia" column="NOME_FANTASIA" length="40" not-null="true" />
       <property name="RazaoSocial" column="RAZAO_SOCIAL" length="100" not-null="true" />
       <property name="Cnpj" column="CNPJ" length="20" not-null="true" />
-      <property name="InscricaoEstadual" column="INSCRICAO_ESTADUAL" length="12" not-null="false" />
+      <property name="InscricaoEstadual" column="INSCRICAO_ESTADUAL" length="20" not-null="false" />
       <property name="WebSite" column="WEB_SITE" length="40" not-null="false" />
       <set name="Contatos" cascade="all">
         <key column="ID_PESSOA" not-null="false" />
