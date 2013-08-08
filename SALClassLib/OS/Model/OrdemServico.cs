@@ -45,6 +45,11 @@ namespace SALClassLib.OS.Model
             set { observacao = value; }
         }
 
+        public virtual String DataFormatada
+        {
+            get { return data.ToString("dd/MM/yyyy HH:mm:ss"); }
+        }
+
         private StatusOrdemServico status;
 
         public virtual StatusOrdemServico Status
