@@ -22,9 +22,9 @@ namespace SALMvc.Controllers
                 bo = new AparelhoMovelBO();
                 lista = bo.Listar();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                TempData["flash"] = "Ocorreu um erro ao tentar buscar os aparelhos móveis";
+                TempData["ErrorMessage"] = "Ocorreu um erro ao tentar buscar os aparelhos móveis " + ex.Message;
             }
             finally
             {
@@ -45,9 +45,13 @@ namespace SALMvc.Controllers
                 bo = new TipoAparelhoMovelBO();
                 tipos = bo.Listar();
             }
-            catch
+            catch (BOException ex)
             {
-                return;
+                TempData["flash"] = ex.Message;
+            }
+            catch (Exception)
+            {
+                TempData["flash"] = "Ocorreu um problema, tente novamente.";
             }
             finally
             {
@@ -103,12 +107,12 @@ namespace SALMvc.Controllers
             }
             catch (BOException ex)
             {
-                TempData["flash"] = ex.Message;
+                TempData["ErrorMessage"] = ex.Message;
                 return View(aparelhoMovel);
             }
-            catch(Exception)
+            catch (Exception ex)
             {
-                TempData["flash"] = "Ocorreu um problema, tente novamente.";
+                TempData["ErrorMessage"] = "Ocorreu um problema, tente novamente. " + ex.Message;
             }
             finally
             {
@@ -132,9 +136,14 @@ namespace SALMvc.Controllers
                 bo = new AparelhoMovelBO();
                 am = bo.BuscarPeloId(Id);
             }
-            catch
+            catch (BOException ex)
             {
-                TempData["flash"] = "Ocorreu um problema, tente novamente.";
+                TempData["ErrorMessage"] = ex.Message;
+                return RedirectToAction("Index");
+            }
+            catch (Exception ex)
+            {
+                TempData["ErrorMessage"] = "Ocorreu um problema, tente novamente. " + ex.Message;
                 return RedirectToAction("Index");
             }
             finally
@@ -160,9 +169,14 @@ namespace SALMvc.Controllers
                 bo = new AparelhoMovelBO();
                 am = bo.BuscarPeloId(Id);
             }
-            catch
+            catch (BOException ex)
             {
-                TempData["flash"] = "Ocorreu um problema, tente novamente.";
+                TempData["ErrorMessage"] = ex.Message;
+                return RedirectToAction("Index");
+            }
+            catch (Exception ex)
+            {
+                TempData["ErrorMessage"] = "Ocorreu um problema, tente novamente. " + ex.Message;
                 return RedirectToAction("Index");
             }
             finally
@@ -197,11 +211,13 @@ namespace SALMvc.Controllers
             }
             catch (BOException ex)
             {
-                TempData["flash"] = ex.Message;
+                TempData["ErrorMessage"] = ex.Message;
+                return RedirectToAction("Index");
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                TempData["flash"] = "Ocorreu um problema, tente novamente.";
+                TempData["ErrorMessage"] = "Ocorreu um problema, tente novamente. " + ex.Message;
+                return RedirectToAction("Index");
             }
             finally
             {
@@ -229,11 +245,13 @@ namespace SALMvc.Controllers
             }
             catch (BOException ex)
             {
-                TempData["flash"] = ex.Message;
+                TempData["ErrorMessage"] = ex.Message;
+                return RedirectToAction("Index");
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                TempData["flash"] = "Ocorreu um problema, tente novamente.";
+                TempData["ErrorMessage"] = "Ocorreu um problema, tente novamente. " + ex.Message;
+                return RedirectToAction("Index");
             }
             finally
             {
@@ -262,11 +280,13 @@ namespace SALMvc.Controllers
             }
             catch (BOException ex)
             {
-                TempData["flash"] = ex.Message;
+                TempData["ErrorMessage"] = ex.Message;
+                return RedirectToAction("Index");
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                TempData["flash"] = "Ocorreu um problema, tente novamente.";
+                TempData["ErrorMessage"] = "Ocorreu um problema, tente novamente. " + ex.Message;
+                return RedirectToAction("Index");
             }
             finally
             {

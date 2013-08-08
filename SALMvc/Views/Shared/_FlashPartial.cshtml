@@ -3,7 +3,10 @@
 }
 @if (flash != null)
 {
-<p>@flash</p> 
+<div class="alert alert-success">
+    <button type="button" class="close" data-dismiss="alert">×</button>
+    @flash 
+</div>
 }
 
 @{
@@ -11,12 +14,18 @@
 }
 @if (em != null)
 {
-<p>@em</p> 
+<div class="alert alert-error">
+    <button type="button" class="close" data-dismiss="alert">×</button>
+    @em
+</div>
 }
 @{
     var st = TempData["ErrorStackTrace"];
 }
 @if (st != null)
 {
-<p>@st</p> 
+<div class="alert alert-error">
+    <button type="button" class="close" data-dismiss="alert">×</button>
+    @st
+</div>
 }
