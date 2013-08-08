@@ -52,6 +52,7 @@ namespace Utilitarios.BO
             ITransaction tx = dao.Sessao.BeginTransaction();
             T obj = dao.BuscarPeloId(id);
             tx.Commit();
+            if (obj == null) throw new BOException("Registro não encontrado");
             return obj;
         }
         /// <summary>

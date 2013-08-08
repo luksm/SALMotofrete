@@ -1,4 +1,5 @@
-﻿@model IEnumerable<SALClassLib.Masterdata.Model.Gerente>
+﻿@model PagedList.IPagedList<SALClassLib.Masterdata.Model.Gerente>
+@using PagedList.Mvc;
 
 @{
     ViewBag.Title = "Gerente";
@@ -17,11 +18,11 @@
     <table class="table table-hover table-striped">
         <thead>
             <tr style="background:#CCC;color:#FFF;">
-                <th>@Html.DisplayNameFor(model => model.Nome)</th>
-                <th>@Html.DisplayNameFor(model => model.Sobrenome)</th>
-                <th>@Html.DisplayNameFor(model => model.Cpf)</th>
-                <th>@Html.DisplayNameFor(model => model.TelefoneCelular)</th>
-                <th>@Html.DisplayNameFor(model => model.Email)</th>
+                <th>Nome</th>
+                <th>Sobrenome</th>
+                <th>CPF</th>
+                <th>Celular</th>
+                <th>Email</th>
                 <th class="actions"></th>
             </tr>
         </thead>
@@ -43,3 +44,6 @@
         </tbody>
     </table>
 </div>
+Página @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) de @Model.PageCount
+
+@Html.PagedListPager( Model, page => Url.Action("Index", new { page, sortOrder = ViewBag.CurrentSort, currentFilter=ViewBag.CurrentFilter }) )

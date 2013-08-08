@@ -6,6 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Utilitarios.BO;
+using PagedList;
 
 namespace SALMvc.Controllers
 {
@@ -39,10 +40,12 @@ namespace SALMvc.Controllers
         //
         // GET: /Gerente/
 
-        public ActionResult Index()
+        public ActionResult Index(int? page)
         {
             Listar();
-            return View(lista);
+            int pageSize = 1;
+            int pageNumber = (page ?? 1);
+            return View(lista.ToPagedList(pageNumber, pageSize));
         }
 
         //
