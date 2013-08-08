@@ -25,7 +25,7 @@ namespace SALClassLib.Masterdata.Model.BO
             Dispose();
         }
 
-        public new void Dispose()
+        public override void Dispose()
         {
             NHibernateHelper.CloseSession(sessao);
         }

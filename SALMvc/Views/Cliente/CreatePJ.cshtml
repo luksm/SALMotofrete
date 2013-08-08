@@ -15,45 +15,7 @@
     @Html.ValidationSummary(true)
     <div class="row">
         <div class="span5 offset3">
-            <div class="control-group">
-                @Html.LabelFor(model => model.PessoaJuridica.NomeFantasia,  new { @class = "control-label" })
-                <div class="controls">
-                    @Html.EditorFor(model => model.PessoaJuridica.NomeFantasia)<br />
-                    @Html.ValidationMessageFor(model => model.PessoaJuridica.NomeFantasia)
-                </div>
-            </div>
-
-            <div class="control-group">
-                @Html.LabelFor(model => model.PessoaJuridica.RazaoSocial,  new { @class = "control-label" })
-                <div class="controls">
-                    @Html.EditorFor(model => model.PessoaJuridica.RazaoSocial)<br />
-                    @Html.ValidationMessageFor(model => model.PessoaJuridica.RazaoSocial)
-                </div>
-            </div>
-
-            <div class="control-group">
-                @Html.LabelFor(model => model.PessoaJuridica.Cnpj,  new { @class = "control-label" })
-                <div class="controls">
-                    @Html.EditorFor(model => model.PessoaJuridica.Cnpj)<br />
-                    @Html.ValidationMessageFor(model => model.PessoaJuridica.Cnpj)
-                </div>
-            </div>
-
-            <div class="control-group">
-                @Html.LabelFor(model => model.PessoaJuridica.InscricaoEstadual,  new { @class = "control-label" })
-                <div class="controls">
-                    @Html.EditorFor(model => model.PessoaJuridica.InscricaoEstadual)<br />
-                    @Html.ValidationMessageFor(model => model.PessoaJuridica.InscricaoEstadual)
-                </div>
-            </div>
-
-            <div class="control-group">
-                @Html.LabelFor(model => model.PessoaJuridica.WebSite,  new { @class = "control-label" })
-                <div class="controls">
-                    @Html.EditorFor(model => model.PessoaJuridica.WebSite)<br />
-                    @Html.ValidationMessageFor(model => model.PessoaJuridica.WebSite)
-                </div>
-            </div>
+            @Html.Partial("~/Views/Cliente/_InputPJPartial.cshtml")
         </div>
     </div>
     <div class="row">

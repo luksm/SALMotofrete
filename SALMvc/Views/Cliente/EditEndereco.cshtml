@@ -17,63 +17,7 @@
         @Html.HiddenFor(model => model.Id)
         @Html.HiddenFor(model => model.Pessoa.Id)
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Logradouro)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.Logradouro)
-            @Html.ValidationMessageFor(model => model.Logradouro)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Bairro)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.Bairro)
-            @Html.ValidationMessageFor(model => model.Bairro)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Numero)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.Numero)
-            @Html.ValidationMessageFor(model => model.Numero)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Complemento)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.Complemento)
-            @Html.ValidationMessageFor(model => model.Complemento)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Observacao)
-        </div>
-        <div class="editor-field">
-            @Html.TextAreaFor(model => model.Observacao)
-            @Html.ValidationMessageFor(model => model.Observacao)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Municipio.Estado)
-        </div>
-        <div class="editor-field">
-            @Html.DropDownListFor(model => model.Municipio.Estado.Id, (IEnumerable<SelectListItem>) ViewBag.Estados)
-            @Html.ValidationMessageFor(model => model.Municipio.Estado)
-            <span id="errEstado"></span>
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Municipio)
-        </div>
-        <div class="editor-field">
-            <select id="selMunicipio" name="selMunicipio"></select>
-            <span id="errMunicipio"></span>
-            @ViewBag.ErrMunicipio
-        </div>
+        @Html.Partial("~/Views/Cliente/_InputEnderecoPartial.cshtml")
 
         <p>
             <input id="btnSalvar" type="submit" value="Salvar" />

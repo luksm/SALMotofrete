@@ -58,6 +58,7 @@
     <Compile Include="Masterdata\Model\BO\EntregadorBO.cs" />
     <Compile Include="Masterdata\Model\BO\EstadoBO.cs" />
     <Compile Include="Masterdata\Model\BO\GerenteBO.cs" />
+    <Compile Include="Masterdata\Model\BO\LoginBO.cs" />
     <Compile Include="Masterdata\Model\BO\MunicipioBO.cs" />
     <Compile Include="Masterdata\Model\BO\TipoAparelhoMovelBO.cs" />
     <Compile Include="Masterdata\Model\DAO\AparelhoMovelDAO.cs" />

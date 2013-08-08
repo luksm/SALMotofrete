@@ -1,0 +1,38 @@
+﻿@model SALClassLib.Masterdata.Model.Pessoa
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<script src="/Assets/js/jquery.js"></script>
+
+<h2>Index</h2>
+
+@using (Html.BeginForm("Index", "Login", FormMethod.Post, new { @class = "form-horizontal" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    @Html.EditorFor(model => model.Usuario) <span id="errUsuario"></span>
+    <br />
+    @Html.EditorFor(model => model.Senha) <span id="errSenha"></span>
+    <br />
+    <input id="btnLogin" type="submit" value="Login" />
+}
+
+<script>
+    $(function () {
+        $('#btnLogin').click(function () {
+            $('#errUsuario').text('');
+            $('#errSenha').text('');
+            if ($('#Usuario').val() == '') {
+                $('#errUsuario').text('Informe o usuário');
+                return false;
+            }
+            if ($('#Senha').val() == '') {
+                $('#errSenha').text('Informe a senha');
+                return false;
+            }
+        });
+    });
+</script>
