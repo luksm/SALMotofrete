@@ -51,7 +51,6 @@ namespace SALClassLib.Masterdata.Model
         }
 
         private AparelhoMovel aparelhoMovel;
-
         
         public virtual AparelhoMovel AparelhoMovel
         {
@@ -59,6 +58,15 @@ namespace SALClassLib.Masterdata.Model
             set { aparelhoMovel = value; }
         }
 
+        private String posicaoAtual;
+
+        [DisplayName("Posição Atual")]
+        public virtual String PosicaoAtual
+        {
+            get { return posicaoAtual; }
+            set { posicaoAtual = value; }
+        }
+        
         private ISet<FilaOrdemServico> fila;
 
         public virtual ISet<FilaOrdemServico> Fila
