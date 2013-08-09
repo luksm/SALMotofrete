@@ -137,7 +137,7 @@ namespace SALMvc.Controllers
 
         //
         // GET: /OrdemServico/Details/#
-        public ActionResult Details(uint Id)
+        public ActionResult Details(ulong Id)
         {
             OrdemServicoBO bo = new OrdemServicoBO();
             OrdemServico ordemServico = new OrdemServico();

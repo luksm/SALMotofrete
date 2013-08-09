@@ -16,6 +16,7 @@
     @Html.ValidationSummary(true)
 
     <div class="row">
+
         @Html.HiddenFor(model => model.Id)
         @Html.HiddenFor(model => model.Pessoa.Id)
         @Html.Partial("~/Views/Cliente/_InputEnderecoPartial.cshtml")
@@ -24,6 +25,17 @@
         <p class="actions">
             <input id="btnSalvar" class="btn btn-danger" type="submit" value="Salvar" />
             <a class="btn" href="@Url.Action("Enderecos", "Cliente")">Cancelar</a>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Observacao)
+        </div>
+        <div class="editor-field">
+            @Html.TextAreaFor(model => model.Observacao)
+            @Html.ValidationMessageFor(model => model.Observacao)
+        </div>
+
+        <p>
+            <input type="submit" value="Create" />
         </p>
     </div>    
 }

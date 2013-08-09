@@ -1,0 +1,112 @@
+﻿@model SALClassLib.OS.Model.OrdemServico
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Utopia.cshtml";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>OrdemServico</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Numero)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Numero)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Data)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.DataFormatada)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Observacao)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Observacao)
+    </div>
+
+    <h2>Endereço de Retirada</h2>
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.EnderecoRetirada.Logradouro)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.EnderecoRetirada.Logradouro)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.EnderecoRetirada.Bairro)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.EnderecoRetirada.Bairro)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.EnderecoRetirada.Numero)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.EnderecoRetirada.Numero)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.EnderecoRetirada.Complemento)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.EnderecoRetirada.Complemento)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.EnderecoRetirada.Observacao)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.EnderecoRetirada.Observacao)
+    </div>
+
+
+    <h2>Endereço de Entrega</h2>
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.EnderecoEntrega.Logradouro)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.EnderecoEntrega.Logradouro)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.EnderecoEntrega.Bairro)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.EnderecoEntrega.Bairro)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.EnderecoEntrega.Numero)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.EnderecoEntrega.Numero)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.EnderecoEntrega.Complemento)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.EnderecoEntrega.Complemento)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.EnderecoEntrega.Observacao)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.EnderecoEntrega.Observacao)
+    </div>
+
+
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
