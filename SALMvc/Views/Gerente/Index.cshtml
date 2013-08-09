@@ -18,8 +18,10 @@
     @using (Html.BeginForm("Index", "Gerente", FormMethod.Get))
     {
         <p>
-            Nro Registros por página: @Html.TextBox("RegPagina", Session["RegPagina"].ToString())
-            <input type="submit" value="Buscar" />
+            Nro Registros por página: @Html.ActionLink("10", "Index", new { pageSize = 10 })&nbsp;
+            @Html.ActionLink("50", "Index", new { pageSize = 50 })&nbsp;
+            @Html.ActionLink("100", "Index", new { pageSize = 100 })&nbsp;
+            @Html.ActionLink("Todos", "Index", new { pageSize = int.MaxValue })
         </p>
     }
 </div>

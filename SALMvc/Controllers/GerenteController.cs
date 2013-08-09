@@ -40,15 +40,14 @@ namespace SALMvc.Controllers
         //
         // GET: /Gerente/
 
-        public ActionResult Index(int? page)
+        public ActionResult Index(int? page, int? pageSize)
         {
-            int pageSize;
-            if (Request["RegPagina"] != null) Session["RegPagina"] = Request["RegPagina"];
-            if (Session["RegPagina"] == null || !int.TryParse(Session["RegPagina"].ToString(), out pageSize)) pageSize = 20;
-            Session["RegPagina"] = pageSize;
+            if(Session["RegPagina"] == null)
+                Session["RegPagina"] = 10;
+            if (pageSize != null) Session["RegPagina"] = pageSize;
             Listar();
             int pageNumber = (page ?? 1);
-            return View(lista.ToPagedList(pageNumber, pageSize));
+            return View(lista.ToPagedList(pageNumber, Convert.ToInt32(Session["RegPagina"])));
         }
 
         //
