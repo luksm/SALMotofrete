@@ -1,38 +1,26 @@
-﻿@model SALClassLib.Masterdata.Model.Pessoa
+﻿@model SALClassLib.Masterdata.Model.Login
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_Login.cshtml";
+    Html.RenderPartial("~/Views/Shared/_FlashPartial.cshtml");
 }
 
-<script src="/Assets/js/jquery.js"></script>
+<div class="container">
 
-<h2>Index</h2>
-
-@using (Html.BeginForm("Index", "Login", FormMethod.Post, new { @class = "form-horizontal" }))
+@using (Html.BeginForm("Index", "Login", FormMethod.Post, new { @class = "form-signin" }))
 {
+    <div class="logo brand" style="font-size:3.5em;margin-top:20px;margin-bottom:20px;">Sal</div>
+    <h3 class="form-signin-heading">Efetue seu Login</h3>
     @Html.AntiForgeryToken()
-    @Html.ValidationSummary(true)
+    @Html.ValidationSummary(true)            
 
-    @Html.EditorFor(model => model.Usuario) <span id="errUsuario"></span>
-    <br />
-    @Html.EditorFor(model => model.Senha) <span id="errSenha"></span>
-    <br />
-    <input id="btnLogin" type="submit" value="Login" />
+    @Html.TextBoxFor(model => model.Usuario, new { @class = "input-block-level", placeholder = "Usuário" })
+    @Html.ValidationMessageFor(model => model.Usuario)
+
+    @Html.PasswordFor(model => model.Senha, new { @class = "input-block-level", placeholder = "Senha" })
+    @Html.ValidationMessageFor(model => model.Senha)
+    <input class="btn btn-large btn-danger" id="btnLogin" type="submit" value="Entrar" />
 }
 
-<script>
-    $(function () {
-        $('#btnLogin').click(function () {
-            $('#errUsuario').text('');
-            $('#errSenha').text('');
-            if ($('#Usuario').val() == '') {
-                $('#errUsuario').text('Informe o usuário');
-                return false;
-            }
-            if ($('#Senha').val() == '') {
-                $('#errSenha').text('Informe a senha');
-                return false;
-            }
-        });
-    });
-</script>
+</div> <!-- /container -->

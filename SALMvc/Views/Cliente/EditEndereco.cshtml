@@ -1,33 +1,33 @@
 ﻿@model SALClassLib.Masterdata.Model.Endereco
 
 @{
-    ViewBag.Title = "EditEndereco";
+    ViewBag.Title = "Edição de Endereço";
     Layout = "~/Views/Shared/_Utopia.cshtml";
+    Html.RenderPartial("~/Views/Shared/_FlashPartial.cshtml");
 }
 
-<h2>EditEndereco</h2>
+<div class="row header">
+    <h2>@ViewBag.Title</h2>
+</div>
 
-@using (Html.BeginForm()) {
+
+@using (Html.BeginForm("EditEndereco", "Cliente", FormMethod.Post, new { @class = "form-horizontal", enctype = "multipart/form-data" })){
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
 
-    <fieldset>
-        <legend>Endereco</legend>
-
+    <div class="row">
         @Html.HiddenFor(model => model.Id)
         @Html.HiddenFor(model => model.Pessoa.Id)
-
         @Html.Partial("~/Views/Cliente/_InputEnderecoPartial.cshtml")
-
-        <p>
-            <input id="btnSalvar" type="submit" value="Salvar" />
+    </div>
+    <div class="row">
+        <p class="actions">
+            <input id="btnSalvar" class="btn btn-danger" type="submit" value="Salvar" />
+            <a class="btn" href="@Url.Action("Enderecos", "Cliente")">Cancelar</a>
         </p>
-    </fieldset>
+    </div>    
 }
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
 
 @section Scripts
 {

@@ -6,43 +6,39 @@
     Html.RenderPartial("~/Views/Shared/_FlashPartial.cshtml");
 }
 
-<div class="row header">
-    <h2>@ViewBag.Title</h2>
+<div class="row">
+    <h2>
+        @ViewBag.Title
+        <a href="@Url.Action("CreateEndereco", "Cliente")" class="btn btn-danger pull-right" type="button"><i class="icon-road icon-white"> </i> Novo Endereço</a>
+    </h2>
 </div>
 
-<p>
-    @Html.ActionLink("Create New", "CreateEndereco")
-</p>
-<table>
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Logradouro)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Bairro)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Numero)
-        </th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Logradouro)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Bairro)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Numero)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "EditEndereco", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "DeleteEndereco", new { id=item.Id })
-        </td>
-    </tr>
-}
-
-</table>
+<div class="row">
+    <table class="table table-hover table-striped">
+        <thead>
+            <tr style="background:#CCC;color:#FFF;">
+                <th>@Html.DisplayNameFor(model => model.Logradouro)</th>
+                <th>@Html.DisplayNameFor(model => model.Numero)</th>
+                <th>@Html.DisplayNameFor(model => model.Bairro)</th>
+                <th>@Html.DisplayNameFor(model => model.Municipio)</th>
+                <th>@Html.DisplayNameFor(model => model.Municipio.Estado)</th>
+                <th class="actions"></th>
+            </tr>
+        </thead>
+        <tbody>
+        @foreach (var item in Model) {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.Logradouro)</td>
+                <td>@Html.DisplayFor(modelItem => item.Numero)</td>
+                <td>@Html.DisplayFor(modelItem => item.Bairro)</td>
+                <td>@Html.DisplayFor(modelItem => item.Municipio.Nome)</td>
+                <td>@Html.DisplayFor(modelItem => item.Municipio.Estado.Sigla)</td>
+                <td class="actions">
+                    <a href="@Url.Action("EditEndereco", "Cliente", new { id=item.Id })"><i class="icon-pencil icon-black"></i></a>
+                    <a href="@Url.Action("DeleteEndereco", "Cliente", new { id=item.Id })"><i class="icon-trash icon-black"></i></a>
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+</div>

@@ -156,6 +156,7 @@
     <Content Include="Assets\css\bootstrap-responsive.min.css" />
     <Content Include="Assets\css\bootstrap.min.css" />
     <Content Include="Assets\css\application.css" />
+    <Content Include="Assets\css\login.css" />
     <Content Include="Assets\css\site.css" />
     <Content Include="Assets\fonts\olivier_demo.svg" />
     <Content Include="Assets\img\glyphicons-halflings-white.png" />
@@ -218,6 +219,7 @@
     <Content Include="Views\Cliente\_InputPFPartial.cshtml" />
     <Content Include="Views\Cliente\_InputPJPartial.cshtml" />
     <Content Include="Views\Cliente\_InputEnderecoPartial.cshtml" />
+    <Content Include="Views\Shared\_Login.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

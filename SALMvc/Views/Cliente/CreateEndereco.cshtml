@@ -10,24 +10,21 @@
     <h2>@ViewBag.Title</h2>
 </div>
 
-@using (Html.BeginForm()) {
+@using (Html.BeginForm("CreateEndereco", "Cliente", FormMethod.Post, new { @class = "form-horizontal", enctype = "multipart/form-data" })){
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
 
-    <fieldset>
-        <legend>Endereco</legend>
-
+    <div class="row">
         @Html.Partial("~/Views/Cliente/_InputEnderecoPartial.cshtml")
-
-        <p>
-            <input type="submit" value="Create" />
-        </p>
-    </fieldset>
+    </div>
+    <div class="row">
+        <p class="actions">
+            <input class="btn btn-danger" type="submit" value="Cadastrar" />
+            <input class="btn" type="reset" value="Limpar" />
+            <a class="btn" href="@Url.Action("Enderecos", "Cliente")">Cancelar</a>
+        </p>  
+    </div>
 }
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
 
 @section Scripts
 {
@@ -48,7 +45,7 @@
                                 municipio.Nome + "</option>");
                         });
                     }
-                    });
+                });
             });
 
             $('#Municipio_Estado_Id').trigger('change');
