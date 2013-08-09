@@ -42,8 +42,11 @@ namespace SALMvc.Controllers
 
         public ActionResult Index(int? page)
         {
+            int pageSize;
+            if (Request["RegPagina"] != null) Session["RegPagina"] = Request["RegPagina"];
+            if (Session["RegPagina"] == null || !int.TryParse(Session["RegPagina"].ToString(), out pageSize)) pageSize = 20;
+            Session["RegPagina"] = pageSize;
             Listar();
-            int pageSize = 1;
             int pageNumber = (page ?? 1);
             return View(lista.ToPagedList(pageNumber, pageSize));
         }

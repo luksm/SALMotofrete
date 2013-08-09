@@ -10,14 +10,24 @@
 <div class="row">
     <h2>
         @ViewBag.Title
-        <a href="@Url.Action("Create", "Gerente")" class="btn btn-danger pull-right" type="button"><i class="icon-user icon-white"> </i>  Novo Gerente</a>
+        <a href="@Url.Action("Create", "Gerente")" class="btn btn-danger pull-right" type="button"><i class="icon-user icon-white"></i>Novo Gerente</a>
     </h2>
+</div>
+
+<div class="row">
+    @using (Html.BeginForm("Index", "Gerente", FormMethod.Get))
+    {
+        <p>
+            Nro Registros por página: @Html.TextBox("RegPagina", Session["RegPagina"].ToString())
+            <input type="submit" value="Buscar" />
+        </p>
+    }
 </div>
 
 <div class="row">
     <table class="table table-hover table-striped">
         <thead>
-            <tr style="background:#CCC;color:#FFF;">
+            <tr style="background: #CCC; color: #FFF;">
                 <th>Nome</th>
                 <th>Sobrenome</th>
                 <th>CPF</th>
@@ -27,7 +37,8 @@
             </tr>
         </thead>
         <tbody>
-            @foreach (var item in Model) {
+            @foreach (var item in Model)
+            {
                 <tr>
                     <td>@Html.DisplayFor(modelItem => item.Nome)</td>
                     <td>@Html.DisplayFor(modelItem => item.Sobrenome)</td>
@@ -35,9 +46,9 @@
                     <td>@Html.DisplayFor(modelItem => item.TelefoneCelular)</td>
                     <td>@Html.DisplayFor(modelItem => item.Email)</td>
                     <td class="actions">
-                        <a href="@Url.Action("Edit", "Gerente", new { id=item.Id })"><i class="icon-pencil icon-black"></i></a>
-                        <a href="@Url.Action("Details", "Gerente", new { id=item.Id })"><i class="icon-info-sign icon-black"></i></a>
-                        <a href="@Url.Action("Delete", "Gerente", new { id=item.Id })"><i class="icon-trash icon-black"></i></a>
+                        <a href="@Url.Action("Edit", "Gerente", new { id = item.Id })"><i class="icon-pencil icon-black"></i></a>
+                        <a href="@Url.Action("Details", "Gerente", new { id = item.Id })"><i class="icon-info-sign icon-black"></i></a>
+                        <a href="@Url.Action("Delete", "Gerente", new { id = item.Id })"><i class="icon-trash icon-black"></i></a>
                     </td>
                 </tr>
             }
@@ -46,4 +57,4 @@
 </div>
 Página @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) de @Model.PageCount
 
-@Html.PagedListPager( Model, page => Url.Action("Index", new { page, sortOrder = ViewBag.CurrentSort, currentFilter=ViewBag.CurrentFilter }) )
+@Html.PagedListPager(Model, page => Url.Action("Index", new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
