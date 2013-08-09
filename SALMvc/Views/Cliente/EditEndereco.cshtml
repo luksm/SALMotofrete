@@ -1,7 +1,7 @@
 ﻿@model SALClassLib.Masterdata.Model.Endereco
 
 @{
-    ViewBag.Title = "Edição de Endereço";
+    ViewBag.Title = "Edição de Endereço Cadastral";
     Layout = "~/Views/Shared/_Utopia.cshtml";
     Html.RenderPartial("~/Views/Shared/_FlashPartial.cshtml");
 }
@@ -9,7 +9,6 @@
 <div class="row header">
     <h2>@ViewBag.Title</h2>
 </div>
-
 
 @using (Html.BeginForm("EditEndereco", "Cliente", FormMethod.Post, new { @class = "form-horizontal", enctype = "multipart/form-data" })){
     @Html.AntiForgeryToken()
@@ -25,17 +24,6 @@
         <p class="actions">
             <input id="btnSalvar" class="btn btn-danger" type="submit" value="Salvar" />
             <a class="btn" href="@Url.Action("Enderecos", "Cliente")">Cancelar</a>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Observacao)
-        </div>
-        <div class="editor-field">
-            @Html.TextAreaFor(model => model.Observacao)
-            @Html.ValidationMessageFor(model => model.Observacao)
-        </div>
-
-        <p>
-            <input type="submit" value="Create" />
         </p>
     </div>    
 }
