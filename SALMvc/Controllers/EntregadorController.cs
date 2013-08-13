@@ -17,46 +17,32 @@ namespace SALMvc.Controllers
 
         public void Listar()
         {
-            EntregadorBO bo = null;
             try
             {
-                bo = new EntregadorBO();
-                lista = bo.ListarAtivos();
+                using (EntregadorBO bo = new EntregadorBO())
+                {
+                    lista = bo.ListarAtivos();
+                }
             }
             catch
             {
                 TempData["flash"] = "Ocorreu um erro ao tentar buscar os atendentes";
             }
-            finally
-            {
-                if (bo != null)
-                {
-                    bo.Dispose();
-                    bo = null;
-                }
-            }
         }
 
         public void PreencherBagDropDownLists(Entregador e = null)
         {
-            AparelhoMovelBO bo = null;
             IList<AparelhoMovel> aparelhos = null;
             try
             {
-                bo = new AparelhoMovelBO();
-                aparelhos = bo.ListarDisponiveis();
+                using (AparelhoMovelBO bo = new AparelhoMovelBO())
+                {
+                    aparelhos = bo.ListarDisponiveis();
+                }
             }
             catch (Exception)
             {
                 return;
-            }
-            finally
-            {
-                if (bo != null)
-                {
-                    bo.Dispose();
-                    bo = null;
-                }
             }
 
             var listaAparelhos = new List<SelectListItem>();
@@ -108,15 +94,15 @@ namespace SALMvc.Controllers
                 return View(entregador);
             }
 
-            EntregadorBO bo = null;
-            
             try
             {
-                bo = new EntregadorBO();
                 if (!Request.Files["Foto"].FileName.Equals(""))
                 {
                     HttpPostedFileBase postedFile = Request.Files["Foto"];
-                    bo.Incluir(entregador, Server.MapPath("~" + pastaFotos), postedFile.FileName.Substring(postedFile.FileName.Length - 4, 4));
+                    using (EntregadorBO bo = new EntregadorBO())
+                    {
+                        bo.Incluir(entregador, Server.MapPath("~" + pastaFotos), postedFile.FileName.Substring(postedFile.FileName.Length - 4, 4));
+                    }
                     postedFile.SaveAs(entregador.Foto);
                 }
                 else
@@ -137,40 +123,26 @@ namespace SALMvc.Controllers
             {
                 TempData["flash"] = "Ocorreu um problema, tente novamente. " + ex.Message;
             }
-            finally
-            {
-                if (bo != null)
-                {
-                    bo.Dispose();
-                    bo = null;
-                }
-            }
+
             return RedirectToAction("Index");
         }
 
         public ActionResult Edit(uint id)
         {
-            EntregadorBO bo = null;
             Entregador entregador = null;
             try
             {
-                bo = new EntregadorBO();
-                entregador = new Entregador();
-                entregador = bo.BuscarPeloId(id);
+                using (EntregadorBO bo = new EntregadorBO())
+                {
+                    entregador = bo.BuscarPeloId(id);
+                }
             }
             catch (Exception)
             {
                 TempData["flash"] = "Ocorreu um erro, tente novamente.";
                 return RedirectToAction("Index");
             }
-            finally
-            {
-                if (bo != null)
-                {
-                    bo.Dispose();
-                    bo = null;
-                }
-            }
+
             PreencherBagDropDownLists(entregador);
             return View(entregador);
         }
@@ -186,7 +158,6 @@ namespace SALMvc.Controllers
                 return View(entregador);
             }
             
-            EntregadorBO bo = null;
             try
             {
                 HttpPostedFileBase postedFile = null;
@@ -196,8 +167,11 @@ namespace SALMvc.Controllers
                     postedFile = Request.Files["Foto"];
                     entregador.Foto = Server.MapPath("~" + pastaFotos) + String.Format("{0:0000000000}", entregador.Id) + postedFile.FileName.Substring(postedFile.FileName.Length - 4, 4);
                 }
-                bo = new EntregadorBO();
-                bo.Alterar(entregador);
+                using (EntregadorBO bo = new EntregadorBO())
+                {
+                    bo.Alterar(entregador);
+                }
+
                 if (postedFile != null)
                 {
                     postedFile.SaveAs(entregador.Foto);
@@ -213,25 +187,19 @@ namespace SALMvc.Controllers
             {
                 TempData["flash"] = "Ocorreu um problema, tente novamente.";
             }
-            finally
-            {
-                if (bo != null)
-                {
-                    bo.Dispose();
-                    bo = null;
-                }
-            }
+
             return RedirectToAction("Index");
         }
 
         public ActionResult Delete(uint id)
         {
-            EntregadorBO bo = null;
             Entregador entregador = null;
             try
             {
-                bo = new EntregadorBO();
-                entregador = bo.BuscarPeloId(id);
+                using (EntregadorBO bo = new EntregadorBO())
+                {
+                    entregador = bo.BuscarPeloId(id);
+                }
                 if (System.IO.File.Exists(entregador.Foto))
                 {
                     System.IO.FileInfo info = new System.IO.FileInfo(entregador.Foto);
@@ -243,51 +211,39 @@ namespace SALMvc.Controllers
                 TempData["flash"] = "Ocorreu um erro, tente novamente.";
                 return RedirectToAction("Index");
             }
-            finally
-            {
-                if (bo != null)
-                {
-                    bo.Dispose();
-                    bo = null;
-                }
-            }
+
             return View(entregador);
         }
 
         [HttpPost]
         public ActionResult Delete(Entregador entregador)
         {
-            EntregadorBO bo = null;
             try
             {
-                bo = new EntregadorBO();
-                entregador = bo.BuscarPeloId(entregador.Id);
-                bo.Excluir(entregador);
+                using (EntregadorBO bo = new EntregadorBO())
+                {
+                    entregador = bo.BuscarPeloId(entregador.Id);
+                    bo.Excluir(entregador);
+                }
                 TempData["flash"] = "O entregador \"" + entregador.Nome + "\" foi excluído com sucesso.";
             }
             catch (Exception)
             {
                 TempData["flash"] = "Ocorreu um erro, tente novamente.";
             }
-            finally
-            {
-                if (bo != null)
-                {
-                    bo.Dispose();
-                    bo = null;
-                }
-            }
+
             return RedirectToAction("Index");
         }
 
         public ActionResult Details(uint id)
         {
-            EntregadorBO bo = null;
             Entregador entregador = null;
             try
             {
-                bo = new EntregadorBO();
-                entregador = bo.BuscarPeloId(id);
+                using (EntregadorBO bo = new EntregadorBO())
+                {
+                    entregador = bo.BuscarPeloId(id);
+                }
                 if (System.IO.File.Exists(entregador.Foto))
                 {
                     System.IO.FileInfo info = new System.IO.FileInfo(entregador.Foto);
@@ -299,14 +255,7 @@ namespace SALMvc.Controllers
                 TempData["flash"] = "Ocorreu um erro, tente novamente.";
                 return RedirectToAction("Index");
             }
-            finally
-            {
-                if (bo != null)
-                {
-                    bo.Dispose();
-                    bo = null;
-                }
-            }
+
             return View(entregador);
         }
     }
