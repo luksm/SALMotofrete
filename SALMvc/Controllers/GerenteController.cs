@@ -7,9 +7,11 @@ using System.Web;
 using System.Web.Mvc;
 using Utilitarios.BO;
 using PagedList;
+using SALMvc.Helpers;
 
 namespace SALMvc.Controllers
 {
+    [Authorize]
     public class GerenteController : Controller
     {
         IList<Gerente> lista = null;
@@ -42,6 +44,8 @@ namespace SALMvc.Controllers
 
         public ActionResult Index(int? page, int? pageSize)
         {
+            if (!LoginHelper.ValidarTipoUsuarioLogado(this, typeof(Gerente)))
+                return new HttpNotFoundResult();
             if(Session["RegPagina"] == null)
                 Session["RegPagina"] = 10;
             if (pageSize != null) Session["RegPagina"] = pageSize;
@@ -55,6 +59,8 @@ namespace SALMvc.Controllers
         
         public ActionResult Create()
         {
+            if (!LoginHelper.ValidarTipoUsuarioLogado(this, typeof(Gerente)))
+                return new HttpNotFoundResult();
             return View();
         }
 
@@ -64,6 +70,8 @@ namespace SALMvc.Controllers
         [HttpPost]
         public ActionResult Create(Gerente gerente)
         {
+            if (!LoginHelper.ValidarTipoUsuarioLogado(this, typeof(Gerente)))
+                return new HttpNotFoundResult();
             if (!ModelState.IsValid)
             {
                 return View(gerente);
@@ -111,6 +119,8 @@ namespace SALMvc.Controllers
 
         public ActionResult Delete(uint id)
         {
+            if (!LoginHelper.ValidarTipoUsuarioLogado(this, typeof(Gerente)))
+                return new HttpNotFoundResult();
             GerenteBO bo = null;
             Gerente gerente = null;
             try
@@ -145,6 +155,8 @@ namespace SALMvc.Controllers
         [HttpPost]
         public ActionResult Delete(Gerente gerente)
         {
+            if (!LoginHelper.ValidarTipoUsuarioLogado(this, typeof(Gerente)))
+                return new HttpNotFoundResult();
             GerenteBO bo = null;
             try
             {
@@ -172,6 +184,8 @@ namespace SALMvc.Controllers
 
         public ActionResult Edit(uint id)
         {
+            if (!LoginHelper.ValidarTipoUsuarioLogado(this, typeof(Gerente)))
+                return new HttpNotFoundResult();
             GerenteBO bo = null;
             Gerente entregador = null;
             try
@@ -201,6 +215,8 @@ namespace SALMvc.Controllers
         [HttpPost]
         public ActionResult Edit(Gerente gerente)
         {
+            if (!LoginHelper.ValidarTipoUsuarioLogado(this, typeof(Gerente)))
+                return new HttpNotFoundResult();
             if (!ModelState.IsValid)
             {
                 return View(gerente);
@@ -249,6 +265,8 @@ namespace SALMvc.Controllers
 
         public ActionResult Details(uint id)
         {
+            if (!LoginHelper.ValidarTipoUsuarioLogado(this, typeof(Gerente)))
+                return new HttpNotFoundResult();
             GerenteBO bo = null;
             Gerente gerente = null;
             try

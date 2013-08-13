@@ -41,5 +41,19 @@ namespace SALClassLib.Masterdata.Model.BO
             }
             return p;
         }
+
+        public Pessoa BuscarPeloUsuario(String usuario)
+        {
+            Pessoa p = null;
+            using (ITransaction tx = sessao.BeginTransaction())
+            {
+                ICriteria crit = sessao.CreateCriteria("Pessoa");
+                crit.Add(Restrictions.Eq("Usuario", usuario));
+                IList<Pessoa> lista = crit.List<Pessoa>();
+                if (lista.Count > 0)
+                    p = lista.First();
+            }
+            return p;
+        }
     }
 }

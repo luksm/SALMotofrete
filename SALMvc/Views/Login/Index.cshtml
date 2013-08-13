@@ -8,7 +8,7 @@
 
 <div class="container">
 
-@using (Html.BeginForm("Index", "Login", FormMethod.Post, new { @class = "form-signin" }))
+@using (Html.BeginForm("Index", "Login", new { ReturnUrl = Request.QueryString["ReturnUrl"] }, FormMethod.Post, new { @class = "form-signin" }))
 {
     <div class="logo brand" style="font-size:3.5em;margin-top:20px;margin-bottom:20px;">Sal</div>
     <h3 class="form-signin-heading">Efetue seu Login</h3>
