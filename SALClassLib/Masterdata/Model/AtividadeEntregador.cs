@@ -34,7 +34,7 @@ namespace SALClassLib.Masterdata.Model
 
         public virtual String DataFormatada
         {
-            get { return data.ToString("dd/MM/yyyy HH:mm:ss"); }
+            get { return dataHora.ToString("dd/MM/yyyy HH:mm:ss"); }
         }
 
         // override object.Equals
