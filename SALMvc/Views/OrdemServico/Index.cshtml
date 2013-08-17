@@ -8,13 +8,16 @@
 
 
 <div class="row">
-    <h2>
-        @ViewBag.Title
+    <div class="span9">
+        <h2>@ViewBag.Title</h2>
+    </div>
+    <div class="span3">
         <a href="@Url.Action("Create", "OrdemServico")" class="btn btn-danger pull-right" type="button"><i class="icon-briefcase icon-white"> </i>  Nova Ordem de Serviço</a>
-    </h2>
+    </div>
 </div>
 
 <div class="row">
+    <div class="span12">
     <table class="table table-hover table-striped">
         <thead>
         <tr style="background:#CCC;color:#FFF;">
@@ -38,4 +41,5 @@
             </tr>
         }
     </table>
+    </div>
 </div>

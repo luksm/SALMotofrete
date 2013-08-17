@@ -7,7 +7,7 @@
 
 <div class="row-fluid" id="sal">
     <div class="span2">
-            <h1 class="logo">Sal</h1>
+        <h1 class="logo">Sal</h1>
 
         @using (Html.BeginForm("Step2", "OrdemServico", FormMethod.Post, new { @class = "" }))
         {
@@ -16,30 +16,30 @@
             <fieldset>
                 <legend>Origem</legend>
                 <label for="Origem.0.Endereco">Endereço</label>
-                <input type="text" id="Origem.0.Endereco" name="Origem[0][Endereco]" placeholder="Vou buscar aqui">
+                <input class="span12" type="text" id="Origem.0.Endereco" name="Origem[0][Endereco]" placeholder="Vou buscar aqui">
 
                 <label for="Origem.0.Complemento">Complemento</label>
-                <input type="text" id="Origem.0.Complemento"  name="Origem[0][Complemento]" placeholder="Andar ? Apartamento ?">
+                <input class="span12" type="text" id="Origem.0.Complemento"  name="Origem[0][Complemento]" placeholder="Andar ? Apartamento ?">
                 
                 <label for="Origem.0.Contato">Contato</label>
-                <input type="text" id="Origem.0.Contato" name="Origem[0][Contato]" placeholder="Vou falar com quem ?">
+                <input class="span12" type="text" id="Origem.0.Contato" name="Origem[0][Contato]" placeholder="Vou falar com quem ?">
                             
             </fieldset>
             <fieldset>
                 <legend>Destino</legend>
 
                 <label for="Destino.0.Endereco">Endereço</label>
-                <input type="text" id="Destino.0.Endereco" name="Destino[0][Endereco]" placeholder="Vou buscar aqui">
+                <input class="span12" type="text" id="Destino.0.Endereco" name="Destino[0][Endereco]" placeholder="Vou buscar aqui">
 
                 <label for="Destino.0.Complemento">Complemento</label>
-                <input type="text" id="Destino.0.Complemento"  name="Destino[0][Complemento]" placeholder="Andar ? Apartamento ?">
+                <input class="span12" type="text" id="Destino.0.Complemento"  name="Destino[0][Complemento]" placeholder="Andar ? Apartamento ?">
 
                 <label for="Destino.0.Contato">Contato</label>
-                <input type="text" id="Destino.0.Contato" name="Destino[0][Contato]" placeholder="Vou falar com quem ?">
+                <input class="span12" type="text" id="Destino.0.Contato" name="Destino[0][Contato]" placeholder="Vou falar com quem ?">
             </fieldset>
 
             <div class="form-actions">
-                <button type="submit" class="btn btn-danger">Confirmar</button>
+                <button type="submit" class="btn btn-danger span12">Confirmar</button>
             </div>
         }
     </div>

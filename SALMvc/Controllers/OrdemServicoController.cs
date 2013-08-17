@@ -9,11 +9,13 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Utilitarios.BO;
+using Utilitarios.JSON;
 
 namespace SALMvc.Controllers
 {
     public class OrdemServicoController : Controller
     {
+
         IList<OrdemServico> lista = new List<OrdemServico>();
         private void Listar()
         {
@@ -113,7 +115,7 @@ namespace SALMvc.Controllers
             ordemServico.Status.Id = 1;
 
             ordemServico.Cliente = new Cliente();
-            ordemServico.Cliente.Id = 2;
+            ordemServico.Cliente.Id = 1;
 
             // Save de Ordem de Serviço
             try
@@ -201,6 +203,73 @@ namespace SALMvc.Controllers
                 TempData["flash"] = "Ocorreu um problema, tente novamente.";
             }
             return RedirectToAction("Index");
+        }
+        
+        /// <summary>
+        /// GET: /OrdemServico/Process/#
+        /// 
+        /// Processa a Ordem de Serviço atribuindo a Cobrança, procurando qual o 
+        /// Entregador que deve receber
+        /// </summary>
+        /// <param name="Id"></param>
+        /// <returns></returns>
+        public ActionResult Process(ulong Id)
+        {
+            String text;
+            text = "";
+            try
+            {
+                OrdemServicoBO bo = new OrdemServicoBO();
+                OrdemServico ordemServico = new OrdemServico();
+                ordemServico = bo.BuscarPeloId(Id);
+                bo.Dispose();
+
+                EntregadorBO ebo = new EntregadorBO();
+                Entregador e = new Entregador();
+                e = ebo.listar();
+                ebo.Dispose();
+
+                String url;
+
+                url = "http://maps.googleapis.com/maps/api/geocode/json?sensor=false&address=" + 
+                        ordemServico.EnderecoRetirada.Logradouro + "," +
+                        ordemServico.EnderecoRetirada.Numero + " - " + 
+                        ordemServico.EnderecoRetirada.Bairro + ", " +
+                        ordemServico.EnderecoRetirada.Municipio;
+
+                try
+                {
+                    TempData["flash"] = JSON.Fetch(text);
+                }
+                catch (JSONException jsonex)
+                {
+                    TempData["Error"] = jsonex.Message;
+                }
+
+                String distance;
+
+                distance = "http://maps.googleapis.com/maps/api/distancematrix/json?mode=driving&language=pt-BR&sensor=false&origins=" +
+                        e.PosicaoAtual + "|" +
+                        "&destinations=" +
+                        ordemServico.EnderecoRetirada.Logradouro + "," +
+                        ordemServico.EnderecoRetirada.Numero + " - " +
+                        ordemServico.EnderecoRetirada.Bairro + ", " +
+                        ordemServico.EnderecoRetirada.Municipio;
+
+                try
+                {
+                    TempData["flash"] = JSON.Fetch(distance);
+                }
+                catch (JSONException jsonex)
+                {
+                    TempData["Error"] = jsonex.Message;
+                }
+            }
+            catch (Exception ex)
+            {
+                TempData["flash"] = "Ocorreu um problema, tente novamente. " + ex.Message;
+            }
+            return View();
         }
     }
 }
