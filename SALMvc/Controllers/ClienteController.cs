@@ -27,7 +27,7 @@ namespace SALMvc.Controllers
             }
             catch (Exception ex)
             {
-                TempData["flash"] = "Ocorreu um erro ao tentar buscar os atendentes";
+                TempData["ErrorMessage"] = "Ocorreu um erro ao tentar buscar os atendentes" + ex.Message;
             }
         }
 
@@ -41,9 +41,9 @@ namespace SALMvc.Controllers
                 }
                 if (listaEnderecos == null) listaEnderecos = new List<Endereco>();
             }
-            catch(Exception)
+            catch(Exception ex)
             {
-                TempData["flash"] = "Ocorreu um erro ao tentar buscar os endereços";
+                TempData["ErrorMessage"] = "Ocorreu um erro ao tentar buscar os endereços" + ex.Message;
             }
         }
 
@@ -57,9 +57,13 @@ namespace SALMvc.Controllers
                     estados = boe.Listar();
                 }
             }
+            catch (BOException ex)
+            {
+                TempData["flash"] = ex.Message;
+            }
             catch (Exception)
             {
-                return;
+                TempData["flash"] = "Ocorreu um problema, tente novamente.";
             }
 
             var listaEstados = new List<SelectListItem>();
@@ -93,8 +97,14 @@ namespace SALMvc.Controllers
                     return Json(bom.ListarPeloEstado(new Estado() { Id = idEstado }));
                 }
             }
+            catch (BOException ex)
+            {
+                TempData["flash"] = ex.Message;
+                return null;
+            }
             catch (Exception)
             {
+                TempData["flash"] = "Ocorreu um problema, tente novamente.";
                 return null;
             }
         }
@@ -539,7 +549,7 @@ namespace SALMvc.Controllers
             {
                 ModelState.AddModelError("", ex.Message);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 TempData["flash"] = "Ocorreu um problema, tente novamente.";
                 return RedirectToAction("Index");

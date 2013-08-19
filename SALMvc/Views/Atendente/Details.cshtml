@@ -11,71 +11,51 @@
 </div>
 
 <div class="row">
-    <div class="span4 offset4">
+    <div class="span2 offset3">
+        <dl>
+            <dt>@Html.DisplayNameFor(model => model.Foto)</dt>
+            <dd><img src="@ViewBag.Foto" width="200" height="200" /></dd>
+        </dl>
+    </div>
 
-        <div class="control-group">
-            @Html.DisplayNameFor(model => model.Nome)
-            <strong>
-                @Html.DisplayFor(model => model.Nome)
-            </strong>
-        </div>
+    <div class="span4">
+        <dl class="dl-horizontal">
+            <dt>@Html.DisplayNameFor(model => model.Nome) </dt>
+            <dd>@Html.DisplayFor(model => model.Nome)</dd>
 
-        <div class="control-group">
-            @Html.DisplayNameFor(model => model.Sobrenome)
-            <strong>
-                @Html.DisplayFor(model => model.Sobrenome)
-            </strong>
-        </div>
+            <dt>@Html.DisplayNameFor(model => model.Sobrenome)</dt>
+            <dd>@Html.DisplayFor(model => model.Sobrenome)</dd>
 
-        <div class="control-group">
-            @Html.DisplayNameFor(model => model.Cpf)
-            <strong>
-                @Html.DisplayFor(model => model.Cpf)
-            </strong>
-        </div>
+            <dt>@Html.DisplayNameFor(model => model.Cpf)</dt>
+            <dd>@Html.DisplayFor(model => model.Cpf)</dd>
 
-        <div class="control-group">
-            @Html.DisplayNameFor(model => model.Rg)
-            <strong>
-                @Html.DisplayFor(model => model.Rg)
-            </strong>
-        </div>
+            <dt>@Html.DisplayNameFor(model => model.Rg)</dt>
+            <dd>@Html.DisplayFor(model => model.Rg)</dd>
 
-        <div class="control-group">
-            @Html.DisplayNameFor(model => model.TelefoneFixo)
-            <strong>
-                @Html.DisplayFor(model => model.TelefoneFixo)
-            </strong>
-        </div>
+            <dt>@Html.DisplayNameFor(model => model.TelefoneFixo)</dt>
+            <dd>@Html.DisplayFor(model => model.TelefoneFixo)</dd>
+            
+            <dt>@Html.DisplayNameFor(model => model.TelefoneCelular)</dt>
+            <dd>@Html.DisplayFor(model => model.TelefoneCelular)</dd>
 
-        <div class="control-group">
-            @Html.DisplayNameFor(model => model.TelefoneCelular)
-            <strong>
-                @Html.DisplayFor(model => model.TelefoneCelular)
-            </strong>
-        </div>
+            <dt>@Html.DisplayNameFor(model => model.Email)</dt>
+            <dd>@Html.DisplayFor(model => model.Email)</dd>
 
-        <div class="control-group">
-            @Html.DisplayNameFor(model => model.Email)
-            <strong>
-                @Html.DisplayFor(model => model.Email)
-            </strong>
-        </div>
+            <dt>@Html.DisplayNameFor(model => model.Usuario)</dt>
+            <dd>@Html.DisplayFor(model => model.Usuario)</dd>
 
-        <div class="control-group">
-            @Html.DisplayNameFor(model => model.Usuario)
-            <strong>
-                @Html.DisplayFor(model => model.Usuario)
-            </strong>
-        </div>
+            <dt>@Html.DisplayNameFor(model => model.Usuario)</dt>
+            <dd>@Html.DisplayFor(model => model.Usuario)</dd>
+        </dl>
+    </div>
+</div>                   
 
-        <div class="control-group">
-            @Html.DisplayNameFor(model => model.Foto)
-        </div>
-        <div class="display-field">
-            <img src="@ViewBag.Foto" width="400" height="310" />
-        </div>
+<div class="row">
+    <div class="span12"></div>
+</div>
 
+<div class="row">
+    <div class="span12">
         <p class="actions">
             @Html.ActionLink("Editar", "Edit", new { id = Model.Id }, new { @class = "btn btn-danger" })
             @Html.ActionLink("Voltar", "Index", new { }, new { @class = "btn" })

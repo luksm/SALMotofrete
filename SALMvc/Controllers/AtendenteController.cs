@@ -24,9 +24,9 @@ namespace SALMvc.Controllers
                     lista = bo.ListarAtivos();
                 }
             }
-            catch 
+            catch (Exception ex)
             {
-                TempData["flash"] = "Ocorreu um erro ao tentar buscar os atendentes";
+                TempData["ErrorMessage"] = "Ocorreu um erro ao tentar buscar os atendentes" + ex.Message;
             }
         }
 
@@ -79,10 +79,13 @@ namespace SALMvc.Controllers
             }
             catch (BOException ex)
             {
-                ModelState.AddModelError(ex.Message, ex.Message);
+                TempData["ErrorMessage"] = ex.Message;
                 return View(atendente);
             }
-
+            catch (Exception ex)
+            {
+                TempData["ErrorMessage"] = "Ocorreu um problema, tente novamente. " + ex.Message;
+            }
             return RedirectToAction("Index");
         }
 
@@ -91,6 +94,7 @@ namespace SALMvc.Controllers
         public ActionResult Details(uint Id)
         {
             Atendente atendente = new Atendente();
+
             try
             {
                 using (AtendenteBO bo = new AtendenteBO())
@@ -103,9 +107,15 @@ namespace SALMvc.Controllers
                     ViewBag.Foto = pastaFotos + info.Name;
                 }
             }
-            catch (Exception)
+            catch (BOException ex)
             {
-                RedirectToAction("Index");
+                TempData["ErrorMessage"] = ex.Message;
+                return RedirectToAction("Index");
+            }
+            catch (Exception ex)
+            {
+                TempData["ErrorMessage"] = "Ocorreu um problema, tente novamente. " + ex.Message;
+                return RedirectToAction("Index");
             }
 
             return View(atendente);
@@ -124,12 +134,16 @@ namespace SALMvc.Controllers
                 }
                 return View(am);
             }
-            catch (Exception)
+            catch (BOException ex)
             {
-                TempData["flash"] = "Ocorreu um problema, tente novamente.";
+                TempData["ErrorMessage"] = ex.Message;
+                return RedirectToAction("Index");
             }
-
-            return RedirectToAction("Index");
+            catch (Exception ex)
+            {
+                TempData["ErrorMessage"] = "Ocorreu um problema, tente novamente. " + ex.Message;
+                return RedirectToAction("Index");
+            }
         }
 
         //
@@ -163,12 +177,13 @@ namespace SALMvc.Controllers
             }
             catch (BOException ex)
             {
-                ModelState.AddModelError("", ex.Message);
-                return View(atendente);
+                TempData["ErrorMessage"] = ex.Message;
+                return RedirectToAction("Index");
             }
             catch (Exception ex)
             {
-                TempData["flash"] = "Ocorreu um problema, tente novamente. " + ex.Message;
+                TempData["ErrorMessage"] = "Ocorreu um problema, tente novamente. " + ex.Message;
+                return RedirectToAction("Index");
             }
 
             return RedirectToAction("Index");
@@ -192,12 +207,16 @@ namespace SALMvc.Controllers
                 }
                 return View(a);
             }
-            catch
+            catch (BOException ex)
             {
-                TempData["flash"] = "Ocorreu um problema, tente novamente";
+                TempData["ErrorMessage"] = ex.Message;
+                return RedirectToAction("Index");
             }
-
-            return RedirectToAction("Index");
+            catch (Exception ex)
+            {
+                TempData["ErrorMessage"] = "Ocorreu um problema, tente novamente. " + ex.Message;
+                return RedirectToAction("Index");
+            }
         }
 
         //
@@ -216,12 +235,13 @@ namespace SALMvc.Controllers
             }
             catch (BOException ex)
             {
-                ModelState.AddModelError("", ex.Message);
-                return View(atendente);
+                TempData["ErrorMessage"] = ex.Message;
+                return RedirectToAction("Index");
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                TempData["flash"] = "Ocorreu um problema, tente novamente.";
+                TempData["ErrorMessage"] = "Ocorreu um problema, tente novamente. " + ex.Message;
+                return RedirectToAction("Index");
             }
 
             return RedirectToAction("Index");

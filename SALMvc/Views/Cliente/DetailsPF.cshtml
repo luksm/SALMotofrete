@@ -11,57 +11,44 @@
 </div>
 
 <div class="row">
-    <div class="span4 offset4">
+    <div class="span2 offset3">
+        <dl>
+            <dt>@Html.DisplayNameFor(model => model.Foto)</dt>
+            <dd><img src="@ViewBag.Foto" width="200" height="200" /></dd>
+        </dl>
+    </div>
+    <div class="span4">
+        <dl class="dl-horizontal">
+            <dt>@Html.DisplayNameFor(model => model.PessoaFisica.Nome) </dt>
+            <dd>@Html.DisplayFor(model => model.PessoaFisica.Nome)</dd>
 
-        <div class="control-group">
-            @Html.DisplayNameFor(model => model.PessoaFisica.Nome)
-            <strong>
-                @Html.DisplayFor(model => model.PessoaFisica.Nome)
-            </strong>
-        </div>
+            <dt>@Html.DisplayNameFor(model => model.PessoaFisica.Sobrenome)</dt>
+            <dd>@Html.DisplayFor(model => model.PessoaFisica.Sobrenome)</dd>
 
-        <div class="control-group">
-            @Html.DisplayNameFor(model => model.PessoaFisica.Sobrenome)
-            <strong>
-                @Html.DisplayFor(model => model.PessoaFisica.Sobrenome)
-            </strong>
-        </div>
+            <dt>@Html.DisplayNameFor(model => model.PessoaFisica.Cpf)</dt>
+            <dd>@Html.DisplayFor(model => model.PessoaFisica.Cpf)</dd>
 
-        <div class="control-group">
-            @Html.DisplayNameFor(model => model.PessoaFisica.Cpf)
-            <strong>
-                @Html.DisplayFor(model => model.PessoaFisica.Cpf)
-            </strong>
-        </div>
+            <dt>@Html.DisplayNameFor(model => model.PessoaFisica.Rg)</dt>
+            <dd>@Html.DisplayFor(model => model.PessoaFisica.Rg)</dd>
 
-        <div class="control-group">
-            @Html.DisplayNameFor(model => model.PessoaFisica.Rg)
-            <strong>
-                @Html.DisplayFor(model => model.PessoaFisica.Rg)
-            </strong>
-        </div>
+            <dt>@Html.DisplayNameFor(model => model.PessoaFisica.TelefoneFixo)</dt>
+            <dd>@Html.DisplayFor(model => model.PessoaFisica.TelefoneFixo)</dd>
 
-        <div class="control-group">
-            @Html.DisplayNameFor(model => model.PessoaFisica.TelefoneFixo)
-            <strong>
-                @Html.DisplayFor(model => model.PessoaFisica.TelefoneFixo)
-            </strong>
-        </div>
+            <dt>@Html.DisplayNameFor(model => model.PessoaFisica.TelefoneCelular)</dt>
+            <dd>@Html.DisplayFor(model => model.PessoaFisica.TelefoneCelular)</dd>
 
-        <div class="control-group">
-            @Html.DisplayNameFor(model => model.PessoaFisica.TelefoneCelular)
-            <strong>
-                @Html.DisplayFor(model => model.PessoaFisica.TelefoneCelular)
-            </strong>
-        </div>
+            <dt>@Html.DisplayNameFor(model => model.PessoaFisica.Email)</dt>
+            <dd>@Html.DisplayFor(model => model.PessoaFisica.Email)</dd>
+        </dl>
+    </div>
+</div>
 
-        <div class="control-group">
-            @Html.DisplayNameFor(model => model.PessoaFisica.Email)
-            <strong>
-                @Html.DisplayFor(model => model.PessoaFisica.Email)
-            </strong>
-        </div>
+<div class="row">
+    <div class="span12"></div>
+</div>
 
+<div class="row">
+    <div class="span12">
         <p class="actions">
             @Html.ActionLink("Editar", "EditPF", new { id = Model.Id }, new { @class = "btn btn-danger" })
             @Html.ActionLink("Voltar", "Index", new { }, new { @class = "btn" })

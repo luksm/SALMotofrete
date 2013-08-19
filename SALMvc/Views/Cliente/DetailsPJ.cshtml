@@ -11,42 +11,38 @@
 </div>
 
 <div class="row">
-    <div class="span4 offset4">
-        <div class="control-group">
-            @Html.DisplayNameFor(model => model.PessoaJuridica.NomeFantasia)
-            <strong>
-                @Html.DisplayFor(model => model.PessoaJuridica.NomeFantasia)
-            </strong>
-        </div>
+    <div class="span2 offset3">
+        <dl>
+            <dt>@Html.DisplayNameFor(model => model.Foto)</dt>
+            <dd><img src="@ViewBag.Foto" width="200" height="200" /></dd>
+        </dl>
+    </div>
+    <div class="span4">
+        <dl class="dl-horizontal">
+            <dt>@Html.DisplayNameFor(model => model.PessoaJuridica.NomeFantasia) </dt>
+            <dd>@Html.DisplayFor(model => model.PessoaJuridica.NomeFantasia)</dd>
 
-        <div class="control-group">
-            @Html.DisplayNameFor(model => model.PessoaJuridica.RazaoSocial)
-            <strong>
-                @Html.DisplayFor(model => model.PessoaJuridica.RazaoSocial)
-            </strong>
-        </div>
+            <dt>@Html.DisplayNameFor(model => model.PessoaJuridica.RazaoSocial)</dt>
+            <dd>@Html.DisplayFor(model => model.PessoaJuridica.RazaoSocial)</dd>
 
-        <div class="control-group">
-            @Html.DisplayNameFor(model => model.PessoaJuridica.Cnpj)
-            <strong>
-                @Html.DisplayFor(model => model.PessoaJuridica.Cnpj)
-            </strong>
-        </div>
+            <dt>@Html.DisplayNameFor(model => model.PessoaJuridica.Cnpj)</dt>
+            <dd>@Html.DisplayFor(model => model.PessoaJuridica.Cnpj)</dd>
 
-        <div class="control-group">
-            @Html.DisplayNameFor(model => model.PessoaJuridica.InscricaoEstadual)
-            <strong>
-                @Html.DisplayFor(model => model.PessoaJuridica.InscricaoEstadual)
-            </strong>
-        </div>
+            <dt>@Html.DisplayNameFor(model => model.PessoaJuridica.InscricaoEstadual)</dt>
+            <dd>@Html.DisplayFor(model => model.PessoaJuridica.InscricaoEstadual)</dd>
 
-        <div class="control-group">
-            @Html.DisplayNameFor(model => model.PessoaJuridica.WebSite)
-            <strong>
-                @Html.DisplayFor(model => model.PessoaJuridica.WebSite)
-            </strong>
-        </div>
+            <dt>@Html.DisplayNameFor(model => model.PessoaJuridica.WebSite)</dt>
+            <dd>@Html.DisplayFor(model => model.PessoaJuridica.WebSite)</dd>
+        </dl>
+    </div>
+</div>
 
+<div class="row">
+    <div class="span12"></div>
+</div>
+
+<div class="row">
+    <div class="span12">
         <p class="actions">
             @Html.ActionLink("Editar", "EditPJ", new { id = Model.Id }, new { @class = "btn btn-danger" })
             @Html.ActionLink("Voltar", "Index", new { }, new { @class = "btn" })

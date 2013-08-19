@@ -24,9 +24,9 @@ namespace SALMvc.Controllers
                     lista = bo.ListarAtivos();
                 }
             }
-            catch
+            catch (Exception ex)
             {
-                TempData["flash"] = "Ocorreu um erro ao tentar buscar os atendentes";
+                TempData["ErrorMessage"] = "Ocorreu um erro ao tentar buscar os atendentes" + ex.Message;
             }
         }
 
@@ -40,9 +40,13 @@ namespace SALMvc.Controllers
                     aparelhos = bo.ListarDisponiveis();
                 }
             }
+            catch (BOException ex)
+            {
+                TempData["flash"] = ex.Message;
+            }
             catch (Exception)
             {
-                return;
+                TempData["flash"] = "Ocorreu um problema, tente novamente.";
             }
 
             var listaAparelhos = new List<SelectListItem>();
@@ -115,13 +119,12 @@ namespace SALMvc.Controllers
             }
             catch (BOException ex)
             {
-                PreencherBagDropDownLists();
-                ModelState.AddModelError("", ex.Message);
+                TempData["ErrorMessage"] = ex.Message;
                 return View(entregador);
             }
             catch (Exception ex)
             {
-                TempData["flash"] = "Ocorreu um problema, tente novamente. " + ex.Message;
+                TempData["ErrorMessage"] = "Ocorreu um problema, tente novamente. " + ex.Message;
             }
 
             return RedirectToAction("Index");
@@ -137,9 +140,14 @@ namespace SALMvc.Controllers
                     entregador = bo.BuscarPeloId(id);
                 }
             }
-            catch (Exception)
+            catch (BOException ex)
             {
-                TempData["flash"] = "Ocorreu um erro, tente novamente.";
+                TempData["ErrorMessage"] = ex.Message;
+                return RedirectToAction("Index");
+            }
+            catch (Exception ex)
+            {
+                TempData["ErrorMessage"] = "Ocorreu um problema, tente novamente. " + ex.Message;
                 return RedirectToAction("Index");
             }
 
@@ -180,12 +188,13 @@ namespace SALMvc.Controllers
             }
             catch (BOException ex)
             {
-                ModelState.AddModelError("", ex.Message);
-                return View(entregador);
+                TempData["ErrorMessage"] = ex.Message;
+                return RedirectToAction("Index");
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                TempData["flash"] = "Ocorreu um problema, tente novamente.";
+                TempData["ErrorMessage"] = "Ocorreu um problema, tente novamente. " + ex.Message;
+                return RedirectToAction("Index");
             }
 
             return RedirectToAction("Index");
@@ -206,9 +215,14 @@ namespace SALMvc.Controllers
                     ViewBag.Foto = pastaFotos + info.Name;
                 }
             }
-            catch (Exception)
+            catch (BOException ex)
             {
-                TempData["flash"] = "Ocorreu um erro, tente novamente.";
+                TempData["ErrorMessage"] = ex.Message;
+                return RedirectToAction("Index");
+            }
+            catch (Exception ex)
+            {
+                TempData["ErrorMessage"] = "Ocorreu um problema, tente novamente. " + ex.Message;
                 return RedirectToAction("Index");
             }
 
@@ -227,9 +241,15 @@ namespace SALMvc.Controllers
                 }
                 TempData["flash"] = "O entregador \"" + entregador.Nome + "\" foi excluído com sucesso.";
             }
-            catch (Exception)
+            catch (BOException ex)
             {
-                TempData["flash"] = "Ocorreu um erro, tente novamente.";
+                TempData["ErrorMessage"] = ex.Message;
+                return RedirectToAction("Index");
+            }
+            catch (Exception ex)
+            {
+                TempData["ErrorMessage"] = "Ocorreu um problema, tente novamente. " + ex.Message;
+                return RedirectToAction("Index");
             }
 
             return RedirectToAction("Index");
@@ -250,9 +270,14 @@ namespace SALMvc.Controllers
                     ViewBag.Foto = pastaFotos + info.Name;
                 }
             }
-            catch (Exception)
+            catch (BOException ex)
             {
-                TempData["flash"] = "Ocorreu um erro, tente novamente.";
+                TempData["ErrorMessage"] = ex.Message;
+                return RedirectToAction("Index");
+            }
+            catch (Exception ex)
+            {
+                TempData["ErrorMessage"] = "Ocorreu um problema, tente novamente. " + ex.Message;
                 return RedirectToAction("Index");
             }
 
