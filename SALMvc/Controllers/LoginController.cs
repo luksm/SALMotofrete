@@ -6,7 +6,6 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
-using WebMatrix.WebData;
 
 namespace SALMvc.Controllers
 {
@@ -21,7 +20,7 @@ namespace SALMvc.Controllers
         }
 
         [HttpPost]
-        public ActionResult Index(Pessoa pessoa, String ReturnUrl)
+        public ActionResult Index(Pessoa pessoa, String returnUrl)
         {
             if (pessoa.Usuario.Equals("") || pessoa.Senha.Equals(""))
             {
@@ -34,18 +33,24 @@ namespace SALMvc.Controllers
                 pessoa = login.RealizarLogin(pessoa);
             }
 
-            if (pessoa == null) 
+            if (pessoa == null)
             {
                 ModelState.AddModelError("", "Usuário ou senha inválidos");
                 return View(pessoa);
             }
 
-            FormsAuthentication.SetAuthCookie(pessoa.Usuario, false);
+            if (!(pessoa is Entregador))
+            {
+                ModelState.AddModelError("", "Acesso restrito para entregadores");
+                return View(pessoa);
+            }
 
-            if (ReturnUrl == null)
+            FormsAuthentication.SetAuthCookie(pessoa.Id.ToString(), false);
+
+            if (returnUrl == null)
                 return RedirectToAction("Index", "Home");
             else
-                return Redirect(ReturnUrl);
+                return Redirect(returnUrl);
         }
 
         public ActionResult Logout()

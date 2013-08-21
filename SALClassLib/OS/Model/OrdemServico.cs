@@ -98,6 +98,14 @@ namespace SALClassLib.OS.Model
             set { cliente = value; }
         }
 
+        private Entregador entregador;
+
+        public virtual Entregador Entregador
+        {
+            get { return entregador; }
+            set { entregador = value; }
+        }
+
         public override bool Equals(object obj)
         {
             if (obj == null || GetType() != obj.GetType())

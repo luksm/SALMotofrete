@@ -14,6 +14,7 @@
     <many-to-one name="Cobranca" class="Cobranca" column="ID_COBRANCA" cascade="all" not-null="false" unique="true" />
     <many-to-one name="Status" class="StatusOrdemServico" column="ID_OS_STATUS" cascade="none" not-null="true" />
     <many-to-one name="Cliente" class="SALClassLib.Masterdata.Model.Cliente" column="ID_CLIENTE" cascade="none" not-null="true" />
+    <many-to-one name="Entregador" class="SALClassLib.Masterdata.Model.Entregador" column="ID_ENTREGADOR" cascade="none" not-null="false" />
     <set name="Itens" cascade="all">
       <key column="ID_ORDEM_SERVICO" />
       <one-to-many class="ItemOrdemServico" />

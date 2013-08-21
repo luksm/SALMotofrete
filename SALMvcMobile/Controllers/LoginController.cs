@@ -46,7 +46,6 @@ namespace SALMvcMobile.Controllers
             }
 
             FormsAuthentication.SetAuthCookie(pessoa.Id.ToString(), false);
-            Session["userLogin"] = pessoa;
 
             if (returnUrl == null)
                 return RedirectToAction("Index", "Home");
@@ -57,7 +56,6 @@ namespace SALMvcMobile.Controllers
         public ActionResult Logout()
         {
             FormsAuthentication.SignOut();
-            Session["userLogin"] = null;
 
             return RedirectToAction("Index");
         }
