@@ -53,6 +53,8 @@
     <Compile Include="DAO\DAO.cs" />
     <Compile Include="DAO\DAOException.cs" />
     <Compile Include="DAO\IDAO.cs" />
+    <Compile Include="JSON\JSON.cs" />
+    <Compile Include="JSON\JSONException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ValidationHelper.cs" />
   </ItemGroup>

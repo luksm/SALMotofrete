@@ -219,8 +219,6 @@ namespace SALMvc.Controllers
                 TempData["ErrorMessage"] = "Ocorreu um problema, tente novamente. " + ex.Message;
                 return RedirectToAction("Index");
             }
-
-            return RedirectToAction("Index");
         }
 
         //

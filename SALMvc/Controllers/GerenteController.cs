@@ -96,7 +96,7 @@ namespace SALMvc.Controllers
                 TempData["ErrorMessage"] = ex.Message;
                 return View(gerente);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 TempData["ErrorMessage"] = "Ocorreu um problema, tente novamente. " + ex.Message;
             }

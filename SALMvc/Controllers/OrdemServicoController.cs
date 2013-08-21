@@ -225,8 +225,8 @@ namespace SALMvc.Controllers
                 bo.Dispose();
 
                 EntregadorBO ebo = new EntregadorBO();
-                Entregador e = new Entregador();
-                e = ebo.listar();
+                IList<Entregador> e = new List<Entregador>();
+                e = ebo.ListarAtivos();
                 ebo.Dispose();
 
                 String url;
@@ -248,9 +248,13 @@ namespace SALMvc.Controllers
 
                 String distance;
 
-                distance = "http://maps.googleapis.com/maps/api/distancematrix/json?mode=driving&language=pt-BR&sensor=false&origins=" +
-                        e.PosicaoAtual + "|" +
-                        "&destinations=" +
+                distance = "http://maps.googleapis.com/maps/api/distancematrix/json?mode=driving&language=pt-BR&sensor=false&origins=";
+                foreach (var item in e)
+                {
+                    distance += item.PosicaoAtual + "|";
+                }
+
+                        distance += "&destinations=" +
                         ordemServico.EnderecoRetirada.Logradouro + "," +
                         ordemServico.EnderecoRetirada.Numero + " - " +
                         ordemServico.EnderecoRetirada.Bairro + ", " +

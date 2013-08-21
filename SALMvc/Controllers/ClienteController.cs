@@ -152,7 +152,7 @@ namespace SALMvc.Controllers
             {
                 ModelState.AddModelError("", ex.Message);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 ModelState.AddModelError("", "Ocorreu um problema, tente novamente.");
             }
@@ -193,7 +193,7 @@ namespace SALMvc.Controllers
             {
                 ModelState.AddModelError("", ex.Message);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 ModelState.AddModelError("", "Ocorreu um problema, tente novamente.");
             }
@@ -462,7 +462,7 @@ namespace SALMvc.Controllers
             {
                 TempData["flash"] = ex.Message;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 TempData["flash"] = "Ocorreu um erro inesperado. Tente novamente.";
             }
@@ -602,7 +602,7 @@ namespace SALMvc.Controllers
             {
                 ModelState.AddModelError("", ex.Message);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 ModelState.AddModelError("", "Ocorreu um problema, tente novamente.");
             }
@@ -634,7 +634,7 @@ namespace SALMvc.Controllers
             {
                 ModelState.AddModelError("", ex.Message);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 ModelState.AddModelError("", "Ocorreu um problema, tente novamente.");
             }
