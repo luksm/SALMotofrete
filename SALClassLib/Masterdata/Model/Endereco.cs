@@ -80,7 +80,13 @@ namespace SALClassLib.Masterdata.Model
             get { return pessoa; }
             set { pessoa = value; }
         }
-        
+
+        public String getEndereco() {
+            return Logradouro + "," +
+                   Numero + " - " +
+                   Bairro + ", " +
+                   Municipio;
+        }
 
         public Endereco()
         {

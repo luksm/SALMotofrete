@@ -231,38 +231,32 @@ namespace SALMvc.Controllers
 
                 String url;
 
-                url = "http://maps.googleapis.com/maps/api/geocode/json?sensor=false&address=" + 
-                        ordemServico.EnderecoRetirada.Logradouro + "," +
-                        ordemServico.EnderecoRetirada.Numero + " - " + 
-                        ordemServico.EnderecoRetirada.Bairro + ", " +
-                        ordemServico.EnderecoRetirada.Municipio;
+                url = "http://maps.googleapis.com/maps/api/geocode/json?sensor=false&address=" +
+                        ordemServico.EnderecoRetirada.getEndereco();
 
                 try
                 {
-                    TempData["flash"] = JSON.Fetch(text);
+                    TempData["flash"] = GMaps.getGeocode(ordemServico.EnderecoRetirada.getEndereco());
+                    TempData["flash"] = GMaps.getGeocode(ordemServico.EnderecoEntrega.getEndereco());
                 }
                 catch (JSONException jsonex)
                 {
                     TempData["Error"] = jsonex.Message;
                 }
 
-                String distance;
+                IList<String> entregadores = new List<String>();
+                IList<String> retirada = new List<String>();
 
-                distance = "http://maps.googleapis.com/maps/api/distancematrix/json?mode=driving&language=pt-BR&sensor=false&origins=";
                 foreach (var item in e)
                 {
-                    distance += item.PosicaoAtual + "|";
+                    entregadores.Add(item.PosicaoAtual);
                 }
 
-                        distance += "&destinations=" +
-                        ordemServico.EnderecoRetirada.Logradouro + "," +
-                        ordemServico.EnderecoRetirada.Numero + " - " +
-                        ordemServico.EnderecoRetirada.Bairro + ", " +
-                        ordemServico.EnderecoRetirada.Municipio;
-
+                retirada.Add(ordemServico.EnderecoRetirada.getEndereco());
+                    
                 try
                 {
-                    TempData["flash"] = JSON.Fetch(distance);
+                    TempData["flash"] = GMaps.getDistanceMatrix(entregadores, retirada);
                 }
                 catch (JSONException jsonex)
                 {
