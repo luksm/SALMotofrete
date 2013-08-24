@@ -28,24 +28,20 @@ namespace SALMvc.Controllers
                 return View(pessoa);
             }
 
+            Pessoa p = null;
+
             using (LoginBO login = new LoginBO())
             {
-                pessoa = login.RealizarLogin(pessoa);
+                p = login.RealizarLogin(pessoa);
             }
 
-            if (pessoa == null)
+            if (p == null)
             {
                 ModelState.AddModelError("", "Usuário ou senha inválidos");
                 return View(pessoa);
             }
 
-            if (!(pessoa is Entregador))
-            {
-                ModelState.AddModelError("", "Acesso restrito para entregadores");
-                return View(pessoa);
-            }
-
-            FormsAuthentication.SetAuthCookie(pessoa.Id.ToString(), false);
+            FormsAuthentication.SetAuthCookie(p.Usuario, false);
 
             if (returnUrl == null)
                 return RedirectToAction("Index", "Home");
