@@ -45,7 +45,7 @@ namespace SALMvcMobile.Controllers
                 return View(pessoa);
             }
 
-            FormsAuthentication.SetAuthCookie(pessoa.Id.ToString(), false);
+            FormsAuthentication.SetAuthCookie(pessoa.Usuario, false);
 
             if (returnUrl == null)
                 return RedirectToAction("Index", "Home");

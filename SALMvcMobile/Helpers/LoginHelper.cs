@@ -6,7 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace SALMvc.Helpers
+namespace SALMvcMobile.Helpers
 {
     public class LoginHelper
     {

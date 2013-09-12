@@ -6,7 +6,7 @@
       <column name="ID_ORDEM_SERVICO" not-null="true"/>
       <generator class="increment" />
     </id>
-    <property name="Numero" column="NUMERO" not-null="true" />
+    <property name="Numero" column="NUMERO" not-null="true" generated="insert" />
     <property name="Data" column="DATA_CADASTRO" not-null="true" />
     <property name="Observacao" column="OBSERVACAO" not-null="false" />
     <many-to-one name="EnderecoRetirada" class="EnderecoRetirada" column="ID_ENDERECO_OS_RETIRADA" cascade="all" not-null="true" unique="true" fetch="join"  />

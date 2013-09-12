@@ -45,10 +45,6 @@
           <key column="ID_ENTREGADOR" />
           <one-to-many class="AtividadeEntregador" />
         </set>
-        <set name="Fila" cascade="none">
-          <key column="ID_ENTREGADOR" />
-          <one-to-many class="SALClassLib.OS.Model.FilaOrdemServico" />
-        </set>
       </joined-subclass>
     </joined-subclass>
     

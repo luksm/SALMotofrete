@@ -16,7 +16,7 @@ namespace SALMvcMobile
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "FilaOS", action = "Index", id = UrlParameter.Optional }
+                defaults: new { controller = "OrdemServico", action = "Index", id = UrlParameter.Optional }
             );
         }
     }

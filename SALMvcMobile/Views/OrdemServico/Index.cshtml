@@ -1,0 +1,48 @@
+﻿@model SALClassLib.OS.Model.OrdemServico
+
+@{
+    ViewBag.Title = "Pedidos";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>SAL</h1>
+@using (Html.BeginForm("Index", "OrdemServico", FormMethod.Post, new { @class = "" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    @Html.HiddenFor(model => model.Id)
+    @Html.HiddenFor(model => model.Status.Id)
+    
+    if (Model == null)
+    {
+        <div class="editor-label">
+            <label>
+                Não há ordens de serviço disponíveis no momento!
+            </label>
+        </div>
+    }
+    else
+    {    
+        <div class="editor-label">
+            <b>#</b> @Html.DisplayFor(model => model.NumeroFormatado)
+        </div>
+        <div class="editor-label">
+            <b>Origem</b> @(Model.EnderecoRetirada.getEndereco())
+        </div>
+        <div class="editor-label">
+            <b>Contato</b> @(Model.EnderecoRetirada.NomeContato)
+        </div>
+        <div class="editor-label">
+            <b>Destino</b> @(Model.EnderecoEntrega.getEndereco())
+        </div>
+        <div class="editor-label">
+            <b>Contato</b> @(Model.EnderecoEntrega.NomeContato)
+        </div>
+        <div class="editor-label">
+            <b>Status</b> @(Model.Status.Descricao)
+        </div>
+        
+        <input type="submit" value="@TempData["botao"]" />
+    }
+}

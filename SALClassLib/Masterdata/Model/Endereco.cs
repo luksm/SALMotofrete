@@ -85,7 +85,7 @@ namespace SALClassLib.Masterdata.Model
             return Logradouro + "," +
                    Numero + " - " +
                    Bairro + ", " +
-                   Municipio;
+                   Municipio.Nome + " - " + Municipio.Estado.Sigla;
         }
 
         public Endereco()

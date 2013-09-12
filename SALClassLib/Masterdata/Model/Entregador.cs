@@ -66,14 +66,6 @@ namespace SALClassLib.Masterdata.Model
             get { return posicaoAtual; }
             set { posicaoAtual = value; }
         }
-        
-        private ISet<FilaOrdemServico> fila;
-
-        public virtual ISet<FilaOrdemServico> Fila
-        {
-            get { return fila; }
-            set { fila = value; }
-        }
 
         // override object.Equals
         public override bool Equals(object obj)

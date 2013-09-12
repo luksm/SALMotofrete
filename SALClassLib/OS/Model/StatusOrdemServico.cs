@@ -24,4 +24,13 @@ namespace SALClassLib.OS.Model
             set { descricao = value; }
         }
     }
+
+    public enum EStatusOS
+    {
+        EmAguardo = 1,
+        EmRetirada = 2,
+        ACaminhoDaEntrega = 3,
+        Finalizada = 4,
+        Cancelada = 5
+    }
 }

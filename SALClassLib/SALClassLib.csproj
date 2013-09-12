@@ -108,7 +108,6 @@
     <Compile Include="OS\Model\DAO\OrdemServicoDAO.cs" />
     <Compile Include="OS\Model\EnderecoEntrega.cs" />
     <Compile Include="OS\Model\EnderecoRetirada.cs" />
-    <Compile Include="OS\Model\FilaOrdemServico.cs" />
     <Compile Include="OS\Model\ItemOrdemServico.cs" />
     <Compile Include="OS\Model\OrdemServico.cs" />
     <Compile Include="OS\Model\StatusOrdemServico.cs" />
@@ -153,7 +152,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <EmbeddedResource Include="OS\Model\DAO\Mapeamento\StatusOrdemServico.hbm.xml" />
-    <EmbeddedResource Include="OS\Model\DAO\Mapeamento\FilaOrdemServico.hbm.xml" />
     <EmbeddedResource Include="OS\Model\DAO\Mapeamento\ItemOrdemServico.hbm.xml">
       <SubType>Designer</SubType>
     </EmbeddedResource>

@@ -28,6 +28,11 @@ namespace SALClassLib.OS.Model
             set { numero = value; }
         }
 
+        public virtual String NumeroFormatado
+        {
+            get { return String.Format("{0:0000000}", numero); }
+        }
+
         private DateTime data;
 
         public virtual DateTime Data
