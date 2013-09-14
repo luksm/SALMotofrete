@@ -238,10 +238,11 @@ namespace SALMvc.Controllers
                 url = "http://maps.googleapis.com/maps/api/geocode/json?sensor=false&address=" +
                         ordemServico.EnderecoRetirada.getEndereco();
 
-                String jsonEnderecoRetirada = GMaps.getGeocode(ordemServico.EnderecoRetirada.getEndereco());
+                String sJson = GMaps.getGeocode(ordemServico.EnderecoRetirada.getEndereco());
 
-                JToken token = JObject.Parse(jsonEnderecoRetirada);
+                JToken token = JObject.Parse(sJson);
 
+                Endereco end = new Endereco(token);
 
                 try
                 {

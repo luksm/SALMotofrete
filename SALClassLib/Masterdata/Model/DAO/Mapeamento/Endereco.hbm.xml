@@ -8,6 +8,7 @@
     </id>
     <property name="Logradouro" column="LOGRADOURO" length="80" not-null="true" />
     <property name="Bairro" column="BAIRRO" length="20" not-null="true" />
+    <property name="Cep" column="CEP" length="10" not-null="false" />
     <property name="Numero" column="NUMERO" length="20" not-null="true" />
     <property name="Complemento" column="COMPLEMENTO" length="255" not-null="false" />
     <property name="Observacao" column="OBSERVACAO" length="2000" not-null="false" />

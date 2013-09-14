@@ -1,3 +1,4 @@
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -9,6 +10,54 @@ namespace SALClassLib.Masterdata.Model
 {
     public class Endereco : ICloneable
     {
+        public Endereco()
+        {
+            this.municipio = new Municipio();
+        }
+
+        public Endereco(JToken token)
+        {
+            if(this.municipio == null)
+                this.municipio = new Municipio();
+            if (this.municipio.Estado == null)
+                this.municipio.Estado = new Estado();
+
+            JToken address_components = token.SelectToken("results").First().SelectToken("address_components");
+
+            this.latitude = float.Parse(token.SelectToken("results").First().SelectToken("geometry").SelectToken("location").SelectToken("lat").ToString());
+            this.longitude = float.Parse(token.SelectToken("results").First().SelectToken("geometry").SelectToken("location").SelectToken("lng").ToString());
+
+            //iteração para ler os endereços
+            foreach (var item in address_components)
+            {
+                String tipo = item.SelectToken("types").First().ToString();
+                if (tipo.Equals("street_number"))
+                {
+                    this.numero = item.SelectToken("long_name").ToString();
+                }
+                else if (tipo.Equals("route"))
+                {
+                    this.logradouro = item.SelectToken("long_name").ToString();
+                }
+                else if (tipo.Equals("sublocality"))
+                {
+                    this.bairro = item.SelectToken("long_name").ToString();
+                }
+                else if (tipo.Equals("locality"))
+                {
+                    this.municipio.Nome = item.SelectToken("long_name").ToString();
+                }
+                else if (tipo.Equals("administrative_area_level_1"))
+                {
+                    this.municipio.Estado.Nome = item.SelectToken("long_name").ToString();
+                }
+                else if (tipo.Equals("postal_code"))
+                {
+                    this.cep = item.SelectToken("long_name").ToString();
+                }
+            }
+        }
+
         private uint id;
 
         public virtual uint Id
@@ -35,6 +84,16 @@ namespace SALClassLib.Masterdata.Model
         {
             get { return bairro; }
             set { bairro = value; }
+        }
+
+        private String cep;
+
+        [Required(ErrorMessage = "O CEP deve ser preenchido")]
+        [MaxLength(9, ErrorMessage = "O CEP deve conter no máximo 8 caracteres")]
+        public virtual String Cep
+        {
+            get { return cep; }
+            set { cep = value; }
         }
 
         private String numero;
@@ -86,13 +145,12 @@ namespace SALClassLib.Masterdata.Model
                    Numero + " - " +
                    Bairro + ", " +
                    Municipio.Nome + " - " + Municipio.Estado.Sigla;
-            }
-
-        public Endereco()
-        {
-            municipio = new Municipio();
         }
-        
+
+        public virtual float latitude { get; set; }
+
+        public virtual float longitude { get; set; }
+                
 
         // override object.Equals
         public override bool Equals(object obj)

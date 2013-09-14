@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -7,7 +8,13 @@ namespace SALMvc.Models
 {
     public class gMapsGeoCode
     {
-        public Results results;
+        public Results Results { get; set; }
+
+        public gMapsGeoCode(JToken token)
+        {
+            Results = new Results();
+
+        }
     }
 
     public class Results
