@@ -80,34 +80,61 @@ namespace SALMvc.Controllers
             return View();
         }
 
+        [HttpPost]
+        public ActionResult Create(OSEnderecoModel osModel)
+        {
+            String sJson = GMaps.getGeocode(osModel.EnderecoRetirada.Logradouro);
+            JToken token = JObject.Parse(sJson);
+
+            EnderecoRetirada end1 = new EnderecoRetirada(token);
+            end1.NomeContato = osModel.EnderecoRetirada.NomeContato;
+            end1.TelefoneContato = osModel.EnderecoRetirada.TelefoneContato;
+
+            osModel.EnderecoRetirada = end1;
+
+            EnderecoEntrega end2 = new EnderecoEntrega(token);
+            end2.NomeContato = osModel.EnderecoRetirada.NomeContato;
+            end2.TelefoneContato = osModel.EnderecoRetirada.TelefoneContato;
+
+            osModel.EnderecoEntrega = end2;
+
+            sJson = GMaps.getGeocode(osModel.EnderecoEntrega.Logradouro);
+            token = JObject.Parse(sJson);
+
+            osModel.EnderecoEntrega = new EnderecoEntrega(token);
+
+            TempData["OS"] = osModel;
+
+            return RedirectToAction("Step2");
+        }
+
+        //
+        // GET: /OrdemServico/Step2
+        public ActionResult Step2()
+        {
+            PreencherBagDropDownLists();
+            OSEnderecoModel osModel = (OSEnderecoModel)TempData["OS"];
+            return View(osModel);
+        }
+
         //
         // POST: /OrdemServico/Step2
         [HttpPost]
-        public ActionResult Step2()
+        public ActionResult Step2(OSEnderecoModel osModel)
         {
-            OrdemServico ordemServico = new OrdemServico();
-            ordemServico.EnderecoRetirada = new EnderecoRetirada();
-            ordemServico.EnderecoEntrega = new EnderecoEntrega();
+            OrdemServico os = new OrdemServico();
 
-            ordemServico.Data = DateTime.Now;
+            os.EnderecoEntrega = osModel.EnderecoEntrega;
+            os.EnderecoRetirada = osModel.EnderecoRetirada;
 
-            ordemServico.EnderecoRetirada.Logradouro = Request.Params["Origem[0][Endereco]"];
-            ordemServico.EnderecoRetirada.Complemento = Request.Params["Origem[0][Complemento]"];
-            ordemServico.EnderecoRetirada.NomeContato = Request.Params["Origem[0][Contato]"];
-
-            ordemServico.EnderecoEntrega.Logradouro = Request.Params["Destino[0][Endereco]"];
-            ordemServico.EnderecoEntrega.Complemento = Request.Params["Destino[0][Complemento]"];
-            ordemServico.EnderecoEntrega.NomeContato = Request.Params["Destino[0][Contato]"];
-
-            PreencherBagDropDownLists();
-
-            return View(ordemServico);
+            TempData["OS"] = os;
+            return RedirectToAction("Step3");
         }
 
         //
         // POST: /OrdemServico/Create
         [HttpPost]
-        public ActionResult Create(OrdemServico ordemServico)
+        public ActionResult Step3(OrdemServico ordemServico)
         {
             if (!ModelState.IsValid)
             {
@@ -138,7 +165,7 @@ namespace SALMvc.Controllers
                     bo.Dispose();
             }
             PreencherBagDropDownLists();
-            return View("Step2");
+            return View();
         }
 
         //

@@ -24,8 +24,8 @@ namespace SALClassLib.Masterdata.Model
 
             JToken address_components = token.SelectToken("results").First().SelectToken("address_components");
 
-            this.latitude = float.Parse(token.SelectToken("results").First().SelectToken("geometry").SelectToken("location").SelectToken("lat").ToString());
-            this.longitude = float.Parse(token.SelectToken("results").First().SelectToken("geometry").SelectToken("location").SelectToken("lng").ToString());
+            this.Latitude = float.Parse(token.SelectToken("results").First().SelectToken("geometry").SelectToken("location").SelectToken("lat").ToString());
+            this.Longitude = float.Parse(token.SelectToken("results").First().SelectToken("geometry").SelectToken("location").SelectToken("lng").ToString());
 
             //iteração para ler os endereços
             foreach (var item in address_components)
@@ -147,9 +147,9 @@ namespace SALClassLib.Masterdata.Model
                    Municipio.Nome + " - " + Municipio.Estado.Sigla;
         }
 
-        public virtual float latitude { get; set; }
+        public virtual float Latitude { get; set; }
 
-        public virtual float longitude { get; set; }
+        public virtual float Longitude { get; set; }
                 
 
         // override object.Equals

@@ -38,9 +38,9 @@
         });
 
         //Auto complete
-        var ACoptions = { componentRestrictions: { country: 'br', types: ['roads'] } };
-        var autoCompleteStart = new google.maps.places.Autocomplete(document.getElementById('Origem.0.Endereco'), ACoptions);
-        var autoCompleteRetirada = new google.maps.places.Autocomplete(document.getElementById('Destino.0.Endereco'), ACoptions);
+        var ACoptions = { componentRestrictions: { country: 'br'} };
+        var autoCompleteStart = new google.maps.places.Autocomplete(document.getElementById('EnderecoRetirada_Logradouro'), ACoptions);
+        var autoCompleteRetirada = new google.maps.places.Autocomplete(document.getElementById('EnderecoEntrega_Logradouro'), ACoptions);
     }
 
     function handleNoGeolocation(errorFlag) {

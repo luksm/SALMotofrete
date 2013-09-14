@@ -6,11 +6,21 @@ using System.Threading.Tasks;
 using SALClassLib.Masterdata.Model;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using Newtonsoft.Json.Linq;
 
 namespace SALClassLib.OS.Model
 {
     public class EnderecoEntrega : Endereco
     {
+        public EnderecoEntrega()
+        {
+        }
+
+        public EnderecoEntrega(JToken token)
+            : base(token)
+        {
+
+        }
 
         private String nomeContato;
 

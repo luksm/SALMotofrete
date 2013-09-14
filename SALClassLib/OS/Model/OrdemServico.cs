@@ -12,6 +12,7 @@ namespace SALClassLib.OS.Model
 {
     public class OrdemServico
     {
+
         private ulong id;
 
         public virtual ulong Id

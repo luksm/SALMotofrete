@@ -1,4 +1,4 @@
-﻿@model SALClassLib.OS.Model.OrdemServico
+﻿@model SALMvc.Models.OSEnderecoModel
 
 @{
     ViewBag.Title = "SAL Motofrete, seu motoboy a um click de distância!";
@@ -9,33 +9,33 @@
     <div class="span2">
         <h1 class="logo">Sal</h1>
 
-        @using (Html.BeginForm("Step2", "OrdemServico", FormMethod.Post, new { @class = "" }))
+        @using (Html.BeginForm("Create", "OrdemServico", FormMethod.Post, new { @class = "" }))
         {
             @Html.AntiForgeryToken()
             @Html.ValidationSummary(true)
             <fieldset>
                 <legend>Origem</legend>
-                <label for="Origem.0.Endereco">Endereço</label>
-                <input class="span12" type="text" id="Origem.0.Endereco" name="Origem[0][Endereco]" placeholder="Vou buscar aqui">
-
-                <label for="Origem.0.Complemento">Complemento</label>
-                <input class="span12" type="text" id="Origem.0.Complemento"  name="Origem[0][Complemento]" placeholder="Andar ? Apartamento ?">
+                <label for="EnderecoRetirada_Logradouro">Endereço</label>
+                @Html.TextBoxFor(model => model.EnderecoRetirada.Logradouro, new { placeholder="Vou buscar aqui", @class="span12" })
                 
-                <label for="Origem.0.Contato">Contato</label>
-                <input class="span12" type="text" id="Origem.0.Contato" name="Origem[0][Contato]" placeholder="Vou falar com quem ?">
+                <label for="EnderecoRetirada_Complemento">Complemento</label>
+                @Html.TextBoxFor(model => model.EnderecoRetirada.Complemento, new { placeholder="Andar ? Apartamento ?", @class="span12" })
+                
+                <label for="EnderecoRetirada_NomeContato">Contato</label>
+                @Html.TextBoxFor(model => model.EnderecoRetirada.NomeContato, new { placeholder="Vou falar com quem ?", @class="span12" })
                             
             </fieldset>
             <fieldset>
                 <legend>Destino</legend>
 
-                <label for="Destino.0.Endereco">Endereço</label>
-                <input class="span12" type="text" id="Destino.0.Endereco" name="Destino[0][Endereco]" placeholder="Vou buscar aqui">
-
-                <label for="Destino.0.Complemento">Complemento</label>
-                <input class="span12" type="text" id="Destino.0.Complemento"  name="Destino[0][Complemento]" placeholder="Andar ? Apartamento ?">
-
-                <label for="Destino.0.Contato">Contato</label>
-                <input class="span12" type="text" id="Destino.0.Contato" name="Destino[0][Contato]" placeholder="Vou falar com quem ?">
+                <label for="EnderecoEntrega_Logradouro">Endereço</label>
+                @Html.TextBoxFor(model => model.EnderecoEntrega.Logradouro, new { placeholder="Vou entregar aqui", @class="span12" })
+                
+                <label for="EnderecoEntrega_Complemento">Complemento</label>
+                @Html.TextBoxFor(model => model.EnderecoEntrega.Complemento, new { placeholder="Andar ? Apartamento ?", @class="span12" })
+                
+                <label for="EnderecoEntrega_NomeContato">Contato</label>
+                @Html.TextBoxFor(model => model.EnderecoEntrega.NomeContato, new { placeholder="Vou falar com quem ?", @class="span12" })
             </fieldset>
 
             <div class="form-actions">
