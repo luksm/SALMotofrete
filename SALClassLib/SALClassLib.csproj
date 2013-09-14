@@ -150,6 +150,7 @@
   <ItemGroup>
     <Content Include="hibernate.cfg.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
     </Content>
     <EmbeddedResource Include="OS\Model\DAO\Mapeamento\StatusOrdemServico.hbm.xml" />
     <EmbeddedResource Include="OS\Model\DAO\Mapeamento\ItemOrdemServico.hbm.xml">

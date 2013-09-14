@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.Script.Serialization;
 
 namespace Utilitarios.JSON
 {
@@ -15,9 +16,9 @@ namespace Utilitarios.JSON
         /// <returns></returns>
         public static String getGeocode(String address)
         {
-            String url = "http://maps.googleapis.com/maps/api/geocode/json?sensor=false&address=";
-            String code = JSON.Fetch(url + address);
-            return code;
+            String url = "http://maps.googleapis.com/maps/api/geocode/json?sensor=false&address=" + address;
+
+            return JSON.Fetch(url);
         }
 
         /// <summary>
@@ -25,7 +26,7 @@ namespace Utilitarios.JSON
         /// </summary>
         /// <param name="address">Endereço de onde se quer retornar os dados</param>
         /// <returns></returns>
-        public static String getDistanceMatrix(IList<String> origens, IList<String> destinos )
+        public static Object getDistanceMatrix(IList<String> origens, IList<String> destinos)
         {
             String url = "http://maps.googleapis.com/maps/api/distancematrix/json?mode=driving&language=pt-BR&sensor=false&origins=";
 
@@ -45,8 +46,9 @@ namespace Utilitarios.JSON
                     url += "|";
             }
 
-            String code = JSON.Fetch(url);
-            return code;
+            var a = new JavaScriptSerializer();
+            var aux = a.DeserializeObject(JSON.Fetch(url));
+            return aux;
         }
     }
 }

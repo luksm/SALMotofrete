@@ -10,6 +10,10 @@ using System.Web;
 using System.Web.Mvc;
 using Utilitarios.BO;
 using Utilitarios.JSON;
+using System.Web.Script.Serialization;
+using Newtonsoft.Json;
+using SALMvc.Models;
+using Newtonsoft.Json.Linq;
 
 namespace SALMvc.Controllers
 {
@@ -150,7 +154,7 @@ namespace SALMvc.Controllers
 
         //
         // GET: /OrdemServico/Edit/#
-        public ActionResult Edit(uint Id)
+        public ActionResult Edit(ulong Id)
         {
             OrdemServicoBO bo = new OrdemServicoBO();
             OrdemServico ordemServico = new OrdemServico();
@@ -187,7 +191,7 @@ namespace SALMvc.Controllers
 
         //
         // GET: /OrdemServico/Delete/#
-        public ActionResult Delete(uint Id)
+        public ActionResult Delete(ulong Id)
         {
             OrdemServicoBO bo = new OrdemServicoBO();
             try
@@ -234,10 +238,15 @@ namespace SALMvc.Controllers
                 url = "http://maps.googleapis.com/maps/api/geocode/json?sensor=false&address=" +
                         ordemServico.EnderecoRetirada.getEndereco();
 
+                String jsonEnderecoRetirada = GMaps.getGeocode(ordemServico.EnderecoRetirada.getEndereco());
+
+                JToken token = JObject.Parse(jsonEnderecoRetirada);
+
+
                 try
                 {
-                    TempData["flash"] = GMaps.getGeocode(ordemServico.EnderecoRetirada.getEndereco());
-                    TempData["flash"] = GMaps.getGeocode(ordemServico.EnderecoEntrega.getEndereco());
+                    TempData["flash"] = token.Value<String[]>("results")[0];
+                    // TempData["flash"] = GMaps.getGeocode(ordemServico.EnderecoEntrega.getEndereco());
                 }
                 catch (JSONException jsonex)
                 {
