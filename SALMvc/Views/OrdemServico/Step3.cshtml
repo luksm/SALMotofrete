@@ -44,7 +44,7 @@
     <div class="row-fluid">
         <div class="span4 offset2">
             <fieldset>
-                <legend>Endereço de Retirada</legend>
+                <legend>Endere&ccedil;o de Retirada</legend>
                 @Html.DisplayFor(model => model.EnderecoRetirada.Logradouro), @Html.DisplayFor(model => model.EnderecoRetirada.Numero)
                 @Html.DisplayFor(model => model.EnderecoRetirada.Complemento)<br />
                 @Html.DisplayFor(model => model.EnderecoRetirada.Bairro)<br />
@@ -54,7 +54,7 @@
         </div>
         <div class="span4">
             <fieldset>
-                <legend>Endereço de Entrega</legend>
+                <legend>Endere&ccedil;o de Entrega</legend>
                 @Html.DisplayFor(model => model.EnderecoEntrega.Logradouro), @Html.DisplayFor(model => model.EnderecoEntrega.Numero)
                 @Html.DisplayFor(model => model.EnderecoEntrega.Complemento)<br />
                 @Html.DisplayFor(model => model.EnderecoEntrega.Bairro)<br />
@@ -70,7 +70,7 @@
                 <div class="control-group">
                     @Html.LabelFor(model => model.Observacao, new { @class = "control-label" })
                     <div class="controls">
-                        @Html.EditorFor(model => model.Observacao)
+                        @Html.EditorFor(model => model.Observacao, new {  @class="span12" })
                     </div>
                 </div>
             </fieldset>
@@ -83,4 +83,25 @@
             </div>
         </div>
     </div>
+    @Html.HiddenFor(model => model.EnderecoRetirada.Logradouro)
+    @Html.HiddenFor(model => model.EnderecoRetirada.Numero)
+    @Html.HiddenFor(model => model.EnderecoRetirada.Complemento)
+    @Html.HiddenFor(model => model.EnderecoRetirada.Bairro)
+    @Html.HiddenFor(model => model.EnderecoRetirada.Municipio.Estado.Id)
+    @Html.HiddenFor(model => model.EnderecoRetirada.Municipio.Id)
+    @Html.HiddenFor(model => model.EnderecoRetirada.Cep)
+    @Html.HiddenFor(model => model.EnderecoRetirada.NomeContato)
+    @Html.HiddenFor(model => model.EnderecoRetirada.TelefoneContato)
+
+    @Html.HiddenFor(model => model.EnderecoEntrega.Logradouro)
+    @Html.HiddenFor(model => model.EnderecoEntrega.Numero)
+    @Html.HiddenFor(model => model.EnderecoEntrega.Complemento)
+    @Html.HiddenFor(model => model.EnderecoEntrega.Bairro)
+    @Html.HiddenFor(model => model.EnderecoEntrega.Municipio.Estado.Id)
+    @Html.HiddenFor(model => model.EnderecoEntrega.Municipio.Id)
+    @Html.HiddenFor(model => model.EnderecoEntrega.Cep)
+    @Html.HiddenFor(model => model.EnderecoEntrega.NomeContato)
+    @Html.HiddenFor(model => model.EnderecoEntrega.TelefoneContato)
+
+    @Html.HiddenFor(model => model.Data)
 }

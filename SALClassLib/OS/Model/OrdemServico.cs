@@ -45,6 +45,7 @@ namespace SALClassLib.OS.Model
         private String observacao;
 
         [DisplayName("Observação")]
+        [DataType(DataType.MultilineText)]
         public virtual String Observacao
         {
             get { return observacao; }

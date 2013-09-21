@@ -158,6 +158,8 @@ namespace SALMvc.Controllers
             ordemServico.Cliente = new Cliente();
             ordemServico.Cliente.Id = 1;
 
+            ordemServico.Numero = 1;
+
             // Save de Ordem de Serviço
             try
             {

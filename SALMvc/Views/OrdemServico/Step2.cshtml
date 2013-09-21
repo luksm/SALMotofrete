@@ -44,7 +44,7 @@
     <div class="row-fluid">
         <div class="span4 offset2">
             <fieldset>
-                <legend>Endereço de Retirada</legend>
+                <legend>Endere&ccedil;o de Retirada</legend>
                 <div class="control-group">
                     @Html.LabelFor(model => model.EnderecoRetirada.Logradouro, new { @class = "control-label" })
                     <div class="controls">
@@ -56,7 +56,7 @@
                     @Html.LabelFor(model => model.EnderecoRetirada.Numero, new { @class = "control-label" })
                     <div class="controls">
                         @Html.EditorFor(model => model.EnderecoRetirada.Numero)<br />
-                        @Html.ValidationMessageFor(model => model.EnderecoRetirada.Complemento)
+                        @Html.ValidationMessageFor(model => model.EnderecoRetirada.Numero)
                     </div>
                 </div>
                 <div class="control-group">
@@ -112,7 +112,7 @@
         </div>
         <div class="span4">
             <fieldset>
-                <legend>Endereço de Entrega</legend>
+                <legend>Endere&ccedil;o de Entrega</legend>
                 <div class="control-group">
                     @Html.LabelFor(model => model.EnderecoEntrega.Logradouro, new { @class = "control-label" })
                     <div class="controls">
