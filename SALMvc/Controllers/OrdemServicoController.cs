@@ -80,31 +80,25 @@ namespace SALMvc.Controllers
             return View();
         }
 
+        //
+        // POST: /OrdemServico/Create
         [HttpPost]
-        public ActionResult Create(OSEnderecoModel osModel)
+        public ActionResult Create(OrdServEndereco ordemServico)
         {
-            String sJson = GMaps.getGeocode(osModel.EnderecoRetirada.Logradouro);
-            JToken token = JObject.Parse(sJson);
 
-            EnderecoRetirada end1 = new EnderecoRetirada(token);
-            end1.NomeContato = osModel.EnderecoRetirada.NomeContato;
-            end1.TelefoneContato = osModel.EnderecoRetirada.TelefoneContato;
+            EnderecoRetirada er = new EnderecoRetirada(GMaps.getGeocode(ordemServico.EnderecoRetirada.getEndereco()));
+            EnderecoEntrega ee = new EnderecoEntrega(GMaps.getGeocode(ordemServico.EnderecoEntrega.getEndereco()));
 
-            osModel.EnderecoRetirada = end1;
+            er.NomeContato = ordemServico.EnderecoRetirada.NomeContato;
+            er.Complemento = ordemServico.EnderecoRetirada.Complemento;
 
-            EnderecoEntrega end2 = new EnderecoEntrega(token);
-            end2.NomeContato = osModel.EnderecoRetirada.NomeContato;
-            end2.TelefoneContato = osModel.EnderecoRetirada.TelefoneContato;
+            ee.NomeContato = ordemServico.EnderecoEntrega.NomeContato;
+            ee.Complemento = ordemServico.EnderecoEntrega.Complemento;
 
-            osModel.EnderecoEntrega = end2;
+            ordemServico.EnderecoRetirada = er;
+            ordemServico.EnderecoEntrega = ee;
 
-            sJson = GMaps.getGeocode(osModel.EnderecoEntrega.Logradouro);
-            token = JObject.Parse(sJson);
-
-            osModel.EnderecoEntrega = new EnderecoEntrega(token);
-
-            TempData["OS"] = osModel;
-
+            TempData["os"] = ordemServico;
             return RedirectToAction("Step2");
         }
 
@@ -113,34 +107,50 @@ namespace SALMvc.Controllers
         public ActionResult Step2()
         {
             PreencherBagDropDownLists();
-            OSEnderecoModel osModel = (OSEnderecoModel)TempData["OS"];
-            return View(osModel);
+            OrdServEndereco ordemServico = (OrdServEndereco)TempData["os"];
+            return View(ordemServico);
         }
 
         //
         // POST: /OrdemServico/Step2
         [HttpPost]
-        public ActionResult Step2(OSEnderecoModel osModel)
+        public ActionResult Step2(OrdServEndereco ordemServico)
         {
+            if (!ModelState.IsValid)
+            {
+                PreencherBagDropDownLists();
+                return View(ordemServico);
+            }
+
             OrdemServico os = new OrdemServico();
 
-            os.EnderecoEntrega = osModel.EnderecoEntrega;
-            os.EnderecoRetirada = osModel.EnderecoRetirada;
+            os.EnderecoRetirada = ordemServico.EnderecoRetirada;
+            os.EnderecoEntrega = ordemServico.EnderecoEntrega;
+            os.Data = DateTime.Now;
 
-            TempData["OS"] = os;
+            TempData["os"] = os;
             return RedirectToAction("Step3");
         }
 
         //
-        // POST: /OrdemServico/Create
+        // GET: /OrdemServico/Step3
+        public ActionResult Step3() {
+            OrdemServico ordemServico = (OrdemServico)TempData["os"];
+
+            using (MunicipioBO bo = new MunicipioBO()) {
+                ordemServico.EnderecoRetirada.Municipio = bo.BuscarPeloId(ordemServico.EnderecoRetirada.Municipio.Id);
+                ordemServico.EnderecoEntrega.Municipio = bo.BuscarPeloId(ordemServico.EnderecoEntrega.Municipio.Id);
+            }
+
+            return View(ordemServico);        
+        }
+
+
+        //
+        // POST: /OrdemServico/Step3
         [HttpPost]
         public ActionResult Step3(OrdemServico ordemServico)
         {
-            if (!ModelState.IsValid)
-            {
-                return View(ordemServico);
-            }
-
             OrdemServicoBO bo = new OrdemServicoBO();
             ordemServico.Status = new StatusOrdemServico();
             ordemServico.Status.Id = 1;
@@ -246,6 +256,7 @@ namespace SALMvc.Controllers
         /// <returns></returns>
         public ActionResult Process(ulong Id)
         {
+            /*
             String text;
             text = "";
             try
@@ -304,6 +315,7 @@ namespace SALMvc.Controllers
             {
                 TempData["flash"] = "Ocorreu um problema, tente novamente. " + ex.Message;
             }
+             * */
             return View();
         }
     }

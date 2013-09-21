@@ -19,7 +19,6 @@ namespace SALClassLib.OS.Model
         public EnderecoRetirada(JToken token)
             : base(token)
         {
-
         }
 
         private String nomeContato;

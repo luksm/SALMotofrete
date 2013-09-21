@@ -19,7 +19,6 @@ namespace SALClassLib.OS.Model
         public EnderecoEntrega(JToken token)
             : base(token)
         {
-
         }
 
         private String nomeContato;

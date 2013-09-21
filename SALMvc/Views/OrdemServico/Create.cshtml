@@ -1,4 +1,4 @@
-﻿@model SALMvc.Models.OSEnderecoModel
+@model SALMvc.Models.OrdServEndereco
 
 @{
     ViewBag.Title = "SAL Motofrete, seu motoboy a um click de distância!";
@@ -15,27 +15,31 @@
             @Html.ValidationSummary(true)
             <fieldset>
                 <legend>Origem</legend>
-                <label for="EnderecoRetirada_Logradouro">Endereço</label>
+                @Html.LabelFor(model => model.EnderecoRetirada.Logradouro)
                 @Html.TextBoxFor(model => model.EnderecoRetirada.Logradouro, new { placeholder="Vou buscar aqui", @class="span12" })
-                
-                <label for="EnderecoRetirada_Complemento">Complemento</label>
+                @Html.ValidationMessageFor(model => model.EnderecoRetirada.Logradouro)
+ 
+                @Html.LabelFor(model => model.EnderecoRetirada.Complemento)
                 @Html.TextBoxFor(model => model.EnderecoRetirada.Complemento, new { placeholder="Andar ? Apartamento ?", @class="span12" })
+                @Html.ValidationMessageFor(model => model.EnderecoRetirada.Logradouro)
                 
-                <label for="EnderecoRetirada_NomeContato">Contato</label>
+                @Html.LabelFor(model => model.EnderecoRetirada.NomeContato)
                 @Html.TextBoxFor(model => model.EnderecoRetirada.NomeContato, new { placeholder="Vou falar com quem ?", @class="span12" })
-                            
+                @Html.ValidationMessageFor(model => model.EnderecoRetirada.NomeContato)
             </fieldset>
             <fieldset>
                 <legend>Destino</legend>
-
-                <label for="EnderecoEntrega_Logradouro">Endereço</label>
+                @Html.LabelFor(model => model.EnderecoEntrega.Logradouro)
                 @Html.TextBoxFor(model => model.EnderecoEntrega.Logradouro, new { placeholder="Vou entregar aqui", @class="span12" })
-                
-                <label for="EnderecoEntrega_Complemento">Complemento</label>
+                @Html.ValidationMessageFor(model => model.EnderecoEntrega.Logradouro)
+ 
+                @Html.LabelFor(model => model.EnderecoEntrega.Complemento)
                 @Html.TextBoxFor(model => model.EnderecoEntrega.Complemento, new { placeholder="Andar ? Apartamento ?", @class="span12" })
+                @Html.ValidationMessageFor(model => model.EnderecoEntrega.Logradouro)
                 
-                <label for="EnderecoEntrega_NomeContato">Contato</label>
+                @Html.LabelFor(model => model.EnderecoEntrega.NomeContato)
                 @Html.TextBoxFor(model => model.EnderecoEntrega.NomeContato, new { placeholder="Vou falar com quem ?", @class="span12" })
+                @Html.ValidationMessageFor(model => model.EnderecoEntrega.NomeContato)
             </fieldset>
 
             <div class="form-actions">

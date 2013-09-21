@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,7 +15,7 @@ namespace Utilitarios.JSON
         /// </summary>
         /// <param name="address">Endereço de onde se quer retornar os dados</param>
         /// <returns></returns>
-        public static String getGeocode(String address)
+        public static JToken getGeocode(String address)
         {
             String url = "http://maps.googleapis.com/maps/api/geocode/json?sensor=false&address=" + address;
 
@@ -26,7 +27,7 @@ namespace Utilitarios.JSON
         /// </summary>
         /// <param name="address">Endereço de onde se quer retornar os dados</param>
         /// <returns></returns>
-        public static Object getDistanceMatrix(IList<String> origens, IList<String> destinos)
+        public static JToken getDistanceMatrix(IList<String> origens, IList<String> destinos)
         {
             String url = "http://maps.googleapis.com/maps/api/distancematrix/json?mode=driving&language=pt-BR&sensor=false&origins=";
 
@@ -46,9 +47,7 @@ namespace Utilitarios.JSON
                     url += "|";
             }
 
-            var a = new JavaScriptSerializer();
-            var aux = a.DeserializeObject(JSON.Fetch(url));
-            return aux;
+            return JSON.Fetch(url);
         }
     }
 }

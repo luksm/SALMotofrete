@@ -156,6 +156,7 @@
     </Compile>
     <Compile Include="Helpers\LoginHelper.cs" />
     <Compile Include="Models\OSEnderecoModel.cs" />
+    <Compile Include="Models\OrdServEndereco.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

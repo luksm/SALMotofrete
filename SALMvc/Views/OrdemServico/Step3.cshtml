@@ -1,4 +1,6 @@
-﻿@{
+@model SALClassLib.OS.Model.OrdemServico
+
+@{
     ViewBag.Title = "SAL Motofrete, seu motoboy a um click de distância!";
     Layout = "~/Views/Shared/_Home.cshtml";
 }
@@ -24,4 +26,61 @@
 </div>    
 }
 
-OK
+<div class="row-fluid header">
+    <div class="span12">
+        <h2 class="text-center">Novo Pedido</h2>
+    </div>
+</div>
+<div class="row-fluid">
+    <div class="span12">
+    &nbsp;
+    </div>
+</div>
+
+@using (Html.BeginForm("Step3", "OrdemServico", FormMethod.Post, new { @class = "form-horizontal" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+    <div class="row-fluid">
+        <div class="span4 offset2">
+            <fieldset>
+                <legend>Endereço de Retirada</legend>
+                @Html.DisplayFor(model => model.EnderecoRetirada.Logradouro), @Html.DisplayFor(model => model.EnderecoRetirada.Numero)
+                @Html.DisplayFor(model => model.EnderecoRetirada.Complemento)<br />
+                @Html.DisplayFor(model => model.EnderecoRetirada.Bairro)<br />
+                @Html.DisplayFor(model => model.EnderecoRetirada.Municipio.Nome) - @Html.DisplayFor(model => model.EnderecoRetirada.Municipio.Estado.Sigla)<br />
+                @Html.DisplayFor(model => model.EnderecoRetirada.Observacao)
+            </fieldset>
+        </div>
+        <div class="span4">
+            <fieldset>
+                <legend>Endereço de Entrega</legend>
+                @Html.DisplayFor(model => model.EnderecoEntrega.Logradouro), @Html.DisplayFor(model => model.EnderecoEntrega.Numero)
+                @Html.DisplayFor(model => model.EnderecoEntrega.Complemento)<br />
+                @Html.DisplayFor(model => model.EnderecoEntrega.Bairro)<br />
+                @Html.DisplayFor(model => model.EnderecoEntrega.Municipio.Nome) - @Html.DisplayFor(model => model.EnderecoEntrega.Municipio.Estado.Sigla)<br />
+                @Html.DisplayFor(model => model.EnderecoEntrega.Observacao)
+            </fieldset>
+        </div>
+    </div>
+    <div class="row-fluid">
+        <div class="span8 offset2">
+            <fieldset>
+                <legend>Comentario</legend>
+                <div class="control-group">
+                    @Html.LabelFor(model => model.Observacao, new { @class = "control-label" })
+                    <div class="controls">
+                        @Html.EditorFor(model => model.Observacao)
+                    </div>
+                </div>
+            </fieldset>
+        </div>
+    </div>
+    <div class="row-fluid">
+        <div class="span8 offset2">
+            <div class="form-actions">
+                <button type="submit" class="btn btn-danger">Confirmar</button>
+            </div>
+        </div>
+    </div>
+}
