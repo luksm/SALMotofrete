@@ -34,8 +34,8 @@
                 <td>@Html.DisplayFor(modelItem => item.Data)</td>
                 <td>@Html.DisplayFor(modelItem => item.Observacao)</td>
                 <td class="actions">
-                    <a href="@Url.Action("Details", "Cliente", new { id=item.Id })"><i class="icon-info-sign icon-black"></i></a>
-                    <a href="@Url.Action("Delete", "Cliente", new { id=item.Id })"><i class="icon-trash icon-black"></i></a>
+                    <a href="@Url.Action("Details", "OrdemServico", new { id=item.Id })"><i class="icon-info-sign icon-black"></i></a>
+                    <a href="@Url.Action("Delete", "OrdemServico", new { id=item.Id })"><i class="icon-trash icon-black"></i></a>
                 </td>
             </tr>
         }
