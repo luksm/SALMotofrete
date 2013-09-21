@@ -1,5 +1,6 @@
 ﻿using SALClassLib.Masterdata.Model;
 using SALClassLib.Masterdata.Model.BO;
+using SALMvcMobile.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,6 +17,8 @@ namespace SALMvcMobile.Controllers
 
         public ActionResult Index()
         {
+            MatrizDistancia mdis = new MatrizDistancia();
+            EnderecoMatrizDistancia maisProximo = mdis.GetDestinoMaisProximo();
             return View();
         }
 

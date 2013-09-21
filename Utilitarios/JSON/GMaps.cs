@@ -27,16 +27,11 @@ namespace Utilitarios.JSON
         /// </summary>
         /// <param name="address">Endereço de onde se quer retornar os dados</param>
         /// <returns></returns>
-        public static JToken getDistanceMatrix(IList<String> origens, IList<String> destinos)
+        public static JToken getDistanceMatrix(String origem, IList<String> destinos)
         {
             String url = "http://maps.googleapis.com/maps/api/distancematrix/json?mode=driving&language=pt-BR&sensor=false&origins=";
 
-            for (var index = 0; index < origens.Count; index++)
-            {
-                url += origens[index];
-                if (index + 1 <= origens.Count)
-                    url += "|";
-            }
+            url += origem;
 
             url += "&destinations=";
 

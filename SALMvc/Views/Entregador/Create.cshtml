@@ -10,14 +10,16 @@
     <h2>@ViewBag.Title</h2>
 </div>
 
-@using (Html.BeginForm("Create", "Entregador", FormMethod.Post, new { @class = "form-horizontal",  enctype = "multipart/form-data" }))
+@using (Html.BeginForm("Create", "Entregador", FormMethod.Post, new { @class = "form-horizontal", enctype = "multipart/form-data" }))
 {
-    @Html.AntiForgeryToken()
-    @Html.ValidationSummary(true)
+    <span style="color: red;">
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+    </span>
     <div class="row">
         <div class="span5">
             <div class="control-group">
-                @Html.LabelFor(model => model.Nome,  new { @class = "control-label" })
+                @Html.LabelFor(model => model.Nome, new { @class = "control-label" })
                 <div class="controls">
                     @Html.EditorFor(model => model.Nome)<br />
                     @Html.ValidationMessageFor(model => model.Nome)
@@ -25,7 +27,7 @@
             </div>
 
             <div class="control-group">
-                @Html.LabelFor(model => model.Sobrenome,  new { @class = "control-label" })
+                @Html.LabelFor(model => model.Sobrenome, new { @class = "control-label" })
                 <div class="controls">
                     @Html.EditorFor(model => model.Sobrenome)<br />
                     @Html.ValidationMessageFor(model => model.Sobrenome)
@@ -33,7 +35,7 @@
             </div>
 
             <div class="control-group">
-                @Html.LabelFor(model => model.Cpf,  new { @class = "control-label" })
+                @Html.LabelFor(model => model.Cpf, new { @class = "control-label" })
                 <div class="controls">
                     @Html.EditorFor(model => model.Cpf)<br />
                     @Html.ValidationMessageFor(model => model.Cpf)
@@ -41,7 +43,7 @@
             </div>
 
             <div class="control-group">
-                @Html.LabelFor(model => model.Rg,  new { @class = "control-label" })
+                @Html.LabelFor(model => model.Rg, new { @class = "control-label" })
                 <div class="controls">
                     @Html.EditorFor(model => model.Rg)<br />
                     @Html.ValidationMessageFor(model => model.Rg)
@@ -49,7 +51,7 @@
             </div>
 
             <div class="control-group">
-                @Html.LabelFor(model => model.Cnh,  new { @class = "control-label" })
+                @Html.LabelFor(model => model.Cnh, new { @class = "control-label" })
                 <div class="controls">
                     @Html.EditorFor(model => model.Cnh)<br />
                     @Html.ValidationMessageFor(model => model.Cnh)
@@ -57,7 +59,7 @@
             </div>
 
             <div class="control-group">
-                @Html.LabelFor(model => model.AparelhoMovel,  new { @class = "control-label" })
+                @Html.LabelFor(model => model.AparelhoMovel, new { @class = "control-label" })
                 <div class="controls">
                     @Html.DropDownListFor(model => model.AparelhoMovel.Id, (IEnumerable<SelectListItem>)ViewBag.AparelhoMovel)<br />
                     @Html.ValidationMessageFor(model => model.AparelhoMovel)
@@ -66,7 +68,7 @@
         </div>
         <div class="span5">
             <div class="control-group">
-                @Html.LabelFor(model => model.PlacaMoto,  new { @class = "control-label" })
+                @Html.LabelFor(model => model.PlacaMoto, new { @class = "control-label" })
                 <div class="controls">
                     @Html.EditorFor(model => model.PlacaMoto)<br />
                     @Html.ValidationMessageFor(model => model.PlacaMoto)
@@ -74,7 +76,7 @@
             </div>
 
             <div class="control-group">
-                @Html.LabelFor(model => model.ModeloMoto,  new { @class = "control-label" })
+                @Html.LabelFor(model => model.ModeloMoto, new { @class = "control-label" })
                 <div class="controls">
                     @Html.EditorFor(model => model.ModeloMoto)<br />
                     @Html.ValidationMessageFor(model => model.ModeloMoto)
@@ -82,7 +84,7 @@
             </div>
 
             <div class="control-group">
-                @Html.LabelFor(model => model.Usuario,  new { @class = "control-label" })
+                @Html.LabelFor(model => model.Usuario, new { @class = "control-label" })
                 <div class="controls">
                     @Html.EditorFor(model => model.Usuario)<br />
                     @Html.ValidationMessageFor(model => model.Usuario)
@@ -90,7 +92,7 @@
             </div>
 
             <div class="control-group">
-                @Html.LabelFor(model => model.Senha,  new { @class = "control-label" })
+                @Html.LabelFor(model => model.Senha, new { @class = "control-label" })
                 <div class="controls">
                     @Html.PasswordFor(model => model.Senha)<br />
                     @Html.ValidationMessageFor(model => model.Senha)
@@ -98,19 +100,19 @@
             </div>
 
             <div class="control-group">
-                @Html.LabelFor(model => model.Foto,  new { @class = "control-label" })
+                @Html.LabelFor(model => model.Foto, new { @class = "control-label" })
                 <div class="controls">
                     <input type="file" name="Foto" />
                 </div>
             </div>
         </div>
     </div>
-    <div class="row">            
+    <div class="row">
         <p class="actions">
             <input class="btn btn-danger" type="submit" value="Cadastrar" />
             <input class="btn" type="reset" value="Limpar" />
             <a class="btn" href="@Url.Action("Index", "Entregador")">Cancelar</a>
-        </p>            
+        </p>
     </div>
 }
 

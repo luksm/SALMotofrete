@@ -28,7 +28,19 @@
           <a href="@Url.Action("Index", "Home")" class="logo brand">Sal</a>
           <div class="nav-collapse collapse">
             <p class="navbar-text pull-right">
-              Logged in as <a href="#" class="navbar-link">Username</a>
+              @{
+                  SALClassLib.Masterdata.Model.Pessoa pessoa = SALMvc.Helpers.LoginHelper.GetUsuarioLogado(this.User.Identity.Name);
+                  String nomeUsuario = "";
+                  if (pessoa is SALClassLib.Masterdata.Model.PessoaFisica)
+                  {
+                      nomeUsuario = ((SALClassLib.Masterdata.Model.PessoaFisica)pessoa).Nome;
+                  }
+                  else if (pessoa is SALClassLib.Masterdata.Model.PessoaJuridica)
+                  {
+                      nomeUsuario = ((SALClassLib.Masterdata.Model.PessoaJuridica)pessoa).NomeFantasia;
+                  }
+              }
+              Olá, <a href="#" class="navbar-link">@nomeUsuario</a>
             </p>
           </div>
         </div>

@@ -32,5 +32,15 @@ namespace SALMvc.Helpers
             }
             return pessoa;
         }
+
+        public static Pessoa GetUsuarioLogado(String usuario)
+        {
+            Pessoa pessoa = null;
+            using (LoginBO bo = new LoginBO())
+            {
+                pessoa = bo.BuscarPeloUsuario(usuario);
+            }
+            return pessoa;
+        }
     }
 }
