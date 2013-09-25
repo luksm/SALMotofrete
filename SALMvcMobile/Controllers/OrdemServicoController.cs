@@ -2,6 +2,7 @@
 using SALClassLib.OS.Model;
 using SALClassLib.OS.Model.BO;
 using SALMvcMobile.Helpers;
+using SALMvcMobile.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -51,6 +52,28 @@ namespace SALMvcMobile.Controllers
             }
 
             return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        public ActionResult AtribuirOS(String geolocation)
+        {
+            try
+            {
+                IList<OrdemServico> ordensDisponiveis = null;
+                using (OrdemServicoBO bo = new OrdemServicoBO())
+                {
+                    ordensDisponiveis = bo.BuscarOSsDisponiveisParaEntregadores();
+                }
+
+                MatrizDistancia mdis = new MatrizDistancia();
+                
+                EnderecoMatrizDistancia maisProximo = mdis.GetDestinoMaisProximo();
+            }
+            catch (Exception)
+            {
+                TempData["flash"] = "Ocorreu um problema, tente novamente.";
+            }
+            return View();
         }
     }
 }

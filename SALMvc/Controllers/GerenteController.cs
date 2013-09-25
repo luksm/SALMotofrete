@@ -34,11 +34,12 @@ namespace SALMvc.Controllers
 
         //
         // GET: /Gerente/
-
+        
         public ActionResult Index(int? page, int? pageSize)
         {
             if (!LoginHelper.ValidarTipoUsuarioLogado(this, typeof(Gerente)))
                 return new HttpNotFoundResult();
+
             if(Session["RegPagina"] == null)
                 Session["RegPagina"] = 10;
             if (pageSize != null) Session["RegPagina"] = pageSize;
@@ -106,7 +107,7 @@ namespace SALMvc.Controllers
 
         //
         // GET: /Gerente/Delete/#
-
+        
         public ActionResult Delete(uint id)
         {
             if (!LoginHelper.ValidarTipoUsuarioLogado(this, typeof(Gerente)))

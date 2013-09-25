@@ -1,4 +1,5 @@
 ﻿using NHibernate;
+using NHibernate.Criterion;
 using SALClassLib.Masterdata.Model;
 using SALClassLib.OS.Model.DAO;
 using System;
@@ -118,6 +119,20 @@ namespace SALClassLib.OS.Model.BO
             }
 
             return os;
+        }
+
+        public IList<OrdemServico> BuscarOSsDisponiveisParaEntregadores()
+        {
+            IList<OrdemServico> ordensServico = null;
+            using (ITransaction tx = sessao.BeginTransaction())
+            {
+                ICriteria crit = sessao.CreateCriteria(typeof(OrdemServico));
+                crit.CreateAlias("Status", "sts");
+                crit.Add(Restrictions.Eq("sts.Id", 1));
+                crit.Add(Restrictions.IsNull("Entregador"));
+                ordensServico = crit.List<OrdemServico>();
+            }
+            return ordensServico;
         }
     }
 }

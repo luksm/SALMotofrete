@@ -17,8 +17,6 @@ namespace SALMvcMobile.Controllers
 
         public ActionResult Index()
         {
-            MatrizDistancia mdis = new MatrizDistancia();
-            EnderecoMatrizDistancia maisProximo = mdis.GetDestinoMaisProximo();
             return View();
         }
 

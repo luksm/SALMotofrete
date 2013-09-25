@@ -14,35 +14,62 @@
     @Html.HiddenFor(model => model.Id)
     @Html.HiddenFor(model => model.Status.Id)
     
+    if (Model != null)
+    {    
+    <div class="editor-label">
+        <b>#</b> @Html.DisplayFor(model => model.NumeroFormatado)
+    </div>
+    <div class="editor-label">
+        <b>Origem</b> @(Model.EnderecoRetirada.getEndereco())
+    </div>
+    <div class="editor-label">
+        <b>Contato</b> @(Model.EnderecoRetirada.NomeContato)
+    </div>
+    <div class="editor-label">
+        <b>Destino</b> @(Model.EnderecoEntrega.getEndereco())
+    </div>
+    <div class="editor-label">
+        <b>Contato</b> @(Model.EnderecoEntrega.NomeContato)
+    </div>
+    <div class="editor-label">
+        <b>Status</b> @(Model.Status.Descricao)
+    </div>
+        
+    <input type="submit" value="@TempData["botao"]" />
+    }
+}
+
+@using (Html.BeginForm("AtribuirOS", "OrdemServico", new { geolocation = Request.Params["geolocation"] }, FormMethod.Post, new { @class = "" }))
+{
     if (Model == null)
     {
-        <div class="editor-label">
-            <label>
-                Não há ordens de serviço disponíveis no momento!
-            </label>
-        </div>
+    <div class="editor-label">
+        <label>
+            Não há ordens de serviço disponíveis no momento!
+        </label>
+        @Html.Hidden("geolocation")
+    </div>
+    <div class="editor-label">
+        <input type="submit" id="btnVerificarNovaOS" value="Verificar nova Ordem de Serviço" class="btn btn-primary" />
+    </div>
     }
-    else
-    {    
-        <div class="editor-label">
-            <b>#</b> @Html.DisplayFor(model => model.NumeroFormatado)
-        </div>
-        <div class="editor-label">
-            <b>Origem</b> @(Model.EnderecoRetirada.getEndereco())
-        </div>
-        <div class="editor-label">
-            <b>Contato</b> @(Model.EnderecoRetirada.NomeContato)
-        </div>
-        <div class="editor-label">
-            <b>Destino</b> @(Model.EnderecoEntrega.getEndereco())
-        </div>
-        <div class="editor-label">
-            <b>Contato</b> @(Model.EnderecoEntrega.NomeContato)
-        </div>
-        <div class="editor-label">
-            <b>Status</b> @(Model.Status.Descricao)
-        </div>
-        
-        <input type="submit" value="@TempData["botao"]" />
-    }
+}
+
+@section Scripts{
+    <script type="text/javascript">
+        function getLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function (position) {
+                    $('input[id="geolocation"]').val(position.coords.latitude + ' ' + position.coords.longitude);
+                });
+            }
+            else {
+                $('input[id="geolocation"]').val('NS');
+            }
+        }
+        $('#btnVerificarNovaOS').click(function () {
+            getLocation();
+            return true;
+        });
+    </script>
 }
