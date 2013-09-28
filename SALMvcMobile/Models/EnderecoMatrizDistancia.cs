@@ -9,6 +9,24 @@ namespace SALMvcMobile.Models
 {
     public class EnderecoMatrizDistancia : Endereco
     {
+        public EnderecoMatrizDistancia()
+        {
+
+        }
+
+        public EnderecoMatrizDistancia(Endereco e)
+        {
+            this.Bairro = e.Bairro;
+            this.Cep = e.Cep;
+            this.Complemento = e.Complemento;
+            this.Id = e.Id;
+            this.Logradouro = e.Logradouro;
+            this.Municipio = e.Municipio;
+            this.Numero = e.Numero;
+            this.Observacao = e.Observacao;
+            this.Pessoa = e.Pessoa;
+        }
+
         public String DistanciaTexto { get; set; }
         public int DistanciaValor { get; set; }
 

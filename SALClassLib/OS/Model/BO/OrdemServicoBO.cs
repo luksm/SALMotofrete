@@ -128,7 +128,7 @@ namespace SALClassLib.OS.Model.BO
             {
                 ICriteria crit = sessao.CreateCriteria(typeof(OrdemServico));
                 crit.CreateAlias("Status", "sts");
-                crit.Add(Restrictions.Eq("sts.Id", 1));
+                crit.Add(Restrictions.Eq("sts.Id", (uint)1));
                 crit.Add(Restrictions.IsNull("Entregador"));
                 ordensServico = crit.List<OrdemServico>();
             }

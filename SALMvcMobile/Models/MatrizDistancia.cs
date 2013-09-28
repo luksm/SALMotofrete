@@ -10,7 +10,7 @@ namespace SALMvcMobile.Models
 {
     public class MatrizDistancia
     {
-        public Endereco Origem { get; set; }
+        public String Origem { get; set; }
 
         public IList<EnderecoMatrizDistancia> Destinos { get; set; }
 
@@ -23,7 +23,7 @@ namespace SALMvcMobile.Models
                 enderecos.Add(item.getEndereco());
             }
 
-            JToken token = GMaps.getDistanceMatrix(Origem.getEndereco(), enderecos);
+            JToken token = GMaps.getDistanceMatrix(Origem, enderecos);
 
             JToken elements = token.SelectToken("rows").First().SelectToken("elements");
 

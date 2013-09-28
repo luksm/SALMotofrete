@@ -39,7 +39,7 @@
     }
 }
 
-@using (Html.BeginForm("AtribuirOS", "OrdemServico", new { geolocation = Request.Params["geolocation"] }, FormMethod.Post, new { @class = "" }))
+@using (Html.BeginForm("AtribuirOS", "OrdemServico", FormMethod.Post, new { @id = "frmNovaOS" }))
 {
     if (Model == null)
     {
@@ -50,7 +50,7 @@
         @Html.Hidden("geolocation")
     </div>
     <div class="editor-label">
-        <input type="submit" id="btnVerificarNovaOS" value="Verificar nova Ordem de Serviço" class="btn btn-primary" />
+        <input type="submit" id="btnNovaOS" value="Verificar nova Ordem de Serviço" class="btn btn-primary" />
     </div>
     }
 }
@@ -60,16 +60,25 @@
         function getLocation() {
             if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition(function (position) {
-                    $('input[id="geolocation"]').val(position.coords.latitude + ' ' + position.coords.longitude);
+                    var coordenada = position.coords.latitude + ' ' + position.coords.longitude;
+                    console.log(coordenada);
+                    document.getElementById("geolocation").value = coordenada;
+                    $('#geolocation').trigger('change');
                 });
             }
             else {
-                $('input[id="geolocation"]').val('NS');
+                console.log("NS");
             }
         }
-        $('#btnVerificarNovaOS').click(function () {
-            getLocation();
-            return true;
+        $(function () {
+            $('#btnNovaOS').click(function (e) {
+                e.preventDefault();
+                $(this).prop('disabled', true);
+                getLocation();
+            });
+            $('#geolocation').change(function () {
+                $('#frmNovaOS').submit();
+            });
         });
     </script>
 }

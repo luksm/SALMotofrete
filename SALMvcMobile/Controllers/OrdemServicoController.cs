@@ -66,14 +66,22 @@ namespace SALMvcMobile.Controllers
                 }
 
                 MatrizDistancia mdis = new MatrizDistancia();
+                mdis.Origem = geolocation;
+
+                mdis.Destinos = new List<EnderecoMatrizDistancia>();
+                foreach (var item in ordensDisponiveis)
+                {
+                    EnderecoMatrizDistancia e = new EnderecoMatrizDistancia(item.EnderecoRetirada);
+                    mdis.Destinos.Add(e);
+                }
                 
                 EnderecoMatrizDistancia maisProximo = mdis.GetDestinoMaisProximo();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 TempData["flash"] = "Ocorreu um problema, tente novamente.";
             }
-            return View();
+            return RedirectToAction("Index");
         }
     }
 }
