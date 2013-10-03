@@ -1,6 +1,7 @@
 ﻿using NHibernate;
 using SALClassLib.Masterdata.Model;
 using SALClassLib.Masterdata.Model.BO;
+using SALMvc.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +12,7 @@ using Utilitarios.BO;
 
 namespace SALMvc.Controllers
 {
+    [Authorize]
     public class ClienteController : Controller
     {
         IList<Cliente> lista = null;
@@ -87,9 +89,13 @@ namespace SALMvc.Controllers
             ViewBag.Estados = listaEstados;
         }
 
+        [AllowAnonymous]
         [HttpPost]
         public ActionResult BuscarMunicipios(ushort idEstado)
         {
+            if (!LoginHelper.ValidarTipoUsuarioLogado(this, typeof(Gerente)))
+                return new HttpNotFoundResult();
+
             try
             {
                 using (MunicipioBO bom = new MunicipioBO())
@@ -115,6 +121,9 @@ namespace SALMvc.Controllers
 
         public ActionResult Index()
         {
+            if (!LoginHelper.ValidarTipoUsuarioLogado(this, typeof(Gerente)))
+                return new HttpNotFoundResult();
+
             Listar();
             return View(lista);
         }
@@ -122,6 +131,7 @@ namespace SALMvc.Controllers
         //
         // GET: /Cliente/CreatePF
 
+        [AllowAnonymous]
         public ActionResult CreatePF()
         {
             return View();
@@ -130,6 +140,7 @@ namespace SALMvc.Controllers
         //
         // POST: /Cliente/CreatePF
 
+        [AllowAnonymous]
         [HttpPost]
         public ActionResult CreatePF(Cliente cliente)
         {
@@ -163,6 +174,7 @@ namespace SALMvc.Controllers
         //
         // GET: /Cliente/CreatePJ
 
+        [AllowAnonymous]
         public ActionResult CreatePJ()
         {
             return View();
@@ -171,6 +183,7 @@ namespace SALMvc.Controllers
         //
         // POST: /Cliente/CreatePJ
 
+        [AllowAnonymous]
         [HttpPost]
         public ActionResult CreatePJ(Cliente cliente)
         {
@@ -204,6 +217,7 @@ namespace SALMvc.Controllers
         //
         // GET: /Cliente/Edit/#
 
+        [AllowAnonymous]
         public ActionResult Edit(uint id)
         {
             Cliente cliente = new Cliente();
@@ -225,7 +239,8 @@ namespace SALMvc.Controllers
 
         //
         // GET: /Cliente/EditPF/#
-        
+
+        [AllowAnonymous]
         public ActionResult EditPF()
         {
             Cliente cliente = (Cliente)Session["cliente"];
@@ -235,6 +250,7 @@ namespace SALMvc.Controllers
         //
         // POST: /Cliente/EditPF/#
 
+        [AllowAnonymous]
         [HttpPost]
         public ActionResult EditPF(Cliente cliente)
         {
@@ -271,6 +287,7 @@ namespace SALMvc.Controllers
         //
         // GET: /Cliente/EditPJ/#
 
+        [AllowAnonymous]
         public ActionResult EditPJ()
         {
             Cliente cliente = (Cliente)Session["cliente"];
@@ -313,7 +330,7 @@ namespace SALMvc.Controllers
 
         //
         // GET: /Cliente/Delete/#
-
+        [AllowAnonymous]
         public ActionResult Delete(uint id)
         {
             Cliente cliente = null;
@@ -344,7 +361,7 @@ namespace SALMvc.Controllers
 
         //
         // GET: /Cliente/DeletePF/#
-
+        [AllowAnonymous]
         public ActionResult DeletePF()
         {
             Cliente cliente = (Cliente)Session["cliente"];
@@ -353,7 +370,7 @@ namespace SALMvc.Controllers
 
         //
         // POST: /Cliente/DeletePF/#
-
+        [AllowAnonymous]
         [HttpPost]
         public ActionResult DeletePF(Cliente cliente)
         {
@@ -377,7 +394,7 @@ namespace SALMvc.Controllers
 
         //
         // GET: /Cliente/DeletePJ/#
-
+        [AllowAnonymous]
         public ActionResult DeletePJ()
         {
             Cliente cliente = (Cliente)Session["cliente"];
@@ -386,7 +403,7 @@ namespace SALMvc.Controllers
 
         //
         // POST: /Cliente/DeletePJ/#
-
+        [AllowAnonymous]
         [HttpPost]
         public ActionResult DeletePJ(Cliente cliente)
         {
@@ -410,7 +427,7 @@ namespace SALMvc.Controllers
 
         //
         // GET: /Cliente/Details/#
-
+        [AllowAnonymous]
         public ActionResult Details(uint id)
         {
             Cliente cliente = new Cliente();
@@ -431,12 +448,14 @@ namespace SALMvc.Controllers
             return RedirectToAction("Index");
         }
 
+        [AllowAnonymous]
         public ActionResult DetailsPF()
         {
             Cliente cliente = (Cliente) Session["cliente"];
             return View(cliente);
         }
 
+        [AllowAnonymous]
         public ActionResult DetailsPJ()
         {
             Cliente cliente = (Cliente)Session["cliente"];
@@ -451,6 +470,9 @@ namespace SALMvc.Controllers
 
         public ActionResult Enderecos()
         {
+            if (!LoginHelper.ValidarTipoUsuarioLogado(this, typeof(Gerente)))
+                return new HttpNotFoundResult();
+
             try
             {
                 Cliente c = (Cliente) Session["cliente"];
@@ -475,6 +497,9 @@ namespace SALMvc.Controllers
 
         public ActionResult CreateEndereco()
         {
+            if (!LoginHelper.ValidarTipoUsuarioLogado(this, typeof(Gerente)))
+                return new HttpNotFoundResult();
+
             PreencherBagDropDownLists();
             return View();
         }
@@ -485,6 +510,9 @@ namespace SALMvc.Controllers
         [HttpPost]
         public ActionResult CreateEndereco(Endereco endereco)
         {
+            if (!LoginHelper.ValidarTipoUsuarioLogado(this, typeof(Gerente)))
+                return new HttpNotFoundResult();
+
             PreencherBagDropDownLists();
 
             if (!ModelState.IsValid)
@@ -534,6 +562,9 @@ namespace SALMvc.Controllers
 
         public ActionResult EditEndereco(uint id)
         {
+            if (!LoginHelper.ValidarTipoUsuarioLogado(this, typeof(Gerente)))
+                return new HttpNotFoundResult();
+
             PreencherBagDropDownLists();
             Endereco endereco = null;
 
@@ -564,6 +595,9 @@ namespace SALMvc.Controllers
         [HttpPost]
         public ActionResult EditEndereco(Endereco endereco)
         {
+            if (!LoginHelper.ValidarTipoUsuarioLogado(this, typeof(Gerente)))
+                return new HttpNotFoundResult();
+
             PreencherBagDropDownLists();
             ValidationHelper.RemoverValidacaoDoModelState(ModelState, "Pessoa.Usuario", "Pessoa.Senha");
 
@@ -615,6 +649,9 @@ namespace SALMvc.Controllers
 
         public ActionResult DeleteEndereco(uint id)
         {
+            if (!LoginHelper.ValidarTipoUsuarioLogado(this, typeof(Gerente)))
+                return new HttpNotFoundResult();
+
             if (!ModelState.IsValid || Session["cliente"] == null)
             {
                 return RedirectToAction("Enderecos");

@@ -31,6 +31,7 @@
               @{
                   SALClassLib.Masterdata.Model.Pessoa pessoa = SALMvc.Helpers.LoginHelper.GetUsuarioLogado(this.User.Identity.Name);
                   String nomeUsuario = "";
+                  String tipoUsuario = pessoa.GetType().ToString().Substring(pessoa.GetType().ToString().LastIndexOf(".") + 1);
                   if (pessoa is SALClassLib.Masterdata.Model.PessoaFisica)
                   {
                       nomeUsuario = ((SALClassLib.Masterdata.Model.PessoaFisica)pessoa).Nome;
@@ -40,7 +41,10 @@
                       nomeUsuario = ((SALClassLib.Masterdata.Model.PessoaJuridica)pessoa).NomeFantasia;
                   }
               }
-              Olá, <a href="#" class="navbar-link">@nomeUsuario</a>
+              Olá, <a href="@Url.Action("Edit", tipoUsuario, new { id = pessoa.Id })" class="navbar-link">
+                  @nomeUsuario
+                  </a> |
+                @Html.ActionLink("Sair", "Logout", "Login")
             </p>
           </div>
         </div>

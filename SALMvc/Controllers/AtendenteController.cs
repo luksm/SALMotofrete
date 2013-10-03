@@ -10,6 +10,7 @@ using System.Web.Mvc;
 
 namespace SALMvc.Controllers
 {
+    [Authorize]
     public class AtendenteController : Controller
     {
         IList<Atendente> lista = new List<Atendente>();

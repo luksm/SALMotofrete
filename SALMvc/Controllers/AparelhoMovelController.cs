@@ -10,6 +10,7 @@ using Utilitarios.BO;
 
 namespace SALMvc.Controllers
 {
+    [Authorize]
     public class AparelhoMovelController : Controller
     {
         IList<AparelhoMovel> lista = new List<AparelhoMovel>();

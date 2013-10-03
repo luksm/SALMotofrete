@@ -1,5 +1,6 @@
 ﻿using SALClassLib.Masterdata.Model;
 using SALClassLib.Masterdata.Model.BO;
+using SALMvc.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +11,7 @@ using Utilitarios.BO;
 
 namespace SALMvc.Controllers
 {
+    [Authorize]
     public class EntregadorController : Controller
     {
         IList<Entregador> lista = null;
@@ -77,12 +79,18 @@ namespace SALMvc.Controllers
 
         public ActionResult Index()
         {
+            if (!LoginHelper.ValidarTipoUsuarioLogado(this, typeof(Gerente)))
+                return new HttpNotFoundResult();
+
             Listar();
             return View(lista);
         }
 
         public ActionResult Create()
         {
+            if (!LoginHelper.ValidarTipoUsuarioLogado(this, typeof(Gerente)))
+                return new HttpNotFoundResult();
+
             PreencherBagDropDownLists();
             return View();
         }
@@ -90,6 +98,9 @@ namespace SALMvc.Controllers
         [HttpPost]
         public ActionResult Create(Entregador entregador)
         {
+            if (!LoginHelper.ValidarTipoUsuarioLogado(this, typeof(Gerente)))
+                return new HttpNotFoundResult();
+
             ValidationHelper.RemoverValidacaoDoModelState(ModelState, 
                 "AparelhoMovel.Tipo", "AparelhoMovel.Modelo", "AparelhoMovel.Marca");
             if (!ModelState.IsValid)
@@ -132,6 +143,9 @@ namespace SALMvc.Controllers
 
         public ActionResult Edit(uint id)
         {
+            if (!LoginHelper.ValidarTipoUsuarioLogado(this, typeof(Gerente)))
+                return new HttpNotFoundResult();
+
             Entregador entregador = null;
             try
             {
@@ -158,6 +172,9 @@ namespace SALMvc.Controllers
         [HttpPost]
         public ActionResult Edit(Entregador entregador)
         {
+            if (!LoginHelper.ValidarTipoUsuarioLogado(this, typeof(Gerente)))
+                return new HttpNotFoundResult();
+
             ValidationHelper.RemoverValidacaoDoModelState(ModelState,
                 "AparelhoMovel.Tipo", "AparelhoMovel.Modelo", "AparelhoMovel.Marca");
             if (!ModelState.IsValid)
@@ -202,6 +219,9 @@ namespace SALMvc.Controllers
 
         public ActionResult Delete(uint id)
         {
+            if (!LoginHelper.ValidarTipoUsuarioLogado(this, typeof(Gerente)))
+                return new HttpNotFoundResult();
+
             Entregador entregador = null;
             try
             {
@@ -232,6 +252,9 @@ namespace SALMvc.Controllers
         [HttpPost]
         public ActionResult Delete(Entregador entregador)
         {
+            if (!LoginHelper.ValidarTipoUsuarioLogado(this, typeof(Gerente)))
+                return new HttpNotFoundResult();
+
             try
             {
                 using (EntregadorBO bo = new EntregadorBO())
@@ -257,6 +280,9 @@ namespace SALMvc.Controllers
 
         public ActionResult Details(uint id)
         {
+            if (!LoginHelper.ValidarTipoUsuarioLogado(this, typeof(Gerente)))
+                return new HttpNotFoundResult();
+
             Entregador entregador = null;
             try
             {

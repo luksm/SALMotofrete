@@ -14,6 +14,7 @@ using System.Web.Script.Serialization;
 using Newtonsoft.Json;
 using SALMvc.Models;
 using Newtonsoft.Json.Linq;
+using SALMvc.Helpers;
 
 namespace SALMvc.Controllers
 {
@@ -231,24 +232,64 @@ namespace SALMvc.Controllers
 
         //
         // GET: /OrdemServico/Delete/#
-        public ActionResult Delete(ulong Id)
+        public ActionResult Delete(ulong id)
         {
-            OrdemServicoBO bo = new OrdemServicoBO();
+            if (!LoginHelper.ValidarTipoUsuarioLogado(this, typeof(Gerente)))
+                return new HttpNotFoundResult();
+
+            OrdemServico ordemServico = null;
             try
             {
-                OrdemServico ordemServico = new OrdemServico();
-                ordemServico = bo.BuscarPeloId(Id);
-                bo.Excluir(ordemServico);
-                bo.Dispose();
-                TempData["flash"] = "A ordem de serviço foi excluida com sucesso.";
+                using (OrdemServicoBO bo = new OrdemServicoBO())
+                {
+                    ordemServico = bo.BuscarPeloId(id);
+                }
             }
-            catch
+            catch (BOException ex)
             {
-                TempData["flash"] = "Ocorreu um problema, tente novamente.";
+                TempData["ErrorMessage"] = ex.Message;
+                return RedirectToAction("Index");
             }
+            catch (Exception ex)
+            {
+                TempData["ErrorMessage"] = "Ocorreu um problema, tente novamente. " + ex.Message;
+                return RedirectToAction("Index");
+            }
+
+            return View(ordemServico);
+        }
+
+        //
+        // POST: /OrdemServico/Delete/#
+        [HttpPost]
+        public ActionResult Delete(OrdemServico ordemServico)
+        {
+            if (!LoginHelper.ValidarTipoUsuarioLogado(this, typeof(Gerente)))
+                return new HttpNotFoundResult();
+
+            try
+            {
+                using (OrdemServicoBO bo = new OrdemServicoBO())
+                {
+                    ordemServico = bo.BuscarPeloId(ordemServico.Id);
+                    bo.Excluir(ordemServico);
+                }
+            }
+            catch (BOException ex)
+            {
+                TempData["ErrorMessage"] = ex.Message;
+                return RedirectToAction("Index");
+            }
+            catch (Exception ex)
+            {
+                TempData["ErrorMessage"] = "Ocorreu um problema, tente novamente. " + ex.Message;
+                return RedirectToAction("Index");
+            }
+
             return RedirectToAction("Index");
         }
         
+
         /// <summary>
         /// GET: /OrdemServico/Process/#
         /// 

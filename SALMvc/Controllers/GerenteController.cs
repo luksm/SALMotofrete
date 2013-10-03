@@ -34,13 +34,12 @@ namespace SALMvc.Controllers
 
         //
         // GET: /Gerente/
-        
         public ActionResult Index(int? page, int? pageSize)
         {
             if (!LoginHelper.ValidarTipoUsuarioLogado(this, typeof(Gerente)))
                 return new HttpNotFoundResult();
 
-            if(Session["RegPagina"] == null)
+            if (Session["RegPagina"] == null)
                 Session["RegPagina"] = 10;
             if (pageSize != null) Session["RegPagina"] = pageSize;
             Listar();
@@ -50,7 +49,6 @@ namespace SALMvc.Controllers
 
         //
         // GET: /Gerente/Create
-        
         public ActionResult Create()
         {
             if (!LoginHelper.ValidarTipoUsuarioLogado(this, typeof(Gerente)))
@@ -60,7 +58,6 @@ namespace SALMvc.Controllers
 
         //
         // POST: /Gerente/Create
-        
         [HttpPost]
         public ActionResult Create(Gerente gerente)
         {
