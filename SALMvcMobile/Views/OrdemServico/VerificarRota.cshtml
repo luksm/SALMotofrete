@@ -2,59 +2,66 @@
 
 @{
     ViewBag.Title = "Verificar Rota";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = null;
 }
 
-<link href="https://developers.google.com/maps/documentation/javascript/examples/default.css" rel="stylesheet">
+<!DOCTYPE html>
+<html>
+<head>
+    <title>@ViewBag.Title</title>
+    @Scripts.Render("~/bundles/jquery")
+</head>
+<body>
+    <link href="https://developers.google.com/maps/documentation/javascript/examples/default.css" rel="stylesheet">
 
-<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?libraries=places&sensor=true"></script>
-<script>
-    var directionsDisplay;
-    var directionsService = new google.maps.DirectionsService();
-    var map;
-    var currentLocation;
+    <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?libraries=places&sensor=true"></script>
+    <script>
+        var directionsDisplay;
+        var directionsService = new google.maps.DirectionsService();
+        var map;
+        var currentLocation;
 
-    getLocation();
+        getLocation();
 
-    function initialize() {
-        directionsDisplay = new google.maps.DirectionsRenderer();
-        var mapOptions = {
-            center: new google.maps.LatLng(-23.5251, -46.5810),
-            zoom: 12,
-            mapTypeId: google.maps.MapTypeId.ROADMAP
+        function initialize() {
+            directionsDisplay = new google.maps.DirectionsRenderer();
+            var mapOptions = {
+                center: new google.maps.LatLng(-23.5251, -46.5810),
+                zoom: 12,
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            };
+            map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+            directionsDisplay.setMap(map);
+        }
+
+        function getLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function (position) {
+                    currentLocation = position.coords.latitude + ' ' + position.coords.longitude;
+                    calcRoute();
+                });
+            }
+            else {
+                console.log("NS");
+            }
+        }
+
+        function calcRoute() {
+            var start = currentLocation;
+            var end = '@Html.Raw(Model.EnderecoDestino)';
+        var waypts = [];
+
+        var request = {
+            origin: start,
+            destination: end,
+            travelMode: google.maps.TravelMode.DRIVING
         };
-        map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
-        directionsDisplay.setMap(map);
-    }
-
-    function getLocation() {
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(function (position) {
-                currentLocation = position.coords.latitude + ' ' + position.coords.longitude;
-                calcRoute();
-            });
-        }
-        else {
-            console.log("NS");
-        }
-    }
-
-    function calcRoute() {
-        var start = currentLocation;
-        var end = '@Html.Raw(Model.EnderecoDestino)';
-		var waypts = [];
-
-		var request = {
-		    origin: start,
-		    destination: end,
-		    travelMode: google.maps.TravelMode.DRIVING
-		};
-		directionsService.route(request, function (response, status) {
-		    if (status == google.maps.DirectionsStatus.OK) {
-		        directionsDisplay.setDirections(response);
-		        var route = response.routes[0];
-		        var summaryPanel = document.getElementById('directions_panel');
-		        /*summaryPanel.innerHTML = '';
+        directionsService.route(request, function (response, status) {
+            if (status == google.maps.DirectionsStatus.OK) {
+                directionsDisplay.setDirections(response);
+                var route = response.routes[0];
+                var summaryPanel = document.getElementById('directions_panel');
+                /*summaryPanel.innerHTML = '';
                 // For each route, display summary information.
                 for (var i = 0; i < route.legs.length; i++) {
                 var routeSegment = i + 1;
@@ -63,18 +70,20 @@
                 summaryPanel.innerHTML += route.legs[i].end_address + '<br>';
                 summaryPanel.innerHTML += route.legs[i].distance.text + '<br><br>';
                 }*/
-		    }
-		});
+            }
+        });
 
-		$('#loadingDiv').remove();
-      }
+        $('#loadingDiv').remove();
+    }
 
-      google.maps.event.addDomListener(window, 'load', initialize);
-</script>
+    google.maps.event.addDomListener(window, 'load', initialize);
+    </script>
 
-<div id="loadingDiv" style="float: left; width: 100%; height: 100%;">
-    <div style="margin: 0 auto; width:220px; height:19px;">
-        <img src="~/Images/loading.gif" />
+    <div id="loadingDiv" style="float: left; width: 100%; height: 100%;">
+        <div style="margin: 0 auto; width: 220px; height: 19px;">
+            <img src="~/Images/loading.gif" />
+        </div>
     </div>
-</div>
-<div id="map-canvas" style="float: left; width: 100%; height: 100%;"></div>
+    <div id="map-canvas" style="float: left; width: 100%; height: 100%;"></div>
+</body>
+</html>
