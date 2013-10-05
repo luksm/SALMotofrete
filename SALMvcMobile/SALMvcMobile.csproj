@@ -132,6 +132,7 @@
     <Compile Include="Helpers\LoginHelper.cs" />
     <Compile Include="Models\EnderecoMatrizDistancia.cs" />
     <Compile Include="Models\MatrizDistancia.cs" />
+    <Compile Include="Models\VerificarRotaModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -220,6 +221,7 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Login\Index.cshtml" />
     <Content Include="Views\OrdemServico\Index.cshtml" />
+    <Content Include="Views\OrdemServico\VerificarRota.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

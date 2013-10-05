@@ -17,7 +17,7 @@
     if (Model != null)
     {    
     <div class="editor-label">
-        <b>#</b> @Html.DisplayFor(model => model.NumeroFormatado)
+        <b>#</b> @Html.DisplayFor(model => model.IdFormatado)
     </div>
     <div class="editor-label">
         <b>Origem</b> @(Model.EnderecoRetirada.getEndereco())
@@ -35,7 +35,7 @@
         <b>Status</b> @(Model.Status.Descricao)
     </div>
         
-    <input type="submit" value="@TempData["botao"]" />
+    <input type="submit" value="@TempData["botao"]" /> <input type="submit" name="VerificarRota" value="Verificar Rota" />
     }
 }
 

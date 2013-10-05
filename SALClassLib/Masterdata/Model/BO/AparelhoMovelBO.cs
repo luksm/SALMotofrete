@@ -30,6 +30,28 @@ namespace SALClassLib.Masterdata.Model.BO
             NHibernateHelper.CloseSession(sessao);
         }
 
+        public override void Excluir(AparelhoMovel obj)
+        {
+            Entregador e = null;
+            using (ITransaction tx = sessao.BeginTransaction())
+            {
+                IQuery query = sessao.CreateQuery("from Entregador as ent join fetch ent.AparelhoMovel as am where am.Id=" + obj.Id);
+                IList<Entregador> lista = query.List<Entregador>();
+                if (lista.Count > 0)
+                {
+                    e = lista.First();
+                }
+                tx.Commit();
+            }
+
+            if (e != null)
+            {
+                throw new BOException("Não é possível excluir este aparelho móvel pois existe um entregador utilizando");
+            }
+
+            base.Excluir(obj);
+        }
+
         /// <summary>
         /// Lista os aparelhos moveis que estao disponiveis, ou seja, nao estao vinculados a nenhum entregador.
         /// </summary>

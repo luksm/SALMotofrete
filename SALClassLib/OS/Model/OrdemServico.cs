@@ -29,9 +29,9 @@ namespace SALClassLib.OS.Model
             set { numero = value; }
         }
 
-        public virtual String NumeroFormatado
+        public virtual String IdFormatado
         {
-            get { return String.Format("{0:0000000}", numero); }
+            get { return String.Format("{0:0000000}", id); }
         }
 
         private DateTime data;

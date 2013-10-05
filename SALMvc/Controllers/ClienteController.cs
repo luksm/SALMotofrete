@@ -330,7 +330,7 @@ namespace SALMvc.Controllers
 
         //
         // GET: /Cliente/Delete/#
-        [AllowAnonymous]
+
         public ActionResult Delete(uint id)
         {
             Cliente cliente = null;
@@ -361,7 +361,6 @@ namespace SALMvc.Controllers
 
         //
         // GET: /Cliente/DeletePF/#
-        [AllowAnonymous]
         public ActionResult DeletePF()
         {
             Cliente cliente = (Cliente)Session["cliente"];
@@ -370,7 +369,6 @@ namespace SALMvc.Controllers
 
         //
         // POST: /Cliente/DeletePF/#
-        [AllowAnonymous]
         [HttpPost]
         public ActionResult DeletePF(Cliente cliente)
         {
@@ -394,7 +392,6 @@ namespace SALMvc.Controllers
 
         //
         // GET: /Cliente/DeletePJ/#
-        [AllowAnonymous]
         public ActionResult DeletePJ()
         {
             Cliente cliente = (Cliente)Session["cliente"];
@@ -403,7 +400,6 @@ namespace SALMvc.Controllers
 
         //
         // POST: /Cliente/DeletePJ/#
-        [AllowAnonymous]
         [HttpPost]
         public ActionResult DeletePJ(Cliente cliente)
         {
@@ -427,7 +423,6 @@ namespace SALMvc.Controllers
 
         //
         // GET: /Cliente/Details/#
-        [AllowAnonymous]
         public ActionResult Details(uint id)
         {
             Cliente cliente = new Cliente();
@@ -448,14 +443,12 @@ namespace SALMvc.Controllers
             return RedirectToAction("Index");
         }
 
-        [AllowAnonymous]
         public ActionResult DetailsPF()
         {
             Cliente cliente = (Cliente) Session["cliente"];
             return View(cliente);
         }
 
-        [AllowAnonymous]
         public ActionResult DetailsPJ()
         {
             Cliente cliente = (Cliente)Session["cliente"];
@@ -682,3 +675,4 @@ namespace SALMvc.Controllers
         #endregion
     }
 }
+

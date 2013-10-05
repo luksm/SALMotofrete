@@ -1,5 +1,6 @@
 ﻿using NHibernate;
 using SALClassLib.Masterdata.Model.DAO;
+using SALClassLib.OS.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -70,6 +71,18 @@ namespace SALClassLib.Masterdata.Model.BO
             tx.Commit();
             return lista;
         }
+
+        public void AtribuirOSAoEntregador(OrdemServico os, Entregador entregador)
+        {
+            using (ITransaction tx = sessao.BeginTransaction())
+            {
+                OrdemServico osAux = sessao.Get<OrdemServico>(os.Id);
+                Entregador eAux = sessao.Get<Entregador>(entregador.Id);
+                osAux.Entregador = eAux;
+                osAux.Status = new StatusOrdemServico() { Id=2 };
+                sessao.Update(osAux);
+                tx.Commit();
+            }
+        }
     }
-        
 }

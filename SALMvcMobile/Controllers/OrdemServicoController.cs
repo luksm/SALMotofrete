@@ -1,4 +1,5 @@
 ﻿using SALClassLib.Masterdata.Model;
+using SALClassLib.Masterdata.Model.BO;
 using SALClassLib.OS.Model;
 using SALClassLib.OS.Model.BO;
 using SALMvcMobile.Helpers;
@@ -43,6 +44,23 @@ namespace SALMvcMobile.Controllers
         [HttpPost]
         public ActionResult Index(OrdemServico os)
         {
+            if (Request.Params["VerificarRota"] != null)
+            {
+                Entregador entregador = (Entregador)LoginHelper.GetUsuarioLogado(this);
+                OrdemServico ordemServico = null;
+
+                using (OrdemServicoBO bo = new OrdemServicoBO())
+                {
+                    ordemServico = bo.BuscarOSDoEntregador(entregador);
+                }
+
+                if(ordemServico == null) return RedirectToAction("Index");
+
+                TempData["OSRota"] = ordemServico;
+
+                return Redirect("~/OrdemServico/VerificarRota");
+            }
+
             using (OrdemServicoBO bo = new OrdemServicoBO())
             {
                 if (os.Status.Id == (ushort)EStatusOS.EmRetirada)
@@ -59,6 +77,15 @@ namespace SALMvcMobile.Controllers
         {
             try
             {
+                Entregador entregador = null;
+                Pessoa p = LoginHelper.GetUsuarioLogado(this);
+                if (p is Entregador)
+                {
+                    entregador = (Entregador)p;
+                }
+                else
+                    return Redirect("~/Login/Index");
+                
                 IList<OrdemServico> ordensDisponiveis = null;
                 using (OrdemServicoBO bo = new OrdemServicoBO())
                 {
@@ -72,16 +99,35 @@ namespace SALMvcMobile.Controllers
                 foreach (var item in ordensDisponiveis)
                 {
                     EnderecoMatrizDistancia e = new EnderecoMatrizDistancia(item.EnderecoRetirada);
+                    e.OrdemServico = item;
                     mdis.Destinos.Add(e);
                 }
                 
                 EnderecoMatrizDistancia maisProximo = mdis.GetDestinoMaisProximo();
+
+                using (EntregadorBO bo = new EntregadorBO())
+                {
+                    bo.AtribuirOSAoEntregador(maisProximo.OrdemServico, entregador);
+                }
             }
             catch (Exception ex)
             {
                 TempData["flash"] = "Ocorreu um problema, tente novamente.";
             }
             return RedirectToAction("Index");
+        }
+
+        public ActionResult VerificarRota()
+        {
+            OrdemServico os = (OrdemServico)TempData["OSRota"];
+            VerificarRotaModel model = new VerificarRotaModel();
+
+            if (os.Status.Id == (ushort)EStatusOS.EmRetirada)
+                model.EnderecoDestino = os.EnderecoRetirada.getEndereco();
+            else if (os.Status.Id == (ushort)EStatusOS.ACaminhoDaEntrega)
+                model.EnderecoDestino = os.EnderecoEntrega.getEndereco();
+
+            return View(model);
         }
     }
 }

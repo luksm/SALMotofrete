@@ -14,7 +14,7 @@ namespace SALMvcMobile.Models
 
         public IList<EnderecoMatrizDistancia> Destinos { get; set; }
 
-        public void CalcularDistancia()
+        private void CalcularDistancia()
         {
             IList<String> enderecos = new List<String>();
 
@@ -38,6 +38,15 @@ namespace SALMvcMobile.Models
 
         public EnderecoMatrizDistancia GetDestinoMaisProximo()
         {
+            var ordensPrioritarias = Destinos.Where(e => e.OrdemServico.Data.AddMinutes(15) <= DateTime.Now);
+            
+            if (ordensPrioritarias.Count() > 0)
+            {
+                return ordensPrioritarias.Where(e => e.OrdemServico.Data == Destinos.Max(d => d.OrdemServico.Data)).First();
+            }
+
+            CalcularDistancia();
+
             if (Destinos != null && Destinos.Count > 0)
                 return Destinos.Where(d => d.DistanciaValor == Destinos.Min(de => de.DistanciaValor)).First();
             else return null;
