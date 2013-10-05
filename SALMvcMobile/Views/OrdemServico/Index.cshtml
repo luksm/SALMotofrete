@@ -5,55 +5,47 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>SAL</h1>
-@using (Html.BeginForm("Index", "OrdemServico", FormMethod.Post, new { @class = "" }))
-{
-    @Html.AntiForgeryToken()
-    @Html.ValidationSummary(true)
 
-    @Html.HiddenFor(model => model.Id)
-    @Html.HiddenFor(model => model.Status.Id)
-    
-    if (Model != null)
-    {    
-    <div class="editor-label">
-        <b>#</b> @Html.DisplayFor(model => model.IdFormatado)
-    </div>
-    <div class="editor-label">
-        <b>Origem</b> @(Model.EnderecoRetirada.getEndereco())
-    </div>
-    <div class="editor-label">
-        <b>Contato</b> @(Model.EnderecoRetirada.NomeContato)
-    </div>
-    <div class="editor-label">
-        <b>Destino</b> @(Model.EnderecoEntrega.getEndereco())
-    </div>
-    <div class="editor-label">
-        <b>Contato</b> @(Model.EnderecoEntrega.NomeContato)
-    </div>
-    <div class="editor-label">
-        <b>Status</b> @(Model.Status.Descricao)
-    </div>
-        
-    <input type="submit" value="@TempData["botao"]" /> <input type="submit" name="VerificarRota" value="Verificar Rota" />
-    }
-}
-
-@using (Html.BeginForm("AtribuirOS", "OrdemServico", FormMethod.Post, new { @id = "frmNovaOS" }))
-{
-    if (Model == null)
+<div class="span12">
+    @using (Html.BeginForm("Index", "OrdemServico", FormMethod.Post, new { @class = "" }))
     {
-    <div class="editor-label">
-        <label>
-            Não há ordens de serviço disponíveis no momento!
-        </label>
-        @Html.Hidden("geolocation")
-    </div>
-    <div class="editor-label">
-        <input type="submit" id="btnNovaOS" value="Verificar nova Ordem de Serviço" class="btn btn-primary" />
-    </div>
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+
+        @Html.HiddenFor(model => model.Id)
+        @Html.HiddenFor(model => model.Status.Id)
+    
+        if (Model != null)
+        {            
+            <h3><b>#</b> @Html.DisplayFor(model => model.IdFormatado)</h3>
+            <p><b>Origem</b> @(Model.EnderecoRetirada.getEndereco())</p>
+            <p><b>Contato</b> @(Model.EnderecoRetirada.NomeContato)     </p>   
+            <p><b>Destino</b> @(Model.EnderecoEntrega.getEndereco())        </p>
+            <p><b>Contato</b> @(Model.EnderecoEntrega.NomeContato)        </p>
+            <p><b>Status</b> @(Model.Status.Descricao)</p>
+        
+        <input class="btn" type="submit" value="@TempData["botao"]" />
+        <button style="margin-left:10px" class="btn" type="submit" name="VerificarRota"><i class="icon-road"></i></button>
+        }
     }
-}
+
+    @using (Html.BeginForm("AtribuirOS", "OrdemServico", FormMethod.Post, new { @id = "frmNovaOS" }))
+    {
+        if (Model == null)
+        {
+        <div>
+            <label>
+                Não há ordens de serviço disponíveis no momento!
+            </label>
+            @Html.Hidden("geolocation")
+        </div>
+        <div>
+            <input type="submit" id="btnNovaOS" value="Verificar nova Ordem de Serviço" class="btn" />
+        </div>
+        }
+    }
+</div>
+
 
 @section Scripts{
     <script type="text/javascript">

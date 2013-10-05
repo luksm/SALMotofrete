@@ -1,36 +1,23 @@
 ﻿@model SALClassLib.Masterdata.Model.Pessoa
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Login";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<link href="~/Assets/css/login.css" rel="stylesheet" />
 
-<h2>Index</h2>
-
-@using (Html.BeginForm("Index", "Login", new { ReturnUrl = Request.QueryString["ReturnUrl"] }, FormMethod.Post, new { @class = "form-signin" })){
+@using (Html.BeginForm("Index", "Login", new { ReturnUrl = Request.QueryString["ReturnUrl"] }, FormMethod.Post, new { @class = "form-signin" }))
+{
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
 
-    <fieldset>
-        <legend>Pessoa</legend>
+    <h3 class="form-signin-heading">Faça seu login</h3>
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Usuario)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.Usuario)
-            @Html.ValidationMessageFor(model => model.Usuario)
-        </div>
+    @Html.TextBoxFor(model => model.Usuario, new { @class = "input-block-level", @placeholder = "Email" })
+    @Html.ValidationMessageFor(model => model.Usuario)
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Senha)
-        </div>
-        <div class="editor-field">
-            @Html.PasswordFor(model => model.Senha)
-            @Html.ValidationMessageFor(model => model.Senha)
-        </div>
-        <p>
-            <input type="submit" value="Login" />
-        </p>
-    </fieldset>
-}
+    @Html.PasswordFor(model => model.Senha, new { @class = "input-block-level", @placeholder = "Senha" })
+    @Html.ValidationMessageFor(model => model.Senha)
+
+    <button class="btn btn-large btn-danger" type="submit">Entrar</button>
+}  

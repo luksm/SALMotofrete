@@ -1,0 +1,67 @@
+﻿body a{color:#DE0000;}
+body a:hover, a:active{color:#AA0000;}
+body .header{ border-bottom:1px solid #DDD; }
+
+@font-face {
+	font-family: 'Olivier';
+	src: url('Assets/fonts/olivier_demo.eot');
+	src: local('☺'), url('/Assets/fonts/olivier_demo.woff') format('woff'), url('/Assets/fonts/olivier_demo.ttf') format('truetype'), url('/Assets/fonts/olivier_demo.svg') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+.container-fluid {
+    margin-top: 60px;
+}
+
+.row-fluid {
+    width: 98%;
+    padding: 1%;
+}
+
+.logo {
+    font-family: 'Olivier';
+}
+
+h2 {
+    color:#DE0000;
+    font-weight: normal;
+    text-align: center;
+}
+
+.header {
+    border-bottom: 1px solid black;
+    margin-bottom: 30px;
+}
+
+.navbar .brand{
+    padding:20px 20px 10px;
+    font-size:2.5em;
+    color:#DE0000;
+}
+
+
+.navbar .nav > li {
+    padding:5px 20px 10px;
+    line-height:20px;
+}
+
+.navbar-text {
+    line-height:50px;
+}
+
+.navbar-link { color:#DE0000; }
+.navbar-link:hover{color:#AA0000;}
+
+.navbar .nav > li > a:hover {
+    color:#AA0000;
+}
+
+.table-hover tbody tr > td.actions, .table-hover tbody tr > th.actions {
+    text-align: right;
+}
+
+p.actions {
+    text-align: center;
+    margin-top:10px;
+}
