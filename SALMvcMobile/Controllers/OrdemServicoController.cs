@@ -56,7 +56,7 @@ namespace SALMvcMobile.Controllers
 
                 if(ordemServico == null) return RedirectToAction("Index");
 
-                TempData["OSRota"] = ordemServico;
+                Session["OSRota"] = ordemServico;
 
                 return Redirect("~/OrdemServico/VerificarRota");
             }
@@ -119,7 +119,7 @@ namespace SALMvcMobile.Controllers
 
         public ActionResult VerificarRota()
         {
-            OrdemServico os = (OrdemServico)TempData["OSRota"];
+            OrdemServico os = (OrdemServico)Session["OSRota"];
             VerificarRotaModel model = new VerificarRotaModel();
 
             if (os.Status.Id == (ushort)EStatusOS.EmRetirada)

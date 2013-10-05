@@ -23,9 +23,8 @@
             <p><b>Destino</b> @(Model.EnderecoEntrega.getEndereco())        </p>
             <p><b>Contato</b> @(Model.EnderecoEntrega.NomeContato)        </p>
             <p><b>Status</b> @(Model.Status.Descricao)</p>
-        
-        <input class="btn" type="submit" value="@TempData["botao"]" />
-        <button style="margin-left:10px" class="btn" type="submit" name="VerificarRota"><i class="icon-road"></i></button>
+            <input class="btn" type="submit" value="@TempData["botao"]" />
+            <button style="margin-left: 10px" class="btn" type="submit" name="VerificarRota"><i class="icon-road"></i></button>
         }
     }
 
