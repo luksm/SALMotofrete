@@ -18,11 +18,14 @@
         if (Model != null)
         {            
             <h3><b>#</b> @Html.DisplayFor(model => model.IdFormatado)</h3>
-            <p><b>Origem</b> @(Model.EnderecoRetirada.getEndereco())</p>
-            <p><b>Contato</b> @(Model.EnderecoRetirada.NomeContato)     </p>   
-            <p><b>Destino</b> @(Model.EnderecoEntrega.getEndereco())        </p>
-            <p><b>Contato</b> @(Model.EnderecoEntrega.NomeContato)        </p>
+            <p><b>Coleta</b> @(Model.EnderecoRetirada.getEndereco())</p>
+            <p><b>Contato</b> @(Model.EnderecoRetirada.NomeContato)</p>
+            <hr/>
+            <p><b>Destino</b> @(Model.EnderecoEntrega.getEndereco())</p>
+            <p><b>Contato</b> @(Model.EnderecoEntrega.NomeContato)</p>
+            <hr/>
             <p><b>Status</b> @(Model.Status.Descricao)</p>
+            <br />
             <input class="btn" type="submit" value="@TempData["botao"]" />
             <button style="margin-left: 10px" class="btn" type="submit" name="VerificarRota"><i class="icon-road"></i></button>
         }
