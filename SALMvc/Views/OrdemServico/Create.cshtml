@@ -7,45 +7,56 @@
 
 <div class="row-fluid" id="sal">
     <div class="span2">
-        <h1 class="logo">Sal</h1>
-
-        @using (Html.BeginForm("Create", "OrdemServico", FormMethod.Post, new { @class = "" }))
-        {
-            @Html.AntiForgeryToken()
-            @Html.ValidationSummary(true)
-            <fieldset>
-                <legend>Origem</legend>
-                @Html.LabelFor(model => model.EnderecoRetirada.Logradouro)
-                @Html.TextBoxFor(model => model.EnderecoRetirada.Logradouro, new { placeholder="Vou buscar aqui", @class="span12" })
-                @Html.ValidationMessageFor(model => model.EnderecoRetirada.Logradouro)
+        <div class="row-fluid">
+            <div class="span12">
+            <h1 class="logo">Sal</h1>
+                @using (Html.BeginForm("Create", "OrdemServico", FormMethod.Post, new { @class = "" }))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(true)
+                    <fieldset>
+                        <legend>Origem</legend>
+                        @Html.LabelFor(model => model.EnderecoRetirada.Logradouro)
+                        @Html.TextBoxFor(model => model.EnderecoRetirada.Logradouro, new { placeholder="Vou buscar aqui", @class="span12" })
+                        @Html.ValidationMessageFor(model => model.EnderecoRetirada.Logradouro)
  
-                @Html.LabelFor(model => model.EnderecoRetirada.Complemento)
-                @Html.TextBoxFor(model => model.EnderecoRetirada.Complemento, new { placeholder="Andar ? Apartamento ?", @class="span12" })
-                @Html.ValidationMessageFor(model => model.EnderecoRetirada.Logradouro)
+                        @Html.LabelFor(model => model.EnderecoRetirada.Complemento)
+                        @Html.TextBoxFor(model => model.EnderecoRetirada.Complemento, new { placeholder="Andar ? Apartamento ?", @class="span12" })
+                        @Html.ValidationMessageFor(model => model.EnderecoRetirada.Logradouro)
                 
-                @Html.LabelFor(model => model.EnderecoRetirada.NomeContato)
-                @Html.TextBoxFor(model => model.EnderecoRetirada.NomeContato, new { placeholder="Vou falar com quem ?", @class="span12" })
-                @Html.ValidationMessageFor(model => model.EnderecoRetirada.NomeContato)
-            </fieldset>
-            <fieldset>
-                <legend>Destino</legend>
-                @Html.LabelFor(model => model.EnderecoEntrega.Logradouro)
-                @Html.TextBoxFor(model => model.EnderecoEntrega.Logradouro, new { placeholder="Vou entregar aqui", @class="span12" })
-                @Html.ValidationMessageFor(model => model.EnderecoEntrega.Logradouro)
+                        @Html.LabelFor(model => model.EnderecoRetirada.NomeContato)
+                        @Html.TextBoxFor(model => model.EnderecoRetirada.NomeContato, new { placeholder="Vou falar com quem ?", @class="span12" })
+                        @Html.ValidationMessageFor(model => model.EnderecoRetirada.NomeContato)
+                    </fieldset>
+                    <fieldset>
+                        <legend>Destino</legend>
+                        @Html.LabelFor(model => model.EnderecoEntrega.Logradouro)
+                        @Html.TextBoxFor(model => model.EnderecoEntrega.Logradouro, new { placeholder="Vou entregar aqui", @class="span12" })
+                        @Html.ValidationMessageFor(model => model.EnderecoEntrega.Logradouro)
  
-                @Html.LabelFor(model => model.EnderecoEntrega.Complemento)
-                @Html.TextBoxFor(model => model.EnderecoEntrega.Complemento, new { placeholder="Andar ? Apartamento ?", @class="span12" })
-                @Html.ValidationMessageFor(model => model.EnderecoEntrega.Logradouro)
+                        @Html.LabelFor(model => model.EnderecoEntrega.Complemento)
+                        @Html.TextBoxFor(model => model.EnderecoEntrega.Complemento, new { placeholder="Andar ? Apartamento ?", @class="span12" })
+                        @Html.ValidationMessageFor(model => model.EnderecoEntrega.Logradouro)
                 
-                @Html.LabelFor(model => model.EnderecoEntrega.NomeContato)
-                @Html.TextBoxFor(model => model.EnderecoEntrega.NomeContato, new { placeholder="Vou falar com quem ?", @class="span12" })
-                @Html.ValidationMessageFor(model => model.EnderecoEntrega.NomeContato)
-            </fieldset>
+                        @Html.LabelFor(model => model.EnderecoEntrega.NomeContato)
+                        @Html.TextBoxFor(model => model.EnderecoEntrega.NomeContato, new { placeholder="Vou falar com quem ?", @class="span12" })
+                        @Html.ValidationMessageFor(model => model.EnderecoEntrega.NomeContato)
+                    </fieldset>
 
-            <div class="form-actions">
-                <button type="submit" class="btn btn-danger span12">Confirmar</button>
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-danger span12">Confirmar</button>
+                    </div>
+                }
             </div>
-        }
+        </div>
+        <div class="row-fluid">
+            <div class="span6">
+                @Html.ActionLink("Cadastro", "Create", "Cliente")
+            </div>
+            <div class="span6">
+                @Html.ActionLink("Entrar", "Index", "Login")
+            </div>
+        </div>
     </div>
     <div class="span10" id="map-canvas">
         MAPA
@@ -54,6 +65,8 @@
 
 @section Scripts
 {
+    @Scripts.Render("~/bundles/jqueryval")
+
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCeTKNaa8r6sudbzbDwyj76g605HmJb-FI&amp;sensor=true&amp;libraries=places"></script>
 
     <script type="text/javascript" src="~/Assets/js/gmaps.js"></script>

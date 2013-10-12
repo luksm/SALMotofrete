@@ -234,6 +234,9 @@
     <Content Include="Views\OrdemServico\Process.cshtml" />
     <Content Include="Views\OrdemServico\Step3.cshtml" />
     <Content Include="Views\OrdemServico\Delete.cshtml" />
+    <Content Include="Views\Cliente\Create.cshtml" />
+    <Content Include="Views\Shared\_HomeNavigation.cshtml" />
+    <Content Include="Views\Shared\_LoggedIn.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -263,9 +266,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\AparelhoMovel\Details.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\Shared\_Utopia.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Atendente\Create.cshtml" />

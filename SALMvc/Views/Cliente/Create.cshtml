@@ -1,0 +1,28 @@
+﻿@using SALClassLib.Masterdata.Model;
+@model SALClassLib.Masterdata.Model.Cliente
+
+@{
+    var p = SALMvc.Helpers.LoginHelper.GetUsuarioLogado(this.User.Identity.Name);
+    if(p is Gerente || p is Atendente) {
+        Layout = "~/Views/Shared/_Utopia.cshtml";
+        Html.RenderPartial("~/Views/Shared/_FlashPartial.cshtml");
+    }
+    else
+    {
+        Layout = "~/Views/Shared/_HomeNavigation.cshtml";
+    }
+    ViewBag.Title = "SAL Motofrete, seu motoboy a um click de distância!";
+}
+<div class="row-fluid header">
+    <div class="span12">
+        <h2 class="text-center">Novo Cliente</h2>
+    </div>
+</div>
+<div class="row-fluid">
+    <div class="span6 text-center">
+        <a href="@Url.Action("CreatePF", "Cliente")" class="btn btn-large btn-danger" type="button"><i class="icon-user icon-white"> </i><br />  Novo Cliente</a>
+    </div>
+    <div class="span6 text-center">
+        <a href="@Url.Action("CreatePJ", "Cliente")" class="btn btn-large btn-danger" type="button"><i class="icon-briefcase icon-white"> </i><br />  Nova Empresa</a>
+    </div>
+</div>

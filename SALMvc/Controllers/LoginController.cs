@@ -53,7 +53,7 @@ namespace SALMvc.Controllers
         {
             FormsAuthentication.SignOut();
 
-            return RedirectToAction("Index");
+            return RedirectToAction("Create", "OrdemServico");
         }
     }
 }

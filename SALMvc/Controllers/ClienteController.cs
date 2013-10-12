@@ -15,6 +15,7 @@ namespace SALMvc.Controllers
     [Authorize]
     public class ClienteController : Controller
     {
+        #region Definitions
         IList<Cliente> lista = null;
         IList<Endereco> listaEnderecos = null;
 
@@ -88,6 +89,7 @@ namespace SALMvc.Controllers
             }
             ViewBag.Estados = listaEstados;
         }
+        #endregion
 
         [AllowAnonymous]
         [HttpPost]
@@ -116,9 +118,9 @@ namespace SALMvc.Controllers
         }
 
         #region Cliente
+
         //
         // GET: /Cliente/
-
         public ActionResult Index()
         {
             if (!LoginHelper.ValidarTipoUsuarioLogado(this, typeof(Gerente)))
@@ -126,6 +128,14 @@ namespace SALMvc.Controllers
 
             Listar();
             return View(lista);
+        }
+
+        //
+        // GET: /Cliente/Create
+        [AllowAnonymous]
+        public ActionResult Create()
+        {
+            return View();
         }
 
         //
@@ -200,6 +210,12 @@ namespace SALMvc.Controllers
                     bo.Incluir(cliente);
                 }
                 Session["cliente"] = cliente;
+
+                if (Session["os"] != null)
+                {
+                    return RedirectToAction("Step3", "OrdemServico");
+                }
+
                 return RedirectToAction("Enderecos");
             }
             catch (BOException ex)
@@ -216,10 +232,11 @@ namespace SALMvc.Controllers
 
         //
         // GET: /Cliente/Edit/#
-
-        [AllowAnonymous]
         public ActionResult Edit(uint id)
         {
+            if (!LoginHelper.ValidarTipoUsuarioLogado(this, typeof(Gerente), typeof(PessoaFisica), typeof(PessoaJuridica)))
+                return new HttpNotFoundResult();
+
             Cliente cliente = new Cliente();
             using (ClienteBO bo = new ClienteBO())
             {
@@ -239,21 +256,23 @@ namespace SALMvc.Controllers
 
         //
         // GET: /Cliente/EditPF/#
-
-        [AllowAnonymous]
         public ActionResult EditPF()
         {
+            if (!LoginHelper.ValidarTipoUsuarioLogado(this, typeof(Gerente), typeof(PessoaFisica), typeof(PessoaJuridica)))
+                return new HttpNotFoundResult();
+
             Cliente cliente = (Cliente)Session["cliente"];
             return View(cliente);
         }
 
         //
         // POST: /Cliente/EditPF/#
-
-        [AllowAnonymous]
         [HttpPost]
         public ActionResult EditPF(Cliente cliente)
         {
+            if (!LoginHelper.ValidarTipoUsuarioLogado(this, typeof(Gerente), typeof(PessoaFisica), typeof(PessoaJuridica)))
+                return new HttpNotFoundResult();
+
             ValidationHelper.RemoverValidacaoDoModelState(ModelState, "PessoaFisica.Usuario", "PessoaFisica.Senha");
             if (!ModelState.IsValid)
             {
@@ -290,6 +309,9 @@ namespace SALMvc.Controllers
         [AllowAnonymous]
         public ActionResult EditPJ()
         {
+            if (!LoginHelper.ValidarTipoUsuarioLogado(this, typeof(Gerente), typeof(PessoaFisica), typeof(PessoaJuridica)))
+                return new HttpNotFoundResult();
+
             Cliente cliente = (Cliente)Session["cliente"];
             return View(cliente);
         }
@@ -300,6 +322,9 @@ namespace SALMvc.Controllers
         [HttpPost]
         public ActionResult EditPJ(Cliente cliente)
         {
+            if (!LoginHelper.ValidarTipoUsuarioLogado(this, typeof(Gerente), typeof(PessoaFisica), typeof(PessoaJuridica)))
+                return new HttpNotFoundResult();
+
             ValidationHelper.RemoverValidacaoDoModelState(ModelState, "PessoaJuridica.Usuario", "PessoaJuridica.Senha");
             if (!ModelState.IsValid)
             {
@@ -330,9 +355,11 @@ namespace SALMvc.Controllers
 
         //
         // GET: /Cliente/Delete/#
-
         public ActionResult Delete(uint id)
         {
+            if (!LoginHelper.ValidarTipoUsuarioLogado(this, typeof(Gerente), typeof(PessoaFisica), typeof(PessoaJuridica)))
+                return new HttpNotFoundResult();
+
             Cliente cliente = null;
             try
             {
@@ -363,6 +390,9 @@ namespace SALMvc.Controllers
         // GET: /Cliente/DeletePF/#
         public ActionResult DeletePF()
         {
+            if (!LoginHelper.ValidarTipoUsuarioLogado(this, typeof(Gerente), typeof(PessoaFisica), typeof(PessoaJuridica)))
+                return new HttpNotFoundResult();
+
             Cliente cliente = (Cliente)Session["cliente"];
             return View(cliente);
         }
@@ -372,6 +402,9 @@ namespace SALMvc.Controllers
         [HttpPost]
         public ActionResult DeletePF(Cliente cliente)
         {
+            if (!LoginHelper.ValidarTipoUsuarioLogado(this, typeof(Gerente), typeof(PessoaFisica), typeof(PessoaJuridica)))
+                return new HttpNotFoundResult();
+
             try
             {
                 using (ClienteBO bo = new ClienteBO())
@@ -394,6 +427,9 @@ namespace SALMvc.Controllers
         // GET: /Cliente/DeletePJ/#
         public ActionResult DeletePJ()
         {
+            if (!LoginHelper.ValidarTipoUsuarioLogado(this, typeof(Gerente), typeof(PessoaFisica), typeof(PessoaJuridica)))
+                return new HttpNotFoundResult();
+
             Cliente cliente = (Cliente)Session["cliente"];
             return View(cliente);
         }
@@ -403,6 +439,9 @@ namespace SALMvc.Controllers
         [HttpPost]
         public ActionResult DeletePJ(Cliente cliente)
         {
+            if (!LoginHelper.ValidarTipoUsuarioLogado(this, typeof(Gerente), typeof(PessoaFisica), typeof(PessoaJuridica)))
+                return new HttpNotFoundResult();
+
             try
             {
                 using (ClienteBO bo = new ClienteBO())
@@ -425,6 +464,9 @@ namespace SALMvc.Controllers
         // GET: /Cliente/Details/#
         public ActionResult Details(uint id)
         {
+            if (!LoginHelper.ValidarTipoUsuarioLogado(this, typeof(Gerente), typeof(PessoaFisica), typeof(PessoaJuridica)))
+                return new HttpNotFoundResult();
+
             Cliente cliente = new Cliente();
             using (ClienteBO bo = new ClienteBO())
             {
@@ -445,12 +487,18 @@ namespace SALMvc.Controllers
 
         public ActionResult DetailsPF()
         {
-            Cliente cliente = (Cliente) Session["cliente"];
+            if (!LoginHelper.ValidarTipoUsuarioLogado(this, typeof(Gerente), typeof(PessoaFisica), typeof(PessoaJuridica)))
+                return new HttpNotFoundResult();
+
+            Cliente cliente = (Cliente)Session["cliente"];
             return View(cliente);
         }
 
         public ActionResult DetailsPJ()
         {
+            if (!LoginHelper.ValidarTipoUsuarioLogado(this, typeof(Gerente), typeof(PessoaFisica), typeof(PessoaJuridica)))
+                return new HttpNotFoundResult();
+
             Cliente cliente = (Cliente)Session["cliente"];
             return View(cliente);
         }
@@ -463,13 +511,20 @@ namespace SALMvc.Controllers
 
         public ActionResult Enderecos()
         {
-            if (!LoginHelper.ValidarTipoUsuarioLogado(this, typeof(Gerente)))
+            if (!LoginHelper.ValidarTipoUsuarioLogado(this, typeof(Gerente), typeof(PessoaFisica), typeof(PessoaJuridica)))
                 return new HttpNotFoundResult();
 
             try
             {
-                Cliente c = (Cliente) Session["cliente"];
-                if (c == null) return RedirectToAction("Index");
+                Cliente c = new Cliente();
+
+                if (LoginHelper.ValidarTipoUsuarioLogado(this, typeof(PessoaFisica), typeof(PessoaJuridica)))
+                    c.Pessoa = LoginHelper.GetUsuarioLogado(this);
+                else
+                    c = (Cliente)Session["cliente"];
+
+                if (c == null) return new HttpNotFoundResult();
+
                 ListarEnderecos(c);
                 return View(listaEnderecos);
             }
@@ -477,9 +532,9 @@ namespace SALMvc.Controllers
             {
                 TempData["flash"] = ex.Message;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                TempData["flash"] = "Ocorreu um erro inesperado. Tente novamente.";
+                TempData["flash"] = ex.Message;
             }
 
             return RedirectToAction("Index");
@@ -490,7 +545,7 @@ namespace SALMvc.Controllers
 
         public ActionResult CreateEndereco()
         {
-            if (!LoginHelper.ValidarTipoUsuarioLogado(this, typeof(Gerente)))
+            if (!LoginHelper.ValidarTipoUsuarioLogado(this, typeof(Gerente), typeof(PessoaFisica), typeof(PessoaJuridica)))
                 return new HttpNotFoundResult();
 
             PreencherBagDropDownLists();
@@ -503,7 +558,7 @@ namespace SALMvc.Controllers
         [HttpPost]
         public ActionResult CreateEndereco(Endereco endereco)
         {
-            if (!LoginHelper.ValidarTipoUsuarioLogado(this, typeof(Gerente)))
+            if (!LoginHelper.ValidarTipoUsuarioLogado(this, typeof(Gerente), typeof(PessoaFisica), typeof(PessoaJuridica)))
                 return new HttpNotFoundResult();
 
             PreencherBagDropDownLists();
@@ -555,7 +610,7 @@ namespace SALMvc.Controllers
 
         public ActionResult EditEndereco(uint id)
         {
-            if (!LoginHelper.ValidarTipoUsuarioLogado(this, typeof(Gerente)))
+            if (!LoginHelper.ValidarTipoUsuarioLogado(this, typeof(Gerente), typeof(PessoaFisica), typeof(PessoaJuridica)))
                 return new HttpNotFoundResult();
 
             PreencherBagDropDownLists();
@@ -588,7 +643,7 @@ namespace SALMvc.Controllers
         [HttpPost]
         public ActionResult EditEndereco(Endereco endereco)
         {
-            if (!LoginHelper.ValidarTipoUsuarioLogado(this, typeof(Gerente)))
+            if (!LoginHelper.ValidarTipoUsuarioLogado(this, typeof(Gerente), typeof(PessoaFisica), typeof(PessoaJuridica)))
                 return new HttpNotFoundResult();
 
             PreencherBagDropDownLists();
@@ -642,7 +697,7 @@ namespace SALMvc.Controllers
 
         public ActionResult DeleteEndereco(uint id)
         {
-            if (!LoginHelper.ValidarTipoUsuarioLogado(this, typeof(Gerente)))
+            if (!LoginHelper.ValidarTipoUsuarioLogado(this, typeof(Gerente), typeof(PessoaFisica), typeof(PessoaJuridica)))
                 return new HttpNotFoundResult();
 
             if (!ModelState.IsValid || Session["cliente"] == null)

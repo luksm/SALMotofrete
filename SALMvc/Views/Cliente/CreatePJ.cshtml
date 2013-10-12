@@ -1,9 +1,17 @@
-﻿@model SALClassLib.Masterdata.Model.Cliente
+﻿@using SALClassLib.Masterdata.Model;
+@model SALClassLib.Masterdata.Model.Cliente
 
 @{
+    var p = SALMvc.Helpers.LoginHelper.GetUsuarioLogado(this.User.Identity.Name);
+    if(p is Gerente || p is Atendente) {
+        Layout = "~/Views/Shared/_Utopia.cshtml";
+        Html.RenderPartial("~/Views/Shared/_FlashPartial.cshtml");
+    }
+    else
+    {
+        Layout = "~/Views/Shared/_HomeNavigation.cshtml";
+    }
     ViewBag.Title = "Cadastro de Empresa";
-    Layout = "~/Views/Shared/_Utopia.cshtml";
-    Html.RenderPartial("~/Views/Shared/_FlashPartial.cshtml");
 }
 
 <div class="row header">

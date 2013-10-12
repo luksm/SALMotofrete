@@ -21,6 +21,8 @@
     @Html.PasswordFor(model => model.Senha, new { @class = "input-block-level", placeholder = "Senha" })
     @Html.ValidationMessageFor(model => model.Senha)
     <input class="btn btn-large btn-danger" id="btnLogin" type="submit" value="Entrar" />
+    @Html.ActionLink("Cadastro", "Create", "Cliente", null, new { @class = "btn btn-large btn-danger" })
+
 }
 
 </div> <!-- /container -->

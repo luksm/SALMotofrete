@@ -1,0 +1,105 @@
+﻿<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="utf-8">
+        <title>@ViewBag.Title</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="">
+        <meta name="author" content="">
+
+        <!-- Le styles -->
+        <link href="~/Assets/css/bootstrap.min.css" rel="stylesheet" />
+        <link href="~/Assets/css/bootstrap-responsive.min.css" rel="stylesheet" />
+        <link href="~/Assets/css/site.css" rel="stylesheet" />
+
+        <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+        <!--[if lt IE 9]>
+            <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+
+        <!-- Le fav and touch icons -->
+        <link rel="shortcut icon" href="~/Assets/ico/favicon.ico">
+        <link rel="apple-touch-icon-precomposed" sizes="144x144" href="~/Assets/ico/apple-touch-icon-144-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="~/Assets/ico/apple-touch-icon-114-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" sizes="72x72"   href="~/Assets/ico/apple-touch-icon-72-precomposed.png">
+        <link rel="apple-touch-icon-precomposed"                 href="~/Assets/ico/apple-touch-icon-57-precomposed.png">
+
+        <!-- Autocomplete Google Maps -->
+        <link href="https://developers.google.com/maps/documentation/javascript/examples/default.css" rel="stylesheet">
+    </head>
+    <body>
+
+        <!-- Navbar
+        ================================================== -->
+        <div class="navbar navbar-fixed-top">
+            <div class="navbar-inner">
+                <div class="span12">
+                  <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                    <span class="icon-bar"></span>  
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                  </button>
+                  <a href="@Url.Action("Index", "Home")" class="logo brand">Sal</a>
+                  <div class="nav-collapse collapse">
+                    <p class="navbar-text" style="display: inline-block">
+                      seu motoboy a um click de distância
+                    </p>
+            <p class="navbar-text pull-right" style="display: inline-block">
+            @{
+                SALClassLib.Masterdata.Model.Pessoa pessoa = SALMvc.Helpers.LoginHelper.GetUsuarioLogado(this.User.Identity.Name);
+                String nomeUsuario = "";
+                String editAction = "";
+                String tipoUsuario = pessoa.GetType().ToString().Substring(pessoa.GetType().ToString().LastIndexOf(".") + 1);
+                if (pessoa is SALClassLib.Masterdata.Model.PessoaFisica)
+                {
+                    nomeUsuario = ((SALClassLib.Masterdata.Model.PessoaFisica)pessoa).Nome;
+                    editAction = "EditPF";
+                }
+                else if (pessoa is SALClassLib.Masterdata.Model.PessoaJuridica)
+                {
+                    nomeUsuario = ((SALClassLib.Masterdata.Model.PessoaJuridica)pessoa).NomeFantasia;
+                    editAction = "EditPJ";
+                }
+            }
+            Olá, <a href="@Url.Action(editAction, tipoUsuario, new { id = pessoa.Id })" class="navbar-link">
+                @nomeUsuario
+                </a> |
+            @Html.ActionLink("Sair", "Logout", "Login")
+            </p>
+          </div>
+
+                </div>
+              </div>
+        </div>    
+
+        <!-- Content
+        ================================================== -->
+        <div class="container-fluid">
+          <div class="row-fluid">
+            <div class="span8 offset2">
+                @RenderBody()
+            </div>
+          </div>
+        </div>
+
+        <!-- Le javascript
+        ================================================== -->
+        <!-- Placed at the end of the document so the pages load faster -->
+        @Scripts.Render("~/bundles/jquery")
+        <script src="~/Assets/js/bootstrap-transition.js"></script>
+        <script src="~/Assets/js/bootstrap-alert.js"></script>
+        <script src="~/Assets/js/bootstrap-modal.js"></script>
+        <script src="~/Assets/js/bootstrap-dropdown.js"></script>
+        <script src="~/Assets/js/bootstrap-scrollspy.js"></script>
+        <script src="~/Assets/js/bootstrap-tab.js"></script>
+        <script src="~/Assets/js/bootstrap-tooltip.js"></script>
+        <script src="~/Assets/js/bootstrap-popover.js"></script>
+        <script src="~/Assets/js/bootstrap-button.js"></script>
+        <script src="~/Assets/js/bootstrap-collapse.js"></script>
+        <script src="~/Assets/js/bootstrap-carousel.js"></script>
+        <script src="~/Assets/js/bootstrap-typeahead.js"></script>
+        <script src="~/Assets/js/bootstrap-affix.js"></script>
+        <script src="~/Assets/js/application.js"></script>
+        @RenderSection("scripts", required: false)
+  </body>
+</html>

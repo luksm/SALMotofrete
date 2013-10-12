@@ -38,6 +38,10 @@ h1 {
     height: 100%;
 }
 
+#map-canvas {
+    margin-left: 2.5641% !important;
+}
+
 html, body {
     height: 100%;
 }

@@ -1,9 +1,17 @@
-﻿@model SALClassLib.Masterdata.Model.Cliente
+﻿@using SALClassLib.Masterdata.Model;
+@model SALClassLib.Masterdata.Model.Cliente
 
 @{
+    var p = SALMvc.Helpers.LoginHelper.GetUsuarioLogado(this.User.Identity.Name);
+    if(p is Gerente || p is Atendente) {
+        Layout = "~/Views/Shared/_Utopia.cshtml";
+        Html.RenderPartial("~/Views/Shared/_FlashPartial.cshtml");
+    }
+    else
+    {
+        Layout = "~/Views/Shared/_HomeNavigation.cshtml";
+    }
     ViewBag.Title = "Cadastro de Cliente";
-    Layout = "~/Views/Shared/_Utopia.cshtml";
-    Html.RenderPartial("~/Views/Shared/_FlashPartial.cshtml");
 }
 
 <div class="row header">
@@ -17,6 +25,7 @@
     <div class="row">
         <div class="span5 offset3">
             @Html.Partial("~/Views/Cliente/_InputPFPartial.cshtml")
+
         </div>
     </div>
     <div class="row">

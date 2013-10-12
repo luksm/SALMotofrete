@@ -25,6 +25,22 @@
         @Html.DisplayFor(model => model.Observacao)
     </div>
 
+    @if (Model.Cliente.Pessoa is SALClassLib.Masterdata.Model.PessoaFisica) {
+        <strong>Html.DisplayFor(model => model.Cliente.PessoFisica.Nome)</strong>
+        <div class="display-field">@Html.DisplayFor(model => ((SALClassLib.Masterdata.Model.PessoaFisica)model.Cliente.Pessoa).Nome)
+                </div>
+            }
+            else if (Model.Cliente.Pessoa is SALClassLib.Masterdata.Model.PessoaJuridica)
+            {
+                <strong>Html.DisplayFor(model => model.Cliente.PessoFisica.NomeFantasia)</strong>
+                <div class="display-field">
+                    @Html.DisplayFor(model => ((SALClassLib.Masterdata.Model.PessoaJuridica)model.Cliente.Pessoa).NomeFantasia)
+                </div>
+        }
+    <strong>@Html.DisplayNameFor(model => model.Cliente)</strong>
+    <div class="display-field">
+    </div>
+
     <h2>Endereço de Retirada</h2>
         @Html.DisplayFor(model => model.EnderecoRetirada.Logradouro), @Html.DisplayFor(model => model.EnderecoRetirada.Numero)
         @Html.DisplayFor(model => model.EnderecoRetirada.Complemento)<br />

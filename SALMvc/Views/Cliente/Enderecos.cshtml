@@ -1,9 +1,17 @@
 ﻿@model IEnumerable<SALClassLib.Masterdata.Model.Endereco>
+@using SALClassLib.Masterdata.Model;
 
 @{
-    ViewBag.Title = "Endereço";
-    Layout = "~/Views/Shared/_Utopia.cshtml";
-    Html.RenderPartial("~/Views/Shared/_FlashPartial.cshtml");
+    var p = SALMvc.Helpers.LoginHelper.GetUsuarioLogado(this.User.Identity.Name);
+    if(p is Gerente || p is Atendente) {
+        Layout = "~/Views/Shared/_Utopia.cshtml";
+        Html.RenderPartial("~/Views/Shared/_FlashPartial.cshtml");
+    }
+    else
+    {
+        Layout = "~/Views/Shared/_HomeNavigation.cshtml";
+    }
+    ViewBag.Title = "Cadastro de Empresa";
 }
 
 <div class="row">

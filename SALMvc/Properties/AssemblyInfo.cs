@@ -1,12 +1,13 @@
 ﻿using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
+using System.Resources;
 
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("SAL")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("Seu motoboy a um click de distância")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Origami Software")]
 [assembly: AssemblyProduct("SALMvc")]
@@ -33,3 +34,4 @@ using System.Runtime.InteropServices;
 // by using the '*' as shown below:
 [assembly: AssemblyVersion("1.0.0.0")]
 [assembly: AssemblyFileVersion("1.0.0.0")]
+[assembly: NeutralResourcesLanguageAttribute("pt-BR")]

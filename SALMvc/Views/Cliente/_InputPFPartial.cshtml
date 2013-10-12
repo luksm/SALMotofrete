@@ -55,3 +55,19 @@
         @Html.ValidationMessageFor(model => model.PessoaFisica.Email)
     </div>
 </div>
+
+<div class="control-group">
+    @Html.LabelFor(model => model.PessoaFisica.Usuario,  new { @class = "control-label" })
+    <div class="controls">
+        @Html.EditorFor(model => model.PessoaFisica.Usuario)<br />
+        @Html.ValidationMessageFor(model => model.PessoaFisica.Usuario)
+    </div>
+</div>
+
+<div class="control-group">
+    @Html.LabelFor(model => model.PessoaFisica.Senha,  new { @class = "control-label" })
+    <div class="controls">
+        @Html.PasswordFor(model => model.PessoaFisica.Senha)<br />
+        @Html.ValidationMessageFor(model => model.PessoaFisica.Senha)
+    </div>
+</div>

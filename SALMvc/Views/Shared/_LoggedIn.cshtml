@@ -14,7 +14,7 @@
     
     @Scripts.Render("~/bundles/modernizr")
 </head>
-<body>
+<body data-spy="scroll" data-target=".bs-docs-sidebar">
     <!-- Navbar
     ================================================== -->
     <div class="navbar navbar-fixed-top">
@@ -31,17 +31,20 @@
             @{
                 SALClassLib.Masterdata.Model.Pessoa pessoa = SALMvc.Helpers.LoginHelper.GetUsuarioLogado(this.User.Identity.Name);
                 String nomeUsuario = "";
+                String editAction = "";
                 String tipoUsuario = pessoa.GetType().ToString().Substring(pessoa.GetType().ToString().LastIndexOf(".") + 1);
                 if (pessoa is SALClassLib.Masterdata.Model.PessoaFisica)
                 {
                     nomeUsuario = ((SALClassLib.Masterdata.Model.PessoaFisica)pessoa).Nome;
+                    editAction = "EditPF";
                 }
                 else if (pessoa is SALClassLib.Masterdata.Model.PessoaJuridica)
                 {
                     nomeUsuario = ((SALClassLib.Masterdata.Model.PessoaJuridica)pessoa).NomeFantasia;
+                    editAction = "EditPJ";
                 }
             }
-            Olá, <a href="@Url.Action("Edit", tipoUsuario, new { id = pessoa.Id })" class="navbar-link">
+            Olá, <a href="@Url.Action(editAction, tipoUsuario, new { id = pessoa.Id })" class="navbar-link">
                 @nomeUsuario
                 </a> |
             @Html.ActionLink("Sair", "Logout", "Login")
@@ -59,7 +62,7 @@
       <div class="row-fluid">
         <div class="span2">
             <ul class="nav nav-tabs nav-stacked">
-                <li>@Html.ActionLink("Aparelho Móvel", "Index", "AparelhoMovel")</li>
+                <li>@Html.ActionLink("Meus Endereços", "Endereços", "Cliente")</li>
                 <li>@Html.ActionLink("Atendente", "Index", "Atendente")</li>
                 <li>@Html.ActionLink("Cliente", "Index", "Cliente")</li>
                 <li>@Html.ActionLink("Entregador", "Index", "Entregador")</li>

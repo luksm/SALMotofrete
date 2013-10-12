@@ -18,9 +18,11 @@ using SALMvc.Helpers;
 
 namespace SALMvc.Controllers
 {
+    [Authorize]
     public class OrdemServicoController : Controller
     {
 
+        #region Definitions
         IList<OrdemServico> lista = new List<OrdemServico>();
         private void Listar()
         {
@@ -65,7 +67,7 @@ namespace SALMvc.Controllers
             }
             ViewBag.Municipios = listaMunicipios;
         }
-
+        #endregion
         //
         // GET: /OrdemServico/
         public ActionResult Index()
@@ -76,7 +78,7 @@ namespace SALMvc.Controllers
 
         //
         // GET: /OrdemServico/
-        
+        [AllowAnonymous]
         public ActionResult Create()
         {
             return View();
@@ -84,6 +86,7 @@ namespace SALMvc.Controllers
 
         //
         // POST: /OrdemServico/Create
+        [AllowAnonymous]
         [HttpPost]
         public ActionResult Create(OrdServEndereco ordemServico)
         {
@@ -106,6 +109,7 @@ namespace SALMvc.Controllers
 
         //
         // GET: /OrdemServico/Step2
+        [AllowAnonymous]
         public ActionResult Step2()
         {
             PreencherBagDropDownLists();
@@ -115,6 +119,7 @@ namespace SALMvc.Controllers
 
         //
         // POST: /OrdemServico/Step2
+        [AllowAnonymous]
         [HttpPost]
         public ActionResult Step2(OrdServEndereco ordemServico)
         {
@@ -130,14 +135,16 @@ namespace SALMvc.Controllers
             os.EnderecoEntrega = ordemServico.EnderecoEntrega;
             os.Data = DateTime.Now;
 
-            TempData["os"] = os;
+            Session["os"] = os;
             return RedirectToAction("Step3");
         }
 
         //
         // GET: /OrdemServico/Step3
+        [AllowAnonymous]
         public ActionResult Step3() {
-            OrdemServico ordemServico = (OrdemServico)TempData["os"];
+            OrdemServico ordemServico = (OrdemServico)Session["os"];
+            Session["os"] = null;
 
             using (MunicipioBO bo = new MunicipioBO()) {
                 ordemServico.EnderecoRetirada.Municipio = bo.BuscarPeloId(ordemServico.EnderecoRetirada.Municipio.Id);
