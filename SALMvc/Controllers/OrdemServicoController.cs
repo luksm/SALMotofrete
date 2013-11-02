@@ -303,6 +303,13 @@ namespace SALMvc.Controllers
             using (OrdemServicoBO bo = new OrdemServicoBO())
             {
                 os = bo.BuscarPeloId(id);
+                TempData["PF"] = os.Cliente.Pessoa is PessoaFisica;
+            }
+
+            if (os.Status.Id != 1)
+            {
+                TempData["ErrorMessage"] = "Esta OS não pode mais ser cancelada!";
+                return RedirectToAction("Index");
             }
 
             return View(os);

@@ -24,6 +24,7 @@
         <thead>
         <tr style="background:#CCC;color:#FFF;">
             <th>@Html.DisplayNameFor(model => model.Numero)</th>
+            <th>@Html.DisplayNameFor(model => model.Status)</th>
             <th>@Html.DisplayNameFor(model => model.Data)</th>
             <th>@Html.DisplayNameFor(model => model.Observacao)</th>
             <th></th>
@@ -33,6 +34,7 @@
         {
             <tr>
                 <td>@Html.DisplayFor(modelItem => item.Id)</td>
+                <th>@Html.DisplayFor(modelItem => item.Status.Descricao)</th>
                 <td>@Html.DisplayFor(modelItem => item.Data)</td>
                 <td>@Html.DisplayFor(modelItem => item.Observacao)</td>
                 <td class="actions">

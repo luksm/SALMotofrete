@@ -12,6 +12,11 @@
     @Html.DisplayFor(model => model.Id)
 </div>
 
+<strong>@Html.DisplayNameFor(model => model.Status)</strong>
+<div class="display-field">
+    @Html.DisplayFor(model => model.Status.Descricao)
+</div>
+
 <strong>@Html.DisplayNameFor(model => model.Data)</strong>
 <div class="display-field">
     @Html.DisplayFor(model => model.DataFormatada)
