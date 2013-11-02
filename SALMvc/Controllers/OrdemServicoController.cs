@@ -296,7 +296,34 @@ namespace SALMvc.Controllers
 
             return RedirectToAction("Index");
         }
-        
+
+        public ActionResult Cancel(ulong id)
+        {
+            OrdemServico os = null;
+            using (OrdemServicoBO bo = new OrdemServicoBO())
+            {
+                os = bo.BuscarPeloId(id);
+            }
+
+            return View(os);
+        }
+
+        [HttpPost]
+        public ActionResult Cancel(OrdemServico ordemServico)
+        {
+            if (ordemServico.Status.Id != 1)
+            {
+                TempData["ErrorMessage"] = "Esta OS não pode mais ser cancelada!";
+                return RedirectToAction("Index");
+            }
+
+            using (OrdemServicoBO bo = new OrdemServicoBO())
+            {
+                bo.AlterarStatusParaCancelada(ordemServico);
+            }
+
+            return RedirectToAction("Index");
+        }
 
         /// <summary>
         /// GET: /OrdemServico/Process/#
