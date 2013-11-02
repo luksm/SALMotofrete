@@ -134,5 +134,18 @@ namespace SALClassLib.OS.Model.BO
             }
             return ordensServico;
         }
+
+        public IList<OrdemServico> BuscarPeloEntregador(Entregador entregador)
+        {
+            IList<OrdemServico> ordensServico = null;
+            using (ITransaction tx = sessao.BeginTransaction())
+            {
+                ICriteria crit = sessao.CreateCriteria(typeof(OrdemServico));
+                crit.CreateAlias("Entregador", "ent");
+                crit.Add(Restrictions.Eq("ent.Id", entregador.Id));
+                ordensServico = crit.List<OrdemServico>();
+            }
+            return ordensServico;
+        }
     }
 }

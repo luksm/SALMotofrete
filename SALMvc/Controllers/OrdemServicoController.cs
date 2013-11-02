@@ -24,10 +24,17 @@ namespace SALMvc.Controllers
 
         #region Definitions
         IList<OrdemServico> lista = new List<OrdemServico>();
-        private void Listar()
+        private void Listar(ulong? idEntregador)
         {
             OrdemServicoBO bo = new OrdemServicoBO();
-            lista = bo.Listar();
+            if (!idEntregador.HasValue || idEntregador.Value == 0)
+            {
+                lista = bo.Listar();
+            }
+            else
+            {
+                lista = bo.BuscarPeloEntregador(new Entregador() { Id = Convert.ToUInt32(idEntregador.Value) });
+            }
             bo.Dispose();
         }
 
@@ -70,9 +77,33 @@ namespace SALMvc.Controllers
         #endregion
         //
         // GET: /OrdemServico/
-        public ActionResult Index()
+        public ActionResult Index(ulong? ddlEntregador)
         {
-            Listar();
+            Listar(ddlEntregador);
+
+            IList<Entregador> entregadores = null;
+
+            using (EntregadorBO bo = new EntregadorBO())
+            {
+                entregadores = bo.ListarAtivos();
+            }
+
+            IList<SelectListItem> itens = new List<SelectListItem>();
+            itens.Add(new SelectListItem()
+            {
+                Selected = true, Text = "-- Selecione --", Value = "0"
+            });
+
+            foreach (var item in entregadores)
+            {
+                itens.Add(new SelectListItem()
+                {
+                    Value = item.Id.ToString(), Text = item.Nome
+                });
+            }
+
+            ViewBag.Entregadores = itens;
+
             return View(lista);
         }
 
@@ -234,7 +265,7 @@ namespace SALMvc.Controllers
             {
                 TempData["flash"] = "Ocorreu um problema, tente novamente.";
             }
-            Listar();
+            Listar(null);
             return View("Index", lista);
         }
 
