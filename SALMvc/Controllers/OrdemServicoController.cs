@@ -196,6 +196,7 @@ namespace SALMvc.Controllers
             OrdemServicoBO bo = new OrdemServicoBO();
             OrdemServico ordemServico = new OrdemServico();
             ordemServico = bo.BuscarPeloId(Id);
+            TempData["PF"] = ordemServico.Cliente.Pessoa is PessoaFisica;
             bo.Dispose();
             return View(ordemServico);
         }
