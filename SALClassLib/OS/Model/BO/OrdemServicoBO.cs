@@ -32,6 +32,20 @@ namespace SALClassLib.OS.Model.BO
             NHibernateHelper.CloseSession(sessao);
         }
 
+        public override ulong Incluir(OrdemServico obj)
+        {
+            ulong id;
+            using (ITransaction tx = sessao.BeginTransaction())
+            {
+                Cobranca c = new Cobranca();
+                c.Valor = 0;
+                obj.Cobranca = c;
+                id = (ulong) sessao.Save(obj);
+                tx.Commit();
+            }
+            return id;
+        }
+
         public void AlterarStatusParaEmRetirada(OrdemServico os)
         {
             if (os.Status.Id != (uint)EStatusOS.EmAguardo)
