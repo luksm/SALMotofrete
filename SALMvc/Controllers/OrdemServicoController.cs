@@ -24,6 +24,8 @@ namespace SALMvc.Controllers
 
         #region Definitions
         IList<OrdemServico> lista = new List<OrdemServico>();
+        private String pastaFotos = "/Uploads/Fotos/Funcionarios/Entregador/";
+
         private void Listar(ulong? idEntregador)
         {
             OrdemServicoBO bo = new OrdemServicoBO();
@@ -228,7 +230,15 @@ namespace SALMvc.Controllers
             OrdemServico ordemServico = new OrdemServico();
             ordemServico = bo.BuscarPeloId(Id);
             TempData["PF"] = ordemServico.Cliente.Pessoa is PessoaFisica;
-            bo.Dispose();
+
+            if (ordemServico.Entregador != null)
+            {
+                if (System.IO.File.Exists(ordemServico.Entregador.Foto))
+                {
+                    System.IO.FileInfo info = new System.IO.FileInfo(ordemServico.Entregador.Foto);
+                    ViewBag.Foto = pastaFotos + info.Name;
+                }
+            }
             return View(ordemServico);
         }
 
